@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+<title>Posh-ACME 3.5.0 - Adventures in Tech</title>
+<meta name="description" content="New plugin and misc fixes">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <meta name="generator" content="Hugo 0.55.6" />
+  
+<meta itemprop="name" content="Posh-ACME 3.5.0">
+<meta itemprop="description" content="New plugin and misc fixes">
+
+
+<meta itemprop="datePublished" content="2019-06-21T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-06-21T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="182">
+
+
+
+<meta itemprop="keywords" content="" />
+
+  <meta property="og:title" content="Posh-ACME 3.5.0" />
+<meta property="og:description" content="New plugin and misc fixes" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.dvolve.net/blog/2019/06/posh-acme-3.5.0/" />
+<meta property="article:published_time" content="2019-06-21T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-06-21T00:00:00&#43;00:00"/>
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Posh-ACME 3.5.0"/>
+<meta name="twitter:description" content="New plugin and misc fixes"/>
+<meta name="twitter:site" content="@rmbolger"/>
+
+  
+
+  <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+  
+    
+      <link rel="stylesheet" href="/css/normalize.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+      <link rel="stylesheet" href="/css/main.min.css">
+      <link rel="stylesheet" href="/css/add-on.css">
+    
+  
+  
+  
+  
+  
+</head>
+
+  <body>
+    
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/">
+        
+          
+            Blog
+          
+        
+      </a>
+    </h1>
+    <menu id="site-nav-menu" class="flyout-menu">
+      
+        <a href="/" class="link"><i class="fas fa-home">&nbsp;</i>Home</a>
+      
+        <a href="/about/" class="link"><i class="far fa-id-card">&nbsp;</i>About</a>
+      
+        <a href="/blog/" class="link"><i class="far fa-newspaper">&nbsp;</i>Blog</a>
+      
+        <a href="/categories/" class="link"><i class="fas fa-sitemap">&nbsp;</i>Categories</a>
+      
+        <a href="/contact/" class="link"><i class="far fa-envelope">&nbsp;</i>Contact</a>
+      
+      <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt">&nbsp;</i>Share</a>
+      
+
+    </menu>
+    
+
+    <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+    
+    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  
+  
+    <menu id="share-menu" class="flyout-menu">
+      <h1>Share Post</h1>
+      
+
+
+
+
+
+    </menu>
+  
+</header>
+
+    <div id="wrapper">
+      <section id="site-intro">
+  <a href="/"><img src="/img/main/logo.jpg" class="circle" width="" alt="Ryan Bolger" /></a>
+  <header>
+    <h1>Ryan Bolger</h1>
+  </header>
+  <main>
+    <p>Dad, tech enthusiast, casual gamer, a cappella music lover.</p>
+  </main>
+  
+    <footer>
+      <ul class="social-icons">
+        
+
+        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+<li><a href="//stackoverflow.com/users/75772" target="_blank" rel="noopener" title="Stack Overflow" class="fab fa-stack-overflow"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
+
+
+
+
+
+<li><a href="//reddit.com/user/rmbolger" target="_blank" rel="noopener" title="Reddit" class="fab fa-reddit"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
+
+
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h2>
+    
+    
+        <p>New plugin and misc fixes</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-06-21 00:00:00 &#43;0000 UTC">
+      June 21, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  <section id="social-share">
+    
+
+
+
+
+
+  </section>
+  
+
+  <div class="content">
+    <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation to be more compliant with the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
+
+<p>Here&rsquo;s the official changelog:</p>
+
+<ul>
+<li>Added new DNS plugin for Simple DNS Plus (<a href="https://github.com/rmbolger/Posh-ACME/pull/149">#149</a>) (Thanks @alphaz18)</li>
+<li>Changed a bunch of &ldquo;-ErrorAction SilentlyContinue&rdquo; references to &ldquo;Ignore&rdquo; so we&rsquo;re not filling the $Error collection with junk.</li>
+<li>Fix for Boulder removing ID field from new account output.</li>
+<li>Fixed an issue in a number of plugins that could cause errors if the case of the requested record didn&rsquo;t match the server&rsquo;s zone case. (Thanks @Makr91)</li>
+<li>Fixed a bug with the Route53 plugin when used on PowerShell Core without the AwsPowerShell module installed.</li>
+<li>Fixed some typos in the OVH plugin usage guide examples (<a href="https://github.com/rmbolger/Posh-ACME/pull/147">#147</a>)</li>
+</ul>
+
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
+
+  </div>
+  <footer>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://blog.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
+          
+            
+            <li><a class="article-category-link" href="https://blog.dvolve.net/categories/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    <li class="tags">
+      <ul>
+        <li>None</li>
+      </ul>
+    </li>
+  
+</ul>
+
+  </footer>
+</article>
+<article class="post">
+  
+
+</article>
+<div class="pagination">
+  
+    <a href="/blog/2019/04/posh-ibwapi-3.0.0/" class="button big previous"><i class="fas fa-angle-left"></i> Posh-IBWAPI 3.0.0</a>
+  
+  
+    <a href="/blog/2019/06/infoblox-and-ms-management-permissions/" class="button big next">Infoblox and MS Management Permissions <i class="fas fa-angle-right"></i></a>
+  
+</div>
+
+
+      </main>
+      <section id="site-sidebar">
+  <section id="recent-posts">
+    <header>
+      <h1>Recent posts</h1>
+    </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/06/infoblox-and-ms-management-permissions/">Infoblox and MS Management Permissions</a></h1>
+        <time class="published" datetime="">June 27, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h1>
+        <time class="published" datetime="">June 21, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/04/posh-ibwapi-3.0.0/">Posh-IBWAPI 3.0.0</a></h1>
+        <time class="published" datetime="">April 20, 2019</time>
+      </header>
+    </article>
+    
+    
+  </section>
+
+  
+    
+      <section id="categories">
+        <header>
+          <h1><a href="/categories">Categories</a></h1>
+        </header>
+        <ul>
+          
+            
+          
+          
+          <li>
+            
+              <a href="/categories/powershell/">powershell<span class="count">3</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/infoblox/">infoblox<span class="count">1</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/posh-acme/">posh-acme<span class="count">1</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">1</span></a>
+            
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+
+  <section id="mini-bio">
+    <header>
+      <h1>About</h1>
+    </header>
+    <p>Research and solutions to challenging, unique, or otherwise interesting problems I run into in my daily life working in the tech industry.</p>
+    <footer>
+      <a href="/about" class="button">Learn More</a>
+    </footer>
+  </section>
+</section>
+
+      <footer id="site-footer">
+  
+      <ul class="social-icons">
+        
+
+        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+<li><a href="//stackoverflow.com/users/75772" target="_blank" rel="noopener" title="Stack Overflow" class="fab fa-stack-overflow"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
+
+
+
+
+
+<li><a href="//reddit.com/user/rmbolger" target="_blank" rel="noopener" title="Reddit" class="fab fa-reddit"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
+
+
+
+      </ul>
+  
+  <p class="copyright">
+    
+      &copy; 2019
+      
+        Adventures in Tech
+      
+    .
+    Powered by <a href="//gohugo.io" target="_blank" rel="noopener">Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/ini.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/powershell.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/cs.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/plaintext.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src=/js/util.js></script>
+  <script src=/js/main.js></script>
+  <script src=/js/add-on.js></script>
+  
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77433451-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    </div>
+  </body>
+</html>

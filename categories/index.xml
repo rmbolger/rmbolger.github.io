@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Adventures in Tech</title>
+    <link>https://blog.dvolve.net/categories/</link>
+    <description>Recent content in Categories on Adventures in Tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 27 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.dvolve.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>infoblox</title>
+      <link>https://blog.dvolve.net/categories/infoblox/</link>
+      <pubDate>Thu, 27 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.dvolve.net/categories/infoblox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>powershell</title>
+      <link>https://blog.dvolve.net/categories/powershell/</link>
+      <pubDate>Thu, 27 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.dvolve.net/categories/powershell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME</title>
+      <link>https://blog.dvolve.net/categories/posh-acme/</link>
+      <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.dvolve.net/categories/posh-acme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Posh-IBWAPI</title>
+      <link>https://blog.dvolve.net/categories/posh-ibwapi/</link>
+      <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.dvolve.net/categories/posh-ibwapi/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

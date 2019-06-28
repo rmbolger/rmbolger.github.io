@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+<title>Infoblox and MS Management Permissions - Adventures in Tech</title>
+<meta name="description" content="How to avoid using Domain Admin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <meta name="generator" content="Hugo 0.55.6" />
+  
+<meta itemprop="name" content="Infoblox and MS Management Permissions">
+<meta itemprop="description" content="How to avoid using Domain Admin">
+
+
+<meta itemprop="datePublished" content="2019-06-27T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-06-27T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1407">
+
+
+
+<meta itemprop="keywords" content="" />
+
+  <meta property="og:title" content="Infoblox and MS Management Permissions" />
+<meta property="og:description" content="How to avoid using Domain Admin" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.dvolve.net/blog/2019/06/infoblox-and-ms-management-permissions/" />
+<meta property="article:published_time" content="2019-06-27T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-06-27T00:00:00&#43;00:00"/>
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Infoblox and MS Management Permissions"/>
+<meta name="twitter:description" content="How to avoid using Domain Admin"/>
+<meta name="twitter:site" content="@rmbolger"/>
+
+  
+
+  <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+  
+    
+      <link rel="stylesheet" href="/css/normalize.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+      <link rel="stylesheet" href="/css/main.min.css">
+      <link rel="stylesheet" href="/css/add-on.css">
+    
+  
+  
+  
+  
+  
+</head>
+
+  <body>
+    
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/">
+        
+          
+            Blog
+          
+        
+      </a>
+    </h1>
+    <menu id="site-nav-menu" class="flyout-menu">
+      
+        <a href="/" class="link"><i class="fas fa-home">&nbsp;</i>Home</a>
+      
+        <a href="/about/" class="link"><i class="far fa-id-card">&nbsp;</i>About</a>
+      
+        <a href="/blog/" class="link"><i class="far fa-newspaper">&nbsp;</i>Blog</a>
+      
+        <a href="/categories/" class="link"><i class="fas fa-sitemap">&nbsp;</i>Categories</a>
+      
+        <a href="/contact/" class="link"><i class="far fa-envelope">&nbsp;</i>Contact</a>
+      
+      <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt">&nbsp;</i>Share</a>
+      
+
+    </menu>
+    
+
+    <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+    
+    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  
+  
+    <menu id="share-menu" class="flyout-menu">
+      <h1>Share Post</h1>
+      
+
+
+
+
+
+    </menu>
+  
+</header>
+
+    <div id="wrapper">
+      <section id="site-intro">
+  <a href="/"><img src="/img/main/logo.jpg" class="circle" width="" alt="Ryan Bolger" /></a>
+  <header>
+    <h1>Ryan Bolger</h1>
+  </header>
+  <main>
+    <p>Dad, tech enthusiast, casual gamer, a cappella music lover.</p>
+  </main>
+  
+    <footer>
+      <ul class="social-icons">
+        
+
+        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+<li><a href="//stackoverflow.com/users/75772" target="_blank" rel="noopener" title="Stack Overflow" class="fab fa-stack-overflow"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
+
+
+
+
+
+<li><a href="//reddit.com/user/rmbolger" target="_blank" rel="noopener" title="Reddit" class="fab fa-reddit"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
+
+
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/06/infoblox-and-ms-management-permissions/">Infoblox and MS Management Permissions</a></h2>
+    
+    
+        <p>How to avoid using Domain Admin</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-06-27 00:00:00 &#43;0000 UTC">
+      June 27, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  <section id="social-share">
+    
+
+
+
+
+
+  </section>
+  
+
+  <div class="content">
+    
+
+<p>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.</p>
+
+<h1 id="background">Background</h1>
+
+<p>Infoblox&rsquo;s <a href="https://www.infoblox.com/products/ipam-for-microsoft/">IPAM for Microsoft</a> feature (a.k.a. MS Management) is a set of features that can be super useful for organizations who maintain one or more Active Directory forests and want to centralize the management of some of the core AD components and enrich IPAM data with additional information gleaned from AD.</p>
+
+<p>As of NIOS 8.4, the feature boils down to 4 main components:</p>
+
+<ul>
+<li>DNS Management</li>
+<li>DHCP Management</li>
+<li>Sites and Subnets Management</li>
+<li>User Identity Mapping</li>
+</ul>
+
+<p>You can configure any combination of components against any combination of AD environments you wish. But configuration instructions boil down to creating an AD service account that Infoblox will authenticate with and giving the account the necessary permissions for each component. Unfortunately, the <a href="https://docs.infoblox.com/display/nios84/About+Managing+Microsoft+Windows+Servers">native NIOS docs</a> aren&rsquo;t super clear about what permissions are needed for which pieces of which component.</p>
+
+<p><em>Warning: I&rsquo;ve tested these permissions and examples against NIOS 8.4 and Windows Server 2008 R2 through 2019. Your mileage may vary if your environment doesn&rsquo;t fit those characteristics.</em></p>
+
+<h1 id="prerequisites">Prerequisites</h1>
+
+<p>DNS and DHCP management don&rsquo;t require targetting domain controllers or even domain joined servers. But it is the most common configuration so our examples will reflect that assumption. If you&rsquo;re targetting a non-domain joined server, you&rsquo;ll need to change the user/group references accordingly and modify the PowerShell commands to use their non-AD equivalents.</p>
+
+<p>Infoblox allows you to use a separate service account for each component, but most organizations choose to use one account for simplicity. So we&rsquo;ll do the same here with a standard AD user account called <code>svc.infoblox</code>.</p>
+
+<p>Most of these components have the choice to be configured in &ldquo;Read-only&rdquo; or &ldquo;Read/Write&rdquo; mode. For organizations who want to use the features in Read-only mode, I still usually suggest granting the permissions necessary for Read/Write in case they change their mind later. Ironically, it also tends to be harder to grant read-only permissions for these services. The examples here will assume Read/Write mode.</p>
+
+<p>In my testing, no manual changes to the Windows default firewall settings were needed. However, if you have group policy or external firewalls locking things down, you&rsquo;ll likely need to open things like the dynamic RPC port range between the managing grid member and the target server. See the <a href="https://docs.infoblox.com/display/nios84/Deployment+Guidelines">Deployment Guidelines</a> doc page for details.</p>
+
+<h1 id="dns-management">DNS Management</h1>
+
+<p>There are 3 toggleable options within this component: Synchronize data, Monitor and control DNS Services, and Synchronize DNS Reporting Data.</p>
+
+<h2 id="synchronize-data">Synchronize Data</h2>
+
+<p>This is the core ability to synchronize the zone data. All we need is membership in <code>DnsAdmins</code>.</p>
+
+<pre><code class="language-powershell">Get-ADGroup 'DnsAdmins' | Add-ADGroupMember -Members (Get-ADUser 'svc.infoblox')
+</code></pre>
+
+<h2 id="monitor-and-control-dns-services">Monitor and control DNS Services</h2>
+
+<p>This adds the ability to see the status of and start/stop the DNS service on the target machine. It requires full control on the local service control manager as well as full control on the DNS service. Because our service account should already be in the DnsAdmins group, it makes sense to grant the service permissions to that group as well. Unfortunately, PowerShell&rsquo;s ability to modify service permissions directly is rather lacking. So we&rsquo;ll be using PowerShell along with the classic service control utility, <code>sc.exe</code>.</p>
+
+<p>Make sure to run these on the target server.</p>
+
+<pre><code class="language-powershell"># Full control on SCManager for DnsAdmins
+$scmSDDL = (&amp;sc.exe sdshow scmanager)[1]
+$DnsAdminsSID = (Get-ADGroup DnsAdmins).SID.ToString()
+$newSDDL = $scmSDDL.Insert(2, &quot;(A;;KA;;;$DnsAdminsSID)&quot;)
+&amp;sc.exe sdset scmanager $newSDDL
+
+# Full control on on DNS service for DnsAdmins
+$dnsSDDL = (&amp;sc.exe sdshow dns)[1]
+$DnsAdminsSID = (Get-ADGroup DnsAdmins).SID.ToString()
+$newSDDL = $dnsSDDL.Insert(2, &quot;(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;$DnsAdminsSID)&quot;)
+&amp;sc.exe sdset dns $newSDDL
+</code></pre>
+
+<p><strong>Server 2016+ additional Requirement</strong></p>
+
+<p>Windows Server 2016 (and later) adds an additional hurdle for controlling services from a non-admin account. The details are described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. But ultimately, we need to exempt the DNS service from the new protection.</p>
+
+<pre><code class="language-powershell">$keyName = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\SCM'
+$valName = 'RemoteAccessCheckExemptionList'
+$key = Get-Item $keyName
+$values = $key.GetValue($valName)
+if ('dns' -notin $values) {
+    $values += 'dns'
+    Set-ItemProperty $keyName $valName $values -Type MultiString
+}
+</code></pre>
+
+<h2 id="synchronize-dns-reporting-data">Synchronize DNS Reporting Data</h2>
+
+<p><strong>Important</strong>: <em>This feature is only compatible with Windows Server 2012 R2 with <a href="https://support.microsoft.com/en-us/help/2919355/windows-rt-8-1-windows-8-1-and-windows-server-2012-r2-update-april-201">KB 2919355</a> or Server 2016 and later. So make sure it&rsquo;s disabled on anything earlier. See the &ldquo;Synchronizing DNS Reporting Data&rdquo; section in <a href="https://docs.infoblox.com/display/nios84/Configuring+Grid+Properties+for+Managing+Microsoft+Servers">the docs</a> for more details.</em></p>
+
+<p>We need the ability to read the DNS specific event logs. So we&rsquo;ll add the service account to <code>Event Log Readers</code>.</p>
+
+<pre><code class="language-powershell">Get-ADGroup 'Event Log Readers' | Add-ADGroupMember -Members (Get-ADUser 'svc.infoblox')
+</code></pre>
+
+<h1 id="dhcp-management">DHCP Management</h1>
+
+<h2 id="synchronize-data-1">Synchronize Data</h2>
+
+<p>This is the core ability to synchronize the scope data. All we need is membership in <code>DHCP Administrators</code>.</p>
+
+<pre><code class="language-powershell">Get-ADGroup 'DHCP Administrators' | Add-ADGroupMember -Members (Get-ADUser 'svc.infoblox')
+</code></pre>
+
+<h2 id="monitor-and-control-dhcp-services">Monitor and control DHCP Services</h2>
+
+<p>This adds the ability to see the status of and start/stop the DHCP service on the target machine. It requires full control on the local service control manager as well as full control on the DHCP service. Because our service account should already be in the DHCP Administrators group, it makes sense to grant the service permissions to that group as well. Unfortunately, PowerShell&rsquo;s ability to modify service permissions directly is rather lacking. So we&rsquo;ll be using PowerShell along with the classic service control utility, <code>sc.exe</code>.</p>
+
+<p>Make sure to run these on the target server.</p>
+
+<pre><code class="language-powershell"># Full control on SCManager for DHCP Administrators
+$scmSDDL = (&amp;sc.exe sdshow scmanager)[1]
+$DhcpAdminsSID = (Get-ADGroup 'DHCP Administrators').SID.ToString()
+$newSDDL = $scmSDDL.Insert(2, &quot;(A;;KA;;;$DhcpAdminsSID)&quot;)
+&amp;sc.exe sdset scmanager $newSDDL
+
+# Full control on on DNS service for DnsAdmins
+$dhcpSDDL = (&amp;sc.exe sdshow dhcpserver)[1]
+$DhcpAdminsSID = (Get-ADGroup 'DHCP Administrators').SID.ToString()
+$newSDDL = $dhcpSDDL.Insert(2, &quot;(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;$DhcpAdminsSID)&quot;)
+&amp;sc.exe sdset dhcpserver $newSDDL
+</code></pre>
+
+<p><strong>Server 2016+ additional Requirement</strong></p>
+
+<p>Windows Server 2016 (and later) adds an additional hurdle for controlling services from a non-admin account. The details are described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. But ultimately, we need to exempt the DNS service from the new protection.</p>
+
+<pre><code class="language-powershell">$keyName = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\SCM'
+$valName = 'RemoteAccessCheckExemptionList'
+$key = Get-Item $keyName
+$values = $key.GetValue($valName)
+if ('dhcpserver' -notin $values) {
+    $values += 'dhcpserver'
+    Set-ItemProperty $keyName $valName $values -Type MultiString
+}
+</code></pre>
+
+<h1 id="sites-and-subnets-management">Sites and Subnets Management</h1>
+
+<p>There are two categories of activities that we&rsquo;ll differentiate between with this feature: managing subnets and managing sites. Some organizations choose to leave the site management in AD because you don&rsquo;t have granular control over site links from the Infoblox interface. You only get to choose a default site link that new sites will be associated with on creation.</p>
+
+<p><strong>Important:</strong> Infoblox will only synchronize sites/subnets with the DC holding the PDC emulator (PDCe) FSMO role. In a multi-domain forest, you should only target the PDCe in the root domain. Some organizations also choose to configure a second DC which FSMO roles would be transferred to in a DR situation. Infoblox will simply ignore it until it becomes the PDCe.</p>
+
+<p>In the examples below we&rsquo;ll be using a combination of PowerShell and the <code>dsacls.exe</code> utility rather than pure PowerShell because it&rsquo;s more concise.</p>
+
+<h2 id="assign-unassign-subnets-to-from-existing-sites">Assign/Unassign Subnets to/from existing Sites</h2>
+
+<p>Here&rsquo;s a summary of the permissions the service account will need and the PowerShell to apply them:</p>
+
+<p><strong>CN=Subnets,CN=Sites,&lt;Configuration Naming Context&gt;</strong></p>
+
+<ul>
+<li>Applies to: This object only
+
+<ul>
+<li>Create Subnet objects</li>
+<li>Delete Subnet objects</li>
+</ul></li>
+<li>Applies to: Descendant subnet objects
+
+<ul>
+<li>Read all properties</li>
+<li>Write all properties</li>
+<li>Delete</li>
+<li>Delete subtree</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
+$target = &quot;AD\svc.infoblox&quot;   # group or user reference
+&amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /G &quot;$($target):CCDC;site&quot;
+&amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /I:S /G &quot;$($target):RPWPSDDTCCLCRC;;site&quot;
+</code></pre>
+
+<h2 id="create-delete-rename-sites">Create/Delete/Rename Sites</h2>
+
+<p>Here&rsquo;s a summary of the permissions the service account will need and the PowerShell to apply them. In the example, we&rsquo;re assuming the default site link is called <code>DEFAULTIPSITELINK</code>. But you should use whatever site link you have configured in the MS Management connection configuration (Active Directory Sites - Advanced tab).</p>
+
+<p><strong>CN=Sites,&lt;Configuration Context&gt;</strong></p>
+
+<ul>
+<li>Applies to: This object only
+
+<ul>
+<li>Create Site objects</li>
+<li>Delete Site objects</li>
+</ul></li>
+<li>Applies to: Descendant Site objects
+
+<ul>
+<li>Read all properties</li>
+<li>Write all properties</li>
+<li>Delete</li>
+<li>Delete subtree</li>
+<li>Create all child objects</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
+$target = &quot;AD\svc.infoblox&quot;   # group or user reference
+&amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /G &quot;$($target):CCDC;site&quot;
+&amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /I:S /G &quot;$($target):RPWPSDDTCCLCRC;;site&quot;
+</code></pre>
+
+<p><strong>CN=&lt;Default SiteLink&gt;CN=IP,CN=Inter-Site Transports,CN=Sites,&lt;Configuration Context&gt;</strong></p>
+
+<ul>
+<li>Read/Write siteList</li>
+</ul>
+
+<pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
+$defaultSiteLink = &quot;CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=Sites,$cfgContext&quot;
+$target = &quot;AD\svc.infoblox&quot;   # group or user reference
+&amp;dsacls.exe $defaultSiteLink /G &quot;$($target):RPWP;siteList&quot;
+</code></pre>
+
+<h1 id="user-identity-mapping">User Identity Mapping</h1>
+
+<p>For this, Infoblox is just reading the Security event log on the target domain controller. So we need membership in <code>Event Log Readers</code>.</p>
+
+<pre><code class="language-powershell">Get-ADGroup 'Event Log Readers' | Add-ADGroupMember -Members (Get-ADUser 'svc.infoblox')
+</code></pre>
+
+  </div>
+  <footer>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://blog.dvolve.net/categories/infoblox">infoblox</a></li>
+          
+            
+            <li><a class="article-category-link" href="https://blog.dvolve.net/categories/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    <li class="tags">
+      <ul>
+        <li>None</li>
+      </ul>
+    </li>
+  
+</ul>
+
+  </footer>
+</article>
+<article class="post">
+  
+
+</article>
+<div class="pagination">
+  
+    <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big previous"><i class="fas fa-angle-left"></i> Posh-ACME 3.5.0</a>
+  
+  
+</div>
+
+
+      </main>
+      <section id="site-sidebar">
+  <section id="recent-posts">
+    <header>
+      <h1>Recent posts</h1>
+    </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/06/infoblox-and-ms-management-permissions/">Infoblox and MS Management Permissions</a></h1>
+        <time class="published" datetime="">June 27, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h1>
+        <time class="published" datetime="">June 21, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/04/posh-ibwapi-3.0.0/">Posh-IBWAPI 3.0.0</a></h1>
+        <time class="published" datetime="">April 20, 2019</time>
+      </header>
+    </article>
+    
+    
+  </section>
+
+  
+    
+      <section id="categories">
+        <header>
+          <h1><a href="/categories">Categories</a></h1>
+        </header>
+        <ul>
+          
+            
+          
+          
+          <li>
+            
+              <a href="/categories/powershell/">powershell<span class="count">3</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/infoblox/">infoblox<span class="count">1</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/posh-acme/">posh-acme<span class="count">1</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">1</span></a>
+            
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+
+  <section id="mini-bio">
+    <header>
+      <h1>About</h1>
+    </header>
+    <p>Research and solutions to challenging, unique, or otherwise interesting problems I run into in my daily life working in the tech industry.</p>
+    <footer>
+      <a href="/about" class="button">Learn More</a>
+    </footer>
+  </section>
+</section>
+
+      <footer id="site-footer">
+  
+      <ul class="social-icons">
+        
+
+        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+<li><a href="//stackoverflow.com/users/75772" target="_blank" rel="noopener" title="Stack Overflow" class="fab fa-stack-overflow"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
+
+
+
+
+
+<li><a href="//reddit.com/user/rmbolger" target="_blank" rel="noopener" title="Reddit" class="fab fa-reddit"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
+
+
+
+      </ul>
+  
+  <p class="copyright">
+    
+      &copy; 2019
+      
+        Adventures in Tech
+      
+    .
+    Powered by <a href="//gohugo.io" target="_blank" rel="noopener">Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/ini.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/powershell.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/cs.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/plaintext.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src=/js/util.js></script>
+  <script src=/js/main.js></script>
+  <script src=/js/add-on.js></script>
+  
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77433451-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    </div>
+  </body>
+</html>

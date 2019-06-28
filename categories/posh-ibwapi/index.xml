@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posh-IBWAPI on Adventures in Tech</title>
+    <link>https://blog.dvolve.net/categories/posh-ibwapi/</link>
+    <description>Recent content in Posh-IBWAPI on Adventures in Tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 20 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.dvolve.net/categories/posh-ibwapi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Posh-IBWAPI 3.0.0</title>
+      <link>https://blog.dvolve.net/blog/2019/04/posh-ibwapi-3.0.0/</link>
+      <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.dvolve.net/blog/2019/04/posh-ibwapi-3.0.0/</guid>
+      <description>Just shipped a new Posh-IBWAPI release, version 3.0.0. I realize it has only been two days since 2.0.0, but I totally goofed and shipped 2.0.0 with some breaking changes that I ended up reverting because I&amp;rsquo;m an idiot. The biggest feature of the release is the new file upload/download wrappers, Send-IBFile and Recieve-IBFile. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.</description>
+    </item>
+    
+  </channel>
+</rss>
