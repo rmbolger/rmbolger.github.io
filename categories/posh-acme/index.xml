@@ -17,8 +17,8 @@
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/06/posh-acme-3.5.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a recent change in Let&amp;rsquo;s Encrypt&amp;rsquo;s ACME implementation to be more compliant with the recently finalized RFC 8555 spec. The Let&amp;rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.
-Here&amp;rsquo;s the official changelog:</description>
+      <description>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a recent change in Let&amp;rsquo;s Encrypt&amp;rsquo;s ACME implementation which now more strictly adheres to the recently finalized RFC 8555 spec. The Let&amp;rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.
+Updated versions can be found in the PowerShell Gallery or GitHub.</description>
     </item>
     
   </channel>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>infoblox on Adventures in Tech</title>
+    <title>Infoblox on Adventures in Tech</title>
     <link>https://www.dvolve.net/categories/infoblox/</link>
-    <description>Recent content in infoblox on Adventures in Tech</description>
+    <description>Recent content in Infoblox on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 27 Jun 2019 00:00:00 +0000</lastBuildDate>
@@ -18,7 +18,7 @@
       
       <guid>https://www.dvolve.net/blog/2019/06/infoblox-and-ms-management-permissions/</guid>
       <description>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.
-Background Infoblox&amp;rsquo;s IPAM for Microsoft feature (a.</description>
+Warning: I&amp;rsquo;ve tested these permissions and examples against NIOS 8.</description>
     </item>
     
   </channel>

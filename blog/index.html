@@ -29,11 +29,10 @@
   
 
   <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
   
     
       <link rel="stylesheet" href="/css/normalize.css">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
@@ -69,10 +68,6 @@
       
         <a href="/blog/" class="link"><i class="far fa-newspaper">&nbsp;</i>Blog</a>
       
-        <a href="/categories/" class="link"><i class="fas fa-sitemap">&nbsp;</i>Categories</a>
-      
-        <a href="/contact/" class="link"><i class="far fa-envelope">&nbsp;</i>Contact</a>
-      
       
       
 
@@ -94,7 +89,7 @@
     <h1>Ryan Bolger</h1>
   </header>
   <main>
-    <p>Dad, tech enthusiast, casual gamer, a cappella music lover.</p>
+    <p>Adventures In Tech</p>
   </main>
   
     <footer>
@@ -186,21 +181,24 @@
         <ul>
           
             
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/infoblox">infoblox</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/powershell">powershell</a></li>
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/infoblox">Infoblox</a></li>
           
         </ul>
       </li>
     
   
   
-    <li class="tags">
-      <ul>
-        <li>None</li>
-      </ul>
-    </li>
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
   
 </ul>
 
@@ -230,7 +228,7 @@
   
 
   
-  <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation to be more compliant with the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
+  <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
   <footer>
     <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big">Read more</a>
     <ul class="stats">
@@ -243,19 +241,22 @@
             
             <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
           
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/powershell">powershell</a></li>
-          
         </ul>
       </li>
     
   
   
-    <li class="tags">
-      <ul>
-        <li>None</li>
-      </ul>
-    </li>
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
   
 </ul>
 
@@ -285,7 +286,7 @@
   
 
   
-  <p>Just shipped a new Posh-IBWAPI release, version 3.0.0. I realize it has only been two days since 2.0.0, but I totally goofed and shipped 2.0.0 with some breaking changes that I ended up reverting because I&rsquo;m an idiot. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
+  <p>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
   <footer>
     <a href="/blog/2019/04/posh-ibwapi-3.0.0/" class="button big">Read more</a>
     <ul class="stats">
@@ -298,19 +299,22 @@
             
             <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-ibwapi">Posh-IBWAPI</a></li>
           
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/powershell">powershell</a></li>
-          
         </ul>
       </li>
     
   
   
-    <li class="tags">
-      <ul>
-        <li>None</li>
-      </ul>
-    </li>
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
   
 </ul>
 
@@ -372,109 +376,18 @@
   </section>
 
   
-    
-      <section id="categories">
-        <header>
-          <h1><a href="/categories">Categories</a></h1>
-        </header>
-        <ul>
-          
-            
-          
-          
-          <li>
-            
-              <a href="/categories/powershell/">powershell<span class="count">3</span></a>
-            
-          
-          <li>
-            
-              <a href="/categories/infoblox/">infoblox<span class="count">1</span></a>
-            
-          
-          <li>
-            
-              <a href="/categories/posh-acme/">posh-acme<span class="count">1</span></a>
-            
-          
-          <li>
-            
-              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">1</span></a>
-            
-          
-          </li>
-        </ul>
-      </section>
-    
-  
 
-  <section id="mini-bio">
-    <header>
-      <h1>About</h1>
-    </header>
-    <p>Research and solutions to challenging, unique, or otherwise interesting problems I run into in my daily life working in the tech industry.</p>
-    <footer>
-      <a href="/about" class="button">Learn More</a>
-    </footer>
-  </section>
+
+  
 </section>
 
       <footer id="site-footer">
-  
-      <ul class="social-icons">
-        
-    <li><a href="/blog/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fas fa-rss"></a></li>
-
-
-        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
-
-
-<li><a href="//serverfault.com/users/1584/?tab=profile" target="_blank" rel="noopener" title="Server Fault" class="fab fa-stack-exchange"></a></li>
-
-
-
-
-
-
-
-
-
-<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
-
-
-
-
-
-
-
-
-<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
-
-
-
-      </ul>
   
   <p class="copyright">
     
       &copy; 2019
       
-        Adventures in Tech
+        Ryan Bolger
       
     .
     Powered by <a href="//gohugo.io" target="_blank" rel="noopener">Hugo</a>

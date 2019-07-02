@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>powershell on Adventures in Tech</title>
-    <link>https://www.dvolve.net/categories/powershell/</link>
+    <link>https://www.dvolve.net/tags/powershell/</link>
     <description>Recent content in powershell on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 27 Jun 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.dvolve.net/categories/powershell/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.dvolve.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,7 +18,7 @@
       
       <guid>https://www.dvolve.net/blog/2019/06/infoblox-and-ms-management-permissions/</guid>
       <description>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.
-Background Infoblox&amp;rsquo;s IPAM for Microsoft feature (a.</description>
+Warning: I&amp;rsquo;ve tested these permissions and examples against NIOS 8.</description>
     </item>
     
     <item>
@@ -27,8 +27,8 @@ Background Infoblox&amp;rsquo;s IPAM for Microsoft feature (a.</description>
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/06/posh-acme-3.5.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a recent change in Let&amp;rsquo;s Encrypt&amp;rsquo;s ACME implementation to be more compliant with the recently finalized RFC 8555 spec. The Let&amp;rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.
-Here&amp;rsquo;s the official changelog:</description>
+      <description>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a recent change in Let&amp;rsquo;s Encrypt&amp;rsquo;s ACME implementation which now more strictly adheres to the recently finalized RFC 8555 spec. The Let&amp;rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.
+Updated versions can be found in the PowerShell Gallery or GitHub.</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@ Here&amp;rsquo;s the official changelog:</description>
       <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/04/posh-ibwapi-3.0.0/</guid>
-      <description>Just shipped a new Posh-IBWAPI release, version 3.0.0. I realize it has only been two days since 2.0.0, but I totally goofed and shipped 2.0.0 with some breaking changes that I ended up reverting because I&amp;rsquo;m an idiot. The biggest feature of the release is the new file upload/download wrappers, Send-IBFile and Recieve-IBFile. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.</description>
+      <description>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, Send-IBFile and Recieve-IBFile. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.</description>
     </item>
     
   </channel>

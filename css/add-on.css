@@ -4,3 +4,143 @@
   is an official part of the theme (ex. Pull Requests) should be included in main.css
   and follow the formatting and style given.
 */
+
+/* 54 */
+body {
+  background: #242930;
+}
+
+/* 69 */
+body,
+input,
+select,
+textarea {
+    color: #afbac4;
+    font-family: Helvetica, sans-serif;
+}
+
+/* 97 */
+a:hover {
+  border-bottom-color: transparent;
+  /*
+  color: #7495ad
+  color: #5195c5
+  */
+  color: #288ad0
+  /*
+  */
+}
+
+/* 102 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #ffffff;
+    font-family: Helvetica, sans-serif;
+    /* text-transform: none;
+    letter-spacing: 0 */
+}
+
+/* 135 */
+code {
+  background-color: #414852;
+  border: none;
+  padding: 0.25em 0.45em
+}
+
+/* 177 */
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+.button {
+    color: #ffffff;
+    font-family: Helvetica, sans-serif;
+}
+
+/* 203 */
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:hover {
+    border: solid 1px #288ad0;
+    color: #288ad0 !important
+}
+
+/* 218 */
+label {
+  color: #ffffff;
+}
+
+/* 274 */
+table {
+  color: #242930
+}
+
+/* 315 */
+@media (min-width : 768px) {
+  table>tbody>tr:hover {
+    background-color: #288ad0
+  }
+}
+
+/* 853 */
+.post {
+  background: #353b43;
+}
+
+/* 905 */
+.post>header .meta .published {
+  font-family: Helvetica, sans-serif;
+  /* letter-spacing: 0.25em;
+  text-transform: uppercase */
+}
+
+/* 913 */
+.post>header .meta p,
+.post>header .meta .author,
+.post>header .meta .format {
+  font-family: Helvetica, sans-serif;
+  /* letter-spacing: 0.25em;
+  text-transform: uppercase */
+}
+
+/* 1014 */
+.post>footer .stats li ul li {
+  font-family: Helvetica, sans-serif;
+  /* letter-spacing: 0.25em;
+  text-transform: uppercase */
+}
+
+/* 1051 */
+#site-header {
+  background-color: #353b43;
+}
+
+/* 1068 */
+#site-header a {
+  font-family: Helvetica, sans-serif;
+  /* letter-spacing: 0.25em;
+  text-transform: uppercase */
+}
+
+/* 1426 */
+#recent-posts .mini-post {
+  background: #353b43;
+}
+
+/* 1469 */
+#recent-posts .mini-post header .published {
+  font-family: Helvetica, sans-serif;
+  /* letter-spacing: 0.25em;
+  text-transform: uppercase */
+}
+
+/* 1529 */
+#site-footer .copyright {
+  font-family: Helvetica, sans-serif;
+  /* letter-spacing: 0.25em;
+  text-transform: uppercase */
+}

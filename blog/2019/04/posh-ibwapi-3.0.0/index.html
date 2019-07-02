@@ -16,11 +16,11 @@
 
 <meta itemprop="datePublished" content="2019-04-20T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-04-20T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="643">
+<meta itemprop="wordCount" content="638">
 
 
 
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="powershell," />
 
   <meta property="og:title" content="Posh-IBWAPI 3.0.0" />
 <meta property="og:description" content="File upload/download wrappers, named configs, and auto session management" />
@@ -37,11 +37,10 @@
   
 
   <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
   
     
       <link rel="stylesheet" href="/css/normalize.css">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
@@ -77,10 +76,6 @@
       
         <a href="/blog/" class="link"><i class="far fa-newspaper">&nbsp;</i>Blog</a>
       
-        <a href="/categories/" class="link"><i class="fas fa-sitemap">&nbsp;</i>Categories</a>
-      
-        <a href="/contact/" class="link"><i class="far fa-envelope">&nbsp;</i>Contact</a>
-      
       
       
 
@@ -102,7 +97,7 @@
     <h1>Ryan Bolger</h1>
   </header>
   <main>
-    <p>Dad, tech enthusiast, casual gamer, a cappella music lover.</p>
+    <p>Adventures In Tech</p>
   </main>
   
     <footer>
@@ -187,7 +182,9 @@
   
 
   <div class="content">
-    <p>Just shipped a new Posh-IBWAPI release, version 3.0.0. I realize it has only been two days since 2.0.0, but I totally goofed and shipped 2.0.0 with some breaking changes that I ended up reverting because I&rsquo;m an idiot. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
+    
+
+<p>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
 
 <p>For example, in 1.x this is how you&rsquo;d download a grid backup:</p>
 
@@ -205,12 +202,14 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
 
 <p>But in 3.x, you can now do this:</p>
 
-<pre><code class="language-PowerShell">Receive-IBFile -FunctionName getgriddata -OutFile .\backup.tar.gz -FunctionArgs @{type='BACKUP'}
+<pre><code class="language-PowerShell">Receive-IBFile getgriddata -args @{type='BACKUP'} -OutFile .\backup.tar.gz
 </code></pre>
 
-<p>Also in the release are named configs which enable saving different credentials for the same grid. The module also now takes care of session management. So no more needing to manually deal with WebSession objects.</p>
+<p>Also in the release are named configs which enable saving different credentials for the same grid. The module takes care of session management now as well. So you don&rsquo;t need to manually deal with WebSession objects to prevent extraneous authentication requests.</p>
 
-<p>Here&rsquo;s the official changelog:</p>
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-IBWAPI">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-IBWAPI/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-IBWAPI/blob/master/README.md">Readme</a>.</p>
+
+<h2 id="changelog">Changelog</h2>
 
 <ul>
 <li>Breaking Changes
@@ -249,8 +248,6 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
 <li><code>Get-IBConfig</code>, <code>Set-IBConfig</code>, and <code>Remove-IBConfig</code> now have tab completion on PowerShell 5.0 or later.</li>
 </ul>
 
-<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-IBWAPI">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-IBWAPI/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-IBWAPI/blob/master/README.md">Readme</a>.</p>
-
   </div>
   <footer>
     <ul class="stats">
@@ -263,19 +260,22 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
             
             <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-ibwapi">Posh-IBWAPI</a></li>
           
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/powershell">powershell</a></li>
-          
         </ul>
       </li>
     
   
   
-    <li class="tags">
-      <ul>
-        <li>None</li>
-      </ul>
-    </li>
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
   
 </ul>
 
@@ -337,107 +337,18 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
   </section>
 
   
-    
-      <section id="categories">
-        <header>
-          <h1><a href="/categories">Categories</a></h1>
-        </header>
-        <ul>
-          
-            
-          
-          
-          <li>
-            
-              <a href="/categories/powershell/">powershell<span class="count">3</span></a>
-            
-          
-          <li>
-            
-              <a href="/categories/infoblox/">infoblox<span class="count">1</span></a>
-            
-          
-          <li>
-            
-              <a href="/categories/posh-acme/">posh-acme<span class="count">1</span></a>
-            
-          
-          <li>
-            
-              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">1</span></a>
-            
-          
-          </li>
-        </ul>
-      </section>
-    
-  
 
-  <section id="mini-bio">
-    <header>
-      <h1>About</h1>
-    </header>
-    <p>Research and solutions to challenging, unique, or otherwise interesting problems I run into in my daily life working in the tech industry.</p>
-    <footer>
-      <a href="/about" class="button">Learn More</a>
-    </footer>
-  </section>
+
+  
 </section>
 
       <footer id="site-footer">
-  
-      <ul class="social-icons">
-        
-
-        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
-
-
-<li><a href="//serverfault.com/users/1584/?tab=profile" target="_blank" rel="noopener" title="Server Fault" class="fab fa-stack-exchange"></a></li>
-
-
-
-
-
-
-
-
-
-<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
-
-
-
-
-
-
-
-
-<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
-
-
-
-      </ul>
   
   <p class="copyright">
     
       &copy; 2019
       
-        Adventures in Tech
+        Ryan Bolger
       
     .
     Powered by <a href="//gohugo.io" target="_blank" rel="noopener">Hugo</a>

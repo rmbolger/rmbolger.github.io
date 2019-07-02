@@ -26,18 +26,24 @@
   </url>
   
   <url>
-    <loc>https://www.dvolve.net/blog/2019/06/infoblox-and-ms-management-permissions/</loc>
-    <lastmod>2019-06-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.dvolve.net/categories/infoblox/</loc>
     <lastmod>2019-06-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.dvolve.net/categories/powershell/</loc>
+    <loc>https://www.dvolve.net/blog/2019/06/infoblox-and-ms-management-permissions/</loc>
+    <lastmod>2019-06-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/tags/</loc>
+    <lastmod>2019-06-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/tags/powershell/</loc>
     <lastmod>2019-06-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -66,11 +72,6 @@
   
   <url>
     <loc>https://www.dvolve.net/contact/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

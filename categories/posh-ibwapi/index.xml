@@ -17,7 +17,7 @@
       <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/04/posh-ibwapi-3.0.0/</guid>
-      <description>Just shipped a new Posh-IBWAPI release, version 3.0.0. I realize it has only been two days since 2.0.0, but I totally goofed and shipped 2.0.0 with some breaking changes that I ended up reverting because I&amp;rsquo;m an idiot. The biggest feature of the release is the new file upload/download wrappers, Send-IBFile and Recieve-IBFile. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.</description>
+      <description>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, Send-IBFile and Recieve-IBFile. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.</description>
     </item>
     
   </channel>

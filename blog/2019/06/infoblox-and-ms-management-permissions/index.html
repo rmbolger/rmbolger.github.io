@@ -16,11 +16,11 @@
 
 <meta itemprop="datePublished" content="2019-06-27T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-06-27T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1407">
+<meta itemprop="wordCount" content="1134">
 
 
 
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="powershell," />
 
   <meta property="og:title" content="Infoblox and MS Management Permissions" />
 <meta property="og:description" content="How to avoid using Domain Admin" />
@@ -37,11 +37,10 @@
   
 
   <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
   
     
       <link rel="stylesheet" href="/css/normalize.css">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
@@ -77,10 +76,6 @@
       
         <a href="/blog/" class="link"><i class="far fa-newspaper">&nbsp;</i>Blog</a>
       
-        <a href="/categories/" class="link"><i class="fas fa-sitemap">&nbsp;</i>Categories</a>
-      
-        <a href="/contact/" class="link"><i class="far fa-envelope">&nbsp;</i>Contact</a>
-      
       
       
 
@@ -102,7 +97,7 @@
     <h1>Ryan Bolger</h1>
   </header>
   <main>
-    <p>Dad, tech enthusiast, casual gamer, a cappella music lover.</p>
+    <p>Adventures In Tech</p>
   </main>
   
     <footer>
@@ -191,47 +186,53 @@
 
 <p>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.</p>
 
-<h1 id="background">Background</h1>
-
-<p>Infoblox&rsquo;s <a href="https://www.infoblox.com/products/ipam-for-microsoft/">IPAM for Microsoft</a> feature (a.k.a. MS Management) is a set of features that can be super useful for organizations who maintain one or more Active Directory forests and want to centralize the management of some of the core AD components and enrich IPAM data with additional information gleaned from AD.</p>
-
-<p>As of NIOS 8.4, the feature boils down to 4 main components:</p>
-
-<ul>
-<li>DNS Management</li>
-<li>DHCP Management</li>
-<li>Sites and Subnets Management</li>
-<li>User Identity Mapping</li>
-</ul>
-
-<p>You can configure any combination of components against any combination of AD environments you wish. But configuration instructions boil down to creating an AD service account that Infoblox will authenticate with and giving the account the necessary permissions for each component. Unfortunately, the <a href="https://docs.infoblox.com/display/nios84/About+Managing+Microsoft+Windows+Servers">native NIOS docs</a> aren&rsquo;t super clear about what permissions are needed for which pieces of which component.</p>
-
 <p><em>Warning: I&rsquo;ve tested these permissions and examples against NIOS 8.4 and Windows Server 2008 R2 through 2019. Your mileage may vary if your environment doesn&rsquo;t fit those characteristics.</em></p>
 
 <h1 id="prerequisites">Prerequisites</h1>
 
 <p>DNS and DHCP management don&rsquo;t require targetting domain controllers or even domain joined servers. But it is the most common configuration so our examples will reflect that assumption. If you&rsquo;re targetting a non-domain joined server, you&rsquo;ll need to change the user/group references accordingly and modify the PowerShell commands to use their non-AD equivalents.</p>
 
-<p>Infoblox allows you to use a separate service account for each component, but most organizations choose to use one account for simplicity. So we&rsquo;ll do the same here with a standard AD user account called <code>svc.infoblox</code>.</p>
+<p>Infoblox allows you to use a separate service account for each component, but most organizations choose to use one account for simplicity. So we&rsquo;ll do the same here with a standard AD user account called <code>svc-infoblox</code>.</p>
 
 <p>Most of these components have the choice to be configured in &ldquo;Read-only&rdquo; or &ldquo;Read/Write&rdquo; mode. For organizations who want to use the features in Read-only mode, I still usually suggest granting the permissions necessary for Read/Write in case they change their mind later. Ironically, it also tends to be harder to grant read-only permissions for these services. The examples here will assume Read/Write mode.</p>
 
 <p>In my testing, no manual changes to the Windows default firewall settings were needed. However, if you have group policy or external firewalls locking things down, you&rsquo;ll likely need to open things like the dynamic RPC port range between the managing grid member and the target server. See the <a href="https://docs.infoblox.com/display/nios84/Deployment+Guidelines">Deployment Guidelines</a> doc page for details.</p>
 
-<h1 id="dns-management">DNS Management</h1>
+<h1 id="dns">DNS</h1>
 
-<p>There are 3 toggleable options within this component: Synchronize data, Monitor and control DNS Services, and Synchronize DNS Reporting Data.</p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="fancybox">
+    <a data-fancybox="" href="/img/2019/06/dns-toggles.png" data-caption="DNS Toggleable Options"><img src="/img/2019/06/dns-toggles.png"></a>
+    <div class="caption">DNS Toggleable Options</div>
+  </div>
+
+
 
 <h2 id="synchronize-data">Synchronize Data</h2>
 
-<p>This is the core ability to synchronize the zone data. All we need is membership in <code>DnsAdmins</code>.</p>
+<p>This is the core ability to synchronize zone and record data. All we need is membership in <code>DnsAdmins</code>.</p>
 
-<pre><code class="language-powershell">Get-ADGroup 'DnsAdmins' | Add-ADGroupMember -Members (Get-ADUser 'svc.infoblox')
+<pre><code class="language-powershell">Get-ADGroup 'DnsAdmins' | Add-ADGroupMember -Members (Get-ADUser 'svc-infoblox')
 </code></pre>
 
 <h2 id="monitor-and-control-dns-services">Monitor and control DNS Services</h2>
 
-<p>This adds the ability to see the status of and start/stop the DNS service on the target machine. It requires full control on the local service control manager as well as full control on the DNS service. Because our service account should already be in the DnsAdmins group, it makes sense to grant the service permissions to that group as well. Unfortunately, PowerShell&rsquo;s ability to modify service permissions directly is rather lacking. So we&rsquo;ll be using PowerShell along with the classic service control utility, <code>sc.exe</code>.</p>
+<p>This adds the ability to see the status of and start/stop the DNS service on the target machine. It requires full control on the local service control manager and DNS service. We&rsquo;ll give the permissions to the DnsAdmins group because our service account is already a member.</p>
 
 <p>Make sure to run these on the target server.</p>
 
@@ -248,9 +249,7 @@ $newSDDL = $dnsSDDL.Insert(2, &quot;(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;$DnsAdminsS
 &amp;sc.exe sdset dns $newSDDL
 </code></pre>
 
-<p><strong>Server 2016+ additional Requirement</strong></p>
-
-<p>Windows Server 2016 (and later) adds an additional hurdle for controlling services from a non-admin account. The details are described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. But ultimately, we need to exempt the DNS service from the new protection.</p>
+<p><strong>Windows Server 2016 and later</strong> adds an additional hurdle for controlling services from a non-admin account as described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. We need to exempt the DNS service from the new protection.</p>
 
 <pre><code class="language-powershell">$keyName = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\SCM'
 $valName = 'RemoteAccessCheckExemptionList'
@@ -268,21 +267,44 @@ if ('dns' -notin $values) {
 
 <p>We need the ability to read the DNS specific event logs. So we&rsquo;ll add the service account to <code>Event Log Readers</code>.</p>
 
-<pre><code class="language-powershell">Get-ADGroup 'Event Log Readers' | Add-ADGroupMember -Members (Get-ADUser 'svc.infoblox')
+<pre><code class="language-powershell">Get-ADGroup 'Event Log Readers' | Add-ADGroupMember -Members (Get-ADUser 'svc-infoblox')
 </code></pre>
 
-<h1 id="dhcp-management">DHCP Management</h1>
+<h1 id="dhcp">DHCP</h1>
+
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="fancybox">
+    <a data-fancybox="" href="/img/2019/06/dhcp-toggles.png" data-caption="DHCP Toggleable Options"><img src="/img/2019/06/dhcp-toggles.png"></a>
+    <div class="caption">DHCP Toggleable Options</div>
+  </div>
+
+
 
 <h2 id="synchronize-data-1">Synchronize Data</h2>
 
 <p>This is the core ability to synchronize the scope data. All we need is membership in <code>DHCP Administrators</code>.</p>
 
-<pre><code class="language-powershell">Get-ADGroup 'DHCP Administrators' | Add-ADGroupMember -Members (Get-ADUser 'svc.infoblox')
+<pre><code class="language-powershell">Get-ADGroup 'DHCP Administrators' | Add-ADGroupMember -Members (Get-ADUser 'svc-infoblox')
 </code></pre>
 
 <h2 id="monitor-and-control-dhcp-services">Monitor and control DHCP Services</h2>
 
-<p>This adds the ability to see the status of and start/stop the DHCP service on the target machine. It requires full control on the local service control manager as well as full control on the DHCP service. Because our service account should already be in the DHCP Administrators group, it makes sense to grant the service permissions to that group as well. Unfortunately, PowerShell&rsquo;s ability to modify service permissions directly is rather lacking. So we&rsquo;ll be using PowerShell along with the classic service control utility, <code>sc.exe</code>.</p>
+<p>This adds the ability to see the status of and start/stop the DHCP service on the target machine. It requires full control on the local service control manager and DHCP service. We&rsquo;ll give the permissions to the DHCP Administrators group because our service account is already a member.</p>
 
 <p>Make sure to run these on the target server.</p>
 
@@ -299,9 +321,7 @@ $newSDDL = $dhcpSDDL.Insert(2, &quot;(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;$DhcpAdmin
 &amp;sc.exe sdset dhcpserver $newSDDL
 </code></pre>
 
-<p><strong>Server 2016+ additional Requirement</strong></p>
-
-<p>Windows Server 2016 (and later) adds an additional hurdle for controlling services from a non-admin account. The details are described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. But ultimately, we need to exempt the DNS service from the new protection.</p>
+<p><strong>Windows Server 2016 and later</strong> adds an additional hurdle for controlling services from a non-admin account as described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. We need to exempt the DHCP service from the new protection.</p>
 
 <pre><code class="language-powershell">$keyName = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\SCM'
 $valName = 'RemoteAccessCheckExemptionList'
@@ -313,17 +333,63 @@ if ('dhcpserver' -notin $values) {
 }
 </code></pre>
 
-<h1 id="sites-and-subnets-management">Sites and Subnets Management</h1>
+<h1 id="active-directory-sites">Active Directory Sites</h1>
 
-<p>There are two categories of activities that we&rsquo;ll differentiate between with this feature: managing subnets and managing sites. Some organizations choose to leave the site management in AD because you don&rsquo;t have granular control over site links from the Infoblox interface. You only get to choose a default site link that new sites will be associated with on creation.</p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="fancybox">
+    <a data-fancybox="" href="/img/2019/06/adsites-basic.png" data-caption="Active Directory Sites Basic Options"><img src="/img/2019/06/adsites-basic.png"></a>
+    <div class="caption">Active Directory Sites Basic Options</div>
+  </div>
+
+
+
+<p>If you plan to use LDAP over SSL (LDAPS), make sure your domain controllers have valid certificates. If the certificates are from an internal PKI infrastructure, make sure the CA certificate has been uploaded to Infoblox as well.</p>
+
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="fancybox">
+    <a data-fancybox="" href="/img/2019/06/adsites-advanced.png" data-caption="Active Directory Sites Basic Options"><img src="/img/2019/06/adsites-advanced.png"></a>
+    <div class="caption">Active Directory Sites Basic Options</div>
+  </div>
+
+
+
+<p>Make sure &ldquo;Default IP site link&rdquo; is set to a real site link in your environment even if you don&rsquo;t plan to create sites directly from Infoblox.</p>
 
 <p><strong>Important:</strong> Infoblox will only synchronize sites/subnets with the DC holding the PDC emulator (PDCe) FSMO role. In a multi-domain forest, you should only target the PDCe in the root domain. Some organizations also choose to configure a second DC which FSMO roles would be transferred to in a DR situation. Infoblox will simply ignore it until it becomes the PDCe.</p>
 
-<p>In the examples below we&rsquo;ll be using a combination of PowerShell and the <code>dsacls.exe</code> utility rather than pure PowerShell because it&rsquo;s more concise.</p>
+<h2 id="permissions-for-subnets">Permissions for Subnets</h2>
 
-<h2 id="assign-unassign-subnets-to-from-existing-sites">Assign/Unassign Subnets to/from existing Sites</h2>
-
-<p>Here&rsquo;s a summary of the permissions the service account will need and the PowerShell to apply them:</p>
+<p>These permissions will allow Infoblox to assign/unassign subnets to/from existing sites.</p>
 
 <p><strong>CN=Subnets,CN=Sites,&lt;Configuration Naming Context&gt;</strong></p>
 
@@ -345,14 +411,14 @@ if ('dhcpserver' -notin $values) {
 </ul>
 
 <pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
-$target = &quot;AD\svc.infoblox&quot;   # group or user reference
+$target = &quot;AD\svc-infoblox&quot;   # group or user reference
 &amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /G &quot;$($target):CCDC;site&quot;
 &amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /I:S /G &quot;$($target):RPWPSDDTCCLCRC;;site&quot;
 </code></pre>
 
-<h2 id="create-delete-rename-sites">Create/Delete/Rename Sites</h2>
+<h2 id="permissions-for-sites">Permissions for Sites</h2>
 
-<p>Here&rsquo;s a summary of the permissions the service account will need and the PowerShell to apply them. In the example, we&rsquo;re assuming the default site link is called <code>DEFAULTIPSITELINK</code>. But you should use whatever site link you have configured in the MS Management connection configuration (Active Directory Sites - Advanced tab).</p>
+<p>These permissions will allow Infoblox to create/delete/rename site objects. On creation, the new site will be associated with the &ldquo;Default IP site link&rdquo; mentioned earlier. In these examples, we&rsquo;ll assume that is <code>DEFAULTIPSITELINK</code>.</p>
 
 <p><strong>CN=Sites,&lt;Configuration Context&gt;</strong></p>
 
@@ -375,7 +441,7 @@ $target = &quot;AD\svc.infoblox&quot;   # group or user reference
 </ul>
 
 <pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
-$target = &quot;AD\svc.infoblox&quot;   # group or user reference
+$target = &quot;AD\svc-infoblox&quot;   # group or user reference
 &amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /G &quot;$($target):CCDC;site&quot;
 &amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /I:S /G &quot;$($target):RPWPSDDTCCLCRC;;site&quot;
 </code></pre>
@@ -388,15 +454,38 @@ $target = &quot;AD\svc.infoblox&quot;   # group or user reference
 
 <pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
 $defaultSiteLink = &quot;CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=Sites,$cfgContext&quot;
-$target = &quot;AD\svc.infoblox&quot;   # group or user reference
+$target = &quot;AD\svc-infoblox&quot;   # group or user reference
 &amp;dsacls.exe $defaultSiteLink /G &quot;$($target):RPWP;siteList&quot;
 </code></pre>
 
-<h1 id="user-identity-mapping">User Identity Mapping</h1>
+<h1 id="network-users">Network Users</h1>
+
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="fancybox">
+    <a data-fancybox="" href="/img/2019/06/network-users.png" data-caption="Network Users Options"><img src="/img/2019/06/network-users.png"></a>
+    <div class="caption">Network Users Options</div>
+  </div>
+
+
 
 <p>For this, Infoblox is just reading the Security event log on the target domain controller. So we need membership in <code>Event Log Readers</code>.</p>
 
-<pre><code class="language-powershell">Get-ADGroup 'Event Log Readers' | Add-ADGroupMember -Members (Get-ADUser 'svc.infoblox')
+<pre><code class="language-powershell">Get-ADGroup 'Event Log Readers' | Add-ADGroupMember -Members (Get-ADUser 'svc-infoblox')
 </code></pre>
 
   </div>
@@ -409,21 +498,24 @@ $target = &quot;AD\svc.infoblox&quot;   # group or user reference
         <ul>
           
             
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/infoblox">infoblox</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/powershell">powershell</a></li>
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/infoblox">Infoblox</a></li>
           
         </ul>
       </li>
     
   
   
-    <li class="tags">
-      <ul>
-        <li>None</li>
-      </ul>
-    </li>
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
   
 </ul>
 
@@ -485,107 +577,18 @@ $target = &quot;AD\svc.infoblox&quot;   # group or user reference
   </section>
 
   
-    
-      <section id="categories">
-        <header>
-          <h1><a href="/categories">Categories</a></h1>
-        </header>
-        <ul>
-          
-            
-          
-          
-          <li>
-            
-              <a href="/categories/powershell/">powershell<span class="count">3</span></a>
-            
-          
-          <li>
-            
-              <a href="/categories/infoblox/">infoblox<span class="count">1</span></a>
-            
-          
-          <li>
-            
-              <a href="/categories/posh-acme/">posh-acme<span class="count">1</span></a>
-            
-          
-          <li>
-            
-              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">1</span></a>
-            
-          
-          </li>
-        </ul>
-      </section>
-    
-  
 
-  <section id="mini-bio">
-    <header>
-      <h1>About</h1>
-    </header>
-    <p>Research and solutions to challenging, unique, or otherwise interesting problems I run into in my daily life working in the tech industry.</p>
-    <footer>
-      <a href="/about" class="button">Learn More</a>
-    </footer>
-  </section>
+
+  
 </section>
 
       <footer id="site-footer">
-  
-      <ul class="social-icons">
-        
-
-        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
-
-
-<li><a href="//serverfault.com/users/1584/?tab=profile" target="_blank" rel="noopener" title="Server Fault" class="fab fa-stack-exchange"></a></li>
-
-
-
-
-
-
-
-
-
-<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
-
-
-
-
-
-
-
-
-<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
-
-
-
-      </ul>
   
   <p class="copyright">
     
       &copy; 2019
       
-        Adventures in Tech
+        Ryan Bolger
       
     .
     Powered by <a href="//gohugo.io" target="_blank" rel="noopener">Hugo</a>
