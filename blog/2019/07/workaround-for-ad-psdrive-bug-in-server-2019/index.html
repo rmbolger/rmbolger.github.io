@@ -2,28 +2,36 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>Posh-ACME - Adventures in Tech</title>
-<meta name="description" content="Research and solutions to challenging, unique, or otherwise interesting problems I run into in my daily life working in the tech industry.">
+<title>Workaround For AD PSDrive Bug In Server 2019 - Adventures in Tech</title>
+<meta name="description" content="PSPath to the rescue">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.55.6" />
   
-<meta itemprop="name" content="Posh-ACME">
-<meta itemprop="description" content="">
+<meta itemprop="name" content="Workaround For AD PSDrive Bug In Server 2019">
+<meta itemprop="description" content="PSPath to the rescue">
 
 
-  <meta property="og:title" content="Posh-ACME" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.dvolve.net/categories/posh-acme/" />
+<meta itemprop="datePublished" content="2019-07-16T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-07-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="391">
 
-<meta property="og:updated_time" content="2019-06-21T00:00:00&#43;00:00"/>
+
+
+<meta itemprop="keywords" content="powershell," />
+
+  <meta property="og:title" content="Workaround For AD PSDrive Bug In Server 2019" />
+<meta property="og:description" content="PSPath to the rescue" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" />
+<meta property="article:published_time" content="2019-07-16T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-07-16T00:00:00&#43;00:00"/>
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posh-ACME"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Workaround For AD PSDrive Bug In Server 2019"/>
+<meta name="twitter:description" content="PSPath to the rescue"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
   
@@ -55,7 +63,7 @@
       <a href="/">
         
           
-            Categories
+            Blog
           
         
       </a>
@@ -95,8 +103,6 @@
     <footer>
       <ul class="social-icons">
         
-    <li><a href="/categories/posh-acme/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fas fa-rss"></a></li>
-
 
         <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
 
@@ -146,34 +152,93 @@
 </section>
 
       <main id="site-main">
-        <h1>Posh-ACME</h1>
-        
-        
-            <article class="post">
+        <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h2>
+        <h2><a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/">Workaround For AD PSDrive Bug In Server 2019</a></h2>
     
     
-        <p>New plugin and misc fixes</p>
+        <p>PSPath to the rescue</p>
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2019-06-21 00:00:00 &#43;0000 UTC">
-      June 21, 2019
+    <time class="published" datetime="2019-07-16 00:00:00 &#43;0000 UTC">
+      July 16, 2019
     </time>
     <span class="author">Ryan Bolger</span>
     
   </div>
 </header>
 
+  <section id="social-share">
+    
+
+
+
+
+
+  </section>
   
 
-  
-  <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
+  <div class="content">
+    
+
+<h2 id="tl-dr">TL;DR</h2>
+
+<p>Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &ldquo;AD:<DN>&rdquo; PSDrive path like this:</p>
+
+<pre><code class="language-powershell">$DN = (Get-ADUser jdoe).distinguishedName
+$objectPath = &quot;Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/$DN&quot;
+Get-Acl -Path $objectPath
+</code></pre>
+
+<h2 id="the-story">The Story</h2>
+
+<p>I was browsing <a href="https://www.reddit.com/r/PowerShell">r/PowerShell</a> recently and came across a thread from someone who had run into a PowerShell bug after upgrading to Windows Server 2019 (1809). The user was attempting to run <code>Get-Acl</code> against an AD object using the object&rsquo;s distinguished name like this:</p>
+
+<pre><code class="language-powershell">$DN = (Get-ADUser jdoe).distinguishedName
+$ACL = Get-Acl -Path &quot;AD:\$DN&quot;
+</code></pre>
+
+<p>The code works just fine in Server 2016 and earlier. But the same code throws an error in Server 2019 and reportedly Windows 10 (1903) as well.</p>
+
+<pre><code class="language-plaintext">Get-Acl : The object name has bad syntax
+At line:1 char:8
++ $ACL = Get-Acl -Path &quot;AD:\$DN&quot;
++        ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (\\RootDSE\CN=Do...C=example,DC=com:String) [Get-Acl], ADException
+    + FullyQualifiedErrorId : ADProvider:ItemExists::ADError,Microsoft.PowerShell.Commands.GetAclCommand
+</code></pre>
+
+<p>The problem is this particular user&rsquo;s DN had an escaped comma in it because the CN value was set to &ldquo;Doe, Jane&rdquo;. Commas are allowed in object names in AD, but they tend to cause all sorts of problems with LDAP path parsing code due to the escaping. The resulting DN of the object looks something like this:</p>
+
+<pre><code class="language-plaintext">CN=Doe\, Jane,CN=Users,DC=example,DC=com
+</code></pre>
+
+<p>Historically, the Windows native Active Directory PowerShell cmdlets and PSDrive provider have no issues dealing with this. But apparently a bug crept into the latest releases. It should be noted that the bug exists with any cmdlet that depends on the Active Directory PSDrive provider. <code>Get-Acl</code> just happens to be the one this user was using. But it also affects something as simple as <code>Get-Item</code>.</p>
+
+<h2 id="the-workaround">The Workaround</h2>
+
+<p>One of the things I tried while poking around this bug looking for a workaround was running <code>Get-ChildItem</code> against the parent container and then running <code>Get-Acl</code> against the <code>PSPath</code> parameter of the results like this.</p>
+
+<pre><code class="language-powershell">Get-ChildItem &quot;CN=Users,DC=example,DC=com&quot; | ForEach-Object { Get-Acl -Path $_.PSPath }
+</code></pre>
+
+<p>To my pleasant surprise, it worked without issue. So I took a look at the format of the PSPath for these objects and found this for my problematic test user.</p>
+
+<pre><code class="language-plaintext">Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/CN=Doe\, Jane,CN=Users,DC=example,DC=com
+</code></pre>
+
+<p>We can generalize this out to a somewhat ugly (but at least usable) path prefix for any DN and work it into the original code like this.</p>
+
+<pre><code class="language-powershell">$DN = (Get-ADUser jdoe).distinguishedName
+$objectPath = &quot;Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/$DN&quot;
+$ACL = Get-Acl -Path $objectPath
+</code></pre>
+
+  </div>
   <footer>
-    <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big">Read more</a>
     <ul class="stats">
   
     
@@ -182,7 +247,7 @@
         <ul>
           
             
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
           
         </ul>
       </li>
@@ -205,17 +270,17 @@
 
   </footer>
 </article>
+<article class="post">
+  
 
-        
-        
+</article>
 <div class="pagination">
   
-    <a href="#" class="disabled button big previous"><i class="fas fa-angle-left"></i></a>
+    <a href="/blog/2019/06/infoblox-and-ms-management-permissions/" class="button big previous"><i class="fas fa-angle-left"></i> Infoblox and MS Management Permissions</a>
   
-  
-    <a href="#" class="disabled button big next"><i class="fas fa-angle-right"></i></a>
   
 </div>
+
 
       </main>
       <section id="site-sidebar">
