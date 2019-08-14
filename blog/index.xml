@@ -6,10 +6,19 @@
     <description>Recent content in Blog on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 16 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>New Module: PwnedPassCheck</title>
+      <link>https://www.dvolve.net/blog/2019/08/new-module-pwnedpasscheck/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/08/new-module-pwnedpasscheck/</guid>
+      <description>Troy Hunt&amp;rsquo;s incredibly useful haveibeenpwned.com is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to check if a specific password was exposed in a breach as well. As of version 5, the list contains over half a billion compromised passwords and the number of times they&amp;rsquo;ve been seen in data breaches. My PwnedPassCheck module lets you query that data easily via PowerShell.</description>
+    </item>
     
     <item>
       <title>Workaround For AD PSDrive Bug In Server 2019</title>
