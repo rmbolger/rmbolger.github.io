@@ -5,12 +5,12 @@
   and follow the formatting and style given.
 */
 
-/* 54 */
+/* 46 */
 body {
   background: #242930;
 }
 
-/* 69 */
+/* 59 */
 body,
 input,
 select,
@@ -19,7 +19,7 @@ textarea {
     font-family: Helvetica, sans-serif;
 }
 
-/* 97 */
+/* 84 */
 a:hover {
   border-bottom-color: transparent;
   /*
@@ -31,7 +31,7 @@ a:hover {
   */
 }
 
-/* 102 */
+/* 88 */
 h1,
 h2,
 h3,
@@ -40,18 +40,24 @@ h5,
 h6 {
     color: #ffffff;
     font-family: Helvetica, sans-serif;
-    /* text-transform: none;
-    letter-spacing: 0 */
+    letter-spacing: 0.2em;
+    /*
+    text-transform: none;
+    */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
 }
 
-/* 135 */
+/* 117 */
 code {
   background-color: #414852;
   border: none;
   padding: 0.25em 0.45em
 }
 
-/* 177 */
+/* 152 */
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
@@ -60,7 +66,7 @@ input[type="button"],
     font-family: Helvetica, sans-serif;
 }
 
-/* 203 */
+/* 178 */
 input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover,
@@ -69,78 +75,130 @@ input[type="button"]:hover,
     color: #288ad0 !important
 }
 
-/* 218 */
+/* 191 */
 label {
   color: #ffffff;
 }
 
-/* 274 */
+/* 240 */
 table {
   color: #242930
 }
 
-/* 315 */
+/* 273 */
 @media (min-width : 768px) {
   table>tbody>tr:hover {
     background-color: #288ad0
   }
 }
 
-/* 853 */
+/* 382 */
+.lessfancybox {
+  background: #fff;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -ms-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -o-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  margin: 10px auto;
+  max-width: 85%;
+  /*
+  padding: 0.5em 0.5em 0 0.5em;
+  */
+  width: fit-content;
+}
+
+/* 1373 */
 .post {
   background: #353b43;
 }
 
-/* 905 */
+/* 1416 */
 .post>header .meta .published {
   font-family: Helvetica, sans-serif;
-  /* letter-spacing: 0.25em;
-  text-transform: uppercase */
+  letter-spacing: 0.2em;
+  /*
+  text-transform: none;
+  */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
 }
 
-/* 913 */
+/* 1423 */
 .post>header .meta p,
 .post>header .meta .author,
 .post>header .meta .format {
   font-family: Helvetica, sans-serif;
-  /* letter-spacing: 0.25em;
-  text-transform: uppercase */
+  letter-spacing: 0.2em;
+  /*
+  text-transform: none;
+  */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
 }
 
-/* 1014 */
+/* 1510 */
 .post>footer .stats li ul li {
   font-family: Helvetica, sans-serif;
-  /* letter-spacing: 0.25em;
-  text-transform: uppercase */
+  letter-spacing: 0.2em;
+  /*
+  text-transform: none;
+  */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
 }
 
-/* 1051 */
+/* 1548 */
 #site-header {
   background-color: #353b43;
 }
 
-/* 1068 */
 #site-header a {
   font-family: Helvetica, sans-serif;
-  /* letter-spacing: 0.25em;
-  text-transform: uppercase */
+  letter-spacing: 0.2em;
+  /*
+  text-transform: none;
+  */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
 }
 
-/* 1426 */
+/* 1873 */
 #recent-posts .mini-post {
   background: #353b43;
 }
 
-/* 1469 */
+/* 1909 */
 #recent-posts .mini-post header .published {
   font-family: Helvetica, sans-serif;
-  /* letter-spacing: 0.25em;
-  text-transform: uppercase */
+  letter-spacing: 0.2em;
+  /*
+  text-transform: none;
+  */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
 }
 
-/* 1529 */
+/* 1960 */
 #site-footer .copyright {
   font-family: Helvetica, sans-serif;
-  /* letter-spacing: 0.25em;
-  text-transform: uppercase */
+  letter-spacing: 0.2em;
+  /*
+  text-transform: none;
+  */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
 }

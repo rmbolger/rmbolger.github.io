@@ -8,9 +8,8 @@
 
 
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  
-<meta itemprop="name" content="Adventures in Tech">
+  <meta name="generator" content="Hugo 0.57.0" />
+  <meta itemprop="name" content="Adventures in Tech">
 <meta itemprop="description" content="">
 
 
@@ -19,7 +18,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.dvolve.net/" />
 
-<meta property="og:updated_time" content="2019-08-13T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2019-08-13T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Adventures in Tech"/>
@@ -91,7 +90,7 @@
   </main>
   
     <footer>
-      <ul class="social-icons">
+      <ul class="socnet-icons">
         
     <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fas fa-rss"></a></li>
 
@@ -146,192 +145,19 @@
       <main id="site-main">
         
         
-          <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/2019/08/new-module-pwnedpasscheck/">New Module: PwnedPassCheck</a></h2>
-    
-    
-        <p>Checking if passwords or hashes have been compromised.</p>
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2019-08-13 00:00:00 &#43;0000 UTC">
-      August 13, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
-    
-  </div>
-</header>
-
-  
-
-  
-  <p><a href="https://twitter.com/troyhunt">Troy Hunt&rsquo;s</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to check if a specific password was exposed in a breach as well. As of version 5, the list contains over half a billion compromised passwords and the number of times they&rsquo;ve been seen in data breaches. My <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a> module lets you query that data easily via PowerShell.</p>
-  <footer>
-    <a href="/blog/2019/08/new-module-pwnedpasscheck/" class="button big">Read more</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/pwnedpasscheck">PwnedPassCheck</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
-          <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/">Workaround For AD PSDrive Bug In Server 2019</a></h2>
-    
-    
-        <p>PSPath to the rescue</p>
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2019-07-16 00:00:00 &#43;0000 UTC">
-      July 16, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
-    
-  </div>
-</header>
-
-  
-
-  
-  <p>Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &ldquo;AD:<DN>&rdquo; PSDrive path like this:</p>
-  <footer>
-    <a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" class="button big">Read more</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
-          <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/2019/06/infoblox-and-ms-management-permissions/">Infoblox and MS Management Permissions</a></h2>
-    
-    
-        <p>How to avoid using Domain Admin</p>
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2019-06-27 00:00:00 &#43;0000 UTC">
-      June 27, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
-    
-  </div>
-</header>
-
-  
-
-  
-  <p>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.</p>
-  <footer>
-    <a href="/blog/2019/06/infoblox-and-ms-management-permissions/" class="button big">Read more</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/infoblox">Infoblox</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
         
 <div class="pagination">
   
     <a href="#" class="disabled button big previous"><i class="fas fa-angle-left"></i></a>
   
   
-    <a href="/page/2/" class="button big next"><i class="fas fa-angle-right"></i></a>
+    <a href="#" class="disabled button big next"><i class="fas fa-angle-right"></i></a>
   
 </div>
 
       </main>
       <section id="site-sidebar">
+  
   <section id="recent-posts">
     <header>
       <h1>Recent posts</h1>
@@ -396,6 +222,7 @@
       <a href="/blog/" class="button">See more</a>
     
   </section>
+  
 
   
 
