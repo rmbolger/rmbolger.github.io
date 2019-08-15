@@ -8,8 +8,9 @@
 
 
 
-  <meta name="generator" content="Hugo 0.57.0" />
-  <meta itemprop="name" content="Infoblox and MS Management Permissions">
+  <meta name="generator" content="Hugo 0.55.6" />
+  
+<meta itemprop="name" content="Infoblox and MS Management Permissions">
 <meta itemprop="description" content="How to avoid using Domain Admin">
 
 
@@ -25,8 +26,8 @@
 <meta property="og:description" content="How to avoid using Domain Admin" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.dvolve.net/blog/2019/06/infoblox-and-ms-management-permissions/" />
-<meta property="article:published_time" content="2019-06-27T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-06-27T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-06-27T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-06-27T00:00:00&#43;00:00"/>
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Infoblox and MS Management Permissions"/>
@@ -399,23 +400,21 @@ if ('dhcpserver' -notin $values) {
 <li>Create Subnet objects</li>
 <li>Delete Subnet objects</li>
 </ul></li>
-
-<li><p>Applies to: Descendant subnet objects</p>
+<li>Applies to: Descendant subnet objects
 
 <ul>
 <li>Read all properties</li>
 <li>Write all properties</li>
 <li>Delete</li>
-
-<li><p>Delete subtree</p>
+<li>Delete subtree</li>
+</ul></li>
+</ul>
 
 <pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
 $target = &quot;AD\svc-infoblox&quot;   # group or user reference
 &amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /G &quot;$($target):CCDC;site&quot;
 &amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /I:S /G &quot;$($target):RPWPSDDTCCLCRC;;site&quot;
-</code></pre></li>
-</ul></li>
-</ul>
+</code></pre>
 
 <h2 id="permissions-for-sites">Permissions for Sites</h2>
 
@@ -430,36 +429,34 @@ $target = &quot;AD\svc-infoblox&quot;   # group or user reference
 <li>Create Site objects</li>
 <li>Delete Site objects</li>
 </ul></li>
-
-<li><p>Applies to: Descendant Site objects</p>
+<li>Applies to: Descendant Site objects
 
 <ul>
 <li>Read all properties</li>
 <li>Write all properties</li>
 <li>Delete</li>
 <li>Delete subtree</li>
-
-<li><p>Create all child objects</p>
+<li>Create all child objects</li>
+</ul></li>
+</ul>
 
 <pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
 $target = &quot;AD\svc-infoblox&quot;   # group or user reference
 &amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /G &quot;$($target):CCDC;site&quot;
 &amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /I:S /G &quot;$($target):RPWPSDDTCCLCRC;;site&quot;
-</code></pre></li>
-</ul></li>
-</ul>
+</code></pre>
 
 <p><strong>CN=&lt;Default SiteLink&gt;CN=IP,CN=Inter-Site Transports,CN=Sites,&lt;Configuration Context&gt;</strong></p>
 
 <ul>
-<li><p>Read/Write siteList</p>
+<li>Read/Write siteList</li>
+</ul>
 
 <pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
 $defaultSiteLink = &quot;CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=Sites,$cfgContext&quot;
 $target = &quot;AD\svc-infoblox&quot;   # group or user reference
 &amp;dsacls.exe $defaultSiteLink /G &quot;$($target):RPWP;siteList&quot;
-</code></pre></li>
-</ul>
+</code></pre>
 
 <h1 id="network-users">Network Users</h1>
 
