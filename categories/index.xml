@@ -6,26 +6,26 @@
     <description>Recent content in Categories on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 13 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>PwnedPassCheck</title>
-      <link>https://www.dvolve.net/categories/pwnedpasscheck/</link>
-      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      <title>Active Directory</title>
+      <link>https://www.dvolve.net/categories/active-directory/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dvolve.net/categories/pwnedpasscheck/</guid>
+      <guid>https://www.dvolve.net/categories/active-directory/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Active Directory</title>
-      <link>https://www.dvolve.net/categories/active-directory/</link>
-      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      <title>PwnedPassCheck</title>
+      <link>https://www.dvolve.net/categories/pwnedpasscheck/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dvolve.net/categories/active-directory/</guid>
+      <guid>https://www.dvolve.net/categories/pwnedpasscheck/</guid>
       <description></description>
     </item>
     

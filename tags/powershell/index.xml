@@ -6,10 +6,19 @@
     <description>Recent content in powershell on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 13 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Auditing Active Directory Passwords With PwnedPassCheck</title>
+      <link>https://www.dvolve.net/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/</guid>
+      <description>In a previous post, I introduced a new PowerShell module called PwnedPassCheck. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to Troy Hunt&amp;rsquo;s incredibly useful haveibeenpwned.com. In this post, I&amp;rsquo;ll demonstrate how to use the module in conjunction with Michael Grafnetter&amp;rsquo;s amazing DSInternals module to quickly audit existing passwords in Active Directory against the compromised list.</description>
+    </item>
     
     <item>
       <title>New Module: PwnedPassCheck</title>
