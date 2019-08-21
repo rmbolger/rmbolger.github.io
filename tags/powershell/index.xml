@@ -6,10 +6,19 @@
     <description>Recent content in powershell on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Posh-ACME 3.6.0</title>
+      <link>https://www.dvolve.net/blog/2019/08/posh-acme-3.6.0/</link>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/08/posh-acme-3.6.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for Domeneshop, Dreamhost, EasyDNS, and freedns.afraid.org. The other big addition is a new function called Invoke-HttpChallengeListener which can be super handy for people doing HTTP challenges. It&amp;rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&amp;rsquo;t have manually deal with making the challenge files available.</description>
+    </item>
     
     <item>
       <title>Auditing Active Directory Passwords With PwnedPassCheck</title>

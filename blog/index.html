@@ -8,7 +8,7 @@
 
 
 
-  <meta name="generator" content="Hugo 0.56.3" />
+  <meta name="generator" content="Hugo 0.57.2" />
   <meta itemprop="name" content="Blog">
 <meta itemprop="description" content="">
 
@@ -18,7 +18,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.dvolve.net/blog/" />
 
-<meta property="og:updated_time" content="2019-08-15T00:00:00+00:00" />
+<meta property="og:updated_time" content="2019-08-21T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Blog"/>
@@ -153,6 +153,64 @@
   <header>
   <div class="title">
     
+        <h2><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h2>
+    
+    
+        <p>New plugins and self-hosted http challenges</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-08-21 00:00:00 &#43;0000 UTC">
+      August 21, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for <a href="https://domene.shop/">Domeneshop</a>, <a href="https://www.dreamhost.com/">Dreamhost</a>, <a href="https://easydns.com/">EasyDNS</a>, and <a href="http://freedns.afraid.org/">freedns.afraid.org</a>. The other big addition is a new function called <code>Invoke-HttpChallengeListener</code> which can be super handy for people doing HTTP challenges. It&rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&rsquo;t have manually deal with making the challenge files&hellip;</p>
+  <footer>
+    <a href="/blog/2019/08/posh-acme-3.6.0/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+        
+          <article class="post">
+  <header>
+  <div class="title">
+    
         <h2><a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/">Auditing Active Directory Passwords With PwnedPassCheck</a></h2>
     
     
@@ -268,64 +326,6 @@
 </article>
 
         
-          <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/">Workaround For AD PSDrive Bug In Server 2019</a></h2>
-    
-    
-        <p>PSPath to the rescue</p>
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2019-07-16 00:00:00 &#43;0000 UTC">
-      July 16, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
-    
-  </div>
-</header>
-
-  
-
-  
-  <p>Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &ldquo;AD:<DN>&rdquo; PSDrive path like this:</p>
-  <footer>
-    <a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" class="button big">Read more</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
         
 <div class="pagination">
   
@@ -343,6 +343,17 @@
     <header>
       <h1>Recent posts</h1>
     </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h1>
+        <time class="published" datetime="">August 21, 2019</time>
+      </header>
+    </article>
     
     <article class="mini-post">
       <section>
@@ -388,17 +399,6 @@
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h1>
-        <time class="published" datetime="">June 21, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -420,7 +420,7 @@
         Ryan Bolger
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.56.3' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.57.2' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>

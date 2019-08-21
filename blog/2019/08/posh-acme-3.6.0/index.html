@@ -2,27 +2,35 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>Tags - Adventures in Tech</title>
-<meta name="description" content="Research and solutions to challenging, unique, or otherwise interesting problems I run into in my daily life working in the tech industry.">
+<title>Posh-ACME 3.6.0 - Adventures in Tech</title>
+<meta name="description" content="New plugins and self-hosted http challenges">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.57.2" />
-  <meta itemprop="name" content="Tags">
-<meta itemprop="description" content="">
+  <meta itemprop="name" content="Posh-ACME 3.6.0">
+<meta itemprop="description" content="New plugins and self-hosted http challenges">
 
 
-  <meta property="og:title" content="Tags" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.dvolve.net/tags/" />
+<meta itemprop="datePublished" content="2019-08-21T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-08-21T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="284">
 
-<meta property="og:updated_time" content="2019-08-21T00:00:00+00:00" />
+
+
+<meta itemprop="keywords" content="powershell," />
+
+  <meta property="og:title" content="Posh-ACME 3.6.0" />
+<meta property="og:description" content="New plugins and self-hosted http challenges" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2019/08/posh-acme-3.6.0/" />
+<meta property="article:published_time" content="2019-08-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-21T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tags"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Posh-ACME 3.6.0"/>
+<meta name="twitter:description" content="New plugins and self-hosted http challenges"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
   
@@ -56,7 +64,7 @@
       <a href="/">
         
           
-            Tags
+            Blog
           
         
       </a>
@@ -96,8 +104,6 @@
     <footer>
       <ul class="socnet-icons">
         
-    <li><a href="/tags/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fas fa-rss"></a></li>
-
 
         <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
 
@@ -147,28 +153,111 @@
 </section>
 
       <main id="site-main">
-        
+        <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h2>
+    
+    
+        <p>New plugins and self-hosted http challenges</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-08-21 00:00:00 &#43;0000 UTC">
+      August 21, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  <section id="socnet-share">
+    
+
+
+
+
+
+  </section>
+  
+
+  <div class="content">
+    
+
+<p>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for <a href="https://domene.shop/">Domeneshop</a>, <a href="https://www.dreamhost.com/">Dreamhost</a>, <a href="https://easydns.com/">EasyDNS</a>, and <a href="http://freedns.afraid.org/">freedns.afraid.org</a>. The other big addition is a new function called <code>Invoke-HttpChallengeListener</code> which can be super handy for people doing HTTP challenges. It&rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&rsquo;t have manually deal with making the challenge files available. Check out the wiki page, <a href="https://github.com/rmbolger/Posh-ACME/wiki/How-To-Self-Host-HTTP-Challenges">How To Self Host HTTP Challenges</a>, for an in-depth guide on using it.</p>
+
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
+
+<h2 id="changelog">Changelog</h2>
+
+<ul>
+<li>Added new DNS plugins
+
+<ul>
+<li>Domeneshop (Thanks @ornulfn)</li>
+<li>Dreamhost (Thanks @jhendricks123)</li>
+<li>EasyDNS (Thanks @abrysiuk)</li>
+<li>FreeDNS (afraid.org)</li>
+</ul></li>
+<li>Added <code>Invoke-HttpChallengeListener</code> function (Thanks @soltroy). This runs a self-hosted web server that can answer HTTP challenges. Look for a wiki usage guide soon.</li>
+<li>Added <code>Remove-PAServer</code> function. Warning: This deletes all data (accounts, orders, certs) associated with an ACME server.</li>
+<li>Added <code>Install-PACertificate</code> function. This can be used to manually import a cert to the Windows cert store. (<a href="https://github.com/rmbolger/Posh-ACME/issues/159">#159</a>)</li>
+<li>Added support for Cloudflare&rsquo;s new limited access API Tokens. See usage guide for details.</li>
+<li>Added support for propagation polling with ClouDNS plugin. See usage guide for details.</li>
+<li>Fixed edge case zone finding bug with ClouDNS plugin.</li>
+<li>Fixed DOcean (Digital Ocean) plugin which broke because they now enforce a 30 sec TTL minimum on record creation.</li>
+<li>Fixed overly aggressive error trapping in OVH plugin. (<a href="https://github.com/rmbolger/Posh-ACME/issues/162">#162</a>)</li>
+<li>Fixed a typo in the OVH plugin usage guide.</li>
+<li>Fixed SkipCertificateCheck is no longer ignored when passing a PAServer object via pipeline to Set-PAServer.</li>
+<li>Fixed <code>Submit-ChallengeValidation</code> no longer tries to sleep when DnsSleep = 0.</li>
+<li>Some internal refactoring.</li>
+</ul>
+
+  </div>
+  <footer>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
           
-        
-        <ul class="posts">
-          <header>
-            <h1>Tags</h1>
-          </header>
-          
-          
-            <li>
-              <article>
-                <header>
-                  
-                    <a href="/tags/powershell">powershell<span style="float:right;">7</span></a>
-                  
-                </header>
-              </article>
-            </li>
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
           
         </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+
+<div class="pagination">
+  
+    <a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/" class="button big previous"><i class="fas fa-angle-left"></i> Auditing Active Directory Passwords With PwnedPassCheck</a>
+  
+  
+</div>
+
+
       </main>
-      
       <section id="site-sidebar">
   
   <section id="recent-posts">

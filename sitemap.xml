@@ -3,15 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.dvolve.net/categories/active-directory/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>https://www.dvolve.net/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.dvolve.net/</loc>
+    <loc>https://www.dvolve.net/blog/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/categories/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/categories/posh-acme/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2019/08/posh-acme-3.6.0/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/tags/powershell/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/tags/</loc>
+    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/categories/active-directory/</loc>
     <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -20,33 +48,8 @@
   </url>
   
   <url>
-    <loc>https://www.dvolve.net/blog/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/categories/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://www.dvolve.net/categories/pwnedpasscheck/</loc>
     <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/tags/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/tags/powershell/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -67,18 +70,11 @@
   <url>
     <loc>https://www.dvolve.net/categories/infoblox/</loc>
     <lastmod>2019-06-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.dvolve.net/blog/2019/06/infoblox-and-ms-management-permissions/</loc>
     <lastmod>2019-06-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/categories/posh-acme/</loc>
-    <lastmod>2019-06-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -89,7 +85,6 @@
   <url>
     <loc>https://www.dvolve.net/categories/posh-ibwapi/</loc>
     <lastmod>2019-04-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
