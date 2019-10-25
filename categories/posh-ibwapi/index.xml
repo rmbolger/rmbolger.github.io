@@ -6,10 +6,20 @@
     <description>Recent content in Posh-IBWAPI on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 20 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/categories/posh-ibwapi/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Posh-IBWAPI 3.1.0</title>
+      <link>https://www.dvolve.net/blog/2019/08/posh-ibwapi-3.1.0/</link>
+      <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/08/posh-ibwapi-3.1.0/</guid>
+      <description>Just shipped a new Posh-IBWAPI release, version 3.1.0. There is now an -OverrideTransferHost switch in Send-IBFile and Receive-IBFile. But to understand what it does requires a bit of explanation on how file transfers work under the hood with the Infoblox WAPI. Any given file transfer (up or down) is a 3-step process that can be generalized as follows.
+ Inform WAPI that you want to do a file transfer and it returns a token and a URL to actually transfer against.</description>
+    </item>
     
     <item>
       <title>Posh-IBWAPI 3.0.0</title>

@@ -6,10 +6,29 @@
     <description>Recent content in Posh-ACME on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 21 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/categories/posh-acme/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Posh-ACME 3.8.0</title>
+      <link>https://www.dvolve.net/blog/2019/09/posh-acme-3.8.0/</link>
+      <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/09/posh-acme-3.8.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.8.0. Set-PAOrder now supports modifying some order properties that don&amp;rsquo;t require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with more than 100 domains.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.7.0</title>
+      <link>https://www.dvolve.net/blog/2019/09/posh-acme-3.7.0/</link>
+      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/09/posh-acme-3.7.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, Submit-Renewal now has an optional -PluginArgs parameter for cases when you need to specify new values for a plugin but don&amp;rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&amp;rsquo;re using is purposefully short-lived.
+Updated versions can be found in the PowerShell Gallery or GitHub.</description>
+    </item>
     
     <item>
       <title>Posh-ACME 3.6.0</title>

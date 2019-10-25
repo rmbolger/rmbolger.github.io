@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posh-IBCLI on Adventures in Tech</title>
+    <link>https://www.dvolve.net/categories/posh-ibcli/</link>
+    <description>Recent content in Posh-IBCLI on Adventures in Tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 23 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.dvolve.net/categories/posh-ibcli/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Posh-IBCLI 1.3.0</title>
+      <link>https://www.dvolve.net/blog/2019/10/posh-ibcli-1.3.0/</link>
+      <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/10/posh-ibcli-1.3.0/</guid>
+      <description>Just shipped a new Posh-IBCLI release, version 1.3.0. It adds new functions called Get-IBCLIApacheCert and Set-IBCLIApacheCert which wrap the set apache_https_cert command added in NIOS 8.4. What&amp;rsquo;s funny is that the only reason I found out about the command is because of a problem I ran into while testing Posh-IBWAPI&amp;rsquo;s new file upload functions.
+The file I was trying to upload was a certificate for the web UI and I figured my test procedure would involve uploading my cert and then re-generating a self-signed cert before repeating the test.</description>
+    </item>
+    
+  </channel>
+</rss>

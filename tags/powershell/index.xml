@@ -6,10 +6,49 @@
     <description>Recent content in powershell on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 21 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Posh-IBCLI 1.3.0</title>
+      <link>https://www.dvolve.net/blog/2019/10/posh-ibcli-1.3.0/</link>
+      <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/10/posh-ibcli-1.3.0/</guid>
+      <description>Just shipped a new Posh-IBCLI release, version 1.3.0. It adds new functions called Get-IBCLIApacheCert and Set-IBCLIApacheCert which wrap the set apache_https_cert command added in NIOS 8.4. What&amp;rsquo;s funny is that the only reason I found out about the command is because of a problem I ran into while testing Posh-IBWAPI&amp;rsquo;s new file upload functions.
+The file I was trying to upload was a certificate for the web UI and I figured my test procedure would involve uploading my cert and then re-generating a self-signed cert before repeating the test.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.8.0</title>
+      <link>https://www.dvolve.net/blog/2019/09/posh-acme-3.8.0/</link>
+      <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/09/posh-acme-3.8.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.8.0. Set-PAOrder now supports modifying some order properties that don&amp;rsquo;t require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with more than 100 domains.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.7.0</title>
+      <link>https://www.dvolve.net/blog/2019/09/posh-acme-3.7.0/</link>
+      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/09/posh-acme-3.7.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, Submit-Renewal now has an optional -PluginArgs parameter for cases when you need to specify new values for a plugin but don&amp;rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&amp;rsquo;re using is purposefully short-lived.
+Updated versions can be found in the PowerShell Gallery or GitHub.</description>
+    </item>
+    
+    <item>
+      <title>Posh-IBWAPI 3.1.0</title>
+      <link>https://www.dvolve.net/blog/2019/08/posh-ibwapi-3.1.0/</link>
+      <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/08/posh-ibwapi-3.1.0/</guid>
+      <description>Just shipped a new Posh-IBWAPI release, version 3.1.0. There is now an -OverrideTransferHost switch in Send-IBFile and Receive-IBFile. But to understand what it does requires a bit of explanation on how file transfers work under the hood with the Infoblox WAPI. Any given file transfer (up or down) is a 3-step process that can be generalized as follows.
+ Inform WAPI that you want to do a file transfer and it returns a token and a URL to actually transfer against.</description>
+    </item>
     
     <item>
       <title>Posh-ACME 3.6.0</title>
