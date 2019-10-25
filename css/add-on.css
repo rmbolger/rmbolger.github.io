@@ -64,6 +64,7 @@ input[type="button"],
 .button {
     color: #ffffff;
     font-family: Helvetica, sans-serif;
+    margin: .25em auto;
 }
 
 /* 178 */
@@ -148,11 +149,17 @@ table {
   letter-spacing: 0.2em;
   /*
   text-transform: none;
-  */
   overflow-wrap: break-word;
   word-wrap: break-word;
   -ms-word-break: break-all;
   word-break: break-word;
+  */
+}
+
+.post > footer .stats li ul li a {
+  overflow: inherit;
+  text-overflow: inherit;
+  white-space: nowrap;
 }
 
 /* 1548 */
