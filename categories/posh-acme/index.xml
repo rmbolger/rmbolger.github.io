@@ -6,10 +6,31 @@
     <description>Recent content in Posh-ACME on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 27 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/categories/posh-acme/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Posh-ACME 3.10.0</title>
+      <link>https://www.dvolve.net/blog/2019/11/posh-acme-3.10.0/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/11/posh-acme-3.10.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.10.0. There&amp;rsquo;s a critical fix in this version for a problem introduced by a recent change in Let&amp;rsquo;s Encrypt&amp;rsquo;s ACME implementation that breaks renewals. A new DNS plugin for HurricaneElectric was added and the Azure plugin now supports certificate based authentication in addition to the existing methods. There&amp;rsquo;s also additional guidance in the tutorial on renewals and deployment.
+Updated versions can be found in the PowerShell Gallery or GitHub.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.9.0</title>
+      <link>https://www.dvolve.net/blog/2019/10/posh-acme-3.9.0/</link>
+      <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/10/posh-acme-3.9.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.9.0. There&amp;rsquo;s a new DNS plugin for UnoEuro thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&amp;rsquo;t have edit permissions to all zones on an account.
+Updated versions can be found in the PowerShell Gallery or GitHub. Installation instructions are in the Readme.
+Changelog  Added new DNS plugin UnoEuro (Thanks @OrKarstoft) Fix for Cloudflare plugin not working properly when limited scope token didn&amp;rsquo;t have at least read permissions to all zones on an account.</description>
+    </item>
     
     <item>
       <title>Posh-ACME 3.8.0</title>

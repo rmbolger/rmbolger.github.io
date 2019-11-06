@@ -2,26 +2,34 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>Blog - Adventures in Tech</title>
+<title>Posh-ACME 3.9.0 - Adventures in Tech</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.59.0" />
-  <meta itemprop="name" content="Blog">
-<meta itemprop="description" content="">
+  <meta itemprop="name" content="Posh-ACME 3.9.0">
+<meta itemprop="description" content="New UnoEuro plugin and updates to Cloudflare plugin.">
 
 
-  <meta property="og:title" content="Blog" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.dvolve.net/blog/" />
+<meta itemprop="datePublished" content="2019-10-26T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-10-26T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="137">
 
-<meta property="og:updated_time" content="2019-10-23T00:00:00+00:00" />
+
+
+<meta itemprop="keywords" content="powershell," />
+
+  <meta property="og:title" content="Posh-ACME 3.9.0" />
+<meta property="og:description" content="New UnoEuro plugin and updates to Cloudflare plugin." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2019/10/posh-acme-3.9.0/" />
+<meta property="article:published_time" content="2019-10-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-10-26T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Blog"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Posh-ACME 3.9.0"/>
+<meta name="twitter:description" content="New UnoEuro plugin and updates to Cloudflare plugin."/>
 <meta name="twitter:site" content="@rmbolger"/>
 
   
@@ -117,8 +125,6 @@
     <footer>
       <ul class="socnet-icons">
         
-    <li><a href="/blog/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fas fa-rss"></a></li>
-
 
         <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
 
@@ -168,33 +174,52 @@
 </section>
 
       <main id="site-main">
-        
-        
-          <article class="post">
+        <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h2>
+        <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
     
     
-        <p>New plugin and misc fixes</p>
+        <p>New UnoEuro plugin and updates to Cloudflare plugin.</p>
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2019-06-21 00:00:00 &#43;0000 UTC">
-      June 21, 2019
+    <time class="published" datetime="2019-10-26 00:00:00 &#43;0000 UTC">
+      October 26, 2019
     </time>
     <span class="author">Ryan Bolger</span>
     
   </div>
 </header>
 
+  <section id="socnet-share">
+    
+
+
+
+
+
+  </section>
   
 
-  
-  <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
+  <div class="content">
+    
+
+<p>Just shipped a new Posh-ACME release, version 3.9.0. There&rsquo;s a new DNS plugin for <a href="https://www.unoeuro.com/">UnoEuro</a> thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&rsquo;t have edit permissions to all zones on an account.</p>
+
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
+
+<h2 id="changelog">Changelog</h2>
+
+<ul>
+<li>Added new DNS plugin <a href="https://www.unoeuro.com/">UnoEuro</a> (Thanks @OrKarstoft)</li>
+<li>Fix for Cloudflare plugin not working properly when limited scope token didn&rsquo;t have at least read permissions to all zones on an account. To use an edit token with limited zone permissions, you must now also specify a secondary token with read permissions to all zones. See the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/Posh-ACME/DnsPlugins/Cloudflare-Readme.md">plugin guide</a> for details. (<a href="https://github.com/rmbolger/Posh-ACME/issues/184">#184</a>)</li>
+<li>Fix for PropertyNotFound exception when imported plugin data is null or not the expected hashtable value (<a href="https://github.com/rmbolger/Posh-ACME/issues/182">#182</a>)</li>
+</ul>
+
+  </div>
   <footer>
-    <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big">Read more</a>
     <ul class="stats">
   
     
@@ -227,74 +252,16 @@
   </footer>
 </article>
 
-        
-          <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/2019/04/posh-ibwapi-3.0.0/">Posh-IBWAPI 3.0.0</a></h2>
-    
-    
-        <p>File upload/download wrappers, named configs, and auto session management</p>
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2019-04-20 00:00:00 &#43;0000 UTC">
-      April 20, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
-    
-  </div>
-</header>
 
-  
-
-  
-  <p>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
-  <footer>
-    <a href="/blog/2019/04/posh-ibwapi-3.0.0/" class="button big">Read more</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-ibwapi">Posh-IBWAPI</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
-        
 <div class="pagination">
   
-    <a href="/blog/page/3/" class="button big previous"><i class="fas fa-angle-left"></i></a>
+    <a href="/blog/2019/10/posh-ibcli-1.3.0/" class="button"><div class="previous"><div>Posh-IBCLI 1.3.0</div></div></a>
   
   
-    <a href="#" class="disabled button big next"><i class="fas fa-angle-right"></i></a>
+    <a href="/blog/2019/11/posh-acme-3.10.0/" class="button"><div class="next"><div>Posh-ACME 3.10.0</div></div></a>
   
 </div>
+
 
       </main>
       <section id="site-sidebar">
@@ -303,6 +270,28 @@
     <header>
       <h1>Recent posts</h1>
     </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
+        <time class="published" datetime="">November 6, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h1>
+        <time class="published" datetime="">October 26, 2019</time>
+      </header>
+    </article>
     
     <article class="mini-post">
       <section>
@@ -337,28 +326,6 @@
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/08/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.1.0</a></h1>
-        <time class="published" datetime="">August 23, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h1>
-        <time class="published" datetime="">August 21, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -378,7 +345,7 @@
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">4</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
             
           
           <li>

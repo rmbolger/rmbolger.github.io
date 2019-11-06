@@ -17,7 +17,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.dvolve.net/" />
 
-<meta property="og:updated_time" content="2019-10-23T00:00:00+00:00" />
+<meta property="og:updated_time" content="2019-11-06T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Adventures in Tech"/>
@@ -172,15 +172,15 @@
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/08/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.1.0</a></h2>
+        <h2><a href="/blog/2019/06/infoblox-and-ms-management-permissions/">Infoblox and MS Management Permissions</a></h2>
     
     
-        <p>Improvements to Send-IBFile and Receive-IBFile</p>
+        <p>How to avoid using Domain Admin</p>
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2019-08-23 00:00:00 &#43;0000 UTC">
-      August 23, 2019
+    <time class="published" datetime="2019-06-27 00:00:00 &#43;0000 UTC">
+      June 27, 2019
     </time>
     <span class="author">Ryan Bolger</span>
     
@@ -190,9 +190,9 @@
   
 
   
-  <p>Just shipped a new Posh-IBWAPI release, version 3.1.0. There is now an <code>-OverrideTransferHost</code> switch in <code>Send-IBFile</code> and <code>Receive-IBFile</code>. But to understand what it does requires a bit of explanation on how file transfers work under the hood with the Infoblox WAPI. Any given file transfer (up or down) is a 3-step process that can be generalized as follows.</p>
+  <p>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.</p>
   <footer>
-    <a href="/blog/2019/08/posh-ibwapi-3.1.0/" class="button big">Read more</a>
+    <a href="/blog/2019/06/infoblox-and-ms-management-permissions/" class="button big">Read more</a>
     <ul class="stats">
   
     
@@ -201,7 +201,7 @@
         <ul>
           
             
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-ibwapi">Posh-IBWAPI</a></li>
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/infoblox">Infoblox</a></li>
           
         </ul>
       </li>
@@ -230,15 +230,15 @@
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h2>
+        <h2><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h2>
     
     
-        <p>New plugins and self-hosted http challenges</p>
+        <p>New plugin and misc fixes</p>
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2019-08-21 00:00:00 &#43;0000 UTC">
-      August 21, 2019
+    <time class="published" datetime="2019-06-21 00:00:00 &#43;0000 UTC">
+      June 21, 2019
     </time>
     <span class="author">Ryan Bolger</span>
     
@@ -248,9 +248,9 @@
   
 
   
-  <p>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for <a href="https://domene.shop/">Domeneshop</a>, <a href="https://www.dreamhost.com/">Dreamhost</a>, <a href="https://easydns.com/">EasyDNS</a>, and <a href="http://freedns.afraid.org/">freedns.afraid.org</a>. The other big addition is a new function called <code>Invoke-HttpChallengeListener</code> which can be super handy for people doing HTTP challenges. It&rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&rsquo;t have manually deal with making the challenge files&hellip;</p>
+  <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
   <footer>
-    <a href="/blog/2019/08/posh-acme-3.6.0/" class="button big">Read more</a>
+    <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big">Read more</a>
     <ul class="stats">
   
     
@@ -288,15 +288,15 @@
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/">Auditing Active Directory Passwords With PwnedPassCheck</a></h2>
+        <h2><a href="/blog/2019/04/posh-ibwapi-3.0.0/">Posh-IBWAPI 3.0.0</a></h2>
     
     
-        <p>Make sure users aren&#39;t using compromised passwords.</p>
+        <p>File upload/download wrappers, named configs, and auto session management</p>
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2019-08-15 00:00:00 &#43;0000 UTC">
-      August 15, 2019
+    <time class="published" datetime="2019-04-20 00:00:00 &#43;0000 UTC">
+      April 20, 2019
     </time>
     <span class="author">Ryan Bolger</span>
     
@@ -306,9 +306,9 @@
   
 
   
-  <p>In a <a href="/blog/2019/08/new-module-pwnedpasscheck/">previous post</a>, I introduced a new PowerShell module called <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a>. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to <a href="https://twitter.com/troyhunt">Troy Hunt&rsquo;s</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>. In this post, I&rsquo;ll demonstrate how to use the module in conjunction with <a href="https://twitter.com/MGrafnetter">Michael Grafnetter&rsquo;s</a> amazing <a href="https://github.com/MichaelGrafnetter/DSInternals">DSInternals</a> module to quickly audit existing passwords in Active Directory against the compromised list.</p>
+  <p>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
   <footer>
-    <a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/" class="button big">Read more</a>
+    <a href="/blog/2019/04/posh-ibwapi-3.0.0/" class="button big">Read more</a>
     <ul class="stats">
   
     
@@ -317,10 +317,7 @@
         <ul>
           
             
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/pwnedpasscheck">PwnedPassCheck</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-ibwapi">Posh-IBWAPI</a></li>
           
         </ul>
       </li>
@@ -351,7 +348,7 @@
     <a href="/" class="button big previous"><i class="fas fa-angle-left"></i></a>
   
   
-    <a href="/page/3/" class="button big next"><i class="fas fa-angle-right"></i></a>
+    <a href="#" class="disabled button big next"><i class="fas fa-angle-right"></i></a>
   
 </div>
 
@@ -362,6 +359,28 @@
     <header>
       <h1>Recent posts</h1>
     </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
+        <time class="published" datetime="">November 6, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h1>
+        <time class="published" datetime="">October 26, 2019</time>
+      </header>
+    </article>
     
     <article class="mini-post">
       <section>
@@ -396,28 +415,6 @@
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/08/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.1.0</a></h1>
-        <time class="published" datetime="">August 23, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h1>
-        <time class="published" datetime="">August 21, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -437,7 +434,7 @@
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">4</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
             
           
           <li>

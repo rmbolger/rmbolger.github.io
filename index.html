@@ -17,7 +17,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.dvolve.net/" />
 
-<meta property="og:updated_time" content="2019-10-23T00:00:00+00:00" />
+<meta property="og:updated_time" content="2019-11-06T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Adventures in Tech"/>
@@ -167,6 +167,122 @@
 
       <main id="site-main">
         
+        
+          <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h2>
+    
+    
+        <p>Critical fix, new Hurricane Electric plugin, and Azure cert-based auth.</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-11-06 00:00:00 &#43;0000 UTC">
+      November 6, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p>Just shipped a new Posh-ACME release, version 3.10.0. There&rsquo;s a critical fix in this version for a problem introduced by a recent change in Let&rsquo;s Encrypt&rsquo;s ACME implementation that breaks renewals. A new DNS plugin for <a href="https://dns.he.net/">HurricaneElectric</a> was added and the Azure plugin now supports certificate based authentication in addition to the existing methods. There&rsquo;s also additional guidance in the tutorial on renewals and deployment.</p>
+  <footer>
+    <a href="/blog/2019/11/posh-acme-3.10.0/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+        
+          <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
+    
+    
+        <p>New UnoEuro plugin and updates to Cloudflare plugin.</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-10-26 00:00:00 &#43;0000 UTC">
+      October 26, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p>Just shipped a new Posh-ACME release, version 3.9.0. There&rsquo;s a new DNS plugin for <a href="https://www.unoeuro.com/">UnoEuro</a> thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&rsquo;t have edit permissions to all zones on an account.</p>
+  <footer>
+    <a href="/blog/2019/10/posh-acme-3.9.0/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
         
           <article class="post">
   <header>
@@ -342,6 +458,299 @@
 </article>
 
         
+          <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/08/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.1.0</a></h2>
+    
+    
+        <p>Improvements to Send-IBFile and Receive-IBFile</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-08-23 00:00:00 &#43;0000 UTC">
+      August 23, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p>Just shipped a new Posh-IBWAPI release, version 3.1.0. There is now an <code>-OverrideTransferHost</code> switch in <code>Send-IBFile</code> and <code>Receive-IBFile</code>. But to understand what it does requires a bit of explanation on how file transfers work under the hood with the Infoblox WAPI. Any given file transfer (up or down) is a 3-step process that can be generalized as follows.</p>
+  <footer>
+    <a href="/blog/2019/08/posh-ibwapi-3.1.0/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-ibwapi">Posh-IBWAPI</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+        
+          <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h2>
+    
+    
+        <p>New plugins and self-hosted http challenges</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-08-21 00:00:00 &#43;0000 UTC">
+      August 21, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for <a href="https://domene.shop/">Domeneshop</a>, <a href="https://www.dreamhost.com/">Dreamhost</a>, <a href="https://easydns.com/">EasyDNS</a>, and <a href="http://freedns.afraid.org/">freedns.afraid.org</a>. The other big addition is a new function called <code>Invoke-HttpChallengeListener</code> which can be super handy for people doing HTTP challenges. It&rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&rsquo;t have manually deal with making the challenge files&hellip;</p>
+  <footer>
+    <a href="/blog/2019/08/posh-acme-3.6.0/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+        
+          <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/">Auditing Active Directory Passwords With PwnedPassCheck</a></h2>
+    
+    
+        <p>Make sure users aren&#39;t using compromised passwords.</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-08-15 00:00:00 &#43;0000 UTC">
+      August 15, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p>In a <a href="/blog/2019/08/new-module-pwnedpasscheck/">previous post</a>, I introduced a new PowerShell module called <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a>. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to <a href="https://twitter.com/troyhunt">Troy Hunt&rsquo;s</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>. In this post, I&rsquo;ll demonstrate how to use the module in conjunction with <a href="https://twitter.com/MGrafnetter">Michael Grafnetter&rsquo;s</a> amazing <a href="https://github.com/MichaelGrafnetter/DSInternals">DSInternals</a> module to quickly audit existing passwords in Active Directory against the compromised list.</p>
+  <footer>
+    <a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/pwnedpasscheck">PwnedPassCheck</a></li>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+        
+          <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/08/new-module-pwnedpasscheck/">New Module: PwnedPassCheck</a></h2>
+    
+    
+        <p>Checking if passwords or hashes have been compromised.</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-08-13 00:00:00 &#43;0000 UTC">
+      August 13, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p><a href="https://twitter.com/troyhunt">Troy Hunt&rsquo;s</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to separately check if a specific password was exposed in a breach. As of version 5, the data set contains over half a billion compromised passwords and the number of times they&rsquo;ve been seen in data breaches. My <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a> module lets you query that data easily via PowerShell.</p>
+  <footer>
+    <a href="/blog/2019/08/new-module-pwnedpasscheck/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/pwnedpasscheck">PwnedPassCheck</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+        
+          <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/">Workaround For AD PSDrive Bug In Server 2019</a></h2>
+    
+    
+        <p>PSPath to the rescue</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-07-16 00:00:00 &#43;0000 UTC">
+      July 16, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p>Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &ldquo;AD:<DN>&rdquo; PSDrive path like this:</p>
+  <footer>
+    <a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+        
         
 <div class="pagination">
   
@@ -359,6 +768,28 @@
     <header>
       <h1>Recent posts</h1>
     </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
+        <time class="published" datetime="">November 6, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h1>
+        <time class="published" datetime="">October 26, 2019</time>
+      </header>
+    </article>
     
     <article class="mini-post">
       <section>
@@ -393,28 +824,6 @@
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/08/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.1.0</a></h1>
-        <time class="published" datetime="">August 23, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h1>
-        <time class="published" datetime="">August 21, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -434,7 +843,7 @@
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">4</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
             
           
           <li>
