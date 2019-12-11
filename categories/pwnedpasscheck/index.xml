@@ -17,7 +17,7 @@
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/</guid>
-      <description>In a previous post, I introduced a new PowerShell module called PwnedPassCheck. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to Troy Hunt&amp;rsquo;s incredibly useful haveibeenpwned.com. In this post, I&amp;rsquo;ll demonstrate how to use the module in conjunction with Michael Grafnetter&amp;rsquo;s amazing DSInternals module to quickly audit existing passwords in Active Directory against the compromised list.</description>
+      <description>In a previous post, I introduced a new PowerShell module called PwnedPassCheck. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to Troy Hunt&#39;s incredibly useful haveibeenpwned.com. In this post, I&#39;ll demonstrate how to use the module in conjunction with Michael Grafnetter&#39;s amazing DSInternals module to quickly audit existing passwords in Active Directory against the compromised list.</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/08/new-module-pwnedpasscheck/</guid>
-      <description>Troy Hunt&amp;rsquo;s incredibly useful haveibeenpwned.com is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to separately check if a specific password was exposed in a breach. As of version 5, the data set contains over half a billion compromised passwords and the number of times they&amp;rsquo;ve been seen in data breaches. My PwnedPassCheck module lets you query that data easily via PowerShell.</description>
+      <description>Troy Hunt&#39;s incredibly useful haveibeenpwned.com is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to separately check if a specific password was exposed in a breach. As of version 5, the data set contains over half a billion compromised passwords and the number of times they&#39;ve been seen in data breaches. My PwnedPassCheck module lets you query that data easily via PowerShell.</description>
     </item>
     
   </channel>

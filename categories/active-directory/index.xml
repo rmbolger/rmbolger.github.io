@@ -17,7 +17,7 @@
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/</guid>
-      <description>In a previous post, I introduced a new PowerShell module called PwnedPassCheck. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to Troy Hunt&amp;rsquo;s incredibly useful haveibeenpwned.com. In this post, I&amp;rsquo;ll demonstrate how to use the module in conjunction with Michael Grafnetter&amp;rsquo;s amazing DSInternals module to quickly audit existing passwords in Active Directory against the compromised list.</description>
+      <description>In a previous post, I introduced a new PowerShell module called PwnedPassCheck. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to Troy Hunt&#39;s incredibly useful haveibeenpwned.com. In this post, I&#39;ll demonstrate how to use the module in conjunction with Michael Grafnetter&#39;s amazing DSInternals module to quickly audit existing passwords in Active Directory against the compromised list.</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       
       <guid>https://www.dvolve.net/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/</guid>
       <description>TL;DR Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &amp;ldquo;AD:&amp;rdquo; PSDrive path like this:
-$DN = (Get-ADUser jdoe).distinguishedName $objectPath = &amp;quot;Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/$DN&amp;quot; Get-Acl -Path $objectPath  The Story I was browsing r/PowerShell recently and came across a thread from someone who had run into a PowerShell bug after upgrading to Windows Server 2019 (1809). The user was attempting to run Get-Acl against an AD object using the object&amp;rsquo;s distinguished name like this:</description>
+$DN = (Get-ADUser jdoe).distinguishedName $objectPath = &amp;#34;Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/$DN&amp;#34; Get-Acl -Path $objectPath The Story I was browsing r/PowerShell recently and came across a thread from someone who had run into a PowerShell bug after upgrading to Windows Server 2019 (1809). The user was attempting to run Get-Acl against an AD object using the object&#39;s distinguished name like this:</description>
     </item>
     
   </channel>

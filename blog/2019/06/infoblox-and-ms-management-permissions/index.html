@@ -7,11 +7,9 @@
 
 
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.60.1" />
   <meta itemprop="name" content="Infoblox and MS Management Permissions">
 <meta itemprop="description" content="How to avoid using Domain Admin">
-
-
 <meta itemprop="datePublished" content="2019-06-27T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-06-27T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="1127">
@@ -19,7 +17,6 @@
 
 
 <meta itemprop="keywords" content="powershell," />
-
   <meta property="og:title" content="Infoblox and MS Management Permissions" />
 <meta property="og:description" content="How to avoid using Domain Admin" />
 <meta property="og:type" content="article" />
@@ -204,24 +201,14 @@
   
 
   <div class="content">
-    
-
-<p>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.</p>
-
-<p><em>Warning: I&rsquo;ve tested these permissions and examples against NIOS 8.4 and Windows Server 2008 R2 through 2019. Your mileage may vary if your environment doesn&rsquo;t fit those characteristics.</em></p>
-
+    <p>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.</p>
+<p><em>Warning: I've tested these permissions and examples against NIOS 8.4 and Windows Server 2008 R2 through 2019. Your mileage may vary if your environment doesn't fit those characteristics.</em></p>
 <h1 id="prerequisites">Prerequisites</h1>
-
-<p>DNS and DHCP management don&rsquo;t require targetting domain controllers or even domain joined servers. But it is the most common configuration so our examples will reflect that assumption. If you&rsquo;re targetting a non-domain joined server, you&rsquo;ll need to change the user/group references accordingly and modify the PowerShell commands to use their non-AD equivalents.</p>
-
-<p>Infoblox allows you to use a separate service account for each component, but most organizations choose to use one account for simplicity. So we&rsquo;ll do the same here with a standard AD user account called <code>svc-infoblox</code>.</p>
-
+<p>DNS and DHCP management don't require targetting domain controllers or even domain joined servers. But it is the most common configuration so our examples will reflect that assumption. If you're targetting a non-domain joined server, you'll need to change the user/group references accordingly and modify the PowerShell commands to use their non-AD equivalents.</p>
+<p>Infoblox allows you to use a separate service account for each component, but most organizations choose to use one account for simplicity. So we'll do the same here with a standard AD user account called <code>svc-infoblox</code>.</p>
 <p>Most of these components have the choice to be configured in &ldquo;Read-only&rdquo; or &ldquo;Read/Write&rdquo; mode. For organizations who want to use the features in Read-only mode, I still usually suggest granting the permissions necessary for Read/Write in case they change their mind later. Ironically, it also tends to be harder to grant read-only permissions for these services. The examples here will assume Read/Write mode.</p>
-
-<p>In my testing, no manual changes to the Windows default firewall settings were needed. However, if you have group policy or external firewalls locking things down, you&rsquo;ll likely need to open things like the dynamic RPC port range between the managing grid member and the target server. See the <a href="https://docs.infoblox.com/display/nios84/Deployment+Guidelines">Deployment Guidelines</a> doc page for details.</p>
-
+<p>In my testing, no manual changes to the Windows default firewall settings were needed. However, if you have group policy or external firewalls locking things down, you'll likely need to open things like the dynamic RPC port range between the managing grid member and the target server. See the <a href="https://docs.infoblox.com/display/nios84/Deployment+Guidelines">Deployment Guidelines</a> doc page for details.</p>
 <h1 id="dns">DNS</h1>
-
 
 
 
@@ -244,56 +231,37 @@
   </div>
 
 
-
 <h2 id="synchronize-data">Synchronize Data</h2>
-
 <p>This is the core ability to synchronize zone and record data. All we need is membership in <code>DnsAdmins</code>.</p>
-
-<pre><code class="language-powershell">Get-ADGroup 'DnsAdmins' | Add-ADGroupMember -Members (Get-ADUser 'svc-infoblox')
-</code></pre>
-
-<h2 id="monitor-and-control-dns-services">Monitor and control DNS Services</h2>
-
-<p>This adds the ability to see the status of and start/stop the DNS service on the target machine. It requires full control on the local service control manager and DNS service. We&rsquo;ll give the permissions to the DnsAdmins group because our service account is already a member.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-ADGroup <span style="color:#e6db74">&#39;DnsAdmins&#39;</span> | Add-ADGroupMember -Members (Get-ADUser <span style="color:#e6db74">&#39;svc-infoblox&#39;</span>)
+</code></pre></div><h2 id="monitor-and-control-dns-services">Monitor and control DNS Services</h2>
+<p>This adds the ability to see the status of and start/stop the DNS service on the target machine. It requires full control on the local service control manager and DNS service. We'll give the permissions to the DnsAdmins group because our service account is already a member.</p>
 <p>Make sure to run these on the target server.</p>
-
-<pre><code class="language-powershell"># Full control on SCManager for DnsAdmins
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Full control on SCManager for DnsAdmins</span>
 $scmSDDL = (&amp;sc.exe sdshow scmanager)[1]
 $DnsAdminsSID = (Get-ADGroup DnsAdmins).SID.ToString()
-$newSDDL = $scmSDDL.Insert(2, &quot;(A;;KA;;;$DnsAdminsSID)&quot;)
+$newSDDL = $scmSDDL.Insert(2, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">(A;;KA;;;</span><span style="color:#e6db74">$</span><span style="color:#e6db74">DnsAdminsSID)</span><span style="color:#e6db74">&#34;</span>)
 &amp;sc.exe sdset scmanager $newSDDL
 
-# Full control on on DNS service for DnsAdmins
+<span style="color:#75715e"># Full control on on DNS service for DnsAdmins</span>
 $dnsSDDL = (&amp;sc.exe sdshow dns)[1]
 $DnsAdminsSID = (Get-ADGroup DnsAdmins).SID.ToString()
-$newSDDL = $dnsSDDL.Insert(2, &quot;(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;$DnsAdminsSID)&quot;)
+$newSDDL = $dnsSDDL.Insert(2, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;</span><span style="color:#e6db74">$</span><span style="color:#e6db74">DnsAdminsSID)</span><span style="color:#e6db74">&#34;</span>)
 &amp;sc.exe sdset dns $newSDDL
-</code></pre>
-
-<p><strong>Windows Server 2016 and later</strong> adds an additional hurdle for controlling services from a non-admin account as described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. We need to exempt the DNS service from the new protection.</p>
-
-<pre><code class="language-powershell">$keyName = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\SCM'
-$valName = 'RemoteAccessCheckExemptionList'
+</code></pre></div><p><strong>Windows Server 2016 and later</strong> adds an additional hurdle for controlling services from a non-admin account as described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. We need to exempt the DNS service from the new protection.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$keyName = <span style="color:#e6db74">&#39;HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\SCM&#39;</span>
+$valName = <span style="color:#e6db74">&#39;RemoteAccessCheckExemptionList&#39;</span>
 $key = Get-Item $keyName
 $values = $key.GetValue($valName)
-if ('dns' -notin $values) {
-    $values += 'dns'
+<span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#39;dns&#39;</span> -notin $values) {
+    $values += <span style="color:#e6db74">&#39;dns&#39;</span>
     Set-ItemProperty $keyName $valName $values -Type MultiString
 }
-</code></pre>
-
-<h2 id="synchronize-dns-reporting-data">Synchronize DNS Reporting Data</h2>
-
-<p><strong>Important</strong>: <em>This feature is only compatible with Windows Server 2012 R2 with <a href="https://support.microsoft.com/en-us/help/2919355/windows-rt-8-1-windows-8-1-and-windows-server-2012-r2-update-april-201">KB 2919355</a> or Server 2016 and later. So make sure it&rsquo;s disabled on anything earlier. See the &ldquo;Synchronizing DNS Reporting Data&rdquo; section in <a href="https://docs.infoblox.com/display/nios84/Configuring+Grid+Properties+for+Managing+Microsoft+Servers">the docs</a> for more details.</em></p>
-
-<p>We need the ability to read the DNS specific event logs. So we&rsquo;ll add the service account to <code>Event Log Readers</code>.</p>
-
-<pre><code class="language-powershell">Get-ADGroup 'Event Log Readers' | Add-ADGroupMember -Members (Get-ADUser 'svc-infoblox')
-</code></pre>
-
-<h1 id="dhcp">DHCP</h1>
-
+</code></pre></div><h2 id="synchronize-dns-reporting-data">Synchronize DNS Reporting Data</h2>
+<p><strong>Important</strong>: <em>This feature is only compatible with Windows Server 2012 R2 with <a href="https://support.microsoft.com/en-us/help/2919355/windows-rt-8-1-windows-8-1-and-windows-server-2012-r2-update-april-201">KB 2919355</a> or Server 2016 and later. So make sure it's disabled on anything earlier. See the &ldquo;Synchronizing DNS Reporting Data&rdquo; section in <a href="https://docs.infoblox.com/display/nios84/Configuring+Grid+Properties+for+Managing+Microsoft+Servers">the docs</a> for more details.</em></p>
+<p>We need the ability to read the DNS specific event logs. So we'll add the service account to <code>Event Log Readers</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-ADGroup <span style="color:#e6db74">&#39;Event Log Readers&#39;</span> | Add-ADGroupMember -Members (Get-ADUser <span style="color:#e6db74">&#39;svc-infoblox&#39;</span>)
+</code></pre></div><h1 id="dhcp">DHCP</h1>
 
 
 
@@ -316,47 +284,33 @@ if ('dns' -notin $values) {
   </div>
 
 
-
-<h2 id="synchronize-data-1">Synchronize Data</h2>
-
+<h2 id="synchronize-data1">Synchronize Data</h2>
 <p>This is the core ability to synchronize the scope data. All we need is membership in <code>DHCP Administrators</code>.</p>
-
-<pre><code class="language-powershell">Get-ADGroup 'DHCP Administrators' | Add-ADGroupMember -Members (Get-ADUser 'svc-infoblox')
-</code></pre>
-
-<h2 id="monitor-and-control-dhcp-services">Monitor and control DHCP Services</h2>
-
-<p>This adds the ability to see the status of and start/stop the DHCP service on the target machine. It requires full control on the local service control manager and DHCP service. We&rsquo;ll give the permissions to the DHCP Administrators group because our service account is already a member.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-ADGroup <span style="color:#e6db74">&#39;DHCP Administrators&#39;</span> | Add-ADGroupMember -Members (Get-ADUser <span style="color:#e6db74">&#39;svc-infoblox&#39;</span>)
+</code></pre></div><h2 id="monitor-and-control-dhcp-services">Monitor and control DHCP Services</h2>
+<p>This adds the ability to see the status of and start/stop the DHCP service on the target machine. It requires full control on the local service control manager and DHCP service. We'll give the permissions to the DHCP Administrators group because our service account is already a member.</p>
 <p>Make sure to run these on the target server.</p>
-
-<pre><code class="language-powershell"># Full control on SCManager for DHCP Administrators
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Full control on SCManager for DHCP Administrators</span>
 $scmSDDL = (&amp;sc.exe sdshow scmanager)[1]
-$DhcpAdminsSID = (Get-ADGroup 'DHCP Administrators').SID.ToString()
-$newSDDL = $scmSDDL.Insert(2, &quot;(A;;KA;;;$DhcpAdminsSID)&quot;)
+$DhcpAdminsSID = (Get-ADGroup <span style="color:#e6db74">&#39;DHCP Administrators&#39;</span>).SID.ToString()
+$newSDDL = $scmSDDL.Insert(2, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">(A;;KA;;;</span><span style="color:#e6db74">$</span><span style="color:#e6db74">DhcpAdminsSID)</span><span style="color:#e6db74">&#34;</span>)
 &amp;sc.exe sdset scmanager $newSDDL
 
-# Full control on on DNS service for DnsAdmins
+<span style="color:#75715e"># Full control on on DNS service for DnsAdmins</span>
 $dhcpSDDL = (&amp;sc.exe sdshow dhcpserver)[1]
-$DhcpAdminsSID = (Get-ADGroup 'DHCP Administrators').SID.ToString()
-$newSDDL = $dhcpSDDL.Insert(2, &quot;(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;$DhcpAdminsSID)&quot;)
+$DhcpAdminsSID = (Get-ADGroup <span style="color:#e6db74">&#39;DHCP Administrators&#39;</span>).SID.ToString()
+$newSDDL = $dhcpSDDL.Insert(2, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;</span><span style="color:#e6db74">$</span><span style="color:#e6db74">DhcpAdminsSID)</span><span style="color:#e6db74">&#34;</span>)
 &amp;sc.exe sdset dhcpserver $newSDDL
-</code></pre>
-
-<p><strong>Windows Server 2016 and later</strong> adds an additional hurdle for controlling services from a non-admin account as described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. We need to exempt the DHCP service from the new protection.</p>
-
-<pre><code class="language-powershell">$keyName = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\SCM'
-$valName = 'RemoteAccessCheckExemptionList'
+</code></pre></div><p><strong>Windows Server 2016 and later</strong> adds an additional hurdle for controlling services from a non-admin account as described in <a href="https://support.microsoft.com/en-us/help/4457739/blocking-remote-callers-from-starting-or-stopping-services-when-they-a">KB 4457739</a>. We need to exempt the DHCP service from the new protection.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$keyName = <span style="color:#e6db74">&#39;HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\SCM&#39;</span>
+$valName = <span style="color:#e6db74">&#39;RemoteAccessCheckExemptionList&#39;</span>
 $key = Get-Item $keyName
 $values = $key.GetValue($valName)
-if ('dhcpserver' -notin $values) {
-    $values += 'dhcpserver'
+<span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#39;dhcpserver&#39;</span> -notin $values) {
+    $values += <span style="color:#e6db74">&#39;dhcpserver&#39;</span>
     Set-ItemProperty $keyName $valName $values -Type MultiString
 }
-</code></pre>
-
-<h1 id="active-directory-sites">Active Directory Sites</h1>
-
+</code></pre></div><h1 id="active-directory-sites">Active Directory Sites</h1>
 
 
 
@@ -379,9 +333,7 @@ if ('dhcpserver' -notin $values) {
   </div>
 
 
-
 <p>If you plan to use LDAP over SSL (LDAPS), make sure your domain controllers have valid certificates. If the certificates are from an internal PKI infrastructure, make sure the CA certificate has been uploaded to Infoblox as well.</p>
-
 
 
 
@@ -404,84 +356,64 @@ if ('dhcpserver' -notin $values) {
   </div>
 
 
-
-<p>Make sure &ldquo;Default IP site link&rdquo; is set to a real site link in your environment even if you don&rsquo;t plan to create sites directly from Infoblox.</p>
-
+<p>Make sure &ldquo;Default IP site link&rdquo; is set to a real site link in your environment even if you don't plan to create sites directly from Infoblox.</p>
 <p><strong>Important:</strong> Infoblox will only synchronize sites/subnets with the DC holding the PDC emulator (PDCe) FSMO role. In a multi-domain forest, you should only target the PDCe in the root domain. Some organizations also choose to configure a second DC which FSMO roles would be transferred to in a DR situation. Infoblox will simply ignore it until it becomes the PDCe.</p>
-
 <h2 id="permissions-for-subnets">Permissions for Subnets</h2>
-
 <p>These permissions will allow Infoblox to assign/unassign subnets to/from existing sites.</p>
-
 <p><strong>CN=Subnets,CN=Sites,&lt;Configuration Naming Context&gt;</strong></p>
-
 <ul>
 <li>Applies to: This object only
-
 <ul>
 <li>Create Subnet objects</li>
 <li>Delete Subnet objects</li>
-</ul></li>
+</ul>
+</li>
 <li>Applies to: Descendant subnet objects
-
 <ul>
 <li>Read all properties</li>
 <li>Write all properties</li>
 <li>Delete</li>
 <li>Delete subtree</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>PowerShell example:</p>
-
-<pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
-$target = &quot;AD\svc-infoblox&quot;   # group or user reference
-&amp;dsacls.exe &quot;CN=Subnets,CN=Sites,$cfgContext&quot; /G &quot;$($target):CCDC;subnet&quot;
-&amp;dsacls.exe &quot;CN=Subnets,CN=Sites,$cfgContext&quot; /I:S /G &quot;$($target):RPWPSDDT;;subnet&quot;
-</code></pre>
-
-<h2 id="permissions-for-sites">Permissions for Sites</h2>
-
-<p>These permissions will allow Infoblox to create/delete/rename site objects. On creation, the new site will be associated with the &ldquo;Default IP site link&rdquo; mentioned earlier. In these examples, we&rsquo;ll assume that is <code>DEFAULTIPSITELINK</code>.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
+$target = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">AD\svc-infoblox</span><span style="color:#e6db74">&#34;</span>   <span style="color:#75715e"># group or user reference</span>
+&amp;dsacls.exe <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">CN=Subnets,CN=Sites,</span><span style="color:#e6db74">$</span><span style="color:#e6db74">cfgContext</span><span style="color:#e6db74">&#34;</span> /G <span style="color:#e6db74">&#34;</span>$($target)<span style="color:#e6db74">:CCDC;subnet</span><span style="color:#e6db74">&#34;</span>
+&amp;dsacls.exe <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">CN=Subnets,CN=Sites,</span><span style="color:#e6db74">$</span><span style="color:#e6db74">cfgContext</span><span style="color:#e6db74">&#34;</span> /I<span style="color:#960050;background-color:#1e0010">:</span>S /G <span style="color:#e6db74">&#34;</span>$($target)<span style="color:#e6db74">:RPWPSDDT;;subnet</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><h2 id="permissions-for-sites">Permissions for Sites</h2>
+<p>These permissions will allow Infoblox to create/delete/rename site objects. On creation, the new site will be associated with the &ldquo;Default IP site link&rdquo; mentioned earlier. In these examples, we'll assume that is <code>DEFAULTIPSITELINK</code>.</p>
 <p><strong>CN=Sites,&lt;Configuration Context&gt;</strong></p>
-
 <ul>
 <li>Applies to: This object only
-
 <ul>
 <li>Create Site objects</li>
 <li>Delete Site objects</li>
-</ul></li>
+</ul>
+</li>
 <li>Applies to: Descendant Site objects
-
 <ul>
 <li>Read all properties</li>
 <li>Write all properties</li>
 <li>Delete</li>
 <li>Delete subtree</li>
 <li>Create all child objects</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>CN=&lt;Default SiteLink&gt;CN=IP,CN=Inter-Site Transports,CN=Sites,&lt;Configuration Context&gt;</strong></p>
-
 <ul>
 <li>Read/Write siteList</li>
 </ul>
-
 <p>PowerShell example:</p>
-
-<pre><code class="language-powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
-$target = &quot;AD\svc-infoblox&quot;   # group or user reference
-$defaultSiteLink = &quot;CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=Sites,$cfgContext&quot;
-&amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /G &quot;$($target):CCDC;site&quot;
-&amp;dsacls.exe &quot;CN=Sites,$cfgContext&quot; /I:S /G &quot;$($target):RPWPSDDTCCLCRC;;site&quot;
-&amp;dsacls.exe $defaultSiteLink /G &quot;$($target):RPWP;siteList&quot;
-</code></pre>
-
-<h1 id="network-users">Network Users</h1>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$cfgContext = (Get-ADRootDSE).configurationNamingContext
+$target = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">AD\svc-infoblox</span><span style="color:#e6db74">&#34;</span>   <span style="color:#75715e"># group or user reference</span>
+$defaultSiteLink = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=Sites,</span><span style="color:#e6db74">$</span><span style="color:#e6db74">cfgContext</span><span style="color:#e6db74">&#34;</span>
+&amp;dsacls.exe <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">CN=Sites,</span><span style="color:#e6db74">$</span><span style="color:#e6db74">cfgContext</span><span style="color:#e6db74">&#34;</span> /G <span style="color:#e6db74">&#34;</span>$($target)<span style="color:#e6db74">:CCDC;site</span><span style="color:#e6db74">&#34;</span>
+&amp;dsacls.exe <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">CN=Sites,</span><span style="color:#e6db74">$</span><span style="color:#e6db74">cfgContext</span><span style="color:#e6db74">&#34;</span> /I<span style="color:#960050;background-color:#1e0010">:</span>S /G <span style="color:#e6db74">&#34;</span>$($target)<span style="color:#e6db74">:RPWPSDDTCCLCRC;;site</span><span style="color:#e6db74">&#34;</span>
+&amp;dsacls.exe $defaultSiteLink /G <span style="color:#e6db74">&#34;</span>$($target)<span style="color:#e6db74">:RPWP;siteList</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><h1 id="network-users">Network Users</h1>
 
 
 
@@ -504,12 +436,9 @@ $defaultSiteLink = &quot;CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=
   </div>
 
 
-
 <p>For this, Infoblox is just reading the Security event log on the target domain controller. So we need membership in <code>Event Log Readers</code>.</p>
-
-<pre><code class="language-powershell">Get-ADGroup 'Event Log Readers' | Add-ADGroupMember -Members (Get-ADUser 'svc-infoblox')
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-ADGroup <span style="color:#e6db74">&#39;Event Log Readers&#39;</span> | Add-ADGroupMember -Members (Get-ADUser <span style="color:#e6db74">&#39;svc-infoblox&#39;</span>)
+</code></pre></div>
   </div>
   <footer>
     <ul class="stats">
@@ -569,6 +498,28 @@ $defaultSiteLink = &quot;CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=
 
       </section>
       <header>
+        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
+        <time class="published" datetime="">December 10, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
+        <time class="published" datetime="">November 12, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
         <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
         <time class="published" datetime="">November 6, 2019</time>
       </header>
@@ -596,28 +547,6 @@ $defaultSiteLink = &quot;CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h1>
-        <time class="published" datetime="">September 27, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h1>
-        <time class="published" datetime="">September 18, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -637,7 +566,7 @@ $defaultSiteLink = &quot;CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">8</span></a>
             
           
           <li>
@@ -684,7 +613,7 @@ $defaultSiteLink = &quot;CN=DEFAULTIPSITELINK,CN=IP,CN=Inter-Site Transports,CN=
         Ryan Bolger
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.59.0' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>

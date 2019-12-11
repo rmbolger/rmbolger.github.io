@@ -2,23 +2,31 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>Active Directory - Adventures in Tech</title>
+<title>Posh-ACME 3.11.0 - Adventures in Tech</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.60.1" />
-  <meta itemprop="name" content="Active Directory">
-<meta itemprop="description" content="">
-  <meta property="og:title" content="Active Directory" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.dvolve.net/categories/active-directory/" />
-<meta property="og:updated_time" content="2019-08-15T00:00:00+00:00" />
+  <meta itemprop="name" content="Posh-ACME 3.11.0">
+<meta itemprop="description" content="Improvements for Install-PACertificate and new function Revoke-PAAuthorization.">
+<meta itemprop="datePublished" content="2019-11-12T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-11-12T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="233">
+
+
+
+<meta itemprop="keywords" content="powershell," />
+  <meta property="og:title" content="Posh-ACME 3.11.0" />
+<meta property="og:description" content="Improvements for Install-PACertificate and new function Revoke-PAAuthorization." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2019/11/posh-acme-3.11.0/" />
+<meta property="article:published_time" content="2019-11-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-12T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Active Directory"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Posh-ACME 3.11.0"/>
+<meta name="twitter:description" content="Improvements for Install-PACertificate and new function Revoke-PAAuthorization."/>
 <meta name="twitter:site" content="@rmbolger"/>
 
   
@@ -52,7 +60,7 @@
       <a href="/">
         
           
-            Categories
+            Blog
           
         
       </a>
@@ -114,8 +122,6 @@
     <footer>
       <ul class="socnet-icons">
         
-    <li><a href="/categories/active-directory/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fas fa-rss"></a></li>
-
 
         <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
 
@@ -165,34 +171,50 @@
 </section>
 
       <main id="site-main">
-        <h1>Active Directory</h1>
-        
-        
-            <article class="post">
+        <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/">Auditing Active Directory Passwords With PwnedPassCheck</a></h2>
+        <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
     
     
-        <p>Make sure users aren&#39;t using compromised passwords.</p>
+        <p>Improvements for Install-PACertificate and new function Revoke-PAAuthorization.</p>
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2019-08-15 00:00:00 &#43;0000 UTC">
-      August 15, 2019
+    <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">
+      November 12, 2019
     </time>
     <span class="author">Ryan Bolger</span>
     
   </div>
 </header>
 
+  <section id="socnet-share">
+    
+
+
+
+
+
+  </section>
   
 
-  
-  <p>In a <a href="/blog/2019/08/new-module-pwnedpasscheck/">previous post</a>, I introduced a new PowerShell module called <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a>. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to <a href="https://twitter.com/troyhunt">Troy Hunt's</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>. In this post, I'll demonstrate how to use the module in conjunction with <a href="https://twitter.com/MGrafnetter">Michael Grafnetter's</a> amazing <a href="https://github.com/MichaelGrafnetter/DSInternals">DSInternals</a> module to quickly audit existing passwords in Active Directory against the compromised list.</p>
+  <div class="content">
+    <p>Just shipped a new Posh-ACME release, version 3.11.0. The <code>Install-PACertificate</code> function now has optional parameters that allow you to specify the Windows certificate store location and name in case the defaults (LocalMachine\My) aren't what you need. You can also use the <code>-NotExportable</code> switch to mark the certificate as non-exportable. There's also a new function called Revoke-PAAuthorization which is mostly useful for testing a new configuration. It allows you to revoke one or more existing authorizations associated with an account so that when you generate a new certificate, the ACME server will require a full re-validation for those names.</p>
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li>Added <code>Revoke-PAAuthorization</code> which enables revocation of identifier authorizations associated with an account.</li>
+<li><code>Get-PAAuthorizations</code> now has an optional -Account parameter and better error handling.</li>
+<li><code>Get-PAAuthorization</code> has been added as an alias for <code>Get-PAAuthorizations</code> to better comply with PowerShell naming standards. It will likely be formally renamed in version 4.x and the old name should be considered deprecated. This change should allow dependent scripts to prepare for that change in advance.</li>
+<li><code>Install-PACertificate</code> now supports parameters to select the store name, location, and the exportable flag.</li>
+<li>Workaround for Boulder <a href="https://github.com/letsencrypt/boulder/issues/4540">issue</a> that doesn't return JSON error bodies for old endpoints.</li>
+<li>Fixed bug creating new orders with a changed KeyLength value that was preventing the required new private key from being created.</li>
+</ul>
+
+  </div>
   <footer>
-    <a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/" class="button big">Read more</a>
     <ul class="stats">
   
     
@@ -201,10 +223,7 @@
         <ul>
           
             
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/pwnedpasscheck">PwnedPassCheck</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
           
         </ul>
       </li>
@@ -228,74 +247,16 @@
   </footer>
 </article>
 
-        
-            <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/">Workaround For AD PSDrive Bug In Server 2019</a></h2>
-    
-    
-        <p>PSPath to the rescue</p>
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2019-07-16 00:00:00 &#43;0000 UTC">
-      July 16, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
-    
-  </div>
-</header>
 
-  
-
-  
-  <p>Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &ldquo;AD:<!-- raw HTML omitted -->&rdquo; PSDrive path like this:</p>
-  <footer>
-    <a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" class="button big">Read more</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
-        
 <div class="pagination">
   
-    <a href="#" class="disabled button big previous"><i class="fas fa-angle-left"></i></a>
+    <a href="/blog/2019/11/posh-acme-3.10.0/" class="button"><div class="previous"><div>Posh-ACME 3.10.0</div></div></a>
   
   
-    <a href="#" class="disabled button big next"><i class="fas fa-angle-right"></i></a>
+    <a href="/blog/2019/12/posh-acme-3.12.0/" class="button"><div class="next"><div>Posh-ACME 3.12.0</div></div></a>
   
 </div>
+
 
       </main>
       <section id="site-sidebar">

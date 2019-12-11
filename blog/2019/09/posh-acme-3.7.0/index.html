@@ -7,11 +7,9 @@
 
 
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.60.1" />
   <meta itemprop="name" content="Posh-ACME 3.7.0">
 <meta itemprop="description" content="New param in Submit-Renewal and misc fixes">
-
-
 <meta itemprop="datePublished" content="2019-09-18T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-09-18T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="181">
@@ -19,7 +17,6 @@
 
 
 <meta itemprop="keywords" content="powershell," />
-
   <meta property="og:title" content="Posh-ACME 3.7.0" />
 <meta property="og:description" content="New param in Submit-Renewal and misc fixes" />
 <meta property="og:type" content="article" />
@@ -204,19 +201,14 @@
   
 
   <div class="content">
-    
-
-<p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don&rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&rsquo;re using is purposefully short-lived.</p>
-
+    <p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don't want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you're using is purposefully short-lived.</p>
 <p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
-
 <h2 id="changelog">Changelog</h2>
-
 <ul>
 <li>Submit-Renewal now has a PluginArgs parameter to make it easier to update plugin credentials without needing to create a new order from scratch. (Thanks @matt-FFFFFF)</li>
-<li>The FriendlyName parameter in New-PACertificate and New-PAOrder now defaults to the certificate&rsquo;s primary name instead of an empty string to avoid a Windows bug that can occur when installing the generated PFX files.</li>
+<li>The FriendlyName parameter in New-PACertificate and New-PAOrder now defaults to the certificate's primary name instead of an empty string to avoid a Windows bug that can occur when installing the generated PFX files.</li>
 <li>Fixed Windows plugin issue when using WinZoneScope and not all zones have that scope (#168)</li>
-<li>Fixed an internal bug with Export-PACertFiles that luckily didn&rsquo;t cause problems due to PowerShell variable scoping rules.</li>
+<li>Fixed an internal bug with Export-PACertFiles that luckily didn't cause problems due to PowerShell variable scoping rules.</li>
 <li>Fixed a typo in the Cloudflare guide examples. (Thanks @mccanney)</li>
 </ul>
 
@@ -279,6 +271,28 @@
 
       </section>
       <header>
+        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
+        <time class="published" datetime="">December 10, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
+        <time class="published" datetime="">November 12, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
         <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
         <time class="published" datetime="">November 6, 2019</time>
       </header>
@@ -306,28 +320,6 @@
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h1>
-        <time class="published" datetime="">September 27, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h1>
-        <time class="published" datetime="">September 18, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -347,7 +339,7 @@
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">8</span></a>
             
           
           <li>
@@ -394,7 +386,7 @@
         Ryan Bolger
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.59.0' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>

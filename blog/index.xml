@@ -6,10 +6,28 @@
     <description>Recent content in Blog on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 06 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Posh-ACME 3.12.0</title>
+      <link>https://www.dvolve.net/blog/2019/12/posh-acme-3.12.0/</link>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/12/posh-acme-3.12.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.12.0. The Set-PAOrder function now has -DnsPlugin and -PluginArgs parameters which should make it easier to change DNS providers and/or provider parameters without needing to wait for a certificate renewal. The BouncyCastle library has been updated to the latest 1.8.5 version and the DLL file is using a non-standard name to avoid conflicts with other software that uses BouncyCastle and chooses to install the DLL into the .</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.11.0</title>
+      <link>https://www.dvolve.net/blog/2019/11/posh-acme-3.11.0/</link>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/11/posh-acme-3.11.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.11.0. The Install-PACertificate function now has optional parameters that allow you to specify the Windows certificate store location and name in case the defaults (LocalMachine\My) aren&#39;t what you need. You can also use the -NotExportable switch to mark the certificate as non-exportable. There&#39;s also a new function called Revoke-PAAuthorization which is mostly useful for testing a new configuration. It allows you to revoke one or more existing authorizations associated with an account so that when you generate a new certificate, the ACME server will require a full re-validation for those names.</description>
+    </item>
     
     <item>
       <title>Posh-ACME 3.10.0</title>
@@ -17,7 +35,7 @@
       <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/11/posh-acme-3.10.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.10.0. There&amp;rsquo;s a critical fix in this version for a problem introduced by a recent change in Let&amp;rsquo;s Encrypt&amp;rsquo;s ACME implementation that breaks renewals. A new DNS plugin for HurricaneElectric was added and the Azure plugin now supports certificate based authentication in addition to the existing methods. There&amp;rsquo;s also additional guidance in the tutorial on renewals and deployment.
+      <description>Just shipped a new Posh-ACME release, version 3.10.0. There&#39;s a critical fix in this version for a problem introduced by a recent change in Let&#39;s Encrypt&#39;s ACME implementation that breaks renewals. A new DNS plugin for HurricaneElectric was added and the Azure plugin now supports certificate based authentication in addition to the existing methods. There&#39;s also additional guidance in the tutorial on renewals and deployment.
 Updated versions can be found in the PowerShell Gallery or GitHub.</description>
     </item>
     
@@ -27,9 +45,9 @@ Updated versions can be found in the PowerShell Gallery or GitHub.</description>
       <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/10/posh-acme-3.9.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.9.0. There&amp;rsquo;s a new DNS plugin for UnoEuro thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&amp;rsquo;t have edit permissions to all zones on an account.
+      <description>Just shipped a new Posh-ACME release, version 3.9.0. There&#39;s a new DNS plugin for UnoEuro thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&#39;t have edit permissions to all zones on an account.
 Updated versions can be found in the PowerShell Gallery or GitHub. Installation instructions are in the Readme.
-Changelog  Added new DNS plugin UnoEuro (Thanks @OrKarstoft) Fix for Cloudflare plugin not working properly when limited scope token didn&amp;rsquo;t have at least read permissions to all zones on an account.</description>
+Changelog  Added new DNS plugin UnoEuro (Thanks @OrKarstoft) Fix for Cloudflare plugin not working properly when limited scope token didn&#39;t have at least read permissions to all zones on an account.</description>
     </item>
     
     <item>
@@ -38,7 +56,7 @@ Changelog  Added new DNS plugin UnoEuro (Thanks @OrKarstoft) Fix for Cloudflare 
       <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/10/posh-ibcli-1.3.0/</guid>
-      <description>Just shipped a new Posh-IBCLI release, version 1.3.0. It adds new functions called Get-IBCLIApacheCert and Set-IBCLIApacheCert which wrap the set apache_https_cert command added in NIOS 8.4. What&amp;rsquo;s funny is that the only reason I found out about the command is because of a problem I ran into while testing Posh-IBWAPI&amp;rsquo;s new file upload functions.
+      <description>Just shipped a new Posh-IBCLI release, version 1.3.0. It adds new functions called Get-IBCLIApacheCert and Set-IBCLIApacheCert which wrap the set apache_https_cert command added in NIOS 8.4. What&#39;s funny is that the only reason I found out about the command is because of a problem I ran into while testing Posh-IBWAPI&amp;lsquo;s new file upload functions.
 The file I was trying to upload was a certificate for the web UI and I figured my test procedure would involve uploading my cert and then re-generating a self-signed cert before repeating the test.</description>
     </item>
     
@@ -48,7 +66,7 @@ The file I was trying to upload was a certificate for the web UI and I figured m
       <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/09/posh-acme-3.8.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.8.0. Set-PAOrder now supports modifying some order properties that don&amp;rsquo;t require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with more than 100 domains.</description>
+      <description>Just shipped a new Posh-ACME release, version 3.8.0. Set-PAOrder now supports modifying some order properties that don&#39;t require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with more than 100 domains.</description>
     </item>
     
     <item>
@@ -57,7 +75,7 @@ The file I was trying to upload was a certificate for the web UI and I figured m
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/09/posh-acme-3.7.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, Submit-Renewal now has an optional -PluginArgs parameter for cases when you need to specify new values for a plugin but don&amp;rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&amp;rsquo;re using is purposefully short-lived.
+      <description>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, Submit-Renewal now has an optional -PluginArgs parameter for cases when you need to specify new values for a plugin but don&#39;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&#39;re using is purposefully short-lived.
 Updated versions can be found in the PowerShell Gallery or GitHub.</description>
     </item>
     
@@ -77,7 +95,7 @@ Updated versions can be found in the PowerShell Gallery or GitHub.</description>
       <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/08/posh-acme-3.6.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for Domeneshop, Dreamhost, EasyDNS, and freedns.afraid.org. The other big addition is a new function called Invoke-HttpChallengeListener which can be super handy for people doing HTTP challenges. It&amp;rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&amp;rsquo;t have manually deal with making the challenge files available.</description>
+      <description>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for Domeneshop, Dreamhost, EasyDNS, and freedns.afraid.org. The other big addition is a new function called Invoke-HttpChallengeListener which can be super handy for people doing HTTP challenges. It&#39;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&#39;t have manually deal with making the challenge files available.</description>
     </item>
     
     <item>
@@ -86,7 +104,7 @@ Updated versions can be found in the PowerShell Gallery or GitHub.</description>
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/</guid>
-      <description>In a previous post, I introduced a new PowerShell module called PwnedPassCheck. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to Troy Hunt&amp;rsquo;s incredibly useful haveibeenpwned.com. In this post, I&amp;rsquo;ll demonstrate how to use the module in conjunction with Michael Grafnetter&amp;rsquo;s amazing DSInternals module to quickly audit existing passwords in Active Directory against the compromised list.</description>
+      <description>In a previous post, I introduced a new PowerShell module called PwnedPassCheck. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to Troy Hunt&#39;s incredibly useful haveibeenpwned.com. In this post, I&#39;ll demonstrate how to use the module in conjunction with Michael Grafnetter&#39;s amazing DSInternals module to quickly audit existing passwords in Active Directory against the compromised list.</description>
     </item>
     
     <item>
@@ -95,7 +113,7 @@ Updated versions can be found in the PowerShell Gallery or GitHub.</description>
       <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/08/new-module-pwnedpasscheck/</guid>
-      <description>Troy Hunt&amp;rsquo;s incredibly useful haveibeenpwned.com is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to separately check if a specific password was exposed in a breach. As of version 5, the data set contains over half a billion compromised passwords and the number of times they&amp;rsquo;ve been seen in data breaches. My PwnedPassCheck module lets you query that data easily via PowerShell.</description>
+      <description>Troy Hunt&#39;s incredibly useful haveibeenpwned.com is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to separately check if a specific password was exposed in a breach. As of version 5, the data set contains over half a billion compromised passwords and the number of times they&#39;ve been seen in data breaches. My PwnedPassCheck module lets you query that data easily via PowerShell.</description>
     </item>
     
     <item>
@@ -105,7 +123,7 @@ Updated versions can be found in the PowerShell Gallery or GitHub.</description>
       
       <guid>https://www.dvolve.net/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/</guid>
       <description>TL;DR Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &amp;ldquo;AD:&amp;rdquo; PSDrive path like this:
-$DN = (Get-ADUser jdoe).distinguishedName $objectPath = &amp;quot;Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/$DN&amp;quot; Get-Acl -Path $objectPath  The Story I was browsing r/PowerShell recently and came across a thread from someone who had run into a PowerShell bug after upgrading to Windows Server 2019 (1809). The user was attempting to run Get-Acl against an AD object using the object&amp;rsquo;s distinguished name like this:</description>
+$DN = (Get-ADUser jdoe).distinguishedName $objectPath = &amp;#34;Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/$DN&amp;#34; Get-Acl -Path $objectPath The Story I was browsing r/PowerShell recently and came across a thread from someone who had run into a PowerShell bug after upgrading to Windows Server 2019 (1809). The user was attempting to run Get-Acl against an AD object using the object&#39;s distinguished name like this:</description>
     </item>
     
     <item>
@@ -115,7 +133,7 @@ $DN = (Get-ADUser jdoe).distinguishedName $objectPath = &amp;quot;Microsoft.Acti
       
       <guid>https://www.dvolve.net/blog/2019/06/infoblox-and-ms-management-permissions/</guid>
       <description>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.
-Warning: I&amp;rsquo;ve tested these permissions and examples against NIOS 8.</description>
+Warning: I&#39;ve tested these permissions and examples against NIOS 8.</description>
     </item>
     
     <item>
@@ -124,7 +142,7 @@ Warning: I&amp;rsquo;ve tested these permissions and examples against NIOS 8.</d
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/06/posh-acme-3.5.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a recent change in Let&amp;rsquo;s Encrypt&amp;rsquo;s ACME implementation which now more strictly adheres to the recently finalized RFC 8555 spec. The Let&amp;rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.
+      <description>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a recent change in Let&#39;s Encrypt&#39;s ACME implementation which now more strictly adheres to the recently finalized RFC 8555 spec. The Let&#39;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.
 Updated versions can be found in the PowerShell Gallery or GitHub.</description>
     </item>
     

@@ -7,17 +7,14 @@
 
 
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.60.1" />
   <meta itemprop="name" content="powershell">
 <meta itemprop="description" content="">
-
-
   <meta property="og:title" content="powershell" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.dvolve.net/tags/powershell/" />
-
-<meta property="og:updated_time" content="2019-11-06T00:00:00+00:00" />
+<meta property="og:updated_time" content="2019-12-10T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="powershell"/>
@@ -175,6 +172,122 @@
   <header>
   <div class="title">
     
+        <h2><a href="/blog/2019/08/new-module-pwnedpasscheck/">New Module: PwnedPassCheck</a></h2>
+    
+    
+        <p>Checking if passwords or hashes have been compromised.</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-08-13 00:00:00 &#43;0000 UTC">
+      August 13, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p><a href="https://twitter.com/troyhunt">Troy Hunt's</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to separately check if a specific password was exposed in a breach. As of version 5, the data set contains over half a billion compromised passwords and the number of times they've been seen in data breaches. My <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a> module lets you query that data easily via PowerShell.</p>
+  <footer>
+    <a href="/blog/2019/08/new-module-pwnedpasscheck/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/pwnedpasscheck">PwnedPassCheck</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+        
+            <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/">Workaround For AD PSDrive Bug In Server 2019</a></h2>
+    
+    
+        <p>PSPath to the rescue</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-07-16 00:00:00 &#43;0000 UTC">
+      July 16, 2019
+    </time>
+    <span class="author">Ryan Bolger</span>
+    
+  </div>
+</header>
+
+  
+
+  
+  <p>Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &ldquo;AD:<!-- raw HTML omitted -->&rdquo; PSDrive path like this:</p>
+  <footer>
+    <a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" class="button big">Read more</a>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+        
+            <article class="post">
+  <header>
+  <div class="title">
+    
         <h2><a href="/blog/2019/06/infoblox-and-ms-management-permissions/">Infoblox and MS Management Permissions</a></h2>
     
     
@@ -251,7 +364,7 @@
   
 
   
-  <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
+  <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let's Encrypt's ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let's Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
   <footer>
     <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big">Read more</a>
     <ul class="stats">
@@ -369,6 +482,28 @@
 
       </section>
       <header>
+        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
+        <time class="published" datetime="">December 10, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
+        <time class="published" datetime="">November 12, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
         <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
         <time class="published" datetime="">November 6, 2019</time>
       </header>
@@ -396,28 +531,6 @@
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h1>
-        <time class="published" datetime="">September 27, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h1>
-        <time class="published" datetime="">September 18, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -437,7 +550,7 @@
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">8</span></a>
             
           
           <li>
@@ -484,7 +597,7 @@
         Ryan Bolger
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.59.0' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>

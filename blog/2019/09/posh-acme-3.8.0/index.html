@@ -7,11 +7,9 @@
 
 
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.60.1" />
   <meta itemprop="name" content="Posh-ACME 3.8.0">
 <meta itemprop="description" content="More options in Set-PAOrder and misc fixes">
-
-
 <meta itemprop="datePublished" content="2019-09-27T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-09-27T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="310">
@@ -19,7 +17,6 @@
 
 
 <meta itemprop="keywords" content="powershell," />
-
   <meta property="og:title" content="Posh-ACME 3.8.0" />
 <meta property="og:description" content="More options in Set-PAOrder and misc fixes" />
 <meta property="og:type" content="article" />
@@ -204,24 +201,19 @@
   
 
   <div class="content">
-    
-
-<p>Just shipped a new Posh-ACME release, version 3.8.0. <code>Set-PAOrder</code> now supports modifying some order properties that don&rsquo;t require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with more than 100 domains. There&rsquo;s also a fix for the Cloudflare plugin when used with limited scope tokens.</p>
-
+    <p>Just shipped a new Posh-ACME release, version 3.8.0. <code>Set-PAOrder</code> now supports modifying some order properties that don't require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with more than 100 domains. There's also a fix for the Cloudflare plugin when used with limited scope tokens.</p>
 <p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
-
 <h2 id="changelog">Changelog</h2>
-
 <ul>
-<li><code>Set-PAOrder</code> now supports modifying some order properties such as FriendlyName, PfxPass, and the Install switch that don&rsquo;t require generating a new ACME order. FriendlyName or PfxPass changes will regenerate the current PFX files with the new value(s) if they exist. Changes to the Install switch will only affect future renewals.</li>
+<li><code>Set-PAOrder</code> now supports modifying some order properties such as FriendlyName, PfxPass, and the Install switch that don't require generating a new ACME order. FriendlyName or PfxPass changes will regenerate the current PFX files with the new value(s) if they exist. Changes to the Install switch will only affect future renewals.</li>
 <li>Fixed FriendlyName, PfxPass, and Install parameters not applying when calling <code>New-PACertificate</code> against an existing order (#178)</li>
-<li>Fixed GoDaddy plugin so it doesn&rsquo;t fail on large accounts (100+ domains) (#179)</li>
+<li>Fixed GoDaddy plugin so it doesn't fail on large accounts (100+ domains) (#179)</li>
 <li>Updated Cloudflare plugin to workaround API bug with limited scope tokens (#176)</li>
 <li>Fixed DnsSleep and ValidationTimout being null when manually creating an order with <code>New-PAOrder</code> and finishing it with <code>New-PACertificate</code>.</li>
 <li>Added parameter help for -NewKey on <code>New-PAOrder</code> which was missing.</li>
 <li>When using <code>New-PACertificate</code> against an already completed order that is not ready for renewal, the informational message has been changed to Warning from Verbose to make it more apparent that nothing was done.</li>
 <li>Updated <code>instdev.ps1</code> so it still works when the BouncyCastle DLL is locked and $ErrorActionPreference is set to Stop.</li>
-<li>Updated a bunch of plugin guides with info regarding PowerShell 6.2&rsquo;s fix for the SecureString serialization bug and enabling the use of secure parameter sets on non-Windows.</li>
+<li>Updated a bunch of plugin guides with info regarding PowerShell 6.2's fix for the SecureString serialization bug and enabling the use of secure parameter sets on non-Windows.</li>
 </ul>
 
   </div>
@@ -283,6 +275,28 @@
 
       </section>
       <header>
+        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
+        <time class="published" datetime="">December 10, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
+        <time class="published" datetime="">November 12, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
         <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
         <time class="published" datetime="">November 6, 2019</time>
       </header>
@@ -310,28 +324,6 @@
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h1>
-        <time class="published" datetime="">September 27, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h1>
-        <time class="published" datetime="">September 18, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -351,7 +343,7 @@
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">8</span></a>
             
           
           <li>
@@ -398,7 +390,7 @@
         Ryan Bolger
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.59.0' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>

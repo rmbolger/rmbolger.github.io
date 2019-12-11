@@ -7,11 +7,9 @@
 
 
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.60.1" />
   <meta itemprop="name" content="Posh-IBWAPI 3.1.0">
 <meta itemprop="description" content="Improvements to Send-IBFile and Receive-IBFile">
-
-
 <meta itemprop="datePublished" content="2019-08-23T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-08-23T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="417">
@@ -19,7 +17,6 @@
 
 
 <meta itemprop="keywords" content="powershell," />
-
   <meta property="og:title" content="Posh-IBWAPI 3.1.0" />
 <meta property="og:description" content="Improvements to Send-IBFile and Receive-IBFile" />
 <meta property="og:type" content="article" />
@@ -204,41 +201,29 @@
   
 
   <div class="content">
-    
-
-<p>Just shipped a new Posh-IBWAPI release, version 3.1.0. There is now an <code>-OverrideTransferHost</code> switch in <code>Send-IBFile</code> and <code>Receive-IBFile</code>. But to understand what it does requires a bit of explanation on how file transfers work under the hood with the Infoblox WAPI. Any given file transfer (up or down) is a 3-step process that can be generalized as follows.</p>
-
+    <p>Just shipped a new Posh-IBWAPI release, version 3.1.0. There is now an <code>-OverrideTransferHost</code> switch in <code>Send-IBFile</code> and <code>Receive-IBFile</code>. But to understand what it does requires a bit of explanation on how file transfers work under the hood with the Infoblox WAPI. Any given file transfer (up or down) is a 3-step process that can be generalized as follows.</p>
 <ul>
 <li>Inform WAPI that you want to do a file transfer and it returns a token and a URL to actually transfer against.</li>
 <li>Upload or download the file using the URL it gave you.</li>
 <li>Use the token to inform WAPI the transfer is complete.</li>
 </ul>
+<p>With most file transfers, the WAPI host and the URL it wants you to transfer the file against are the same. However, for some reason the URL returned always has the host's IP even if you originally connected via the hostname or FQDN. For example,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># WAPI URL base</span>
+<span style="color:#e6db74">&#39;https://gridmaster.example.com/&#39;</span>
 
-<p>With most file transfers, the WAPI host and the URL it wants you to transfer the file against are the same. However, for some reason the URL returned always has the host&rsquo;s IP even if you originally connected via the hostname or FQDN. For example,</p>
-
-<pre><code class="language-powershell"># WAPI URL base
-'https://gridmaster.example.com/'
-
-# Transfer URL base
-'https://192.168.1.2/'
-</code></pre>
-
-<p>This can be a problem if you&rsquo;re using a trusted SSL\TLS certificate on your host because they usually don&rsquo;t validate properly for IP addresses. So while the WAPI calls will succeed, the transfer call will fail due to certificate validation. In the previous version, I tried working around this by just always skipping certificate validation on the transfer call. But it turns out that can cause some undesireable behavior in dependent scripts.</p>
-
-<p>So what the <code>-OverrideTransferHost</code> actually does is check if the transfer URL&rsquo;s host matches the WAPI URL&rsquo;s host and if it doesn&rsquo;t, tweaks the transfer URL to match. Whatever value is being used for <code>-SkipCertificateCheck</code> is also configured for the transfer call.</p>
-
+<span style="color:#75715e"># Transfer URL base</span>
+<span style="color:#e6db74">&#39;https://192.168.1.2/&#39;</span>
+</code></pre></div><p>This can be a problem if you're using a trusted SSL\TLS certificate on your host because they usually don't validate properly for IP addresses. So while the WAPI calls will succeed, the transfer call will fail due to certificate validation. In the previous version, I tried working around this by just always skipping certificate validation on the transfer call. But it turns out that can cause some undesireable behavior in dependent scripts.</p>
+<p>So what the <code>-OverrideTransferHost</code> actually does is check if the transfer URL's host matches the WAPI URL's host and if it doesn't, tweaks the transfer URL to match. Whatever value is being used for <code>-SkipCertificateCheck</code> is also configured for the transfer call.</p>
 <p>In addition to the new switch, there are a few other enhancements and fixes in this release. In particular, <code>Send-IBFile</code> will now open the file to be uploaded with a lock that no longer prevents other readers from reading the file simultaneously.</p>
-
 <p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-IBWAPI/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-IBWAPI/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-IBWAPI/blob/master/README.md">Readme</a>.</p>
-
 <h2 id="changelog">Changelog</h2>
-
 <ul>
 <li>Added <code>OverrideTransferHost</code> switch to <code>Send-IBFile</code> and <code>Receive-IBFile</code> which tweaks the WAPI supplied transfer URL so that the hostname matches the WAPIHost value originally passed to the function. It also copies the state of the <code>SkipCertificate</code> switch to the transfer call.</li>
-<li><code>Send-IBFile</code> will no longer lock the file being uploaded so other readers can&rsquo;t read it.</li>
+<li><code>Send-IBFile</code> will no longer lock the file being uploaded so other readers can't read it.</li>
 <li>Fixed file encoding in <code>Send-IBFile</code> when uploading non-ascii files.</li>
 <li>Fixed <code>Receive-IBFile</code> on PowerShell Core by working around an upstream bug (#43)</li>
-<li>Fixed <code>Get-IBObject</code>&rsquo;s <code>ReturnAllFields</code> parameter when not querying the latest WAPI version</li>
+<li>Fixed <code>Get-IBObject</code>'s <code>ReturnAllFields</code> parameter when not querying the latest WAPI version</li>
 </ul>
 
   </div>
@@ -300,6 +285,28 @@
 
       </section>
       <header>
+        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
+        <time class="published" datetime="">December 10, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
+        <time class="published" datetime="">November 12, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
         <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
         <time class="published" datetime="">November 6, 2019</time>
       </header>
@@ -327,28 +334,6 @@
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h1>
-        <time class="published" datetime="">September 27, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h1>
-        <time class="published" datetime="">September 18, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -368,7 +353,7 @@
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">8</span></a>
             
           
           <li>
@@ -415,7 +400,7 @@
         Ryan Bolger
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.59.0' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>

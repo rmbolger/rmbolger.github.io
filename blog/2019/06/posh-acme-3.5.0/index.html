@@ -7,11 +7,9 @@
 
 
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.60.1" />
   <meta itemprop="name" content="Posh-ACME 3.5.0">
 <meta itemprop="description" content="New plugin and misc fixes">
-
-
 <meta itemprop="datePublished" content="2019-06-21T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-06-21T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="180">
@@ -19,7 +17,6 @@
 
 
 <meta itemprop="keywords" content="powershell," />
-
   <meta property="og:title" content="Posh-ACME 3.5.0" />
 <meta property="og:description" content="New plugin and misc fixes" />
 <meta property="og:type" content="article" />
@@ -204,19 +201,14 @@
   
 
   <div class="content">
-    
-
-<p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
-
+    <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let's Encrypt's ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let's Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
 <p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
-
 <h2 id="changelog">Changelog</h2>
-
 <ul>
 <li>Added new DNS plugin for Simple DNS Plus (<a href="https://github.com/rmbolger/Posh-ACME/pull/149">#149</a>) (Thanks @alphaz18)</li>
-<li>Changed a bunch of &ldquo;-ErrorAction SilentlyContinue&rdquo; references to &ldquo;Ignore&rdquo; so we&rsquo;re not filling the $Error collection with junk.</li>
+<li>Changed a bunch of &ldquo;-ErrorAction SilentlyContinue&rdquo; references to &ldquo;Ignore&rdquo; so we're not filling the $Error collection with junk.</li>
 <li>Fix for Boulder removing ID field from new account output.</li>
-<li>Fixed an issue in a number of plugins that could cause errors if the case of the requested record didn&rsquo;t match the server&rsquo;s zone case. (Thanks @Makr91)</li>
+<li>Fixed an issue in a number of plugins that could cause errors if the case of the requested record didn't match the server's zone case. (Thanks @Makr91)</li>
 <li>Fixed a bug with the Route53 plugin when used on PowerShell Core without the AwsPowerShell module installed.</li>
 <li>Fixed some typos in the OVH plugin usage guide examples (<a href="https://github.com/rmbolger/Posh-ACME/pull/147">#147</a>)</li>
 </ul>
@@ -280,6 +272,28 @@
 
       </section>
       <header>
+        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
+        <time class="published" datetime="">December 10, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
+        <time class="published" datetime="">November 12, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
         <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
         <time class="published" datetime="">November 6, 2019</time>
       </header>
@@ -307,28 +321,6 @@
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h1>
-        <time class="published" datetime="">September 27, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h1>
-        <time class="published" datetime="">September 18, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -348,7 +340,7 @@
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">8</span></a>
             
           
           <li>
@@ -395,7 +387,7 @@
         Ryan Bolger
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.59.0' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>

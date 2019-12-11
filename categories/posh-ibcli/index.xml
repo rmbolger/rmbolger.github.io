@@ -17,7 +17,7 @@
       <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/10/posh-ibcli-1.3.0/</guid>
-      <description>Just shipped a new Posh-IBCLI release, version 1.3.0. It adds new functions called Get-IBCLIApacheCert and Set-IBCLIApacheCert which wrap the set apache_https_cert command added in NIOS 8.4. What&amp;rsquo;s funny is that the only reason I found out about the command is because of a problem I ran into while testing Posh-IBWAPI&amp;rsquo;s new file upload functions.
+      <description>Just shipped a new Posh-IBCLI release, version 1.3.0. It adds new functions called Get-IBCLIApacheCert and Set-IBCLIApacheCert which wrap the set apache_https_cert command added in NIOS 8.4. What&#39;s funny is that the only reason I found out about the command is because of a problem I ran into while testing Posh-IBWAPI&amp;lsquo;s new file upload functions.
 The file I was trying to upload was a certificate for the web UI and I figured my test procedure would involve uploading my cert and then re-generating a self-signed cert before repeating the test.</description>
     </item>
     

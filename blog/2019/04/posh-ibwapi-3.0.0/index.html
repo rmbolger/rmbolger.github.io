@@ -7,11 +7,9 @@
 
 
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.60.1" />
   <meta itemprop="name" content="Posh-IBWAPI 3.0.0">
 <meta itemprop="description" content="File upload/download wrappers, named configs, and auto session management">
-
-
 <meta itemprop="datePublished" content="2019-04-20T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-04-20T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="638">
@@ -19,7 +17,6 @@
 
 
 <meta itemprop="keywords" content="powershell," />
-
   <meta property="og:title" content="Posh-IBWAPI 3.0.0" />
 <meta property="og:description" content="File upload/download wrappers, named configs, and auto session management" />
 <meta property="og:type" content="article" />
@@ -204,50 +201,35 @@
   
 
   <div class="content">
-    
+    <p>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
+<p>For example, in 1.x this is how you'd download a grid backup:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PowerShell" data-lang="PowerShell"><span style="color:#75715e"># request a download token and URL</span>
+$dl = Invoke-IBFunction -ref fileop -name getgriddata -args @{type=<span style="color:#e6db74">&#39;BACKUP&#39;</span>}
 
-<p>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
-
-<p>For example, in 1.x this is how you&rsquo;d download a grid backup:</p>
-
-<pre><code class="language-PowerShell"># request a download token and URL
-$dl = Invoke-IBFunction -ref fileop -name getgriddata -args @{type='BACKUP'}
-
-# download the file
-Invoke-IBWAPI -Uri $dl.url -ContentType 'application/force-download' `
+<span style="color:#75715e"># download the file</span>
+Invoke-IBWAPI -Uri $dl.url -ContentType <span style="color:#e6db74">&#39;application/force-download&#39;</span> `
               -Credential (Get-IBWAPIConfig).Credential `
               -OutFile .\backup.tar.gz
 
-# inform Infoblox that the download is complete
+<span style="color:#75715e"># inform Infoblox that the download is complete</span>
 Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
-</code></pre>
-
-<p>But in 3.x, you can now do this:</p>
-
-<pre><code class="language-PowerShell">Receive-IBFile getgriddata -args @{type='BACKUP'} -OutFile .\backup.tar.gz
-</code></pre>
-
-<p>Also in the release are named configs which enable saving different credentials for the same grid. The module takes care of session management now as well. So you don&rsquo;t need to manually deal with WebSession objects to prevent extraneous authentication requests.</p>
-
+</code></pre></div><p>But in 3.x, you can now do this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PowerShell" data-lang="PowerShell">Receive-IBFile getgriddata -args @{type=<span style="color:#e6db74">&#39;BACKUP&#39;</span>} -OutFile .\backup.tar.gz
+</code></pre></div><p>Also in the release are named configs which enable saving different credentials for the same grid. The module takes care of session management now as well. So you don't need to manually deal with WebSession objects to prevent extraneous authentication requests.</p>
 <p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-IBWAPI/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-IBWAPI/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-IBWAPI/blob/master/README.md">Readme</a>.</p>
-
 <h2 id="changelog">Changelog</h2>
-
 <ul>
 <li>Breaking Changes
-
 <ul>
 <li>The change to <code>ObjectType</code> parameter in <code>Invoke-IBFunction</code> has been reverted to <code>ObjectRef</code> like in 1.x. I totally confused myself during 2.x development of the *-IBFile functions and thought it had been wrong the whole time. It seems silly to do another major version change after two days. But breaking changes demand it according to semver.</li>
 <li>The <code>ObjectType</code> parameter in <code>Send-IBFile</code> and <code>Receive-IBFile</code> have been changed to <code>ObjectRef</code> to match <code>Invoke-IBFunction</code>. Both still default to &lsquo;fileop&rsquo; and have parameter aliases for &lsquo;type&rsquo; and &lsquo;ObjectType&rsquo; to maintain compatibility with the short lived 2.x codebase.</li>
-</ul></li>
+</ul>
+</li>
 <li>Fixed example in <code>Invoke-IBFunction</code> help.</li>
 </ul>
-
-<p>And here&rsquo;s the changelog for 2.0.0 which gives a better idea of what has changed since 1.x:</p>
-
+<p>And here's the changelog for 2.0.0 which gives a better idea of what has changed since 1.x:</p>
 <ul>
 <li>Breaking Changes
-
 <ul>
 <li>.NET 4.5+ is now required on PowerShell Desktop edition for full functionality. A warning will be thrown when loading the module if it is not found.</li>
 <li>The <code>WebSession</code> parameter has been removed from all functions except <code>Invoke-IBWAPI</code>. Session handling is now automatic.</li>
@@ -259,7 +241,8 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
 <li><code>Get-IBConfig</code> and <code>Remove-IBConfig</code> now have <code>ProfileName</code> instead of <code>WAPIHost</code> as their selection parameter.</li>
 <li>The <code>IgnoreCertificateValidation</code> switch has been renamed to <code>SkipCertificateCheck</code> in all functions and configs to be more in line with PowerShell Core.</li>
 <li>The <code>ObjectRef</code> parameter in <code>Invoke-IBFunction</code> has been changed to <code>ObjectType</code> which is functionally how it always worked and was inappropriately named. Functions get called against object types not references.</li>
-</ul></li>
+</ul>
+</li>
 <li>New Feature: Automatic session handling. The module will now automatically save and use WebSession objects to increase authentication efficiency over multiple requests and function calls.</li>
 <li>New Feature: Named configuration profiles. This will allow you to save multiple profiles for the same WAPI host with different credentials, WAPI versions, etc.</li>
 <li>New functions <code>Send-IBFile</code> and <code>Recieve-IBFile</code> which are convenient wrappers around the fileop functions. See the cmdlet help or the guide in the wiki for more details.</li>
@@ -327,6 +310,28 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
 
       </section>
       <header>
+        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
+        <time class="published" datetime="">December 10, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
+        <time class="published" datetime="">November 12, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
         <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
         <time class="published" datetime="">November 6, 2019</time>
       </header>
@@ -354,28 +359,6 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h1>
-        <time class="published" datetime="">September 27, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h1>
-        <time class="published" datetime="">September 18, 2019</time>
-      </header>
-    </article>
-    
     
       <a href="/blog/" class="button">See more</a>
     
@@ -395,7 +378,7 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
           
           <li>
             
-              <a href="/categories/posh-acme/">posh-acme<span class="count">6</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">8</span></a>
             
           
           <li>
@@ -442,7 +425,7 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
         Ryan Bolger
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.59.0' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
