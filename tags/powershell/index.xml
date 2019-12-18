@@ -6,10 +6,20 @@
     <description>Recent content in powershell on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 10 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</title>
+      <link>https://www.dvolve.net/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/</guid>
+      <description>If you&#39;ve ever had to setup an HTTPS website in the past couple years, you&#39;ve most likely heard of Let&#39;s Encrypt which is arguably the largest public certificate authority in the world. Not only are their certificates free, the entire ordering and renewal process can be completely automated using a recently finalized protocol standard known as ACME (RFC 8555).
+But there are endless apps and services other than HTTP based web sites that can also use TLS certificates.</description>
+    </item>
     
     <item>
       <title>Posh-ACME 3.12.0</title>
