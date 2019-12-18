@@ -12,7 +12,7 @@
 <meta itemprop="description" content="LDAPS for free without needing internal PKI.">
 <meta itemprop="datePublished" content="2019-12-17T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-12-17T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1984">
+<meta itemprop="wordCount" content="1969">
 
 
 
@@ -226,7 +226,7 @@
   </div>
 
 
-<p>But there are endless apps and services other than HTTP based web sites that can also use <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">TLS</a> certificates. On Windows specifically, there are things like Remote Desktop (RDP), SQL Server, WinRM, Exchange, and Active Directory. Many folks don't realize that the certificates you get from Let's Encrypt can be used for these other services as well and they don't even need to be exposed to the Internet as long as the domain name is real and obtained from a public domain registrar. This can be a huge operational win for smaller organizations who don't have the resources or expertiese to design, implement, and maintain an internal <a href="https://blogs.technet.microsoft.com/askds/2009/09/01/designing-and-implementing-a-pki-part-i-design-and-planning/">Public Key Infrastructure (PKI)</a>.</p>
+<p>But there are endless apps and services other than HTTP based web sites that can also use <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">TLS</a> certificates. On Windows specifically, there are things like Remote Desktop (RDP), SQL Server, WinRM, Exchange, and Active Directory. Many folks don't realize that the certificates you get from Let's Encrypt can be used for these other services as well and they don't even need to be exposed to the Internet as long as the domain name is real and obtained from a public domain registrar. This can be a huge operational win for smaller organizations who don't have the resources or expertise to design, implement, and maintain an internal <a href="https://blogs.technet.microsoft.com/askds/2009/09/01/designing-and-implementing-a-pki-part-i-design-and-planning/">Public Key Infrastructure (PKI)</a>.</p>
 <p>Active Directory is historically a bit more picky about certs than some other services and ever since I wrote <a href="https://github.com/rmbolger/Posh-ACME">Posh-ACME</a>, I've been curious if Let's Encrypt certs would work with it. As it turns out, they work great with a couple minor caveats.</p>
 <h1 id="certificate-transparency-and-security-through-obscurity">Certificate Transparency and Security Through Obscurity</h1>
 
@@ -253,14 +253,14 @@
   </div>
 
 
-<p>All publicly trusted CAs in 2019 including Let's Encrypt must now adhere to the <a href="https://www.certificate-transparency.org/what-is-ct">Certificate Transparency</a> standard which is a &ldquo;cryptographically assured, publicly auditable, append-only record&rdquo; of issued certificates. In other words, all public certificates are now logged and searchable by the general public. So if your security team demands that your internal server or domain names remain a secret, you simply can't use any public CA for internal certificates. Definitely get approval from those folks before continuing with this if you have any doubt.</p>
+<p>All publicly trusted CAs in 2019 including Let's Encrypt must now adhere to the <a href="https://www.certificate-transparency.org/what-is-ct">Certificate Transparency</a> standard which is a &ldquo;cryptographically assured, publicly auditable, append-only record&rdquo; of issued certificates. In other words, all public certificates are now logged and searchable by the general public. So if your security team demands that your internal server or domain names remain a secret, you simply can't use any public CA for internal certificates. Be sure to get approval from those folks before continuing with this if you have any doubt.</p>
 <p>Even if you can't or won't use public certs for your production AD, they're still super handy for dev/test/lab domains.</p>
 <h1 id="using-public-certs-for-internal-services">Using Public Certs for Internal Services</h1>
-<p>In order to get a certificate from a public CA like Let's Encrypt, the FQDN in the cert must be part of a real domain that was obtained from an <a href="https://www.icann.org/">ICANN</a> recognized domain registrar. If your internal domains end in things like <code>.local</code> or <code>.int</code>, you're out of luck. You're also more likely to run into future problems like everyone who was using <code>.dev</code> until <a href="https://medium.engineering/use-a-dev-domain-not-anymore-95219778e6fd">Google purchased it</a>. So if you're doing that, stop it.</p>
-<p>It might seem obvious, but in addition to the FQDN needing to be in a real domain you also need to actually control that domain. In order to prove that control for a service with no inbound access from the Internet, you need to be able to modify the public DNS records for it. For Let's Encrypt and any other ACME capable CA, you need the ability to create <a href="https://en.wikipedia.org/wiki/TXT_record">TXT records</a>.</p>
+<p>In order to get a certificate from a public CA like Let's Encrypt, the FQDN in the cert must be part of a domain that was obtained from an <a href="https://www.icann.org/">ICANN</a> recognized domain registrar. If your internal domains end in TLDs like <code>.local</code> or <code>.int</code>, you're out of luck. You're also more likely to run into future problems like everyone who was using <code>.dev</code> until <a href="https://medium.engineering/use-a-dev-domain-not-anymore-95219778e6fd">Google purchased it</a>. So if you're doing that, stop it.</p>
+<p>It might seem obvious, but the CA will also need you to prove control/ownership of the domain or names in your certificate. Generally, this means being able to modify the public DNS records for it. For Let's Encrypt and any other ACME capable CA, you need the ability to create <a href="https://en.wikipedia.org/wiki/TXT_record">TXT records</a>.</p>
 <p>Let's say your domain is <code>example.com</code> and your internal service is on a machine with the FQDN <code>dc.ad.example.com</code>. In order to get a certificate for that name, you would have to create a TXT record called <code>_acme-challenge.dc.ad.example.com</code> with a special value in the <em>public facing</em> DNS zone for <code>example.com</code>. Any machine <em>outside your network</em> should be able to do a standard DNS query like this and have the special value returned.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">C:\&gt;nslookup -q=TXT _acme-challenge.dc.ad.example.com.
-</code></pre></div><p>Finally, the machine running the ACME client must be able to reach the ACME server on the Internet. If your environment blocks outbound Internet access by default, you'll need to either move the ACME client to a whitelisted host or add exceptions for the ACME server URLs to your outbound firewall or proxy server. For Let's Encrypt, that would be <code>acme-v02.api.letsencrypt.org</code> for the Production endpoint or <code>acme-staging-v02.api.letsencrypt.org</code> for the Staging endpoint.</p>
+</code></pre></div><p>Finally, the machine running the ACME client must be able to reach the ACME server on the Internet. If your environment blocks outbound Internet access, you'll need to either move the ACME client to a whitelisted host or add exceptions for the ACME server URLs to your outbound firewall or proxy server. For Let's Encrypt, that would be <code>acme-v02.api.letsencrypt.org</code> for the Production endpoint and <code>acme-staging-v02.api.letsencrypt.org</code> for the Staging endpoint. Having both available is very useful for troubleshooting.</p>
 <h1 id="active-directory-and-certificates">Active Directory and Certificates</h1>
 <p>Adding TLS certificates to your Active Directory domain controllers has been a recommended practice for a long while now. One of the primary benefits is enabling LDAPS (LDAP over SSL) which prevents exposing cleartext credentials on the wire for legacy applications who still need to use basic BINDs. This will become increasingly important in 2020 when Microsoft changes the LDAP defaults to <a href="https://support.microsoft.com/en-us/help/4520412/2020-ldap-channel-binding-and-ldap-signing-requirement-for-windows">require channel binding and signing</a>. Even for clients who use more modern BIND methods like Kerberos with SASL, it will protect the confidentiality of the LDAP query traffic which standard LDAP does not.</p>
 <p>Here is  Microsoft's official guidance on obtaining domain controller certificates from a third-party CA and enabling LDAP over SSL.</p>
@@ -270,7 +270,7 @@
 </ul>
 <p>There are two main things we care about from those docs:</p>
 <ul>
-<li>Each DC's cert must contain it's own FQDN (dc.example.com) and the domain's FQDN (example.com).</li>
+<li>Each DC's cert must contain its own FQDN (dc.example.com) and the domain's FQDN (example.com).</li>
 <li>The cert should be installed in the local computer's Personal certificate store</li>
 </ul>
 <h1 id="domain-controller-prep">Domain Controller Prep</h1>
@@ -313,7 +313,7 @@ $pArgs = @{DOToken=<span style="color:#e6db74">&#39;xxxxxxxxxxxx&#39;</span>}
 $dc = Get-ADDomainController $env:COMPUTERNAME
 $certNames = @($dc.HostName, $dc.Domain)
 
-<span style="color:#75715e"># This is technically optional, but usually a good idea.</span>
+<span style="color:#75715e"># This is optional, but usually a good idea.</span>
 $notifyEmail = <span style="color:#e6db74">&#39;myaddress@poshacme.online&#39;</span>
 </code></pre></div><p>Build a hashtable of parameters and use them with <code>New-PACertificate</code> via splatting. Make sure you include the <code>-Install</code> parameter so the resulting certificate gets installed to the local computer's certificate store.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$certParams = @{
@@ -429,7 +429,7 @@ New-PACertificate @certParams
 
 
 <p>If you want to see the specific details of the certificate being used, there are scripts such as <a href="https://gallery.technet.microsoft.com/Domain-Controller-TLS-6a50a3d2">this one</a> that will attempt a connection to your DC and parse those details from the TLS conversation.</p>
-<p>In addition to LDAPS, <a href="https://blogs.msdn.microsoft.com/adpowershell/2009/04/06/active-directory-web-services-overview/">Active Directory Web Services (ADWS)</a> will also use this new certificate. The PowerShell ActiveDirectory module (among other things) uses this service rather than raw LDAP to communicate with AD. However, it requires a service restart to pick up and use the new certificate. You can do that via the Services MMC snap-in or run <code>Restart-Service ADWS</code>. When done, you should find Event ID 1401 in the associated event log which confirms it has successfully loaded the certificate.</p>
+<p>In addition to LDAPS, <a href="https://blogs.msdn.microsoft.com/adpowershell/2009/04/06/active-directory-web-services-overview/">Active Directory Web Services (ADWS)</a> will also use this new certificate. The PowerShell ActiveDirectory module (among other things) uses this service rather than raw LDAP to communicate with AD. However, it requires a service restart to recognize and use the new certificate. You can do that via the Services MMC snap-in or run <code>Restart-Service ADWS</code>. When done, you should find Event ID 1401 in the associated event log which confirms it has successfully loaded the certificate.</p>
 
 
 
@@ -515,7 +515,7 @@ Register-ScheduledTask $taskname -Action $action -Trigger $trigger -User <span s
 <p>The transcript logging is optional. Some may want to skip it in favor of sending an email instead when things successfully renew or add additional error handling and only send an email if there's an error. It's all just PowerShell, so the possibilities are endless.</p>
 <h1 id="wrapping-up">Wrapping Up</h1>
 <p>I realize this solution is probably not realistic for an environment with more than a handful of DCs. Large environments are better suited to spin up a real PKI solution and use manually installed certs with multi-year expirations or native Windows auto-enrollment if the internal CA is Microsoft based. An internal CA also has the benefit of being able to use alternative name fields like IP address and GUID which are useful for certain edge cases.</p>
-<p>However, there are definitely ways you could scale this if you really wanted to. And the resource and maintenance benefits of not having to run an internal CA are huge for small teams. I wouldn't be surprised if there were small orgs already doing this with traditional purchased certificates.</p>
+<p>However, there are certainly ways to scale this if you really wanted to. And the resource and maintenance benefits of not having to run an internal CA are huge for small teams. I wouldn't be surprised if there were small orgs already doing this with traditional purchased certificates.</p>
 <p>Regardless, I had a lot of fun exploring this topic and hope it shed some light on the versatility of Posh-ACME and alternative use cases for Let's Encrypt certificates. Let's Encrypt is an amazing organization that is truly making the web a more secure place for everyone. Consider becoming a <a href="https://letsencrypt.org/donate/">donor or sponsor</a> if you'd like to help them with that goal.</p>
 
   </div>
