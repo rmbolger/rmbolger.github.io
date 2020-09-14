@@ -6,112 +6,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
-  <meta name="generator" content="Hugo 0.60.1" />
-  <meta itemprop="name" content="Auditing Active Directory Passwords With PwnedPassCheck">
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Auditing Active Directory Passwords With PwnedPassCheck">
 <meta itemprop="description" content="Make sure users aren&#39;t using compromised passwords.">
-<meta itemprop="datePublished" content="2019-08-15T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-08-15T00:00:00&#43;00:00" />
+<meta itemprop="datePublished" content="2019-08-15T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-08-15T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1241">
 
 
 
 <meta itemprop="keywords" content="powershell," />
-  <meta property="og:title" content="Auditing Active Directory Passwords With PwnedPassCheck" />
+<meta property="og:title" content="Auditing Active Directory Passwords With PwnedPassCheck" />
 <meta property="og:description" content="Make sure users aren&#39;t using compromised passwords." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.dvolve.net/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/" />
 <meta property="article:published_time" content="2019-08-15T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-08-15T00:00:00+00:00" />
-
-  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Auditing Active Directory Passwords With PwnedPassCheck"/>
 <meta name="twitter:description" content="Make sure users aren&#39;t using compromised passwords."/>
 <meta name="twitter:site" content="@rmbolger"/>
 
-  
-
-  <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
-  
-    
-      <link rel="stylesheet" href="/css/normalize.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
-      
-      
-      <link rel="stylesheet" href="/css/main.min.def756f4cd28354005a37cedc94c36d695bb1b0271e40edf1acf67d865b9ff70.css" integrity="sha256-3vdW9M0oNUAFo3ztyUw21pW7GwJx5A7fGs9n2GW5/3A=">
-      <link rel="stylesheet" href="/css/add-on.css">
-    
-  
-  
-  
-  
-    
-  
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
+          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
     
+
 <header id="site-header">
   <nav id="site-nav">
     <h1 class="nav-title">
-      <a href="/">
+      <a href="/" class="nav">
         
-          
-            Blog
-          
+          Blog
         
       </a>
     </h1>
-    <menu id="site-nav-menu" class="flyout-menu">
+    <menu id="site-nav-menu" class="flyout-menu menu">
       
         
           
-          
-            <a href="/" class="link"><i class='fa fa-home'></i> Home</a>
-          
-        
-      
-        
-          
-          
-            <a href="/about/" class="link"><i class='far fa-id-card'></i> About</a>
-          
+          <a href="/" class="nav link"><i class='fa fa-home'></i> Home</a>
         
       
         
           
-          
-            <a href="/blog/" class="link"><i class='far fa-newspaper'></i> Blog</a>
-          
+          <a href="/about/" class="nav link"><i class='far fa-id-card'></i> About</a>
         
       
         
           
+          <a href="/blog/" class="nav link"><i class='far fa-newspaper'></i> Blog</a>
+        
+      
+        
           
-            <a href="/categories/" class="link"><i class='fas fa-sitemap'></i> Categories</a>
-          
+          <a href="/categories/" class="nav link"><i class='fas fa-sitemap'></i> Categories</a>
         
       
       
-      
-
+      <a href="#search-input" class="nav link search-toggle"><i class="fas fa-search">&nbsp;</i>Search</a>
     </menu>
+    <a href="#search-input" class="nav search-toggle"><i class="fas fa-search fa-2x">&nbsp;</i></a>
     
-
     
-    
-    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+    <a href="#site-nav" class="nav nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
   </nav>
+  <menu id="search" class="menu"><input id="search-input" class="search-input menu"></input><div id="search-results" class="search-results menu"></div></menu>
   
   
 </header>
 
     <div id="wrapper">
-      <section id="site-intro">
-  <a href="/"><img src="/img/main/logo.jpg" class="circle" width="" alt="Ryan Bolger" /></a>
+      <section id="site-intro" >
+  <a href="/"><img src="https://www.dvolve.net/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
   <header>
     <h1>Ryan Bolger</h1>
   </header>
@@ -161,6 +129,7 @@
 
 
 
+
 <li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
 
 
@@ -171,66 +140,64 @@
 </section>
 
       <main id="site-main">
-        <article class="post">
-  <header>
+        
+  <article class="post">
+    <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/">Auditing Active Directory Passwords With PwnedPassCheck</a></h2>
+      <h2><a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/">Auditing Active Directory Passwords With PwnedPassCheck</a></h2>
     
     
-        <p>Make sure users aren&#39;t using compromised passwords.</p>
+      <p>Make sure users aren&#39;t using compromised passwords.</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-08-15 00:00:00 &#43;0000 UTC">
-      August 15, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-08-15 00:00:00 &#43;0000 UTC">August 15, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  <section id="socnet-share">
-    
+    <div id="socnet-share">
+      
 
 
 
 
 
-  </section>
+    </div>
+    <div class="content">
+      
+      <p>In a <a href="/blog/2019/08/new-module-pwnedpasscheck/">previous post</a>, I introduced a new PowerShell module called <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a>. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to <a href="https://twitter.com/troyhunt">Troy Hunt&rsquo;s</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>. In this post, I&rsquo;ll demonstrate how to use the module in conjunction with <a href="https://twitter.com/MGrafnetter">Michael Grafnetter&rsquo;s</a> amazing <a href="https://github.com/MichaelGrafnetter/DSInternals">DSInternals</a> module to quickly audit existing passwords in Active Directory against the compromised list.</p>
+<h1 id="doesnt-dsinternals-already-support-this">Doesn&rsquo;t DSInternals Already Support This?</h1>
+
+
+
   
-
-  <div class="content">
-    <p>In a <a href="/blog/2019/08/new-module-pwnedpasscheck/">previous post</a>, I introduced a new PowerShell module called <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a>. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to <a href="https://twitter.com/troyhunt">Troy Hunt's</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>. In this post, I'll demonstrate how to use the module in conjunction with <a href="https://twitter.com/MGrafnetter">Michael Grafnetter's</a> amazing <a href="https://github.com/MichaelGrafnetter/DSInternals">DSInternals</a> module to quickly audit existing passwords in Active Directory against the compromised list.</p>
-<h1 id="doesnt-dsinternals-already-support-this">Doesn't DSInternals Already Support This?</h1>
-
-
-
-  
-    
     
     
-    
-  
-  
-  
-  
     
     
   
   
   
   
+    
+    
   
-  <div class="lessfancybox">
-    <a data-fancybox="" href="/img/2019/08/monkey-puppet.png" data-caption="Awkward Monkey Puppet"><img src="/img/2019/08/monkey-puppet.png" alt="Awkward Monkey Puppet"></a>
-  </div>
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2019/08/monkey-puppet.png" data-caption="Awkward Monkey Puppet"><img src="https://www.dvolve.net/img/2019/08/monkey-puppet.png" alt="Awkward Monkey Puppet"></a>
+  </figure>
 
 
 <p>Yes. Since version 3 of the DSInternals module, the <a href="https://www.dsinternals.com/en/auditing-active-directory-password-quality/"><code>Test-PasswordQuality</code></a> function has been able to use the monolithic NTLM hash file from Have I Been Pwned as a source for weak password hashes. The function also includes a bunch of other password quality indicators and is a fantastic utility all by itself. It was pretty slow in that version because it was scanning the file line by line and the file is huge. Version 3.3 implemented a binary search option if you had a sorted hash file that was significantly faster.</p>
-<p>PwnedPassCheck has two potential advantanges over DSInternals. The first is the &ldquo;Seen Count&rdquo; which is the number of times a password was seen in breaches. While it could be argued that any password seen in a breach even once is bad and should be changed, I don't think anyone would argue that a password seen over 100,000 times is worse than one only seen once. The other advantage is if you're already hosting or have access to a third party hosting a copy of the NTLM API, you can skip having to deal with downloading the monolithic file to your audit system.</p>
+<p>PwnedPassCheck has two potential advantanges over DSInternals. The first is the &ldquo;Seen Count&rdquo; which is the number of times a password was seen in breaches. While it could be argued that any password seen in a breach even once is bad and should be changed, I don&rsquo;t think anyone would argue that a password seen over 100,000 times is worse than one only seen once. The other advantage is if you&rsquo;re already hosting or have access to a third party hosting a copy of the NTLM API, you can skip having to deal with downloading the monolithic file to your audit system.</p>
 <h1 id="prerequisites">Prerequisites</h1>
-<p>As I mentioned in the previous post, Have I Been Pwned doesn't currently host an NTLM API version of the data set. So you need to download the NTLM data set file ordered by hash, split the file into the format the API uses, and host it somewhere. Check the <a href="/blog/2019/08/new-module-pwnedpasscheck/#querying-locally-and-ntlm">previous post</a> for details on that process.</p>
+<p>As I mentioned in the previous post, Have I Been Pwned doesn&rsquo;t currently host an NTLM API version of the data set. So you need to download the NTLM data set file ordered by hash, split the file into the format the API uses, and host it somewhere. Check the <a href="/blog/2019/08/new-module-pwnedpasscheck/#querying-locally-and-ntlm">previous post</a> for details on that process.</p>
 <p>Ultimately, you need to know what to set for the <code>-ApiRoot</code> parameter. Here are some possibilities depending on where you decide to host the files.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># web server</span>
 <span style="color:#e6db74">&#39;http://pwned.example.com/range/&#39;</span>
@@ -239,22 +206,22 @@
 <span style="color:#75715e"># local filesystem</span>
 <span style="color:#e6db74">&#39;C:\temp\hibp-ntlm\&#39;</span>
 </code></pre></div><h1 id="querying-nthash-with-dsinternals">Querying NTHash with DSInternals</h1>
-<p>DSInternals supports two different ways to get AD's NTHash values that you'll be checking; an offline method that reads ntds.dit files and an online method that uses AD's own replication protocol to query a DC directly. In my opinion, the online method is way easier to deal with, so that's what we'll describe here. But if you want or need to go with the offline route, here's a DSInternals <a href="https://www.dsinternals.com/en/dumping-ntds-dit-files-using-powershell/">blog post</a> describing the process.</p>
-<p>For the online query method, we'll be using the <code>Get-ADReplAccount</code> function. In order for the query to work, you'll need the <code>Replicating Directory Changes</code> and <code>Replicating Directory Changes All</code> permissions on the domain's root object. By default, members of &ldquo;Domain Admins&rdquo; have these permissions as well as a few other domain controller related groups. But in case you want to setup a dedicated account for this purpose, here's a quick way to add them for a particular group or account.</p>
+<p>DSInternals supports two different ways to get AD&rsquo;s NTHash values that you&rsquo;ll be checking; an offline method that reads ntds.dit files and an online method that uses AD&rsquo;s own replication protocol to query a DC directly. In my opinion, the online method is way easier to deal with, so that&rsquo;s what we&rsquo;ll describe here. But if you want or need to go with the offline route, here&rsquo;s a DSInternals <a href="https://www.dsinternals.com/en/dumping-ntds-dit-files-using-powershell/">blog post</a> describing the process.</p>
+<p>For the online query method, we&rsquo;ll be using the <code>Get-ADReplAccount</code> function. In order for the query to work, you&rsquo;ll need the <code>Replicating Directory Changes</code> and <code>Replicating Directory Changes All</code> permissions on the domain&rsquo;s root object. By default, members of &ldquo;Domain Admins&rdquo; have these permissions as well as a few other domain controller related groups. But in case you want to setup a dedicated account for this purpose, here&rsquo;s a quick way to add them for a particular group or account.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$context = (Get-ADRootDSE).defaultNamingContext
 $userOrGroup = <span style="color:#e6db74">&#39;EXAMPLE\myuser&#39;</span>
-&amp;dsacls.exe <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span><span style="color:#e6db74">context</span><span style="color:#e6db74">&#34;</span> /G <span style="color:#e6db74">&#34;</span>$($userOrGroup)<span style="color:#e6db74">:CA;Replicating Directory Changes;</span><span style="color:#e6db74">&#34;</span>
-&amp;dsacls.exe <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span><span style="color:#e6db74">context</span><span style="color:#e6db74">&#34;</span> /G <span style="color:#e6db74">&#34;</span>$($userOrGroup)<span style="color:#e6db74">:CA;Replicating Directory Changes All;</span><span style="color:#e6db74">&#34;</span>
+&amp;dsacls.exe <span style="color:#e6db74">&#34;$context&#34;</span> /G <span style="color:#e6db74">&#34;</span>$($userOrGroup)<span style="color:#e6db74">:CA;Replicating Directory Changes;&#34;</span>
+&amp;dsacls.exe <span style="color:#e6db74">&#34;$context&#34;</span> /G <span style="color:#e6db74">&#34;</span>$($userOrGroup)<span style="color:#e6db74">:CA;Replicating Directory Changes All;&#34;</span>
 </code></pre></div><p>There are a number of different ways to call <code>Get-ADReplAccount</code>. If you want to get every account-like object in the domain (computers, managed service accounts, etc.), you can call it like this.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$context = (Get-ADRootDSE).defaultNamingContext
 $dc = (Get-ADDomainController).HostName
 $accounts = Get-ADReplAccount -All -NamingContext $context -Server $dc
-</code></pre></div><p>Getting everything tends to be overkill for this purpose because things like computers and managed service accounts are highly unlikely to have compromised passwords since they auto-rotate with random long passwords under normal circumstances. Instead, I like to do an initial query with <code>Get-ADUser</code> from the ActiveDirectory PowerShell module. You can use whatever filter and search base options make sense for the audit you want to perform, but here's a basic example.</p>
+</code></pre></div><p>Getting everything tends to be overkill for this purpose because things like computers and managed service accounts are highly unlikely to have compromised passwords since they auto-rotate with random long passwords under normal circumstances. Instead, I like to do an initial query with <code>Get-ADUser</code> from the ActiveDirectory PowerShell module. You can use whatever filter and search base options make sense for the audit you want to perform, but here&rsquo;s a basic example.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$dc = (Get-ADDomainController).HostName
 $accounts = Get-ADUser -Filter * | Select ObjectGuid | Get-ADReplAccount -Server $dc
 </code></pre></div><p>The <code>Select ObjectGuid</code> portion is important because the parameter binding in Get-ADReplAccount gets confused if you send it the raw output of Get-ADUser. Now you should have a set of &ldquo;DSInternals.Common.Data.DSAccount&rdquo; objects in the <code>$accounts</code> variable that are ready to be sent to PwnedPassCheck.</p>
 <h1 id="checking-the-hashes">Checking The Hashes</h1>
-<p>Each of the DSAccount objects in the <code>$accounts</code> variable you created in the previous step have an <code>NTHash</code> property that contains the hash as a byte array which we can use with <code>Test-PwnedHashBytes</code>. The NTHash property can be null on some of the default domain objects like Guest and DefaultAccount, so we'll filter those out first.</p>
+<p>Each of the DSAccount objects in the <code>$accounts</code> variable you created in the previous step have an <code>NTHash</code> property that contains the hash as a byte array which we can use with <code>Test-PwnedHashBytes</code>. The NTHash property can be null on some of the default domain objects like Guest and DefaultAccount, so we&rsquo;ll filter those out first.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$accounts | Where-Object { $_.NTHash } |
     Test-PwnedHashBytes -ApiRoot <span style="color:#e6db74">&#39;http://pwned.example.com/range/&#39;</span> |
     Select Label,SeenCount
@@ -266,7 +233,7 @@ Administrator         0
 baduser            1177
 gooduser              0
 </code></pre></div><p>So <code>baduser</code> is the only account that had a password found in the compromised data set and it was seen a total of 1177 times which means that user should probably be required to change their password.</p>
-<h1 id="whats-next">What's Next?</h1>
+<h1 id="whats-next">What&rsquo;s Next?</h1>
 
 
 
@@ -286,175 +253,140 @@ gooduser              0
   
   
   
-  <div class="lessfancybox">
-    <a data-fancybox="" href="/img/2019/08/audit-all-the-passwords.png" data-caption="Audit All The Passwords Meme"><img src="/img/2019/08/audit-all-the-passwords.png" alt="Audit All The Passwords Meme"></a>
-  </div>
+  <figure>
+    <a data-fancybox="" href="/img/2019/08/audit-all-the-passwords.png" data-caption="Audit All The Passwords Meme"><img src="https://www.dvolve.net/img/2019/08/audit-all-the-passwords.png" alt="Audit All The Passwords Meme"></a>
+  </figure>
 
 
-<p>A one-time audit for compromised passwords is a great idea for any organization who isn't currently doing any password auditing beyond AD's native complexity enforcement. Setting up a regularly scheduled audit that can report to admins and/or take action like forcing a password change on compromised users is an even better idea. Changed passwords since the last audit will be caught and newly compromised passwords will be caught as new versions of the compromised data set are released and you update your local copy.</p>
-<p>It's also a good idea to prevent compromised passwords from being set it the first place by integrating the check with your existing password change system. How to do this will vary widely on how passwords are currently managed in your organization.</p>
-<p>If you're using an entirely on-prem Active Directory, there are a variety of free and paid password filter drivers that get installed on your domain controllers and are able to reject passwords that are compromised or don't meet other requirements you configure. A few that I've run across recently include <a href="https://github.com/lithnet/ad-password-protection">Lithnet Password Protection</a>, <a href="https://github.com/JacksonVD/PwnedPasswordsDLL-API">PwnedPasswordsDLL-API</a>, and <a href="https://safepass.me/">safepass.me</a>.</p>
-<p>If your on-prem Active Directory is just a sync'd replica from another source or you're using one of the many cloud federated identity providers, you may need to implement it at the source layer. Azure AD's feature called <a href="https://techcommunity.microsoft.com/t5/Azure-Active-Directory-Identity/Azure-AD-Password-Protection-and-Smart-Lockout-are-now-in-Public/ba-p/245423">Password Protection</a> is the main one I know about. But I'm sure other cloud identity providers have something similar.</p>
+<p>A one-time audit for compromised passwords is a great idea for any organization who isn&rsquo;t currently doing any password auditing beyond AD&rsquo;s native complexity enforcement. Setting up a regularly scheduled audit that can report to admins and/or take action like forcing a password change on compromised users is an even better idea. Changed passwords since the last audit will be caught and newly compromised passwords will be caught as new versions of the compromised data set are released and you update your local copy.</p>
+<p>It&rsquo;s also a good idea to prevent compromised passwords from being set it the first place by integrating the check with your existing password change system. How to do this will vary widely on how passwords are currently managed in your organization.</p>
+<p>If you&rsquo;re using an entirely on-prem Active Directory, there are a variety of free and paid password filter drivers that get installed on your domain controllers and are able to reject passwords that are compromised or don&rsquo;t meet other requirements you configure. A few that I&rsquo;ve run across recently include <a href="https://github.com/lithnet/ad-password-protection">Lithnet Password Protection</a>, <a href="https://github.com/JacksonVD/PwnedPasswordsDLL-API">PwnedPasswordsDLL-API</a>, and <a href="https://safepass.me/">safepass.me</a>.</p>
+<p>If your on-prem Active Directory is just a sync&rsquo;d replica from another source or you&rsquo;re using one of the many cloud federated identity providers, you may need to implement it at the source layer. Azure AD&rsquo;s feature called <a href="https://techcommunity.microsoft.com/t5/Azure-Active-Directory-Identity/Azure-AD-Password-Protection-and-Smart-Lockout-are-now-in-Public/ba-p/245423">Password Protection</a> is the main one I know about. But I&rsquo;m sure other cloud identity providers have something similar.</p>
 <p>The NIST password policy <a href="https://pages.nist.gov/800-63-3/sp800-63b.html">guidelines</a> released in 2017 are pretty clear that the conventional wisdom regarding complex passwords and forced rotation were a bad idea. The new guidelines suggest that length is the most important factor in password strength in addition to other caveats like not using dictionary words or repeating characters. And forced rotation should only be necessary in cases of breach or known compromise.</p>
-<p>Thanks again to Michael Grafnetter for his incredible work on DSInternals and Troy Hunt for everything related to Have I Been Pwned. You guys are awesome and we're all safer because of your efforts.</p>
+<p>Thanks again to Michael Grafnetter for his incredible work on DSInternals and Troy Hunt for everything related to Have I Been Pwned. You guys are awesome and we&rsquo;re all safer because of your efforts.</p>
 
-  </div>
-  <footer>
-    <ul class="stats">
+    </div>
+    <footer>
+      <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/pwnedpasscheck">PwnedPassCheck</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/pwnedpasscheck/">PwnedPassCheck</a></li>
+        
+          <li><a class="article-terms-link" href="/categories/active-directory/">Active Directory</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-
-<div class="pagination">
-  
-    <a href="/blog/2019/08/new-module-pwnedpasscheck/" class="button"><div class="previous"><div>New Module: PwnedPassCheck</div></div></a>
-  
-  
-    <a href="/blog/2019/08/posh-acme-3.6.0/" class="button"><div class="next"><div>Posh-ACME 3.6.0</div></div></a>
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
 </div>
 
+    </footer>
+  </article>
+  
+    
+
+  
+  <div class="pagination">
+    
+      <a href="/blog/2019/08/posh-acme-3.6.0/" class="button left"><span>Posh-ACME 3.6.0</span></a>
+    
+    
+      <a href="/blog/2019/08/new-module-pwnedpasscheck/" class="button right"><span>New Module: PwnedPassCheck</span></a>
+    
+  </div>
 
       </main>
       <section id="site-sidebar">
   
-  <section id="recent-posts">
-    <header>
-      <h1>Recent posts</h1>
-    </header>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
+    <section id="recent-posts">
       <header>
-        <h1><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h1>
-        <time class="published" datetime="">December 17, 2019</time>
+        <h1>Recent Posts</h1>
       </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
-        <time class="published" datetime="">December 10, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
-        <time class="published" datetime="">November 12, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
-        <time class="published" datetime="">November 6, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h1>
-        <time class="published" datetime="">October 26, 2019</time>
-      </header>
-    </article>
-    
-    
-      <a href="/blog/" class="button">See more</a>
-    
-  </section>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
+          <time class="published" datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
+          <time class="published" datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
+          <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h2>
+          <time class="published" datetime="2019-11-06 00:00:00 &#43;0000 UTC">November 6, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
+          <time class="published" datetime="2019-10-26 00:00:00 &#43;0000 UTC">October 26, 2019</time>
+        </header>
+      </article>
+      
+      
+        <footer>
+          <a href="/blog/" class="button">See More</a>
+        </footer>
+      
+    </section>
   
 
   
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">Categories</a></h1>
+          <h1><a href="/categories">categories</a></h1>
         </header>
         <ul>
           
-            
-          
           
           <li>
-            
               <a href="/categories/posh-acme/">posh-acme<span class="count">9</span></a>
-            
           
           <li>
-            
               <a href="/categories/active-directory/">active-directory<span class="count">3</span></a>
-            
           
           <li>
-            
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">2</span></a>
-            
           
           <li>
-            
               <a href="/categories/pwnedpasscheck/">pwnedpasscheck<span class="count">2</span></a>
-            
           
           <li>
-            
               <a href="/categories/infoblox/">infoblox<span class="count">1</span></a>
-            
           
           <li>
-            
               <a href="/categories/posh-ibcli/">posh-ibcli<span class="count">1</span></a>
-            
           
           </li>
         </ul>
@@ -462,42 +394,23 @@ gooduser              0
     
   
 
-
   
 </section>
 
       <footer id="site-footer">
   
   <p class="copyright">
-    
-      &copy; 2019
-      
-        Ryan Bolger
-      
-    . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
+    © 2019 Ryan Bolger
+      <br>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
-      
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/ini.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/powershell.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/cs.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/plaintext.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-
-
-  
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
-  <script src=/js/util.js></script>
-  <script src=/js/main.js></script>
-  <script src=/js/add-on.js></script>
-  
-
-
-
-
+      <script src="/js/highlight.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -508,7 +421,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
     </div>
   </body>

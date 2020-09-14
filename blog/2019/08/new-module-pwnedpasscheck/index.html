@@ -6,112 +6,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
-  <meta name="generator" content="Hugo 0.60.1" />
-  <meta itemprop="name" content="New Module: PwnedPassCheck">
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="New Module: PwnedPassCheck">
 <meta itemprop="description" content="Checking if passwords or hashes have been compromised.">
-<meta itemprop="datePublished" content="2019-08-13T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-08-13T00:00:00&#43;00:00" />
+<meta itemprop="datePublished" content="2019-08-13T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-08-13T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1260">
 
 
 
 <meta itemprop="keywords" content="powershell," />
-  <meta property="og:title" content="New Module: PwnedPassCheck" />
+<meta property="og:title" content="New Module: PwnedPassCheck" />
 <meta property="og:description" content="Checking if passwords or hashes have been compromised." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.dvolve.net/blog/2019/08/new-module-pwnedpasscheck/" />
 <meta property="article:published_time" content="2019-08-13T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-08-13T00:00:00+00:00" />
-
-  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="New Module: PwnedPassCheck"/>
 <meta name="twitter:description" content="Checking if passwords or hashes have been compromised."/>
 <meta name="twitter:site" content="@rmbolger"/>
 
-  
-
-  <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
-  
-    
-      <link rel="stylesheet" href="/css/normalize.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
-      
-      
-      <link rel="stylesheet" href="/css/main.min.def756f4cd28354005a37cedc94c36d695bb1b0271e40edf1acf67d865b9ff70.css" integrity="sha256-3vdW9M0oNUAFo3ztyUw21pW7GwJx5A7fGs9n2GW5/3A=">
-      <link rel="stylesheet" href="/css/add-on.css">
-    
-  
-  
-  
-  
-    
-  
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
+          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
     
+
 <header id="site-header">
   <nav id="site-nav">
     <h1 class="nav-title">
-      <a href="/">
+      <a href="/" class="nav">
         
-          
-            Blog
-          
+          Blog
         
       </a>
     </h1>
-    <menu id="site-nav-menu" class="flyout-menu">
+    <menu id="site-nav-menu" class="flyout-menu menu">
       
         
           
-          
-            <a href="/" class="link"><i class='fa fa-home'></i> Home</a>
-          
-        
-      
-        
-          
-          
-            <a href="/about/" class="link"><i class='far fa-id-card'></i> About</a>
-          
+          <a href="/" class="nav link"><i class='fa fa-home'></i> Home</a>
         
       
         
           
-          
-            <a href="/blog/" class="link"><i class='far fa-newspaper'></i> Blog</a>
-          
+          <a href="/about/" class="nav link"><i class='far fa-id-card'></i> About</a>
         
       
         
           
+          <a href="/blog/" class="nav link"><i class='far fa-newspaper'></i> Blog</a>
+        
+      
+        
           
-            <a href="/categories/" class="link"><i class='fas fa-sitemap'></i> Categories</a>
-          
+          <a href="/categories/" class="nav link"><i class='fas fa-sitemap'></i> Categories</a>
         
       
       
-      
-
+      <a href="#search-input" class="nav link search-toggle"><i class="fas fa-search">&nbsp;</i>Search</a>
     </menu>
+    <a href="#search-input" class="nav search-toggle"><i class="fas fa-search fa-2x">&nbsp;</i></a>
     
-
     
-    
-    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+    <a href="#site-nav" class="nav nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
   </nav>
+  <menu id="search" class="menu"><input id="search-input" class="search-input menu"></input><div id="search-results" class="search-results menu"></div></menu>
   
   
 </header>
 
     <div id="wrapper">
-      <section id="site-intro">
-  <a href="/"><img src="/img/main/logo.jpg" class="circle" width="" alt="Ryan Bolger" /></a>
+      <section id="site-intro" >
+  <a href="/"><img src="https://www.dvolve.net/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
   <header>
     <h1>Ryan Bolger</h1>
   </header>
@@ -161,6 +129,7 @@
 
 
 
+
 <li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
 
 
@@ -171,37 +140,35 @@
 </section>
 
       <main id="site-main">
-        <article class="post">
-  <header>
+        
+  <article class="post">
+    <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/08/new-module-pwnedpasscheck/">New Module: PwnedPassCheck</a></h2>
+      <h2><a href="/blog/2019/08/new-module-pwnedpasscheck/">New Module: PwnedPassCheck</a></h2>
     
     
-        <p>Checking if passwords or hashes have been compromised.</p>
+      <p>Checking if passwords or hashes have been compromised.</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-08-13 00:00:00 &#43;0000 UTC">
-      August 13, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-08-13 00:00:00 &#43;0000 UTC">August 13, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  <section id="socnet-share">
-    
+    <div id="socnet-share">
+      
 
 
 
 
 
-  </section>
-  
-
-  <div class="content">
-    <p><a href="https://twitter.com/troyhunt">Troy Hunt's</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to separately check if a specific password was exposed in a breach. As of version 5, the data set contains over half a billion compromised passwords and the number of times they've been seen in data breaches. My <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a> module lets you query that data easily via PowerShell.</p>
+    </div>
+    <div class="content">
+      
+      <p><a href="https://twitter.com/troyhunt">Troy Hunt&rsquo;s</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to separately check if a specific password was exposed in a breach. As of version 5, the data set contains over half a billion compromised passwords and the number of times they&rsquo;ve been seen in data breaches. My <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a> module lets you query that data easily via PowerShell.</p>
 <h1 id="this-sounds-sketchy">This Sounds Sketchy</h1>
 
 
@@ -222,14 +189,14 @@
   
   
   
-  <div class="lessfancybox">
-    <a data-fancybox="" href="/img/2019/08/all-your-passwords-are-belong.jpg" data-caption="All Your Passwords Are Belong To Us"><img src="/img/2019/08/all-your-passwords-are-belong.jpg" alt="All Your Passwords Are Belong To Us"></a>
-  </div>
+  <figure>
+    <a data-fancybox="" href="/img/2019/08/all-your-passwords-are-belong.jpg" data-caption="All Your Passwords Are Belong To Us"><img src="https://www.dvolve.net/img/2019/08/all-your-passwords-are-belong.jpg" alt="All Your Passwords Are Belong To Us"></a>
+  </figure>
 
 
-<p>If you're thinking that sending your password or even just its hash to a random website on the Internet just to check if it has been compromised seems like a good way to <em>become compromised</em>, you're absolutely right. But since version 2, Troy with the help of <a href="https://twitter.com/icyapril">Junade Ali</a> from <a href="https://www.cloudflare.com/">CloudFlare</a> came up with a way to let you query the data safely and still remain anonymous using a model called <a href="https://new.blog.cloudflare.com/validating-leaked-passwords-with-k-anonymity/">k-Anonymity</a>.</p>
-<p>Essentially, you never send your password or its full hash to the API server. Instead you send only the first 5 characters of the hash and the server sends back a list of hashes with a matching prefix. You can then check the list locally for the actual result. Not only does this prevent the server operator from getting your password/hash, it's also significantly faster to query than a single multi-gigabyte text file.</p>
-<p>If you're still unconvinced, you'll be happy to know that this module supports checking against alternative API sources or even filesystem paths. So you can host your own internal copy of the API or even just toss the files on a server somewhere and query that. The official API only supports SHA-1 hashes, so this is actually a requirement if you want to check NTLM hashes unless someone else decides to host a public NTLM version.</p>
+<p>If you&rsquo;re thinking that sending your password or even just its hash to a random website on the Internet just to check if it has been compromised seems like a good way to <em>become compromised</em>, you&rsquo;re absolutely right. But since version 2, Troy with the help of <a href="https://twitter.com/icyapril">Junade Ali</a> from <a href="https://www.cloudflare.com/">CloudFlare</a> came up with a way to let you query the data safely and still remain anonymous using a model called <a href="https://new.blog.cloudflare.com/validating-leaked-passwords-with-k-anonymity/">k-Anonymity</a>.</p>
+<p>Essentially, you never send your password or its full hash to the API server. Instead you send only the first 5 characters of the hash and the server sends back a list of hashes with a matching prefix. You can then check the list locally for the actual result. Not only does this prevent the server operator from getting your password/hash, it&rsquo;s also significantly faster to query than a single multi-gigabyte text file.</p>
+<p>If you&rsquo;re still unconvinced, you&rsquo;ll be happy to know that this module supports checking against alternative API sources or even filesystem paths. So you can host your own internal copy of the API or even just toss the files on a server somewhere and query that. The official API only supports SHA-1 hashes, so this is actually a requirement if you want to check NTLM hashes unless someone else decides to host a public NTLM version.</p>
 <h1 id="show-me-the-code-already">Show Me The Code Already</h1>
 
 
@@ -250,44 +217,44 @@
   
   
   
-  <div class="lessfancybox">
-    <a data-fancybox="" href="/img/2019/08/cheering_minions.gif" data-caption="Cheering Minions"><img src="/img/2019/08/cheering_minions.gif" alt="Cheering Minions"></a>
-  </div>
+  <figure>
+    <a data-fancybox="" href="/img/2019/08/cheering_minions.gif" data-caption="Cheering Minions"><img src="https://www.dvolve.net/img/2019/08/cheering_minions.gif" alt="Cheering Minions"></a>
+  </figure>
 
 
-<p>First grab the module from the <a href="https://www.powershellgallery.com/packages/PwnedPassCheck">PowerShell gallery</a>. It requires a minimum of PowerShell 3.0, but will happily run cross-platform on PowerShell Core as well. If you're running an ancient version of PowerShell that doesn't include <code>Install-Module</code>, see the <a href="https://github.com/rmbolger/PwnedPassCheck/blob/master/README.md">readme</a> for alternative instructions.</p>
+<p>First grab the module from the <a href="https://www.powershellgallery.com/packages/PwnedPassCheck">PowerShell gallery</a>. It requires a minimum of PowerShell 3.0, but will happily run cross-platform on PowerShell Core as well. If you&rsquo;re running an ancient version of PowerShell that doesn&rsquo;t include <code>Install-Module</code>, see the <a href="https://github.com/rmbolger/PwnedPassCheck/blob/master/README.md">readme</a> for alternative instructions.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Install-Module PwnedPassCheck
 </code></pre></div><h2 id="checking-passwords">Checking Passwords</h2>
-<p>The most basic thing you can do is pass a string to <code>Test-PwnedPassword</code>. <em>Don't use a real password this way because it can be saved in your command history.</em></p>
+<p>The most basic thing you can do is pass a string to <code>Test-PwnedPassword</code>. <em>Don&rsquo;t use a real password this way because it can be saved in your command history.</em></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">PS C:\&gt; Test-PwnedPassword &#39;password&#39;
 
 Label Hash                                     SeenCount
 ----- ----                                     ---------
       5BAA61E4C9B93F3F0682250B6CF8331B7EE68FD8   3730471
 </code></pre></div><p>The output will display the hash of that string along with the &ldquo;seen count&rdquo; which is how many times that password has been seen across all of the data breaches. So popular/insecure passwords like &lsquo;password&rsquo; are inevitably going to have a huge seen count. Ignore the Label column for now.</p>
-<p>When you're ready to test a real password, use something like <code>Read-Host</code> or <code>Get-Credential</code> to enter it interactively so it doesn't show up in your command history. <code>Test-PwnedPassword</code> will accept String, SecureString, and PSCredential objects. You can also pass a bunch of them at once via the pipeline.</p>
+<p>When you&rsquo;re ready to test a real password, use something like <code>Read-Host</code> or <code>Get-Credential</code> to enter it interactively so it doesn&rsquo;t show up in your command history. <code>Test-PwnedPassword</code> will accept String, SecureString, and PSCredential objects. You can also pass a bunch of them at once via the pipeline.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$pass = Read-Host -Prompt <span style="color:#e6db74">&#39;Password&#39;</span>
 $secPass = Read-Host -Prompt <span style="color:#e6db74">&#39;Secure Password&#39;</span> -AsSecureString
 $cred = Get-Credential  <span style="color:#75715e"># The username in a credential is ignored</span>
 
 $pass,$secPass,$cred | Test-PwnedPassword
 </code></pre></div><h2 id="checking-hashes">Checking Hashes</h2>
-<p><code>Test-PwnedPassword</code> is fine when you know the clear text for the passwords you want to check. But for admins who want to audit the passwords of an existing userbase, they (hopefully) only have access to the password hashes. That's where <code>Test-PwnedHash</code> and <code>Test-PwnedHashBytes</code> come in handy.</p>
-<p>The only restriction on checking hashes at the moment is that they must be either unsalted SHA-1 or NTLM hashes. The official API only supports SHA-1 and both SHA-1 and NTLM versions are available for download to check against locally. It's possible there may be other hash versions in the future, but those are the limitations for now.</p>
-<p><code>Test-PwnedHash</code> and <code>Test-PwnedHashBytes</code> will accept hashes as a hex-encoded string (case-insensitive) or byte array respectively. If you don't have an existing set of password hashes to use, the module has <code>Get-SHA1Hash</code> and <code>Get-NTLMHash</code> helper functions you can test with.</p>
+<p><code>Test-PwnedPassword</code> is fine when you know the clear text for the passwords you want to check. But for admins who want to audit the passwords of an existing userbase, they (hopefully) only have access to the password hashes. That&rsquo;s where <code>Test-PwnedHash</code> and <code>Test-PwnedHashBytes</code> come in handy.</p>
+<p>The only restriction on checking hashes at the moment is that they must be either unsalted SHA-1 or NTLM hashes. The official API only supports SHA-1 and both SHA-1 and NTLM versions are available for download to check against locally. It&rsquo;s possible there may be other hash versions in the future, but those are the limitations for now.</p>
+<p><code>Test-PwnedHash</code> and <code>Test-PwnedHashBytes</code> will accept hashes as a hex-encoded string (case-insensitive) or byte array respectively. If you don&rsquo;t have an existing set of password hashes to use, the module has <code>Get-SHA1Hash</code> and <code>Get-NTLMHash</code> helper functions you can test with.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$hashHex = Get-SHA1Hash <span style="color:#e6db74">&#39;P@ssword1&#39;</span>
 Test-PwnedHash $hashHex
 
 $hashBytes = Get-SHA1Hash <span style="color:#e6db74">&#39;P@ssword1&#39;</span> -AsBytes
 Test-PwnedHashBytes $hashBytes
 </code></pre></div><h1 id="querying-locally-and-ntlm">Querying Locally and NTLM</h1>
-<p>For those who can't or won't send even the first 5 characters of a password hash to a third party website, it's fairly easy to host your own local copy. This is also necessary if you want to check NTLM hashes because the official API only supports SHA-1.</p>
+<p>For those who can&rsquo;t or won&rsquo;t send even the first 5 characters of a password hash to a third party website, it&rsquo;s fairly easy to host your own local copy. This is also necessary if you want to check NTLM hashes because the official API only supports SHA-1.</p>
 <p>The <a href="https://haveibeenpwned.com/Passwords">Pwned Passwords</a> page has links to download the <a href="https://www.7-zip.org/">7-zip</a> compressed files. Download the one ordered by hash for hash type you want to query against and extract it. The version 5 files are roughly 20 GB once extracted so make sure you have enough disk space.</p>
 <h2 id="splitting-the-file">Splitting The File</h2>
-<p>This is the largest drawback to querying locally. But you only have to do it once. 5 hexadecimal characters have a total of 16^5 (1,048,576) combinations which makes splitting the file by hand impractical. Each line is in the form <code>&lt;hash&gt;:&lt;count&gt;</code> except the occasional line that has the string &ldquo;NULL&rdquo;. So for each line you need to make sure it's not NULL, split the line into its prefix (first 5 characters) and suffix (the rest of the line), then append the suffix to a file named with the prefix. It's not a super difficult scripting exercise, but the size of the original file and the quantity of resulting files makes it a fairly storage I/O intensive process. So if your disk is slow, it may take a while.</p>
-<p>I've added a <a href="https://github.com/rmbolger/PwnedPassCheck/tree/master/Split-Scripts">Split-Scripts folder</a> to the module's GitHub repository that contains a couple scripts I used to split the file for my own purposes on various systems. If you end up writing your own script that would be useful to others, feel free to contribute to the project and send a pull request.</p>
+<p>This is the largest drawback to querying locally. But you only have to do it once. 5 hexadecimal characters have a total of 16^5 (1,048,576) combinations which makes splitting the file by hand impractical. Each line is in the form <code>&lt;hash&gt;:&lt;count&gt;</code> except the occasional line that has the string &ldquo;NULL&rdquo;. So for each line you need to make sure it&rsquo;s not NULL, split the line into its prefix (first 5 characters) and suffix (the rest of the line), then append the suffix to a file named with the prefix. It&rsquo;s not a super difficult scripting exercise, but the size of the original file and the quantity of resulting files makes it a fairly storage I/O intensive process. So if your disk is slow, it may take a while.</p>
+<p>I&rsquo;ve added a <a href="https://github.com/rmbolger/PwnedPassCheck/tree/master/Split-Scripts">Split-Scripts folder</a> to the module&rsquo;s GitHub repository that contains a couple scripts I used to split the file for my own purposes on various systems. If you end up writing your own script that would be useful to others, feel free to contribute to the project and send a pull request.</p>
 <h2 id="hosting-the-files">Hosting The Files</h2>
-<p>When you finish splitting the file, you should have a folder with 1,048,576 files named <code>00000</code> through <code>FFFFF</code> that are each roughly 20 KB in size. You can either leave them on the filesystem if you're doing the checks from the same system, move them to a file share, or host them on an internal web server. If they're on a web server, make sure it's configured to serve the files as <code>text/plain</code> MIME type. You should be able to go to a URL like <code>http://pwned.example.com/range/00000</code> in a browser and see the contents of the file.</p>
+<p>When you finish splitting the file, you should have a folder with 1,048,576 files named <code>00000</code> through <code>FFFFF</code> that are each roughly 20 KB in size. You can either leave them on the filesystem if you&rsquo;re doing the checks from the same system, move them to a file share, or host them on an internal web server. If they&rsquo;re on a web server, make sure it&rsquo;s configured to serve the files as <code>text/plain</code> MIME type. You should be able to go to a URL like <code>http://pwned.example.com/range/00000</code> in a browser and see the contents of the file.</p>
 <h2 id="running-local-queries">Running Local Queries</h2>
 <p>All of the <code>Test-*</code> functions take an optional <code>-ApiRoot</code> parameter that will override the default pwnedpasswords.com URL. The parameter will accept URLs or filesystem/UNC paths. So any of the following examples would work. Just make sure to include the entire path except for the 5 character hash prefix.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># These work the same way using Test-PwnedHash and Test-PwnedHashBytes</span>
@@ -295,166 +262,132 @@ Test-PwnedPassword <span style="color:#e6db74">&#39;password&#39;</span> -ApiRoo
 Test-PwnedPassword <span style="color:#e6db74">&#39;password&#39;</span> -ApiRoot <span style="color:#e6db74">&#39;\\server\share\pwned\&#39;</span>
 Test-PwnedPassword <span style="color:#e6db74">&#39;password&#39;</span> -ApiRoot <span style="color:#e6db74">&#39;http://pwned.example.com/range/&#39;</span>
 </code></pre></div><h2 id="querying-ntlm">Querying NTLM</h2>
-<p>For NTLM API sources, you'll need to set the <code>-HashType NTLM</code> parameter with <code>Test-PwnedPassword</code> in addition to the <code>-ApiRoot</code> parameter. The <code>Test-PwnedHash*</code> functions assume the hash is already of the correct type. So no change is needed for those other than setting <code>-ApiRoot</code>.</p>
+<p>For NTLM API sources, you&rsquo;ll need to set the <code>-HashType NTLM</code> parameter with <code>Test-PwnedPassword</code> in addition to the <code>-ApiRoot</code> parameter. The <code>Test-PwnedHash*</code> functions assume the hash is already of the correct type. So no change is needed for those other than setting <code>-ApiRoot</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Test-PwnedPassword <span style="color:#e6db74">&#39;password&#39;</span> -ApiRoot <span style="color:#e6db74">&#39;C:\temp\pwned\&#39;</span> -HashType <span style="color:#e6db74">&#39;NTLM&#39;</span>
 Get-NTLMHash <span style="color:#e6db74">&#39;password&#39;</span> | Test-PwnedHash -ApiRoot <span style="color:#e6db74">&#39;http://pwned.example.com/range/&#39;</span>
 </code></pre></div><h1 id="wrapping-up">Wrapping Up</h1>
-<p>Huge thanks to Troy Hunt for his tireless work maintaining <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> and the rest of his contributions to the larger security community making people safer online. I hope this module helps add to that in some small way. I'm also planning on adding another post soon that demonstrates how to easily do a password audit against Active Directory using this module, so be on the lookout for that.</p>
+<p>Huge thanks to Troy Hunt for his tireless work maintaining <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> and the rest of his contributions to the larger security community making people safer online. I hope this module helps add to that in some small way. I&rsquo;m also planning on adding another post soon that demonstrates how to easily do a password audit against Active Directory using this module, so be on the lookout for that.</p>
 
-  </div>
-  <footer>
-    <ul class="stats">
+    </div>
+    <footer>
+      <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/pwnedpasscheck">PwnedPassCheck</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/pwnedpasscheck/">PwnedPassCheck</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-
-<div class="pagination">
-  
-    <a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" class="button"><div class="previous"><div>Workaround For AD PSDrive Bug In Server 2019</div></div></a>
-  
-  
-    <a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/" class="button"><div class="next"><div>Auditing Active Directory Passwords With PwnedPassCheck</div></div></a>
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
 </div>
 
+    </footer>
+  </article>
+  
+    
+
+  
+  <div class="pagination">
+    
+      <a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/" class="button left"><span>Auditing Active Directory Passwords With PwnedPassCheck</span></a>
+    
+    
+      <a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" class="button right"><span>Workaround For AD PSDrive Bug In Server 2019</span></a>
+    
+  </div>
 
       </main>
       <section id="site-sidebar">
   
-  <section id="recent-posts">
-    <header>
-      <h1>Recent posts</h1>
-    </header>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
+    <section id="recent-posts">
       <header>
-        <h1><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h1>
-        <time class="published" datetime="">December 17, 2019</time>
+        <h1>Recent Posts</h1>
       </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
-        <time class="published" datetime="">December 10, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
-        <time class="published" datetime="">November 12, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
-        <time class="published" datetime="">November 6, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h1>
-        <time class="published" datetime="">October 26, 2019</time>
-      </header>
-    </article>
-    
-    
-      <a href="/blog/" class="button">See more</a>
-    
-  </section>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
+          <time class="published" datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
+          <time class="published" datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
+          <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h2>
+          <time class="published" datetime="2019-11-06 00:00:00 &#43;0000 UTC">November 6, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
+          <time class="published" datetime="2019-10-26 00:00:00 &#43;0000 UTC">October 26, 2019</time>
+        </header>
+      </article>
+      
+      
+        <footer>
+          <a href="/blog/" class="button">See More</a>
+        </footer>
+      
+    </section>
   
 
   
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">Categories</a></h1>
+          <h1><a href="/categories">categories</a></h1>
         </header>
         <ul>
           
-            
-          
           
           <li>
-            
               <a href="/categories/posh-acme/">posh-acme<span class="count">9</span></a>
-            
           
           <li>
-            
               <a href="/categories/active-directory/">active-directory<span class="count">3</span></a>
-            
           
           <li>
-            
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">2</span></a>
-            
           
           <li>
-            
               <a href="/categories/pwnedpasscheck/">pwnedpasscheck<span class="count">2</span></a>
-            
           
           <li>
-            
               <a href="/categories/infoblox/">infoblox<span class="count">1</span></a>
-            
           
           <li>
-            
               <a href="/categories/posh-ibcli/">posh-ibcli<span class="count">1</span></a>
-            
           
           </li>
         </ul>
@@ -462,42 +395,23 @@ Get-NTLMHash <span style="color:#e6db74">&#39;password&#39;</span> | Test-PwnedH
     
   
 
-
   
 </section>
 
       <footer id="site-footer">
   
   <p class="copyright">
-    
-      &copy; 2019
-      
-        Ryan Bolger
-      
-    . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
+    © 2019 Ryan Bolger
+      <br>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
-      
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/ini.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/powershell.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/cs.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/plaintext.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-
-
-  
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
-  <script src=/js/util.js></script>
-  <script src=/js/main.js></script>
-  <script src=/js/add-on.js></script>
-  
-
-
-
-
+      <script src="/js/highlight.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -508,7 +422,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
     </div>
   </body>

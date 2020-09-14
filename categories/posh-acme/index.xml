@@ -17,8 +17,8 @@
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/</guid>
-      <description>If you&#39;ve ever had to setup an HTTPS website in the past couple years, you&#39;ve most likely heard of Let&#39;s Encrypt which is arguably the largest public certificate authority in the world. Not only are their certificates free, the entire ordering and renewal process can be completely automated using a recently finalized protocol standard known as ACME (RFC 8555).
-But there are endless apps and services other than HTTP based web sites that can also use TLS certificates.</description>
+      <description>If you&amp;rsquo;ve ever had to setup an HTTPS website in the past couple years, you&amp;rsquo;ve most likely heard of Let&amp;rsquo;s Encrypt which is arguably the largest public certificate authority in the world. Not only are their certificates free, the entire ordering and renewal process can be completely automated using a recently finalized protocol standard known as ACME (RFC 8555).
+But there are endless apps and services other than HTTP based web sites that can also use TLS certificates.</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@
       <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/11/posh-acme-3.11.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.11.0. The Install-PACertificate function now has optional parameters that allow you to specify the Windows certificate store location and name in case the defaults (LocalMachine\My) aren&#39;t what you need. You can also use the -NotExportable switch to mark the certificate as non-exportable. There&#39;s also a new function called Revoke-PAAuthorization which is mostly useful for testing a new configuration. It allows you to revoke one or more existing authorizations associated with an account so that when you generate a new certificate, the ACME server will require a full re-validation for those names.</description>
+      <description>Just shipped a new Posh-ACME release, version 3.11.0. The Install-PACertificate function now has optional parameters that allow you to specify the Windows certificate store location and name in case the defaults (LocalMachine\My) aren&amp;rsquo;t what you need. You can also use the -NotExportable switch to mark the certificate as non-exportable. There&amp;rsquo;s also a new function called Revoke-PAAuthorization which is mostly useful for testing a new configuration. It allows you to revoke one or more existing authorizations associated with an account so that when you generate a new certificate, the ACME server will require a full re-validation for those names.</description>
     </item>
     
     <item>
@@ -45,7 +45,7 @@
       <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/11/posh-acme-3.10.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.10.0. There&#39;s a critical fix in this version for a problem introduced by a recent change in Let&#39;s Encrypt&#39;s ACME implementation that breaks renewals. A new DNS plugin for HurricaneElectric was added and the Azure plugin now supports certificate based authentication in addition to the existing methods. There&#39;s also additional guidance in the tutorial on renewals and deployment.
+      <description>Just shipped a new Posh-ACME release, version 3.10.0. There&amp;rsquo;s a critical fix in this version for a problem introduced by a recent change in Let&amp;rsquo;s Encrypt&amp;rsquo;s ACME implementation that breaks renewals. A new DNS plugin for HurricaneElectric was added and the Azure plugin now supports certificate based authentication in addition to the existing methods. There&amp;rsquo;s also additional guidance in the tutorial on renewals and deployment.
 Updated versions can be found in the PowerShell Gallery or GitHub.</description>
     </item>
     
@@ -55,9 +55,9 @@ Updated versions can be found in the PowerShell Gallery or GitHub.</description>
       <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/10/posh-acme-3.9.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.9.0. There&#39;s a new DNS plugin for UnoEuro thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&#39;t have edit permissions to all zones on an account.
+      <description>Just shipped a new Posh-ACME release, version 3.9.0. There&amp;rsquo;s a new DNS plugin for UnoEuro thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&amp;rsquo;t have edit permissions to all zones on an account.
 Updated versions can be found in the PowerShell Gallery or GitHub. Installation instructions are in the Readme.
-Changelog  Added new DNS plugin UnoEuro (Thanks @OrKarstoft) Fix for Cloudflare plugin not working properly when limited scope token didn&#39;t have at least read permissions to all zones on an account.</description>
+Changelog  Added new DNS plugin UnoEuro (Thanks @OrKarstoft) Fix for Cloudflare plugin not working properly when limited scope token didn&amp;rsquo;t have at least read permissions to all zones on an account.</description>
     </item>
     
     <item>
@@ -66,7 +66,7 @@ Changelog  Added new DNS plugin UnoEuro (Thanks @OrKarstoft) Fix for Cloudflare 
       <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/09/posh-acme-3.8.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.8.0. Set-PAOrder now supports modifying some order properties that don&#39;t require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with more than 100 domains.</description>
+      <description>Just shipped a new Posh-ACME release, version 3.8.0. Set-PAOrder now supports modifying some order properties that don&amp;rsquo;t require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with more than 100 domains.</description>
     </item>
     
     <item>
@@ -75,7 +75,7 @@ Changelog  Added new DNS plugin UnoEuro (Thanks @OrKarstoft) Fix for Cloudflare 
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/09/posh-acme-3.7.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, Submit-Renewal now has an optional -PluginArgs parameter for cases when you need to specify new values for a plugin but don&#39;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&#39;re using is purposefully short-lived.
+      <description>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, Submit-Renewal now has an optional -PluginArgs parameter for cases when you need to specify new values for a plugin but don&amp;rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&amp;rsquo;re using is purposefully short-lived.
 Updated versions can be found in the PowerShell Gallery or GitHub.</description>
     </item>
     
@@ -85,7 +85,7 @@ Updated versions can be found in the PowerShell Gallery or GitHub.</description>
       <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/08/posh-acme-3.6.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for Domeneshop, Dreamhost, EasyDNS, and freedns.afraid.org. The other big addition is a new function called Invoke-HttpChallengeListener which can be super handy for people doing HTTP challenges. It&#39;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&#39;t have manually deal with making the challenge files available.</description>
+      <description>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for Domeneshop, Dreamhost, EasyDNS, and freedns.afraid.org. The other big addition is a new function called Invoke-HttpChallengeListener which can be super handy for people doing HTTP challenges. It&amp;rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&amp;rsquo;t have manually deal with making the challenge files available.</description>
     </item>
     
     <item>
@@ -94,7 +94,7 @@ Updated versions can be found in the PowerShell Gallery or GitHub.</description>
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/blog/2019/06/posh-acme-3.5.0/</guid>
-      <description>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a recent change in Let&#39;s Encrypt&#39;s ACME implementation which now more strictly adheres to the recently finalized RFC 8555 spec. The Let&#39;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.
+      <description>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a recent change in Let&amp;rsquo;s Encrypt&amp;rsquo;s ACME implementation which now more strictly adheres to the recently finalized RFC 8555 spec. The Let&amp;rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.
 Updated versions can be found in the PowerShell Gallery or GitHub.</description>
     </item>
     

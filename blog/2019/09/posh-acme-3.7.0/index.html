@@ -6,112 +6,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
-  <meta name="generator" content="Hugo 0.60.1" />
-  <meta itemprop="name" content="Posh-ACME 3.7.0">
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME 3.7.0">
 <meta itemprop="description" content="New param in Submit-Renewal and misc fixes">
-<meta itemprop="datePublished" content="2019-09-18T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-09-18T00:00:00&#43;00:00" />
+<meta itemprop="datePublished" content="2019-09-18T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-09-18T00:00:00+00:00" />
 <meta itemprop="wordCount" content="181">
 
 
 
 <meta itemprop="keywords" content="powershell," />
-  <meta property="og:title" content="Posh-ACME 3.7.0" />
+<meta property="og:title" content="Posh-ACME 3.7.0" />
 <meta property="og:description" content="New param in Submit-Renewal and misc fixes" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.dvolve.net/blog/2019/09/posh-acme-3.7.0/" />
 <meta property="article:published_time" content="2019-09-18T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-09-18T00:00:00+00:00" />
-
-  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posh-ACME 3.7.0"/>
 <meta name="twitter:description" content="New param in Submit-Renewal and misc fixes"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
-  
-
-  <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
-  
-    
-      <link rel="stylesheet" href="/css/normalize.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
-      
-      
-      <link rel="stylesheet" href="/css/main.min.def756f4cd28354005a37cedc94c36d695bb1b0271e40edf1acf67d865b9ff70.css" integrity="sha256-3vdW9M0oNUAFo3ztyUw21pW7GwJx5A7fGs9n2GW5/3A=">
-      <link rel="stylesheet" href="/css/add-on.css">
-    
-  
-  
-  
-  
-    
-  
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
+          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
     
+
 <header id="site-header">
   <nav id="site-nav">
     <h1 class="nav-title">
-      <a href="/">
+      <a href="/" class="nav">
         
-          
-            Blog
-          
+          Blog
         
       </a>
     </h1>
-    <menu id="site-nav-menu" class="flyout-menu">
+    <menu id="site-nav-menu" class="flyout-menu menu">
       
         
           
-          
-            <a href="/" class="link"><i class='fa fa-home'></i> Home</a>
-          
-        
-      
-        
-          
-          
-            <a href="/about/" class="link"><i class='far fa-id-card'></i> About</a>
-          
+          <a href="/" class="nav link"><i class='fa fa-home'></i> Home</a>
         
       
         
           
-          
-            <a href="/blog/" class="link"><i class='far fa-newspaper'></i> Blog</a>
-          
+          <a href="/about/" class="nav link"><i class='far fa-id-card'></i> About</a>
         
       
         
           
+          <a href="/blog/" class="nav link"><i class='far fa-newspaper'></i> Blog</a>
+        
+      
+        
           
-            <a href="/categories/" class="link"><i class='fas fa-sitemap'></i> Categories</a>
-          
+          <a href="/categories/" class="nav link"><i class='fas fa-sitemap'></i> Categories</a>
         
       
       
-      
-
+      <a href="#search-input" class="nav link search-toggle"><i class="fas fa-search">&nbsp;</i>Search</a>
     </menu>
+    <a href="#search-input" class="nav search-toggle"><i class="fas fa-search fa-2x">&nbsp;</i></a>
     
-
     
-    
-    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+    <a href="#site-nav" class="nav nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
   </nav>
+  <menu id="search" class="menu"><input id="search-input" class="search-input menu"></input><div id="search-results" class="search-results menu"></div></menu>
   
   
 </header>
 
     <div id="wrapper">
-      <section id="site-intro">
-  <a href="/"><img src="/img/main/logo.jpg" class="circle" width="" alt="Ryan Bolger" /></a>
+      <section id="site-intro" >
+  <a href="/"><img src="https://www.dvolve.net/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
   <header>
     <h1>Ryan Bolger</h1>
   </header>
@@ -161,6 +129,7 @@
 
 
 
+
 <li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
 
 
@@ -171,201 +140,165 @@
 </section>
 
       <main id="site-main">
-        <article class="post">
-  <header>
+        
+  <article class="post">
+    <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h2>
+      <h2><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h2>
     
     
-        <p>New param in Submit-Renewal and misc fixes</p>
+      <p>New param in Submit-Renewal and misc fixes</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-09-18 00:00:00 &#43;0000 UTC">
-      September 18, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-09-18 00:00:00 &#43;0000 UTC">September 18, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  <section id="socnet-share">
-    
+    <div id="socnet-share">
+      
 
 
 
 
 
-  </section>
-  
-
-  <div class="content">
-    <p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don't want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you're using is purposefully short-lived.</p>
+    </div>
+    <div class="content">
+      
+      <p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don&rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&rsquo;re using is purposefully short-lived.</p>
 <p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li>Submit-Renewal now has a PluginArgs parameter to make it easier to update plugin credentials without needing to create a new order from scratch. (Thanks @matt-FFFFFF)</li>
-<li>The FriendlyName parameter in New-PACertificate and New-PAOrder now defaults to the certificate's primary name instead of an empty string to avoid a Windows bug that can occur when installing the generated PFX files.</li>
+<li>The FriendlyName parameter in New-PACertificate and New-PAOrder now defaults to the certificate&rsquo;s primary name instead of an empty string to avoid a Windows bug that can occur when installing the generated PFX files.</li>
 <li>Fixed Windows plugin issue when using WinZoneScope and not all zones have that scope (#168)</li>
-<li>Fixed an internal bug with Export-PACertFiles that luckily didn't cause problems due to PowerShell variable scoping rules.</li>
+<li>Fixed an internal bug with Export-PACertFiles that luckily didn&rsquo;t cause problems due to PowerShell variable scoping rules.</li>
 <li>Fixed a typo in the Cloudflare guide examples. (Thanks @mccanney)</li>
 </ul>
 
-  </div>
-  <footer>
-    <ul class="stats">
+    </div>
+    <footer>
+      <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-
-<div class="pagination">
-  
-    <a href="/blog/2019/08/posh-ibwapi-3.1.0/" class="button"><div class="previous"><div>Posh-IBWAPI 3.1.0</div></div></a>
-  
-  
-    <a href="/blog/2019/09/posh-acme-3.8.0/" class="button"><div class="next"><div>Posh-ACME 3.8.0</div></div></a>
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
 </div>
 
+    </footer>
+  </article>
+  
+    
+
+  
+  <div class="pagination">
+    
+      <a href="/blog/2019/09/posh-acme-3.8.0/" class="button left"><span>Posh-ACME 3.8.0</span></a>
+    
+    
+      <a href="/blog/2019/08/posh-ibwapi-3.1.0/" class="button right"><span>Posh-IBWAPI 3.1.0</span></a>
+    
+  </div>
 
       </main>
       <section id="site-sidebar">
   
-  <section id="recent-posts">
-    <header>
-      <h1>Recent posts</h1>
-    </header>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
+    <section id="recent-posts">
       <header>
-        <h1><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h1>
-        <time class="published" datetime="">December 17, 2019</time>
+        <h1>Recent Posts</h1>
       </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
-        <time class="published" datetime="">December 10, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
-        <time class="published" datetime="">November 12, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
-        <time class="published" datetime="">November 6, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h1>
-        <time class="published" datetime="">October 26, 2019</time>
-      </header>
-    </article>
-    
-    
-      <a href="/blog/" class="button">See more</a>
-    
-  </section>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
+          <time class="published" datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
+          <time class="published" datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
+          <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h2>
+          <time class="published" datetime="2019-11-06 00:00:00 &#43;0000 UTC">November 6, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
+          <time class="published" datetime="2019-10-26 00:00:00 &#43;0000 UTC">October 26, 2019</time>
+        </header>
+      </article>
+      
+      
+        <footer>
+          <a href="/blog/" class="button">See More</a>
+        </footer>
+      
+    </section>
   
 
   
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">Categories</a></h1>
+          <h1><a href="/categories">categories</a></h1>
         </header>
         <ul>
           
-            
-          
           
           <li>
-            
               <a href="/categories/posh-acme/">posh-acme<span class="count">9</span></a>
-            
           
           <li>
-            
               <a href="/categories/active-directory/">active-directory<span class="count">3</span></a>
-            
           
           <li>
-            
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">2</span></a>
-            
           
           <li>
-            
               <a href="/categories/pwnedpasscheck/">pwnedpasscheck<span class="count">2</span></a>
-            
           
           <li>
-            
               <a href="/categories/infoblox/">infoblox<span class="count">1</span></a>
-            
           
           <li>
-            
               <a href="/categories/posh-ibcli/">posh-ibcli<span class="count">1</span></a>
-            
           
           </li>
         </ul>
@@ -373,42 +306,23 @@
     
   
 
-
   
 </section>
 
       <footer id="site-footer">
   
   <p class="copyright">
-    
-      &copy; 2019
-      
-        Ryan Bolger
-      
-    . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
+    © 2019 Ryan Bolger
+      <br>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
-      
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/ini.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/powershell.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/cs.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/plaintext.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-
-
-  
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
-  <script src=/js/util.js></script>
-  <script src=/js/main.js></script>
-  <script src=/js/add-on.js></script>
-  
-
-
-
-
+      <script src="/js/highlight.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -419,7 +333,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
     </div>
   </body>

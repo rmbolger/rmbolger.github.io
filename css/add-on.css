@@ -5,6 +5,10 @@
   and follow the formatting and style given.
 */
 
+::selection {
+  background: rgb(179, 212, 252)
+}
+
 /* 46 */
 body {
   background: #242930;
@@ -27,8 +31,6 @@ a:hover {
   color: #5195c5
   */
   color: #288ad0
-  /*
-  */
 }
 
 /* 88 */
@@ -81,14 +83,34 @@ label {
   color: #ffffff;
 }
 
+/* 206 */
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #288ad0;
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  -ms-transition: border-color 0.3s ease-in-out;
+  -o-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+}
+input:focus,
+input:active,
+select:focus,
+select:active,
+textarea:focus,
+textarea:active {
+  border: solid 1px #288ad0;
+}
+
 /* 240 */
 table {
   color: #242930
 }
 
-/* 273 */
+/* 271 */
 @media (min-width : 768px) {
-  table>tbody>tr:hover {
+  table > tbody > tr:hover {
     background-color: #288ad0
   }
 }
@@ -108,6 +130,12 @@ table {
   padding: 0.5em 0.5em 0 0.5em;
   */
   width: fit-content;
+}
+
+/* 523 */
+.button:hover {
+  border: solid 1px #288ad0;
+  color: #288ad0 !important;
 }
 
 /* 1373 */

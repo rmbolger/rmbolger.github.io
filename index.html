@@ -6,102 +6,108 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
-  <meta name="generator" content="Hugo 0.60.1" />
-  <meta itemprop="name" content="Adventures in Tech">
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Adventures in Tech">
 <meta itemprop="description" content="">
-  <meta property="og:title" content="Adventures in Tech" />
+<meta property="og:title" content="Adventures in Tech" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.dvolve.net/" />
 <meta property="og:updated_time" content="2019-12-17T00:00:00+00:00" />
-
-  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Adventures in Tech"/>
 <meta name="twitter:description" content=""/>
 <meta name="twitter:site" content="@rmbolger"/>
 
-  
-
-  <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
-  
-    
-      <link rel="stylesheet" href="/css/normalize.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
-      
-      
-      <link rel="stylesheet" href="/css/main.min.def756f4cd28354005a37cedc94c36d695bb1b0271e40edf1acf67d865b9ff70.css" integrity="sha256-3vdW9M0oNUAFo3ztyUw21pW7GwJx5A7fGs9n2GW5/3A=">
-      <link rel="stylesheet" href="/css/add-on.css">
-    
-  
-  
-  
-  
-    
-  
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
+          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
     
+
+  <div id="theme-message" style="background-color:#3c3b3b;color:#f4f4f4;margin:auto auto;padding:.25em 2em;width:75%;">
+    <p style="text-align:center;">This message, related to the development of the theme, only displays on the
+      <code>localhost</code> homepage to notify you of any important theme changes.</p>
+      <hr>
+      <h5 style="color:#f4f4f4;text-align:center;"><i class="fas fa-exclamation-triangle"></i>Version 2.0.0 - July 20, 2020<i class="fas fa-exclamation-triangle"></i></h5>
+    <p>Below are the following changes that <em>could</em> be breaking changes for your site. For more details on any change, please refer to <a href="https://github.com/pacollins/hugo-future-imperfect-slim/pull/154">PR #154</a>.</p>
+<p>The major breaking change is:</p>
+<ol>
+<li>Users that have front matter that utilize <code>images</code> (backwards compatibility for <code>featured</code> and associated parameters still remains) <em>will</em> need to adjust from <code>[images]=&quot;SRC&quot;</code> to the new format.</li>
+</ol>
+<pre><code>[[images]]
+    src = &quot;&quot; // Link to image
+    alt = &quot;&quot; // Alt text for image
+    stretch = // Optional: See screenshots for referenced values and outcomes
+</code></pre><p>If you utilize any of the following, there <em>might</em> be a breaking:</p>
+<ol>
+<li>User custom templates <em>may</em> require adjustment.</li>
+<li>User custom i18n languages, or custom templates referencing i18n translations <em>may</em> require adjustment.</li>
+<li>User custom template for comments <em>will</em> require adjustment <em>if</em> it uses the theme&rsquo;s CSS and/or JS.</li>
+<li>User custom CSS <em>may</em> need to adjust due to a variety of class name changes and specificity changes.</li>
+</ol>
+<p>While I realize this is inconvenient, I hope that it is worth it to you in the long run. Thanks for using the theme, and feel free to submit issues as needed.</p>
+
+    <div style="text-align:center;">
+      <button onclick="removeBox()" class="button" style="color:#f4f4f4;margin-bottom:1em;">Close Notification Until Next Update</button>
+    </div>
+    <script>
+      if (window.location.href.indexOf('localhost:') < 1 || window.localStorage.getItem('HFIS-version') == '2.0.0') {
+        document.getElementsByTagName("body")[0].removeChild(document.getElementById("theme-message"));
+      }
+      function removeBox() {
+        window.localStorage.setItem('HFIS-version', '2.0.0');
+        document.getElementsByTagName("body")[0].removeChild(document.getElementById("theme-message"));
+      }
+    </script>
+  </div>
 <header id="site-header">
   <nav id="site-nav">
     <h1 class="nav-title">
-      <a href="/">
+      <a href="/" class="nav">
         
           Dvolve.net
         
       </a>
     </h1>
-    <menu id="site-nav-menu" class="flyout-menu">
+    <menu id="site-nav-menu" class="flyout-menu menu">
       
         
           
-          
-            <a href="/" class="link"><i class='fa fa-home'></i> Home</a>
-          
-        
-      
-        
-          
-          
-            <a href="/about/" class="link"><i class='far fa-id-card'></i> About</a>
-          
+          <a href="/" class="nav link"><i class='fa fa-home'></i> Home</a>
         
       
         
           
-          
-            <a href="/blog/" class="link"><i class='far fa-newspaper'></i> Blog</a>
-          
+          <a href="/about/" class="nav link"><i class='far fa-id-card'></i> About</a>
         
       
         
           
+          <a href="/blog/" class="nav link"><i class='far fa-newspaper'></i> Blog</a>
+        
+      
+        
           
-            <a href="/categories/" class="link"><i class='fas fa-sitemap'></i> Categories</a>
-          
+          <a href="/categories/" class="nav link"><i class='fas fa-sitemap'></i> Categories</a>
         
       
       
-      
-
+      <a href="#search-input" class="nav link search-toggle"><i class="fas fa-search">&nbsp;</i>Search</a>
     </menu>
+    <a href="#search-input" class="nav search-toggle"><i class="fas fa-search fa-2x">&nbsp;</i></a>
     
-
     
-    
-    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+    <a href="#site-nav" class="nav nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
   </nav>
+  <menu id="search" class="menu"><input id="search-input" class="search-input menu"></input><div id="search-results" class="search-results menu"></div></menu>
   
   
 </header>
 
     <div id="wrapper">
-      <section id="site-intro">
-  <a href="/"><img src="/img/main/logo.jpg" class="circle" width="" alt="Ryan Bolger" /></a>
+      <section id="site-intro" >
+  <a href="/"><img src="https://www.dvolve.net/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
   <header>
     <h1>Ryan Bolger</h1>
   </header>
@@ -153,6 +159,7 @@
 
 
 
+
 <li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
 
 
@@ -164,709 +171,589 @@
 
       <main id="site-main">
         
-        
-          <article class="post">
+  
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
+      <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
     
     
-        <p>LDAPS for free without needing internal PKI.</p>
+      <p>LDAPS for free without needing internal PKI.</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-12-17 00:00:00 &#43;0000 UTC">
-      December 17, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>If you've ever had to setup an HTTPS website in the past couple years, you've most likely heard of <a href="https://letsencrypt.org/">Let's Encrypt</a> which is arguably the <a href="https://www.eff.org/deeplinks/2016/10/lets-encrypt-largest-certificate-authority-web">largest public certificate authority in the world</a>. Not only are their certificates free, the entire ordering and renewal process can be completely automated using a recently finalized protocol standard known as <a href="https://tools.ietf.org/html/rfc8555">ACME (RFC 8555)</a>.</p>
+  <div class="content">
+    
+    
+    <p>If you&rsquo;ve ever had to setup an HTTPS website in the past couple years, you&rsquo;ve most likely heard of <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a> which is arguably the <a href="https://www.eff.org/deeplinks/2016/10/lets-encrypt-largest-certificate-authority-web">largest public certificate authority in the world</a>. Not only are their certificates free, the entire ordering and renewal process can be completely automated using a recently finalized protocol standard known as <a href="https://tools.ietf.org/html/rfc8555">ACME (RFC 8555)</a>.</p>
+  </div>
   <footer>
-    <a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/active-directory">Active Directory</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/active-directory/">Active Directory</a></li>
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-          <article class="post">
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
+      <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
     
     
-        <p>Set-PAOrder improvements, upgraded BouncyCastle, and misc fixes.</p>
+      <p>Set-PAOrder improvements, upgraded BouncyCastle, and misc fixes.</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-12-10 00:00:00 &#43;0000 UTC">
-      December 10, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>Just shipped a new Posh-ACME release, version 3.12.0. The <code>Set-PAOrder</code> function now has <code>-DnsPlugin</code> and <code>-PluginArgs</code> parameters which should make it easier to change DNS providers and/or provider parameters without needing to wait for a certificate renewal. The BouncyCastle library has been updated to the latest 1.8.5 version and the DLL file is using a non-standard name to avoid conflicts with other software that uses BouncyCastle and chooses to install the DLL into the .NET GAC. For some reason,&hellip;</p>
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.12.0. The <code>Set-PAOrder</code> function now has <code>-DnsPlugin</code> and <code>-PluginArgs</code> parameters which should make it easier to change DNS providers and/or provider parameters without needing to wait for a certificate renewal. The BouncyCastle library has been updated to the latest 1.8.5 version and the DLL file is using a non-standard name to avoid conflicts with other software that uses BouncyCastle and chooses to install the DLL into the .NET GAC. For some reason,&hellip;</p>
+  </div>
   <footer>
-    <a href="/blog/2019/12/posh-acme-3.12.0/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/12/posh-acme-3.12.0/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-          <article class="post">
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
+      <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
     
     
-        <p>Improvements for Install-PACertificate and new function Revoke-PAAuthorization.</p>
+      <p>Improvements for Install-PACertificate and new function Revoke-PAAuthorization.</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">
-      November 12, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>Just shipped a new Posh-ACME release, version 3.11.0. The <code>Install-PACertificate</code> function now has optional parameters that allow you to specify the Windows certificate store location and name in case the defaults (LocalMachine\My) aren't what you need. You can also use the <code>-NotExportable</code> switch to mark the certificate as non-exportable. There's also a new function called Revoke-PAAuthorization which is mostly useful for testing a new configuration. It allows you to revoke one or more existing&hellip;</p>
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.11.0. The <code>Install-PACertificate</code> function now has optional parameters that allow you to specify the Windows certificate store location and name in case the defaults (LocalMachine\My) aren&rsquo;t what you need. You can also use the <code>-NotExportable</code> switch to mark the certificate as non-exportable. There&rsquo;s also a new function called Revoke-PAAuthorization which is mostly useful for testing a new configuration. It allows you to revoke one or more&hellip;</p>
+  </div>
   <footer>
-    <a href="/blog/2019/11/posh-acme-3.11.0/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/11/posh-acme-3.11.0/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-          <article class="post">
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h2>
+      <h2><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h2>
     
     
-        <p>Critical fix, new Hurricane Electric plugin, and Azure cert-based auth.</p>
+      <p>Critical fix, new Hurricane Electric plugin, and Azure cert-based auth.</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-11-06 00:00:00 &#43;0000 UTC">
-      November 6, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-11-06 00:00:00 &#43;0000 UTC">November 6, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>Just shipped a new Posh-ACME release, version 3.10.0. There's a critical fix in this version for a problem introduced by a recent change in Let's Encrypt's ACME implementation that breaks renewals. A new DNS plugin for <a href="https://dns.he.net/">HurricaneElectric</a> was added and the Azure plugin now supports certificate based authentication in addition to the existing methods. There's also additional guidance in the tutorial on renewals and deployment.</p>
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.10.0. There&rsquo;s a critical fix in this version for a problem introduced by a recent change in Let&rsquo;s Encrypt&rsquo;s ACME implementation that breaks renewals. A new DNS plugin for <a href="https://dns.he.net/">HurricaneElectric</a> was added and the Azure plugin now supports certificate based authentication in addition to the existing methods. There&rsquo;s also additional guidance in the tutorial on renewals and deployment.</p>
+  </div>
   <footer>
-    <a href="/blog/2019/11/posh-acme-3.10.0/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/11/posh-acme-3.10.0/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-          <article class="post">
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
+      <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
     
     
-        <p>New UnoEuro plugin and updates to Cloudflare plugin.</p>
+      <p>New UnoEuro plugin and updates to Cloudflare plugin.</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-10-26 00:00:00 &#43;0000 UTC">
-      October 26, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-10-26 00:00:00 &#43;0000 UTC">October 26, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>Just shipped a new Posh-ACME release, version 3.9.0. There's a new DNS plugin for <a href="https://www.unoeuro.com/">UnoEuro</a> thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don't have edit permissions to all zones on an account.</p>
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.9.0. There&rsquo;s a new DNS plugin for <a href="https://www.unoeuro.com/">UnoEuro</a> thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&rsquo;t have edit permissions to all zones on an account.</p>
+  </div>
   <footer>
-    <a href="/blog/2019/10/posh-acme-3.9.0/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/10/posh-acme-3.9.0/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-          <article class="post">
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/10/posh-ibcli-1.3.0/">Posh-IBCLI 1.3.0</a></h2>
+      <h2><a href="/blog/2019/10/posh-ibcli-1.3.0/">Posh-IBCLI 1.3.0</a></h2>
     
     
-        <p>New functions Get-IBCLIApacheCert and Set-IBCLIApacheCert</p>
+      <p>New functions Get-IBCLIApacheCert and Set-IBCLIApacheCert</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-10-23 00:00:00 &#43;0000 UTC">
-      October 23, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-10-23 00:00:00 &#43;0000 UTC">October 23, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>Just shipped a new Posh-IBCLI release, version 1.3.0. It adds new functions called <code>Get-IBCLIApacheCert</code> and <code>Set-IBCLIApacheCert</code> which wrap the <code>set apache_https_cert</code> command added in NIOS 8.4. What's funny is that the only reason I found out about the command is because of a problem I ran into while testing <a href="https://github.com/rmbolger/Posh-IBWAPI">Posh-IBWAPI</a>&lsquo;s new file upload functions.</p>
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-IBCLI release, version 1.3.0. It adds new functions called <code>Get-IBCLIApacheCert</code> and <code>Set-IBCLIApacheCert</code> which wrap the <code>set apache_https_cert</code> command added in NIOS 8.4. What&rsquo;s funny is that the only reason I found out about the command is because of a problem I ran into while testing <a href="https://github.com/rmbolger/Posh-IBWAPI">Posh-IBWAPI</a>&rsquo;s new file upload functions.</p>
+  </div>
   <footer>
-    <a href="/blog/2019/10/posh-ibcli-1.3.0/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/10/posh-ibcli-1.3.0/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-ibcli">Posh-IBCLI</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-ibcli/">Posh-IBCLI</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-          <article class="post">
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h2>
+      <h2><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h2>
     
     
-        <p>More options in Set-PAOrder and misc fixes</p>
+      <p>More options in Set-PAOrder and misc fixes</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-09-27 00:00:00 &#43;0000 UTC">
-      September 27, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-09-27 00:00:00 &#43;0000 UTC">September 27, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>Just shipped a new Posh-ACME release, version 3.8.0. <code>Set-PAOrder</code> now supports modifying some order properties that don't require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with more&hellip;</p>
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.8.0. <code>Set-PAOrder</code> now supports modifying some order properties that don&rsquo;t require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with&hellip;</p>
+  </div>
   <footer>
-    <a href="/blog/2019/09/posh-acme-3.8.0/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/09/posh-acme-3.8.0/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-          <article class="post">
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h2>
+      <h2><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h2>
     
     
-        <p>New param in Submit-Renewal and misc fixes</p>
+      <p>New param in Submit-Renewal and misc fixes</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-09-18 00:00:00 &#43;0000 UTC">
-      September 18, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-09-18 00:00:00 &#43;0000 UTC">September 18, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don't want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you're using is purposefully short-lived.</p>
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don&rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&rsquo;re using is purposefully short-lived.</p>
+  </div>
   <footer>
-    <a href="/blog/2019/09/posh-acme-3.7.0/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/09/posh-acme-3.7.0/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-          <article class="post">
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/08/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.1.0</a></h2>
+      <h2><a href="/blog/2019/08/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.1.0</a></h2>
     
     
-        <p>Improvements to Send-IBFile and Receive-IBFile</p>
+      <p>Improvements to Send-IBFile and Receive-IBFile</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-08-23 00:00:00 &#43;0000 UTC">
-      August 23, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-08-23 00:00:00 &#43;0000 UTC">August 23, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>Just shipped a new Posh-IBWAPI release, version 3.1.0. There is now an <code>-OverrideTransferHost</code> switch in <code>Send-IBFile</code> and <code>Receive-IBFile</code>. But to understand what it does requires a bit of explanation on how file transfers work under the hood with the Infoblox WAPI. Any given file transfer (up or down) is a 3-step process that can be generalized as follows.</p>
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-IBWAPI release, version 3.1.0. There is now an <code>-OverrideTransferHost</code> switch in <code>Send-IBFile</code> and <code>Receive-IBFile</code>. But to understand what it does requires a bit of explanation on how file transfers work under the hood with the Infoblox WAPI. Any given file transfer (up or down) is a 3-step process that can be generalized as follows.</p>
+  </div>
   <footer>
-    <a href="/blog/2019/08/posh-ibwapi-3.1.0/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/08/posh-ibwapi-3.1.0/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-ibwapi">Posh-IBWAPI</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-ibwapi/">Posh-IBWAPI</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-          <article class="post">
+  
+    <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h2>
+      <h2><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h2>
     
     
-        <p>New plugins and self-hosted http challenges</p>
+      <p>New plugins and self-hosted http challenges</p>
     
-</div>
+  </div>
   <div class="meta">
-    <time class="published" datetime="2019-08-21 00:00:00 &#43;0000 UTC">
-      August 21, 2019
-    </time>
-    <span class="author">Ryan Bolger</span>
+    <time datetime="2019-08-21 00:00:00 &#43;0000 UTC">August 21, 2019</time>
+    <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-  
-
-  
-  <p>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for <a href="https://domene.shop/">Domeneshop</a>, <a href="https://www.dreamhost.com/">Dreamhost</a>, <a href="https://easydns.com/">EasyDNS</a>, and <a href="http://freedns.afraid.org/">freedns.afraid.org</a>. The other big addition is a new function called <code>Invoke-HttpChallengeListener</code> which can be super handy for people doing HTTP challenges. It's basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don't have manually deal with making the challenge files available. Check out&hellip;</p>
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for <a href="https://domene.shop/">Domeneshop</a>, <a href="https://www.dreamhost.com/">Dreamhost</a>, <a href="https://easydns.com/">EasyDNS</a>, and <a href="http://freedns.afraid.org/">freedns.afraid.org</a>. The other big addition is a new function called <code>Invoke-HttpChallengeListener</code> which can be super handy for people doing HTTP challenges. It&rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&rsquo;t have manually deal with making the challenge files&hellip;</p>
+  </div>
   <footer>
-    <a href="/blog/2019/08/posh-acme-3.6.0/" class="button big">Read more</a>
-    <ul class="stats">
+    <a href="/blog/2019/08/posh-acme-3.6.0/" class="button big">Read More</a>
+    <div class="stats">
   
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/categories/posh-acme">Posh-ACME</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
   
   
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://www.dvolve.net/tags/powershell">powershell</a></li>
-          
-        </ul>
-      </li>
-    
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
   
-</ul>
+</div>
 
   </footer>
 </article>
 
-        
-        
-<div class="pagination">
   
-    <a href="#" class="disabled button big previous"><i class="fas fa-angle-left"></i></a>
-  
-  
-    <a href="/page/2/" class="button big next"><i class="fas fa-angle-right"></i></a>
-  
-</div>
+  <div class="pagination">
+    
+    
+      <a href="/page/2/" class="button right"><span>Next Page</span></a>
+    
+  </div>
 
       </main>
       <section id="site-sidebar">
   
-  <section id="recent-posts">
-    <header>
-      <h1>Recent posts</h1>
-    </header>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
+    <section id="recent-posts">
       <header>
-        <h1><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h1>
-        <time class="published" datetime="">December 17, 2019</time>
+        <h1>Recent Posts</h1>
       </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h1>
-        <time class="published" datetime="">December 10, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h1>
-        <time class="published" datetime="">November 12, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h1>
-        <time class="published" datetime="">November 6, 2019</time>
-      </header>
-    </article>
-    
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h1>
-        <time class="published" datetime="">October 26, 2019</time>
-      </header>
-    </article>
-    
-    
-      <a href="/blog/" class="button">See more</a>
-    
-  </section>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
+          <time class="published" datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
+          <time class="published" datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
+          <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h2>
+          <time class="published" datetime="2019-11-06 00:00:00 &#43;0000 UTC">November 6, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
+          <time class="published" datetime="2019-10-26 00:00:00 &#43;0000 UTC">October 26, 2019</time>
+        </header>
+      </article>
+      
+      
+        <footer>
+          <a href="/blog/" class="button">See More</a>
+        </footer>
+      
+    </section>
   
 
   
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">Categories</a></h1>
+          <h1><a href="/categories">categories</a></h1>
         </header>
         <ul>
           
-            
-          
           
           <li>
-            
               <a href="/categories/posh-acme/">posh-acme<span class="count">9</span></a>
-            
           
           <li>
-            
               <a href="/categories/active-directory/">active-directory<span class="count">3</span></a>
-            
           
           <li>
-            
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">2</span></a>
-            
           
           <li>
-            
               <a href="/categories/pwnedpasscheck/">pwnedpasscheck<span class="count">2</span></a>
-            
           
           <li>
-            
               <a href="/categories/infoblox/">infoblox<span class="count">1</span></a>
-            
           
           <li>
-            
               <a href="/categories/posh-ibcli/">posh-ibcli<span class="count">1</span></a>
-            
           
           </li>
         </ul>
@@ -874,42 +761,23 @@
     
   
 
-
   
 </section>
 
       <footer id="site-footer">
   
   <p class="copyright">
-    
-      &copy; 2019
-      
-        Ryan Bolger
-      
-    . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.60.1' target='_blank' rel='noopener'>Hugo</a>
+    © 2019 Ryan Bolger
+      <br>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
-      
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/ini.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/powershell.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/cs.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/plaintext.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-
-
-  
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
-  <script src=/js/util.js></script>
-  <script src=/js/main.js></script>
-  <script src=/js/add-on.js></script>
-  
-
-
-
-
+      <script src="/js/highlight.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -920,7 +788,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
     </div>
   </body>
