@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+<title>Hacking Infoblox Discovery for Fun and Profit - Adventures in Tech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Hacking Infoblox Discovery for Fun and Profit">
+<meta itemprop="description" content="It&#39;s Just Another CSV">
+<meta itemprop="datePublished" content="2020-09-14T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-09-14T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1386">
+
+
+
+<meta itemprop="keywords" content="powershell," />
+<meta property="og:title" content="Hacking Infoblox Discovery for Fun and Profit" />
+<meta property="og:description" content="It&#39;s Just Another CSV" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/" />
+<meta property="article:published_time" content="2020-09-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hacking Infoblox Discovery for Fun and Profit"/>
+<meta name="twitter:description" content="It&#39;s Just Another CSV"/>
+<meta name="twitter:site" content="@rmbolger"/>
+
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
+          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
+</head>
+
+  <body>
+    
+
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/" class="nav">
+        
+          Blog
+        
+      </a>
+    </h1>
+    <menu id="site-nav-menu" class="flyout-menu menu">
+      
+        
+          
+          <a href="/" class="nav link"><i class='fa fa-home'></i> Home</a>
+        
+      
+        
+          
+          <a href="/about/" class="nav link"><i class='far fa-id-card'></i> About</a>
+        
+      
+        
+          
+          <a href="/blog/" class="nav link"><i class='far fa-newspaper'></i> Blog</a>
+        
+      
+        
+          
+          <a href="/categories/" class="nav link"><i class='fas fa-sitemap'></i> Categories</a>
+        
+      
+      
+      <a href="#search-input" class="nav link search-toggle"><i class="fas fa-search">&nbsp;</i>Search</a>
+    </menu>
+    <a href="#search-input" class="nav search-toggle"><i class="fas fa-search fa-2x">&nbsp;</i></a>
+    
+    
+    <a href="#site-nav" class="nav nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  <menu id="search" class="menu"><input id="search-input" class="search-input menu"></input><div id="search-results" class="search-results menu"></div></menu>
+  
+  
+</header>
+
+    <div id="wrapper">
+      <section id="site-intro" >
+  <a href="/"><img src="https://www.dvolve.net/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
+  <header>
+    <h1>Ryan Bolger</h1>
+  </header>
+  <main>
+    <p>Adventures In Tech</p>
+  </main>
+  
+    <footer>
+      <ul class="socnet-icons">
+        
+
+        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+
+<li><a href="//serverfault.com/users/1584/?tab=profile" target="_blank" rel="noopener" title="Server Fault" class="fab fa-stack-exchange"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
+
+
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        
+  <article class="post">
+    <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/">Hacking Infoblox Discovery for Fun and Profit</a></h2>
+    
+    
+      <p>It&#39;s Just Another CSV</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2020-09-14 00:00:00 &#43;0000 UTC">September 14, 2020</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+    <div id="socnet-share">
+      
+
+
+
+
+
+    </div>
+    <div class="content">
+      
+      <p>An IPAM solution isn&rsquo;t very useful unless it accurately reflects the state of your network. The discovery features in NIOS have always been one of the great benefits of having Infoblox DDI. <a href="https://www.infoblox.com/products/network-insight/">Network Insight</a> and <a href="https://www.infoblox.com/products/netmri/">NetMRI</a> focus on discovery of network gear and what&rsquo;s connected to it. The <a href="https://docs.infoblox.com/display/nios85/Configuring+vDiscovery+Jobs">vDiscovery</a> feature adds the ability to discover virtual infrastructure in both public and private cloud environments. All of these working together can give you a super accurate picture of what exists on your network&hellip;as long as all your gear is supported.</p>
+<p>As much as it may seem like it, the discovery features aren&rsquo;t magic. Infoblox engineers had to figure out how each <a href="https://docs.infoblox.com/display/N72N8DSL/Device+Support+List">supported vendor&rsquo;s device</a> works and how to query its details. New vendors, new models, and new firmware versions can all affect Infoblox&rsquo;s ability to properly discover your network gear. In many cases, customers are the ones driving Infoblox to make additions to the support list. But what do you do if you have an unsupported device and can&rsquo;t <em>(or don&rsquo;t want to)</em> wait for the formal device support request process?</p>
+<p>You could just do it yourself. 😏</p>
+<h1 id="using-netmris-example">Using NetMRI&rsquo;s Example</h1>
+<p>Because NetMRI isn&rsquo;t actually part of the NIOS grid, it&rsquo;s a good model for figuring out how to upload our own discovery data from something external. The problem is we don&rsquo;t really know how it works under the hood. But we have hints from the Audit Log on the grid master.</p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2020/09/netmri-audit-log.png" data-caption="Audit Log from NetMRI"><img src="https://www.dvolve.net/img/2020/09/netmri-audit-log.png" alt="Audit Log from NetMRI"></a>
+  </figure>
+
+
+<p>Every time NetMRI submits new discovery data, it calls a <code>DataUploadInit</code> function followed by <code>SetDiscoveryCSV</code>. After searching the WAPI documentation, <code>SetDiscoveryCSV</code> appears to be a standard WAPI function tied to the <code>fileop</code> object type. This is great because anything that can use the WAPI via REST can theoretically submit new discovery data. You can view the WAPI doc on your own grid using the following URL and substitue your own grid master host/IP, <code>https://gm/wapidoc/objects/fileop.html#upload-setdiscoverycsv</code>. Here&rsquo;s a screenshot from my lab GM&rsquo;s copy.</p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2020/09/setdiscoverycsv-doc.png" data-caption="SetDiscoveryCSV Documentation"><img src="https://www.dvolve.net/img/2020/09/setdiscoverycsv-doc.png" alt="SetDiscoveryCSV Documentation"></a>
+  </figure>
+
+
+<p>So now all we have to do is figure out how to format our CSV properly and we should be good to go.</p>
+<h1 id="support-bundle-to-the-rescue">Support Bundle To The Rescue</h1>
+<p>When I was first looking into this, I was afraid I&rsquo;d need to do something like <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">MitM</a> the connection between NetMRI and the grid master in order to capture the CSV file being uploaded while it was in transit. Thankfully, that wasn&rsquo;t necessary due to Infoblox&rsquo;s <a href="https://docs.infoblox.com/display/nios85/Downloading+Support+Bundles">support bundle</a> functionality.</p>
+<p>If you&rsquo;ve ever had to submit an Infoblox support ticket, it&rsquo;s highly likely you&rsquo;ve also had to generate and attach a support bundle to the ticket. It&rsquo;s basically a tar/gzipped file containing a bunch of low level diagnostic stuff from the appliance it was generated on (log files, config files, etc). It&rsquo;s a great resource for better understanding Infoblox internals or even trying to solve your own support issues if you have the time and patience.</p>
+<p>While poking around through my lab GM&rsquo;s support bundle, I noticed a folder called <code>/storage/discovery/last_csv_import</code> which looked very promising. It contained another numbered folder likely tied to an internal ID of some sort and within that was a file called <code>import_file</code>.</p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2020/09/support-bundle-import_file.png" data-caption="Support Bundle Opened in 7-Zip"><img src="https://www.dvolve.net/img/2020/09/support-bundle-import_file.png" alt="Support Bundle Opened in 7-Zip"></a>
+  </figure>
+
+
+<p>After extracting the file, it appeared to be a complete copy of the file NetMRI had submitted with all of the column headers intact. 🎉 Hooray! 🎉</p>
+<h1 id="csv-format">CSV Format</h1>
+<p>Here&rsquo;s a list of all the headers included in the CSV file we pulled from the support bundle:</p>
+<ul>
+<li>ip_address</li>
+<li>ap_ip_address</li>
+<li>ap_name</li>
+<li>ap_ssid</li>
+<li>bgp_as</li>
+<li>bridge_domain</li>
+<li>device_contact</li>
+<li>device_location</li>
+<li>device_model</li>
+<li>device_vendor</li>
+<li>discovered_name</li>
+<li>discoverer</li>
+<li>endpoint_groups</li>
+<li>first_discovered_timestamp</li>
+<li>last_discovered_timestamp</li>
+<li>mac_address</li>
+<li>netbios_name</li>
+<li>network_component_contact</li>
+<li>network_component_description</li>
+<li>network_component_ip</li>
+<li>network_component_location</li>
+<li>network_component_model</li>
+<li>network_component_name</li>
+<li>network_component_port_description</li>
+<li>network_component_port_name</li>
+<li>network_component_port_number</li>
+<li>network_component_type</li>
+<li>network_component_vendor</li>
+<li>os</li>
+<li>port_duplex</li>
+<li>port_link_status</li>
+<li>port_speed</li>
+<li>port_status</li>
+<li>port_vlan_name</li>
+<li>port_vlan_number</li>
+<li>tenant</li>
+<li>vrf_description</li>
+<li>vrf_name</li>
+<li>vrf_rd</li>
+<li>task_name</li>
+</ul>
+<p>And here are the contents of the CSV I used as my initial test file. <em>(Stargate fan. Sorry, not sorry)</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">ip_address,device_location,device_model,device_vendor,discovered_name,discoverer,last_discovered_timestamp,task_name
+&#34;192.168.0.9&#34;,&#34;Dakara&#34;,&#34;Stargate&#34;,&#34;Altera&#34;,&#34;sg01&#34;,&#34;MyDiscoveryScript&#34;,&#34;2020-09-14 21:34:18&#34;,&#34;Stargate_Checks&#34;
+</code></pre></div><p>Most of these fields correspond to the fields in the <code>discoverydata</code> struct which you can view in your GM&rsquo;s WAPI documentation (<code>https://gm/wapidoc/additional/structs.html#struct-discoverydata</code>). But there are a few important differences.</p>
+<p><code>ip_address</code> <strong>is mandatory</strong> in the CSV file but not listed in the struct. The struct has <code>first_discovered</code> and <code>last_discovered</code> which are Epoch seconds, but the CSV uses <code>first_discovered_timestamp</code> and <code>last_discovered_timestamp</code> which are UTC timestamps in <code>yyyy-MM-dd HH:mm:ss</code> format. Everything else <em>seems</em> to be a 1:1 match with the discoverydata struct. So you can likely add and use additional columns NetMRI doesn&rsquo;t currently send like fields related to vDiscovery.</p>
+<p>The other thing I noticed about the discovery timestamp values is you only need to include <code>last_discovered_timestamp</code> if you are planning to merge the discovery data with existing data. Infoblox will automatically set the <code>first_discovered</code> value based on the <code>last_discovered_timestamp</code> the first time you import data for a given IP. If you choose to replace the data instead, you will need to supply both values or else it will clear the existing <code>first_discovered</code> value.</p>
+<h1 id="a-word-about-permissions">A Word About Permissions</h1>
+<p>The NetMRI documentation doesn&rsquo;t really go into detail about the minimum required permissions for the Infoblox user it authenticates to the grid master with. While you could use an existing superuser account, it&rsquo;s not recommended from a security standpoint. Ideally, you&rsquo;d create a dedicated user for discovery data submission. After some trial and error, the minimum permissions you need are:</p>
+<ul>
+<li>Global - Grid Permissions - Network Discovery - Read/Write</li>
+<li>Object - &lt;the network view object&gt; - Read-Only</li>
+</ul>
+<p>If you&rsquo;re targeting more than a single network view, you can either add each one individually or just give the read access for &ldquo;All Network Views&rdquo;. Here&rsquo;s a screenshot of the resulting permissions in the GUI.</p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2020/09/disco-user-permissions.png" data-caption="Discovery User Permissions"><img src="https://www.dvolve.net/img/2020/09/disco-user-permissions.png" alt="Discovery User Permissions"></a>
+  </figure>
+
+
+<p>Here&rsquo;s an example of how to create the group, user, and permissions using <a href="https://github.com/rmbolger/Posh-IBWAPI">Posh-IBWAPI</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$groupName = <span style="color:#e6db74">&#39;DiscoveryUsers&#39;</span>
+New-IBObject admingroup -IBObject @{name=$groupName; access_method=@(<span style="color:#e6db74">&#39;API&#39;</span>)}
+New-IBObject adminuser  -IBObject @{name=<span style="color:#e6db74">&#39;disco-user1&#39;</span>; password=<span style="color:#e6db74">&#39;&lt;the password&gt;&#39;</span>; admin_groups=@($groupName)}
+New-IBObject permission -IBObject @{group=$groupName; permission=<span style="color:#e6db74">&#39;WRITE&#39;</span>; resource_type=<span style="color:#e6db74">&#39;NETWORK_DISCOVERY&#39;</span>}
+
+<span style="color:#75715e"># For adding read to a specific network view</span>
+$viewRef = (Get-IBObject networkview -Filter <span style="color:#e6db74">&#39;name=default&#39;</span>).<span style="color:#e6db74">&#39;_ref&#39;</span>
+New-IBObject permission -IBObject @{group=$groupName; permission=<span style="color:#e6db74">&#39;READ&#39;</span>; object=$viewRef}
+
+<span style="color:#75715e"># For adding read to all network views</span>
+New-IBObject permission -IBObject @{group=$groupName; permission=<span style="color:#e6db74">&#39;READ&#39;</span>; resource_type=<span style="color:#e6db74">&#39;NETWORK_VIEW&#39;</span>}
+</code></pre></div><h1 id="performing-a-test-run">Performing A Test Run</h1>
+<p>With our CSV file ready to go, we can run the following via <a href="https://github.com/rmbolger/Posh-IBWAPI">Posh-IBWAPI</a> using its super awesome <code>Send-IBFile</code> function. <em>(This assumes you&rsquo;ve already setup a profile with your discovery user using <code>Set-IBConfig</code>)</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Send-IBFile setdiscoverycsv .\discovery.csv -FunctionArgs @{merge_data=$true; network_view=<span style="color:#e6db74">&#39;default&#39;</span>}
+</code></pre></div><p>If you can&rsquo;t or don&rsquo;t want to use Posh-IBWAPI, it&rsquo;s a little more cumbersome because you have to make 3 separate REST calls to follow the standard file upload process with the WAPI. Here&rsquo;s an example using curl on linux. <em>(If you&rsquo;re using curl from Windows, you&rsquo;ll need to escape the JSON differently in the third command)</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># This call should return JSON containing &#34;token&#34; and &#34;url&#34; values.</span>
+<span style="color:#75715e"># The url must replace the example URL in the the next command</span>
+<span style="color:#75715e"># The token must replace the token value in the third command (don&#39;t include</span>
+<span style="color:#75715e"># the trailing \n if it exists)</span>
+curl -k1 -u admin:infoblox -X POST <span style="color:#e6db74">&#34;https://gm/wapi/v2.10/fileop?_function=uploadinit&#34;</span>
+
+<span style="color:#75715e"># Replace the url using the value returned by the first command</span>
+curl -k1 -u admin:infoblox -F name<span style="color:#f92672">=</span>discovery.csv -F filedata<span style="color:#f92672">=</span>@discovery.csv <span style="color:#e6db74">&#34;https://192.168.0.2/http_direct_file_io/req_id-UPLOAD-0000000000000001/import_file&#34;</span>
+
+<span style="color:#75715e"># Replace the token using the value returned by the first command</span>
+curl -k1 -u admin:infoblox -X POST <span style="color:#e6db74">&#34;https://gm/wapi/v2.10/fileop?_function=setdiscoverycsv&#34;</span> -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#39;{&#34;token&#34;:&#34;xxxxxxxxxxxx&#34;, &#34;merge_data&#34;:true, &#34;network_view&#34;:&#34;default&#34;}&#39;</span>
+</code></pre></div><p>Unfortunately, the WAPI doesn&rsquo;t return anything useful to indicate the discovery data was processed successfully. You&rsquo;ll only get an error if there was a functional problem with the REST call itself. So you just have to go check the IPAM view in Infoblox for the IP address associated with your discovery data. Mine looks like this from our sample data. <em>(Don&rsquo;t forget you can customize which fields are shown using the little gear icon in the upper right)</em></p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2020/09/discovered-data-success.png" data-caption="Discovered Data GUI View"><img src="https://www.dvolve.net/img/2020/09/discovered-data-success.png" alt="Discovered Data GUI View"></a>
+  </figure>
+
+
+<h1 id="troubleshooting">Troubleshooting</h1>
+<p>If your WAPI call to SetDiscoveryCSV appears to have completed successfully and you don&rsquo;t see your test data in IPAM for the associated IP, it&rsquo;s possible the discovery engine couldn&rsquo;t parse your CSV for some reason. The good news is there&rsquo;s a log file that should be able to tell you what&rsquo;s wrong. The bad news is it&rsquo;s buried in the support bundle. So you&rsquo;ll have to generate and download a fresh one and then look in <code>/infoblox/var/discovery_csv_error</code> for the associated log file.</p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2020/09/discovery-error-log.png" data-caption="Discovery Error Log in 7-Zip"><img src="https://www.dvolve.net/img/2020/09/discovery-error-log.png" alt="Discovery Error Log in 7-Zip"></a>
+  </figure>
+
+
+<h1 id="wrapping-up">Wrapping Up</h1>
+<p>We&rsquo;ve nailed down everything we need to do in order to submit new discovery data. All that remains is writing the tool/script to query our unsupported devices and generate the appropriate CSV file. Now go forth and discover!</p>
+
+    </div>
+    <footer>
+      <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/infoblox/">Infoblox</a></li>
+        
+          <li><a class="article-terms-link" href="/categories/posh-ibwapi/">Posh-IBWAPI</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+    </footer>
+  </article>
+  
+    
+
+  
+  <div class="pagination">
+    
+    
+      <a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/" class="button right"><span>Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</span></a>
+    
+  </div>
+
+      </main>
+      <section id="site-sidebar">
+  
+    <section id="recent-posts">
+      <header>
+        <h1>Recent Posts</h1>
+      </header>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/">Hacking Infoblox Discovery for Fun and Profit</a></h2>
+          <time class="published" datetime="2020-09-14 00:00:00 &#43;0000 UTC">September 14, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
+          <time class="published" datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
+          <time class="published" datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
+          <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h2>
+          <time class="published" datetime="2019-11-06 00:00:00 &#43;0000 UTC">November 6, 2019</time>
+        </header>
+      </article>
+      
+      
+        <footer>
+          <a href="/blog/" class="button">See More</a>
+        </footer>
+      
+    </section>
+  
+
+  
+    
+      <section id="categories">
+        <header>
+          <h1><a href="/categories">categories</a></h1>
+        </header>
+        <ul>
+          
+          
+          <li>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">9</span></a>
+          
+          <li>
+              <a href="/categories/active-directory/">active-directory<span class="count">3</span></a>
+          
+          <li>
+              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">3</span></a>
+          
+          <li>
+              <a href="/categories/infoblox/">infoblox<span class="count">2</span></a>
+          
+          <li>
+              <a href="/categories/pwnedpasscheck/">pwnedpasscheck<span class="count">2</span></a>
+          
+          <li>
+              <a href="/categories/posh-ibcli/">posh-ibcli<span class="count">1</span></a>
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+
+  
+</section>
+
+      <footer id="site-footer">
+  
+  <p class="copyright">
+    © 2020 Ryan Bolger
+      <br>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      <script src="/js/highlight.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/bash.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script src="/js/add-on.js"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77433451-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    </div>
+  </body>
+</html>

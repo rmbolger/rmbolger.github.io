@@ -6,10 +6,19 @@
     <description>Recent content on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hacking Infoblox Discovery for Fun and Profit</title>
+      <link>https://www.dvolve.net/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/</link>
+      <pubDate>Mon, 14 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/</guid>
+      <description>An IPAM solution isn&amp;rsquo;t very useful unless it accurately reflects the state of your network. The discovery features in NIOS have always been one of the great benefits of having Infoblox DDI. Network Insight and NetMRI focus on discovery of network gear and what&amp;rsquo;s connected to it. The vDiscovery feature adds the ability to discover virtual infrastructure in both public and private cloud environments. All of these working together can give you a super accurate picture of what exists on your network&amp;hellip;as long as all your gear is supported.</description>
+    </item>
     
     <item>
       <title>Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</title>

@@ -3,37 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.dvolve.net/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/categories/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/categories/infoblox/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/categories/posh-ibwapi/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/tags/powershell/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/tags/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.dvolve.net/categories/active-directory/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.dvolve.net/</loc>
-    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/blog/</loc>
-    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/categories/</loc>
-    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.dvolve.net/categories/posh-acme/</loc>
-    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/tags/powershell/</loc>
-    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/tags/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -83,11 +98,6 @@
   </url>
   
   <url>
-    <loc>https://www.dvolve.net/categories/posh-ibwapi/</loc>
-    <lastmod>2019-08-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.dvolve.net/blog/2019/08/posh-ibwapi-3.1.0/</loc>
     <lastmod>2019-08-23T00:00:00+00:00</lastmod>
   </url>
@@ -119,11 +129,6 @@
   
   <url>
     <loc>https://www.dvolve.net/about/</loc>
-    <lastmod>2019-06-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.dvolve.net/categories/infoblox/</loc>
     <lastmod>2019-06-27T00:00:00+00:00</lastmod>
   </url>
   
