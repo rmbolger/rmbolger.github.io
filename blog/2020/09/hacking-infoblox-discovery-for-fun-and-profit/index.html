@@ -10,7 +10,7 @@
 <meta itemprop="description" content="It&#39;s Just Another CSV">
 <meta itemprop="datePublished" content="2020-09-14T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-09-14T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1386">
+<meta itemprop="wordCount" content="1429">
 
 
 
@@ -168,11 +168,11 @@
     </div>
     <div class="content">
       
-      <p>An IPAM solution isn&rsquo;t very useful unless it accurately reflects the state of your network. The discovery features in NIOS have always been one of the great benefits of having Infoblox DDI. <a href="https://www.infoblox.com/products/network-insight/">Network Insight</a> and <a href="https://www.infoblox.com/products/netmri/">NetMRI</a> focus on discovery of network gear and what&rsquo;s connected to it. The <a href="https://docs.infoblox.com/display/nios85/Configuring+vDiscovery+Jobs">vDiscovery</a> feature adds the ability to discover virtual infrastructure in both public and private cloud environments. All of these working together can give you a super accurate picture of what exists on your network&hellip;as long as all your gear is supported.</p>
-<p>As much as it may seem like it, the discovery features aren&rsquo;t magic. Infoblox engineers had to figure out how each <a href="https://docs.infoblox.com/display/N72N8DSL/Device+Support+List">supported vendor&rsquo;s device</a> works and how to query its details. New vendors, new models, and new firmware versions can all affect Infoblox&rsquo;s ability to properly discover your network gear. In many cases, customers are the ones driving Infoblox to make additions to the support list. But what do you do if you have an unsupported device and can&rsquo;t <em>(or don&rsquo;t want to)</em> wait for the formal device support request process?</p>
+      <p>An IPAM solution is not very useful unless it accurately reflects the state of your network. The discovery features in NIOS have always been one of the great benefits of having Infoblox DDI. <a href="https://www.infoblox.com/products/network-insight/">Network Insight</a> and <a href="https://www.infoblox.com/products/netmri/">NetMRI</a> focus on discovery of network gear and what is connected to it. The <a href="https://docs.infoblox.com/display/nios85/Configuring+vDiscovery+Jobs">vDiscovery</a> feature adds the ability to discover virtual infrastructure in both public and private cloud environments. All of these working together can give you a super accurate picture of what exists on your network&hellip;if all your gear is supported.</p>
+<p>As much as it may seem like it, the discovery features are not magic. Infoblox engineers had to figure out how each <a href="https://docs.infoblox.com/display/N72N8DSL/Device+Support+List">supported vendor&rsquo;s device</a> works and how to query its details. New vendors, new models, and new firmware versions can all affect Infoblox&rsquo;s ability to properly discover your network gear. In many cases, customers are the ones driving Infoblox to make additions to the support list. But what do you do if you have an unsupported device and can&rsquo;t <em>(or don&rsquo;t want to)</em> wait for the formal device support request process?</p>
 <p>You could just do it yourself. 😏</p>
 <h1 id="using-netmris-example">Using NetMRI&rsquo;s Example</h1>
-<p>Because NetMRI isn&rsquo;t actually part of the NIOS grid, it&rsquo;s a good model for figuring out how to upload our own discovery data from something external. The problem is we don&rsquo;t really know how it works under the hood. But we have hints from the Audit Log on the grid master.</p>
+<p>Because NetMRI is not part of the NIOS grid, it is a good model for figuring out how to upload our own discovery data from something external. The problem is we don&rsquo;t really know how it works under the hood. But we have hints from the Audit Log on the grid master.</p>
 
 
 
@@ -197,7 +197,7 @@
   </figure>
 
 
-<p>Every time NetMRI submits new discovery data, it calls a <code>DataUploadInit</code> function followed by <code>SetDiscoveryCSV</code>. After searching the WAPI documentation, <code>SetDiscoveryCSV</code> appears to be a standard WAPI function tied to the <code>fileop</code> object type. This is great because anything that can use the WAPI via REST can theoretically submit new discovery data. You can view the WAPI doc on your own grid using the following URL and substitue your own grid master host/IP, <code>https://gm/wapidoc/objects/fileop.html#upload-setdiscoverycsv</code>. Here&rsquo;s a screenshot from my lab GM&rsquo;s copy.</p>
+<p>Every time NetMRI submits new discovery data, it calls a <code>DataUploadInit</code> function followed by <code>SetDiscoveryCSV</code>. After searching the WAPI documentation, <code>SetDiscoveryCSV</code> appears to be a standard WAPI function tied to the <code>fileop</code> object type. This is great because anything that can use the WAPI via REST can theoretically submit new discovery data. You can view the WAPI doc on your own grid using the following URL and substitue your own grid master host/IP, <code>https://gm/wapidoc/objects/fileop.html#upload-setdiscoverycsv</code>. Here is a screenshot from my lab GM&rsquo;s copy.</p>
 
 
 
@@ -222,11 +222,11 @@
   </figure>
 
 
-<p>So now all we have to do is figure out how to format our CSV properly and we should be good to go.</p>
+<p>Now we have to figure out how to format our CSV properly and we should be good to go.</p>
 <h1 id="support-bundle-to-the-rescue">Support Bundle To The Rescue</h1>
-<p>When I was first looking into this, I was afraid I&rsquo;d need to do something like <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">MitM</a> the connection between NetMRI and the grid master in order to capture the CSV file being uploaded while it was in transit. Thankfully, that wasn&rsquo;t necessary due to Infoblox&rsquo;s <a href="https://docs.infoblox.com/display/nios85/Downloading+Support+Bundles">support bundle</a> functionality.</p>
-<p>If you&rsquo;ve ever had to submit an Infoblox support ticket, it&rsquo;s highly likely you&rsquo;ve also had to generate and attach a support bundle to the ticket. It&rsquo;s basically a tar/gzipped file containing a bunch of low level diagnostic stuff from the appliance it was generated on (log files, config files, etc). It&rsquo;s a great resource for better understanding Infoblox internals or even trying to solve your own support issues if you have the time and patience.</p>
-<p>While poking around through my lab GM&rsquo;s support bundle, I noticed a folder called <code>/storage/discovery/last_csv_import</code> which looked very promising. It contained another numbered folder likely tied to an internal ID of some sort and within that was a file called <code>import_file</code>.</p>
+<p>When I was first looking into this, I was afraid I&rsquo;d need to do something like <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">MitM</a> the connection between NetMRI and the grid master in order to capture the CSV file being uploaded while it was in transit. Thankfully, that was unnecessary due to Infoblox&rsquo;s <a href="https://docs.infoblox.com/display/nios85/Downloading+Support+Bundles">support bundle</a> functionality.</p>
+<p>If you have ever created an Infoblox support ticket, you have likely also been asked to generate and attach a support bundle to the ticket. It&rsquo;s a tar/gzipped file containing a bunch of low-level diagnostic stuff from the appliance it was generated on (log files, config files, etc). It is also a great resource for better understanding Infoblox internals or even trying to solve your own support issues if you have the time and patience.</p>
+<p>While poking around in my lab GM&rsquo;s support bundle, I noticed a folder called <code>/storage/discovery/last_csv_import</code> which looked very promising. It contained another numbered folder likely tied to an internal ID of some sort and within that was a file called <code>import_file</code>.</p>
 
 
 
@@ -251,9 +251,9 @@
   </figure>
 
 
-<p>After extracting the file, it appeared to be a complete copy of the file NetMRI had submitted with all of the column headers intact. 🎉 Hooray! 🎉</p>
+<p>After extracting the file, it appeared to be a complete copy of the file NetMRI had submitted with all column headers intact. 🎉 Hooray! 🎉</p>
 <h1 id="csv-format">CSV Format</h1>
-<p>Here&rsquo;s a list of all the headers included in the CSV file we pulled from the support bundle:</p>
+<p>Here is a list of all the headers included in the CSV file we pulled from the support bundle:</p>
 <ul>
 <li>ip_address</li>
 <li>ap_ip_address</li>
@@ -300,15 +300,15 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">ip_address,device_location,device_model,device_vendor,discovered_name,discoverer,last_discovered_timestamp,task_name
 &#34;192.168.0.9&#34;,&#34;Dakara&#34;,&#34;Stargate&#34;,&#34;Altera&#34;,&#34;sg01&#34;,&#34;MyDiscoveryScript&#34;,&#34;2020-09-14 21:34:18&#34;,&#34;Stargate_Checks&#34;
 </code></pre></div><p>Most of these fields correspond to the fields in the <code>discoverydata</code> struct which you can view in your GM&rsquo;s WAPI documentation (<code>https://gm/wapidoc/additional/structs.html#struct-discoverydata</code>). But there are a few important differences.</p>
-<p><code>ip_address</code> <strong>is mandatory</strong> in the CSV file but not listed in the struct. The struct has <code>first_discovered</code> and <code>last_discovered</code> which are Epoch seconds, but the CSV uses <code>first_discovered_timestamp</code> and <code>last_discovered_timestamp</code> which are UTC timestamps in <code>yyyy-MM-dd HH:mm:ss</code> format. Everything else <em>seems</em> to be a 1:1 match with the discoverydata struct. So you can likely add and use additional columns NetMRI doesn&rsquo;t currently send like fields related to vDiscovery.</p>
+<p><code>ip_address</code> <strong>is mandatory</strong> in the CSV file but not listed in the struct. The struct has <code>first_discovered</code> and <code>last_discovered</code> which are Epoch seconds, but the CSV uses <code>first_discovered_timestamp</code> and <code>last_discovered_timestamp</code> which are UTC timestamps in <code>yyyy-MM-dd HH:mm:ss</code> format. Everything else <em>seems</em> to be a 1:1 match with the discoverydata struct. So, you can likely add and use additional columns NetMRI doesn&rsquo;t currently send like fields related to vDiscovery.</p>
 <p>The other thing I noticed about the discovery timestamp values is you only need to include <code>last_discovered_timestamp</code> if you are planning to merge the discovery data with existing data. Infoblox will automatically set the <code>first_discovered</code> value based on the <code>last_discovered_timestamp</code> the first time you import data for a given IP. If you choose to replace the data instead, you will need to supply both values or else it will clear the existing <code>first_discovered</code> value.</p>
 <h1 id="a-word-about-permissions">A Word About Permissions</h1>
-<p>The NetMRI documentation doesn&rsquo;t really go into detail about the minimum required permissions for the Infoblox user it authenticates to the grid master with. While you could use an existing superuser account, it&rsquo;s not recommended from a security standpoint. Ideally, you&rsquo;d create a dedicated user for discovery data submission. After some trial and error, the minimum permissions you need are:</p>
+<p>The NetMRI documentation does not really go into detail about the minimum required permissions for the Infoblox user it authenticates to the grid master with. While you could use an existing superuser account, it is not recommended from a security standpoint. Ideally, you would have a dedicated user for discovery data submission. After some trial and error, the minimum permissions you need are:</p>
 <ul>
 <li>Global - Grid Permissions - Network Discovery - Read/Write</li>
 <li>Object - &lt;the network view object&gt; - Read-Only</li>
 </ul>
-<p>If you&rsquo;re targeting more than a single network view, you can either add each one individually or just give the read access for &ldquo;All Network Views&rdquo;. Here&rsquo;s a screenshot of the resulting permissions in the GUI.</p>
+<p>If you are targeting more than a single network view, you can either add each one individually or just give the read access for &ldquo;All Network Views&rdquo;. Here is a screenshot of the resulting permissions in the GUI.</p>
 
 
 
@@ -333,7 +333,7 @@
   </figure>
 
 
-<p>Here&rsquo;s an example of how to create the group, user, and permissions using <a href="https://github.com/rmbolger/Posh-IBWAPI">Posh-IBWAPI</a>.</p>
+<p>Here is an example of how to create the group, user, and permissions using <a href="https://github.com/rmbolger/Posh-IBWAPI">Posh-IBWAPI</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$groupName = <span style="color:#e6db74">&#39;DiscoveryUsers&#39;</span>
 New-IBObject admingroup -IBObject @{name=$groupName; access_method=@(<span style="color:#e6db74">&#39;API&#39;</span>)}
 New-IBObject adminuser  -IBObject @{name=<span style="color:#e6db74">&#39;disco-user1&#39;</span>; password=<span style="color:#e6db74">&#39;&lt;the password&gt;&#39;</span>; admin_groups=@($groupName)}
@@ -360,7 +360,7 @@ curl -k1 -u admin:infoblox -F name<span style="color:#f92672">=</span>discovery.
 
 <span style="color:#75715e"># Replace the token using the value returned by the first command</span>
 curl -k1 -u admin:infoblox -X POST <span style="color:#e6db74">&#34;https://gm/wapi/v2.10/fileop?_function=setdiscoverycsv&#34;</span> -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#39;{&#34;token&#34;:&#34;xxxxxxxxxxxx&#34;, &#34;merge_data&#34;:true, &#34;network_view&#34;:&#34;default&#34;}&#39;</span>
-</code></pre></div><p>Unfortunately, the WAPI doesn&rsquo;t return anything useful to indicate the discovery data was processed successfully. You&rsquo;ll only get an error if there was a functional problem with the REST call itself. So you just have to go check the IPAM view in Infoblox for the IP address associated with your discovery data. Mine looks like this from our sample data. <em>(Don&rsquo;t forget you can customize which fields are shown using the little gear icon in the upper right)</em></p>
+</code></pre></div><p>Unfortunately, the WAPI does not return anything useful to indicate the discovery data was processed successfully. You will only get an error if there was a functional problem with the REST call itself. If things worked, you should see your discovery data in the IPAM view for the IP address associated with your discovery data. Mine looks like this from our sample data. <em>(Don&rsquo;t forget you can customize which fields are shown using the little gear icon in the upper right)</em></p>
 
 
 
@@ -386,7 +386,7 @@ curl -k1 -u admin:infoblox -X POST <span style="color:#e6db74">&#34;https://gm/w
 
 
 <h1 id="troubleshooting">Troubleshooting</h1>
-<p>If your WAPI call to SetDiscoveryCSV appears to have completed successfully and you don&rsquo;t see your test data in IPAM for the associated IP, it&rsquo;s possible the discovery engine couldn&rsquo;t parse your CSV for some reason. The good news is there&rsquo;s a log file that should be able to tell you what&rsquo;s wrong. The bad news is it&rsquo;s buried in the support bundle. So you&rsquo;ll have to generate and download a fresh one and then look in <code>/infoblox/var/discovery_csv_error</code> for the associated log file.</p>
+<p>If your WAPI call to SetDiscoveryCSV appears to have completed successfully and you do not see your test data in IPAM for the associated IP, the discovery engine may have had a problem parsing your CSV for some reason. The good news is there is a log file that should be able to tell you what is wrong. The bad news is it is buried in the support bundle. Generate and download a fresh one and then look in <code>/infoblox/var/discovery_csv_error</code> for the associated log file.</p>
 
 
 
@@ -411,6 +411,7 @@ curl -k1 -u admin:infoblox -X POST <span style="color:#e6db74">&#34;https://gm/w
   </figure>
 
 
+<p><em>NOTE: My lab grid is on NIOS 8.5.1. Readers have noted separate discovery logs may not exist on previous NIOS versions. If you don&rsquo;t see them, check the main <code>infoblox.log</code> file for lines containing &ldquo;discovery_gm_sorter&rdquo;.</em></p>
 <h1 id="wrapping-up">Wrapping Up</h1>
 <p>We&rsquo;ve nailed down everything we need to do in order to submit new discovery data. All that remains is writing the tool/script to query our unsupported devices and generate the appropriate CSV file. Now go forth and discover!</p>
 
