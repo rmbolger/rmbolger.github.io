@@ -2,28 +2,20 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>Posh-IBWAPI 3.0.0 - Adventures in Tech</title>
+<title>Posh-ACME - Adventures in Tech</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-IBWAPI 3.0.0">
-<meta itemprop="description" content="File upload/download wrappers, named configs, and auto session management">
-<meta itemprop="datePublished" content="2019-04-20T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2019-04-20T00:00:00+00:00" />
-<meta itemprop="wordCount" content="638">
-
-
-
-<meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="Posh-IBWAPI 3.0.0" />
-<meta property="og:description" content="File upload/download wrappers, named configs, and auto session management" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2019/04/posh-ibwapi-3.0.0/" />
-<meta property="article:published_time" content="2019-04-20T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-04-20T00:00:00+00:00" />
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME">
+<meta itemprop="description" content="">
+<meta property="og:title" content="Posh-ACME" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.dvolve.net/categories/posh-acme/" />
+<meta property="og:updated_time" content="2020-08-31T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posh-IBWAPI 3.0.0"/>
-<meta name="twitter:description" content="File upload/download wrappers, named configs, and auto session management"/>
+<meta name="twitter:title" content="Posh-ACME"/>
+<meta name="twitter:description" content=""/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
@@ -38,7 +30,7 @@
     <h1 class="nav-title">
       <a href="/" class="nav">
         
-          Blog
+          categories
         
       </a>
     </h1>
@@ -90,6 +82,8 @@
     <footer>
       <ul class="socnet-icons">
         
+    <li><a href="/categories/posh-acme/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fas fa-rss"></a></li>
+
 
         <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
 
@@ -141,93 +135,38 @@
 
       <main id="site-main">
         
-  <article class="post">
-    <header>
+  
+  
+    <article class="post">
+  <header>
   <div class="title">
     
-      <h2><a href="/blog/2019/04/posh-ibwapi-3.0.0/">Posh-IBWAPI 3.0.0</a></h2>
+      <h2><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h2>
     
     
-      <p>File upload/download wrappers, named configs, and auto session management</p>
+      <p>New param in Submit-Renewal and misc fixes</p>
     
   </div>
   <div class="meta">
-    <time datetime="2019-04-20 00:00:00 &#43;0000 UTC">April 20, 2019</time>
+    <time datetime="2019-09-18 00:00:00 &#43;0000 UTC">September 18, 2019</time>
     <p>Ryan Bolger</p>
     
   </div>
 </header>
 
-    <div id="socnet-share">
-      
-
-
-
-
-
-    </div>
-    <div class="content">
-      
-      <p>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
-<p>For example, in 1.x this is how you&rsquo;d download a grid backup:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PowerShell" data-lang="PowerShell"><span style="color:#75715e"># request a download token and URL</span>
-$dl = Invoke-IBFunction -ref fileop -name getgriddata -args @{type=<span style="color:#e6db74">&#39;BACKUP&#39;</span>}
-
-<span style="color:#75715e"># download the file</span>
-Invoke-IBWAPI -Uri $dl.url -ContentType <span style="color:#e6db74">&#39;application/force-download&#39;</span> `
-              -Credential (Get-IBWAPIConfig).Credential `
-              -OutFile .\backup.tar.gz
-
-<span style="color:#75715e"># inform Infoblox that the download is complete</span>
-Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
-</code></pre></div><p>But in 3.x, you can now do this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PowerShell" data-lang="PowerShell">Receive-IBFile getgriddata -args @{type=<span style="color:#e6db74">&#39;BACKUP&#39;</span>} -OutFile .\backup.tar.gz
-</code></pre></div><p>Also in the release are named configs which enable saving different credentials for the same grid. The module takes care of session management now as well. So you don&rsquo;t need to manually deal with WebSession objects to prevent extraneous authentication requests.</p>
-<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-IBWAPI/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-IBWAPI/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-IBWAPI/blob/main/README.md">Readme</a>.</p>
-<h2 id="changelog">Changelog</h2>
-<ul>
-<li>Breaking Changes
-<ul>
-<li>The change to <code>ObjectType</code> parameter in <code>Invoke-IBFunction</code> has been reverted to <code>ObjectRef</code> like in 1.x. I totally confused myself during 2.x development of the *-IBFile functions and thought it had been wrong the whole time. It seems silly to do another major version change after two days. But breaking changes demand it according to semver.</li>
-<li>The <code>ObjectType</code> parameter in <code>Send-IBFile</code> and <code>Receive-IBFile</code> have been changed to <code>ObjectRef</code> to match <code>Invoke-IBFunction</code>. Both still default to &lsquo;fileop&rsquo; and have parameter aliases for &lsquo;type&rsquo; and &lsquo;ObjectType&rsquo; to maintain compatibility with the short lived 2.x codebase.</li>
-</ul>
-</li>
-<li>Fixed example in <code>Invoke-IBFunction</code> help.</li>
-</ul>
-<p>And here&rsquo;s the changelog for 2.0.0 which gives a better idea of what has changed since 1.x:</p>
-<ul>
-<li>Breaking Changes
-<ul>
-<li>.NET 4.5+ is now required on PowerShell Desktop edition for full functionality. A warning will be thrown when loading the module if it is not found.</li>
-<li>The <code>WebSession</code> parameter has been removed from all functions except <code>Invoke-IBWAPI</code>. Session handling is now automatic.</li>
-<li><code>New-IBSession</code> has been removed.</li>
-<li><code>Get-IBWAPIConfig</code>, <code>Set-IBWAPIConfig</code>, and <code>Remove-IBWAPIConfig</code> have been renamed to <code>Get-IBConfig</code>, <code>Set-IBConfig</code>, and <code>Remove-IBConfig</code> respectively.</li>
-<li><code>Save-IBWAPIConfig</code> has been removed. Configs are now saved by default via <code>Set-IBConfig</code>.</li>
-<li>Configs are now referenced by a <code>ProfileName</code>. Old 1.x configs will be automatically backed up, converted, and the new profiles will have their WAPIHost value set as the initial profile name.</li>
-<li><code>Set-IBConfig</code> now has <code>ProfileName</code> as its first parameter.</li>
-<li><code>Get-IBConfig</code> and <code>Remove-IBConfig</code> now have <code>ProfileName</code> instead of <code>WAPIHost</code> as their selection parameter.</li>
-<li>The <code>IgnoreCertificateValidation</code> switch has been renamed to <code>SkipCertificateCheck</code> in all functions and configs to be more in line with PowerShell Core.</li>
-<li>The <code>ObjectRef</code> parameter in <code>Invoke-IBFunction</code> has been changed to <code>ObjectType</code> which is functionally how it always worked and was inappropriately named. Functions get called against object types not references.</li>
-</ul>
-</li>
-<li>New Feature: Automatic session handling. The module will now automatically save and use WebSession objects to increase authentication efficiency over multiple requests and function calls.</li>
-<li>New Feature: Named configuration profiles. This will allow you to save multiple profiles for the same WAPI host with different credentials, WAPI versions, etc.</li>
-<li>New functions <code>Send-IBFile</code> and <code>Recieve-IBFile</code> which are convenient wrappers around the fileop functions. See the cmdlet help or the guide in the wiki for more details.</li>
-<li>Config profiles are now automatically saved to disk when using <code>Set-IBConfig</code>.</li>
-<li><code>Set-IBConfig</code> now has a <code>NewName</code> parameter to rename the profile.</li>
-<li><code>Get-IBConfig</code> now returns a typed object with a automatically styled display.</li>
-<li><code>Remove-IBConfig</code> now has pipeline support both by value and property name so you can pipe the output of <code>Get-IBConfig</code> to it.</li>
-<li><code>Get-IBConfig</code>, <code>Set-IBConfig</code>, and <code>Remove-IBConfig</code> now have tab completion on PowerShell 5.0 or later.</li>
-</ul>
-
-    </div>
-    <footer>
-      <div class="stats">
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don&rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&rsquo;re using is purposefully short-lived.</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/09/posh-acme-3.7.0/" class="button big">Read More</a>
+    <div class="stats">
   
     <ul class="categories">
       
         
-          <li><a class="article-terms-link" href="/categories/posh-ibwapi/">Posh-IBWAPI</a></li>
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
         
       
     </ul>
@@ -243,15 +182,111 @@ Invoke-IBFunction -ref fileop -name downloadcomplete -args @{token=$dl.token}
   
 </div>
 
-    </footer>
-  </article>
+  </footer>
+</article>
+
   
+    <article class="post">
+  <header>
+  <div class="title">
     
+      <h2><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h2>
+    
+    
+      <p>New plugins and self-hosted http challenges</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-08-21 00:00:00 &#43;0000 UTC">August 21, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for <a href="https://domene.shop/">Domeneshop</a>, <a href="https://www.dreamhost.com/">Dreamhost</a>, <a href="https://easydns.com/">EasyDNS</a>, and <a href="http://freedns.afraid.org/">freedns.afraid.org</a>. The other big addition is a new function called <code>Invoke-HttpChallengeListener</code> which can be super handy for people doing HTTP challenges. It&rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&rsquo;t have manually deal with making the challenge files&hellip;</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/08/posh-acme-3.6.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h2>
+    
+    
+      <p>New plugin and misc fixes</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-06-21 00:00:00 &#43;0000 UTC">June 21, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
 
   
   <div class="pagination">
     
-      <a href="/blog/2019/06/posh-acme-3.5.0/" class="button left"><span>Posh-ACME 3.5.0</span></a>
+      <a href="/categories/posh-acme/" class="button left"><span>Previous Page</span></a>
     
     
   </div>

@@ -31,6 +31,44 @@ You might use this to make it easier to compare data between different grids. Yo
     </item>
     
     <item>
+      <title>Posh-ACME 3.16.0</title>
+      <link>https://www.dvolve.net/blog/2020/08/posh-acme-3.16.0/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/08/posh-acme-3.16.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.16.0. The highlight of this release is Preferred Chain support which is an advanced but important feature with Let&amp;rsquo;s Encrypt&amp;rsquo;s impending root transition. When you download a certificate from an ACME server, you also get the issuing chain with that certificate. But for certificate authorities with complex issuance hierarchies, the ACME server may have multiple valid hierarchies to choose from. This new feature allows you to specify which chain to use based on the Common Name of an issuing CA in the chain.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.15.0</title>
+      <link>https://www.dvolve.net/blog/2020/06/posh-acme-3.15.0/</link>
+      <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/06/posh-acme-3.15.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.15.0. The big news in this release is External Account Binding (EAB) support which widens Posh-ACME&amp;rsquo;s compatibility with certificate authorities other than Let&amp;rsquo;s Encrypt. Sectigo, for example, offers paid certificates and ACME compatible endpoints. However, creating the ACME account requires linking it against an existing Sectigo account using new parameters in New-PAAccount. These parameters are a standard part of the ACME protocol, but optional to implement by a certificate authority.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.14.0</title>
+      <link>https://www.dvolve.net/blog/2020/05/posh-acme-3.14.0/</link>
+      <pubDate>Thu, 07 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/05/posh-acme-3.14.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.14.0. There&amp;rsquo;s now a Hetzner plugin thanks to a submission by Franz Mueller (@derguterat). The RFC2136 has an important fix when using it with names other than the root domain. The Google DNS plugin and the Azure usage guide also got a couple fixes.
+Updated versions can be found in the PowerShell Gallery or GitHub. Installation instructions are in the Readme.
+Changelog  Added new DNS plugin Hetzner (Thanks @derguterat) Fix for Google DNS plugin to ignore private zones.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.13.0</title>
+      <link>https://www.dvolve.net/blog/2020/04/posh-acme-3.13.0/</link>
+      <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/04/posh-acme-3.13.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.13.0. There are a whole bunch of new plugins in this release and a whopping four of them were submitted by Anton Samsonov (@WiZaRd31337). One of the other big additions is the long-awaited RFC2136 plugin which utilizes BIND&amp;rsquo;s nsupdate utility to perform dynamic DNS updates. If you&amp;rsquo;re on Windows, definitely check the usage guide if you plan to use this because you likely need to download and install the nsupdate prerequisite.</description>
+    </item>
+    
+    <item>
       <title>Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</title>
       <link>https://www.dvolve.net/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/</link>
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>

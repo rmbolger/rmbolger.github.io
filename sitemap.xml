@@ -48,12 +48,32 @@
   </url>
   
   <url>
-    <loc>https://www.dvolve.net/categories/active-directory/</loc>
-    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
+    <loc>https://www.dvolve.net/categories/posh-acme/</loc>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.dvolve.net/categories/posh-acme/</loc>
+    <loc>https://www.dvolve.net/blog/2020/08/posh-acme-3.16.0/</loc>
+    <lastmod>2020-08-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2020/06/posh-acme-3.15.0/</loc>
+    <lastmod>2020-06-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2020/05/posh-acme-3.14.0/</loc>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2020/04/posh-acme-3.13.0/</loc>
+    <lastmod>2020-04-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/categories/active-directory/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
   </url>
   

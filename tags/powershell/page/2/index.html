@@ -141,6 +141,202 @@
   <header>
   <div class="title">
     
+      <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
+    
+    
+      <p>New UnoEuro plugin and updates to Cloudflare plugin.</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-10-26 00:00:00 &#43;0000 UTC">October 26, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.9.0. There&rsquo;s a new DNS plugin for <a href="https://www.unoeuro.com/">UnoEuro</a> thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&rsquo;t have edit permissions to all zones on an account.</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/10/posh-acme-3.9.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2019/10/posh-ibcli-1.3.0/">Posh-IBCLI 1.3.0</a></h2>
+    
+    
+      <p>New functions Get-IBCLIApacheCert and Set-IBCLIApacheCert</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-10-23 00:00:00 &#43;0000 UTC">October 23, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-IBCLI release, version 1.3.0. It adds new functions called <code>Get-IBCLIApacheCert</code> and <code>Set-IBCLIApacheCert</code> which wrap the <code>set apache_https_cert</code> command added in NIOS 8.4. What&rsquo;s funny is that the only reason I found out about the command is because of a problem I ran into while testing <a href="https://github.com/rmbolger/Posh-IBWAPI">Posh-IBWAPI</a>&rsquo;s new file upload functions.</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/10/posh-ibcli-1.3.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-ibcli/">Posh-IBCLI</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2019/09/posh-acme-3.8.0/">Posh-ACME 3.8.0</a></h2>
+    
+    
+      <p>More options in Set-PAOrder and misc fixes</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-09-27 00:00:00 &#43;0000 UTC">September 27, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.8.0. <code>Set-PAOrder</code> now supports modifying some order properties that don&rsquo;t require generating a new order such as FriendlyName, PfxPass, and the Install switch. If the order has already been completed, changes to FriendlyName and PfxPass will generate new versions of the associated PFX files with the updated values. But changes to the Install switch will only affect future renewals. The GoDaddy plugin will no longer fail on large accounts with&hellip;</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/09/posh-acme-3.8.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h2>
+    
+    
+      <p>New param in Submit-Renewal and misc fixes</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-09-18 00:00:00 &#43;0000 UTC">September 18, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don&rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&rsquo;re using is purposefully short-lived.</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/09/posh-acme-3.7.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
       <h2><a href="/blog/2019/08/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.1.0</a></h2>
     
     
@@ -433,108 +629,12 @@
 </article>
 
   
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h2>
-    
-    
-      <p>New plugin and misc fixes</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-06-21 00:00:00 &#43;0000 UTC">June 21, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/04/posh-ibwapi-3.0.0/">Posh-IBWAPI 3.0.0</a></h2>
-    
-    
-      <p>File upload/download wrappers, named configs, and auto session management</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-04-20 00:00:00 &#43;0000 UTC">April 20, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-IBWAPI release, version 3.0.0. It has only been two days since 2.0.0, but I goofed and shipped 2.0.0 with some breaking changes that I ended up reverting. The biggest feature of the release is the new file upload/download wrappers, <code>Send-IBFile</code> and <code>Recieve-IBFile</code>. They allow you to more easily do things like upload a certificate or download a grid backup and fill a functionality gap that has been bugging me since 1.0.</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/04/posh-ibwapi-3.0.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-ibwapi/">Posh-IBWAPI</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
   <div class="pagination">
     
       <a href="/tags/powershell/" class="button left"><span>Previous Page</span></a>
     
+    
+      <a href="/tags/powershell/page/3/" class="button right"><span>Next Page</span></a>
     
   </div>
 
@@ -565,24 +665,24 @@
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
-          <time class="published" datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+          <h2><a href="/blog/2020/08/posh-acme-3.16.0/">Posh-ACME 3.16.0</a></h2>
+          <time class="published" datetime="2020-08-31 00:00:00 &#43;0000 UTC">August 31, 2020</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
-          <time class="published" datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+          <h2><a href="/blog/2020/06/posh-acme-3.15.0/">Posh-ACME 3.15.0</a></h2>
+          <time class="published" datetime="2020-06-22 00:00:00 &#43;0000 UTC">June 22, 2020</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
-          <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+          <h2><a href="/blog/2020/05/posh-acme-3.14.0/">Posh-ACME 3.14.0</a></h2>
+          <time class="published" datetime="2020-05-07 00:00:00 &#43;0000 UTC">May 7, 2020</time>
         </header>
       </article>
       
@@ -604,7 +704,7 @@
           
           
           <li>
-              <a href="/categories/posh-acme/">posh-acme<span class="count">9</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">13</span></a>
           
           <li>
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>

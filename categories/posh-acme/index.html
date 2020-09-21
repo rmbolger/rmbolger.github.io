@@ -12,7 +12,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.dvolve.net/categories/posh-acme/" />
-<meta property="og:updated_time" content="2019-12-17T00:00:00+00:00" />
+<meta property="og:updated_time" content="2020-08-31T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posh-ACME"/>
 <meta name="twitter:description" content=""/>
@@ -136,6 +136,202 @@
       <main id="site-main">
         
   
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2020/08/posh-acme-3.16.0/">Posh-ACME 3.16.0</a></h2>
+    
+    
+      <p>Preferred Chain support and a new plugin</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2020-08-31 00:00:00 &#43;0000 UTC">August 31, 2020</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.16.0. The highlight of this release is Preferred Chain support which is an advanced but important feature with Let&rsquo;s Encrypt&rsquo;s impending <a href="https://letsencrypt.org/2019/04/15/transitioning-to-isrg-root.html">root transition</a>. When you download a certificate from an ACME server, you also get the issuing chain with that certificate. But for certificate authorities with complex issuance hierarchies, the ACME server may have multiple valid hierarchies to choose from. This new feature allows you to specify which&hellip;</p>
+  </div>
+  <footer>
+    <a href="/blog/2020/08/posh-acme-3.16.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2020/06/posh-acme-3.15.0/">Posh-ACME 3.15.0</a></h2>
+    
+    
+      <p>External Account Binding (EAB) support and a new plugin</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2020-06-22 00:00:00 &#43;0000 UTC">June 22, 2020</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.15.0. The big news in this release is External Account Binding (EAB) support which widens Posh-ACME&rsquo;s compatibility with certificate authorities other than Let&rsquo;s Encrypt. <a href="https://sectigo.com/">Sectigo</a>, for example, offers paid certificates and ACME compatible endpoints. However, creating the ACME account requires linking it against an existing Sectigo account using new parameters in <code>New-PAAccount</code>. These parameters are a standard part of the ACME protocol,&hellip;</p>
+  </div>
+  <footer>
+    <a href="/blog/2020/06/posh-acme-3.15.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2020/05/posh-acme-3.14.0/">Posh-ACME 3.14.0</a></h2>
+    
+    
+      <p>New plugin and some fixes</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2020-05-07 00:00:00 &#43;0000 UTC">May 7, 2020</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.14.0. There&rsquo;s now a Hetzner plugin thanks to a submission by Franz Mueller (<a href="https://github.com/derguterat">@derguterat</a>). The RFC2136 has an important fix when using it with names other than the root domain. The Google DNS plugin and the Azure usage guide also got a couple fixes.</p>
+  </div>
+  <footer>
+    <a href="/blog/2020/05/posh-acme-3.14.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2020/04/posh-acme-3.13.0/">Posh-ACME 3.13.0</a></h2>
+    
+    
+      <p>Lots of new plugins</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2020-04-11 00:00:00 &#43;0000 UTC">April 11, 2020</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.13.0. There are a whole bunch of new plugins in this release and a whopping four of them were submitted by Anton Samsonov (<a href="https://github.com/WiZaRd31337">@WiZaRd31337</a>). One of the other big additions is the long-awaited <a href="https://tools.ietf.org/html/rfc2136">RFC2136</a> plugin which utilizes BIND&rsquo;s nsupdate utility to perform dynamic DNS updates. If you&rsquo;re on Windows, definitely check the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/Posh-ACME/DnsPlugins/RFC2136-Readme.md">usage guide</a> if you plan to use this because you likely need to download and install the nsupdate prerequisite.</p>
+  </div>
+  <footer>
+    <a href="/blog/2020/04/posh-acme-3.13.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
   
     <article class="post">
   <header>
@@ -433,155 +629,10 @@
 </article>
 
   
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h2>
-    
-    
-      <p>New param in Submit-Renewal and misc fixes</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-09-18 00:00:00 &#43;0000 UTC">September 18, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don&rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&rsquo;re using is purposefully short-lived.</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/09/posh-acme-3.7.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h2>
-    
-    
-      <p>New plugins and self-hosted http challenges</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-08-21 00:00:00 &#43;0000 UTC">August 21, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for <a href="https://domene.shop/">Domeneshop</a>, <a href="https://www.dreamhost.com/">Dreamhost</a>, <a href="https://easydns.com/">EasyDNS</a>, and <a href="http://freedns.afraid.org/">freedns.afraid.org</a>. The other big addition is a new function called <code>Invoke-HttpChallengeListener</code> which can be super handy for people doing HTTP challenges. It&rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&rsquo;t have manually deal with making the challenge files&hellip;</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/08/posh-acme-3.6.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h2>
-    
-    
-      <p>New plugin and misc fixes</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-06-21 00:00:00 &#43;0000 UTC">June 21, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
   <div class="pagination">
     
+    
+      <a href="/categories/posh-acme/page/2/" class="button right"><span>Next Page</span></a>
     
   </div>
 
@@ -612,24 +663,24 @@
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
-          <time class="published" datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+          <h2><a href="/blog/2020/08/posh-acme-3.16.0/">Posh-ACME 3.16.0</a></h2>
+          <time class="published" datetime="2020-08-31 00:00:00 &#43;0000 UTC">August 31, 2020</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
-          <time class="published" datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+          <h2><a href="/blog/2020/06/posh-acme-3.15.0/">Posh-ACME 3.15.0</a></h2>
+          <time class="published" datetime="2020-06-22 00:00:00 &#43;0000 UTC">June 22, 2020</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
-          <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+          <h2><a href="/blog/2020/05/posh-acme-3.14.0/">Posh-ACME 3.14.0</a></h2>
+          <time class="published" datetime="2020-05-07 00:00:00 &#43;0000 UTC">May 7, 2020</time>
         </header>
       </article>
       
@@ -651,7 +702,7 @@
           
           
           <li>
-              <a href="/categories/posh-acme/">posh-acme<span class="count">9</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">13</span></a>
           
           <li>
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>

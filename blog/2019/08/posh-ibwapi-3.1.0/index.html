@@ -183,7 +183,7 @@
 </code></pre></div><p>This can be a problem if you&rsquo;re using a trusted SSL\TLS certificate on your host because they usually don&rsquo;t validate properly for IP addresses. So while the WAPI calls will succeed, the transfer call will fail due to certificate validation. In the previous version, I tried working around this by just always skipping certificate validation on the transfer call. But it turns out that can cause some undesireable behavior in dependent scripts.</p>
 <p>So what the <code>-OverrideTransferHost</code> actually does is check if the transfer URL&rsquo;s host matches the WAPI URL&rsquo;s host and if it doesn&rsquo;t, tweaks the transfer URL to match. Whatever value is being used for <code>-SkipCertificateCheck</code> is also configured for the transfer call.</p>
 <p>In addition to the new switch, there are a few other enhancements and fixes in this release. In particular, <code>Send-IBFile</code> will now open the file to be uploaded with a lock that no longer prevents other readers from reading the file simultaneously.</p>
-<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-IBWAPI/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-IBWAPI/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-IBWAPI/blob/master/README.md">Readme</a>.</p>
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-IBWAPI/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-IBWAPI/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-IBWAPI/blob/main/README.md">Readme</a>.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li>Added <code>OverrideTransferHost</code> switch to <code>Send-IBFile</code> and <code>Receive-IBFile</code> which tweaks the WAPI supplied transfer URL so that the hostname matches the WAPIHost value originally passed to the function. It also copies the state of the <code>SkipCertificate</code> switch to the transfer call.</li>
@@ -258,24 +258,24 @@
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
-          <time class="published" datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+          <h2><a href="/blog/2020/08/posh-acme-3.16.0/">Posh-ACME 3.16.0</a></h2>
+          <time class="published" datetime="2020-08-31 00:00:00 &#43;0000 UTC">August 31, 2020</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
-          <time class="published" datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+          <h2><a href="/blog/2020/06/posh-acme-3.15.0/">Posh-ACME 3.15.0</a></h2>
+          <time class="published" datetime="2020-06-22 00:00:00 &#43;0000 UTC">June 22, 2020</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
-          <time class="published" datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+          <h2><a href="/blog/2020/05/posh-acme-3.14.0/">Posh-ACME 3.14.0</a></h2>
+          <time class="published" datetime="2020-05-07 00:00:00 &#43;0000 UTC">May 7, 2020</time>
         </header>
       </article>
       
@@ -297,7 +297,7 @@
           
           
           <li>
-              <a href="/categories/posh-acme/">posh-acme<span class="count">9</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">13</span></a>
           
           <li>
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>
