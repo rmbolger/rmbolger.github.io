@@ -2,28 +2,28 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>Posh-ACME 3.12.0 - Adventures in Tech</title>
+<title>Posh-IBWAPI 3.2.0 - Adventures in Tech</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME 3.12.0">
-<meta itemprop="description" content="Set-PAOrder improvements, upgraded BouncyCastle, and misc fixes.">
-<meta itemprop="datePublished" content="2019-12-10T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2019-12-10T00:00:00+00:00" />
-<meta itemprop="wordCount" content="265">
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-IBWAPI 3.2.0">
+<meta itemprop="description" content="Per-call profiles">
+<meta itemprop="datePublished" content="2020-09-21T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-09-21T00:00:00+00:00" />
+<meta itemprop="wordCount" content="296">
 
 
 
 <meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="Posh-ACME 3.12.0" />
-<meta property="og:description" content="Set-PAOrder improvements, upgraded BouncyCastle, and misc fixes." />
+<meta property="og:title" content="Posh-IBWAPI 3.2.0" />
+<meta property="og:description" content="Per-call profiles" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2019/12/posh-acme-3.12.0/" />
-<meta property="article:published_time" content="2019-12-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-12-10T00:00:00+00:00" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2020/09/posh-ibwapi-3.1.0/" />
+<meta property="article:published_time" content="2020-09-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-21T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posh-ACME 3.12.0"/>
-<meta name="twitter:description" content="Set-PAOrder improvements, upgraded BouncyCastle, and misc fixes."/>
+<meta name="twitter:title" content="Posh-IBWAPI 3.2.0"/>
+<meta name="twitter:description" content="Per-call profiles"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
@@ -145,14 +145,14 @@
     <header>
   <div class="title">
     
-      <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
+      <h2><a href="/blog/2020/09/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.2.0</a></h2>
     
     
-      <p>Set-PAOrder improvements, upgraded BouncyCastle, and misc fixes.</p>
+      <p>Per-call profiles</p>
     
   </div>
   <div class="meta">
-    <time datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+    <time datetime="2020-09-21 00:00:00 &#43;0000 UTC">September 21, 2020</time>
     <p>Ryan Bolger</p>
     
   </div>
@@ -168,20 +168,39 @@
     </div>
     <div class="content">
       
-      <p>Just shipped a new Posh-ACME release, version 3.12.0. The <code>Set-PAOrder</code> function now has <code>-DnsPlugin</code> and <code>-PluginArgs</code> parameters which should make it easier to change DNS providers and/or provider parameters without needing to wait for a certificate renewal. The BouncyCastle library has been updated to the latest 1.8.5 version and the DLL file is using a non-standard name to avoid conflicts with other software that uses BouncyCastle and chooses to install the DLL into the .NET GAC. For some reason, PowerShell will always choose to use the GAC copy rather than the module&rsquo;s copy even if the module&rsquo;s version is newer when they are named the same.</p>
-<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
+      <p>Just shipped a new Posh-IBWAPI release, version 3.2.0. There is now a <code>ProfileName</code> parameter associated with all of the public functions that have connection specific parameters such as <code>WAPIHost</code>, <code>WAPIVersion</code>, and <code>Credential</code>. This should make it easier to change profiles on a per-call basis instead of needing to run <code>Set-IBConfig</code> to switch away and back again.</p>
+<p>You might use this to make it easier to compare data between different grids. You could also use this to setup some protection against accidental mistakes if you create both an &ldquo;admin&rdquo; profile and a &ldquo;readonly&rdquo; profile. Most of the time, your default profile would be read-only. When you specifically needed to do something that requires write access, you just specify the admin profile name.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># set the readonly profile as active</span>
+Set-IBConfig readonly
+
+<span style="color:#75715e"># do stuff normally that only requires readonly</span>
+Get-IBObject zone_auth -Filter <span style="color:#e6db74">&#39;view=default&#39;</span>,<span style="color:#e6db74">&#39;fqdn=example.com&#39;</span>
+
+<span style="color:#75715e"># try and fail to do something that would require write access</span>
+Get-IBObject zone_auth -Filter <span style="color:#e6db74">&#39;view=default&#39;</span>,<span style="color:#e6db74">&#39;fqdn=example.com&#39;</span> |
+    Set-IBObject -Template @{comment=<span style="color:#e6db74">&#39;new comment&#39;</span>}
+
+<span style="color:#75715e"># which forces you to try again using the admin profile for the Set command</span>
+Get-IBObject zone_auth -Filter <span style="color:#e6db74">&#39;view=default&#39;</span>,<span style="color:#e6db74">&#39;fqdn=example.com&#39;</span> |
+    Set-IBObject -Template @{comment=<span style="color:#e6db74">&#39;new comment&#39;</span>} -ProfileName admin
+</code></pre></div><p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-IBWAPI/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-IBWAPI/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-IBWAPI/blob/master/README.md">Readme</a>.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
-<li><code>Set-PAOrder</code> now has <code>-DnsPlugin</code> and <code>-PluginArgs</code> parameters to allow changing plugins and associated credentials prior to a renewal operation.</li>
-<li>Upgraded BouncyCastle library to version 1.8.5.2 and renamed the DLL to avoid conflicts with older copies that may get installed into the .NET GAC by other software.</li>
-<li>ACME server errors returned during calls to <code>Revoke-PAAuthorization</code> are now non-terminating errors rather than warnings.</li>
-<li>Fixed bug where new orders created with <code>New-PACertificate</code> and no explicit plugin wouldn&rsquo;t get the Manual default if the account was already authorized for the included names.</li>
-<li>Fixed <code>Get-PAAuthorizations</code> when using explicit account reference</li>
-<li>Fixed datetime parsing issues on non-US culture environments (<a href="https://github.com/rmbolger/Posh-ACME/issues/208">#208</a>)</li>
-<li>Fixed errors thrown by <code>Submit-Renewal</code> when run against an order with a null DnsPlugin. A warning is now thrown instead.</li>
-<li>Fixed parameter binding error when using <code>-PluginArgs</code> with <code>Submit-Renewal</code></li>
-<li>Fixed HurricanElectric guide&rsquo;s parameter references</li>
-<li>Fixed Azure tests</li>
+<li>An optional <code>ProfileName</code> parameter has been added to the public functions that already accept connection specific parameters (#49). This will allow you to switch profiles on a per-call basis more easily. The connection specific parameters will still override the a specified profile&rsquo;s values. These are the affected functions:
+<ul>
+<li>Get-IBObject</li>
+<li>Get-IBSchema</li>
+<li>Invoke-IBFunction</li>
+<li>New-IBObject</li>
+<li>Receive-IBFile</li>
+<li>Remove-IBObject</li>
+<li>Send-IBFile</li>
+<li>Set-IBObject</li>
+</ul>
+</li>
+<li><code>ProfileName</code> is now a positional parameter in <code>Remove-IBConfig</code></li>
+<li>Minor efficiency improvements in <code>Get-IBObject</code> for results with many pages.</li>
+<li>The name of the default branch in git has been renamed from master to main.</li>
 </ul>
 
     </div>
@@ -191,7 +210,7 @@
     <ul class="categories">
       
         
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+          <li><a class="article-terms-link" href="/categories/posh-ibwapi/">Posh-IBWAPI</a></li>
         
       
     </ul>
@@ -215,10 +234,8 @@
   
   <div class="pagination">
     
-      <a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/" class="button left"><span>Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</span></a>
     
-    
-      <a href="/blog/2019/11/posh-acme-3.11.0/" class="button right"><span>Posh-ACME 3.11.0</span></a>
+      <a href="/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/" class="button right"><span>Hacking Infoblox Discovery for Fun and Profit</span></a>
     
   </div>
 

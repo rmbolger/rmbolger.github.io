@@ -6,10 +6,20 @@
     <description>Recent content in powershell on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Posh-IBWAPI 3.2.0</title>
+      <link>https://www.dvolve.net/blog/2020/09/posh-ibwapi-3.1.0/</link>
+      <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/09/posh-ibwapi-3.1.0/</guid>
+      <description>Just shipped a new Posh-IBWAPI release, version 3.2.0. There is now a ProfileName parameter associated with all of the public functions that have connection specific parameters such as WAPIHost, WAPIVersion, and Credential. This should make it easier to change profiles on a per-call basis instead of needing to run Set-IBConfig to switch away and back again.
+You might use this to make it easier to compare data between different grids. You could also use this to setup some protection against accidental mistakes if you create both an &amp;ldquo;admin&amp;rdquo; profile and a &amp;ldquo;readonly&amp;rdquo; profile.</description>
+    </item>
     
     <item>
       <title>Hacking Infoblox Discovery for Fun and Profit</title>
