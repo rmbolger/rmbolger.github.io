@@ -63,6 +63,16 @@
   </url>
   
   <url>
+    <loc>https://www.dvolve.net/categories/dnsclient-ps/</loc>
+    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2020/06/dnsclient-ps-1.0.0/</loc>
+    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.dvolve.net/blog/2020/05/posh-acme-3.14.0/</loc>
     <lastmod>2020-05-07T00:00:00+00:00</lastmod>
   </url>

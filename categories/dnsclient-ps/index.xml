@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DnsClient-PS on Adventures in Tech</title>
+    <link>https://www.dvolve.net/categories/dnsclient-ps/</link>
+    <description>Recent content in DnsClient-PS on Adventures in Tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.dvolve.net/categories/dnsclient-ps/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DnsClient-PS 1.0.0</title>
+      <link>https://www.dvolve.net/blog/2020/06/dnsclient-ps-1.0.0/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/06/dnsclient-ps-1.0.0/</guid>
+      <description>Just shipped a brand new module called DnsClient-PS. It&amp;rsquo;s a cross-platform DNS client for PowerShell utilizing the DnsClient.NET library. In the library author&amp;rsquo;s own words:
+ DnsClient.NET is a simple yet very powerful and high performant open source library for the .NET Framework to do DNS lookups. It can be used in any kind of application to query the network&amp;rsquo;s DNS server or any other DNS server even on non-default ports.</description>
+    </item>
+    
+  </channel>
+</rss>

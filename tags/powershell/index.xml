@@ -49,6 +49,16 @@ You might use this to make it easier to compare data between different grids. Yo
     </item>
     
     <item>
+      <title>DnsClient-PS 1.0.0</title>
+      <link>https://www.dvolve.net/blog/2020/06/dnsclient-ps-1.0.0/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/06/dnsclient-ps-1.0.0/</guid>
+      <description>Just shipped a brand new module called DnsClient-PS. It&amp;rsquo;s a cross-platform DNS client for PowerShell utilizing the DnsClient.NET library. In the library author&amp;rsquo;s own words:
+ DnsClient.NET is a simple yet very powerful and high performant open source library for the .NET Framework to do DNS lookups. It can be used in any kind of application to query the network&amp;rsquo;s DNS server or any other DNS server even on non-default ports.</description>
+    </item>
+    
+    <item>
       <title>Posh-ACME 3.14.0</title>
       <link>https://www.dvolve.net/blog/2020/05/posh-acme-3.14.0/</link>
       <pubDate>Thu, 07 May 2020 00:00:00 +0000</pubDate>
