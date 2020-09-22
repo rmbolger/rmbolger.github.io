@@ -21,6 +21,17 @@
     </item>
     
     <item>
+      <title>Posh-ACME.Deploy 1.1.0</title>
+      <link>https://www.dvolve.net/blog/2020/06/posh-acme-deploy-1.1.0/</link>
+      <pubDate>Wed, 24 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/06/posh-acme-deploy-1.1.0/</guid>
+      <description>Just shipped a new Posh-ACME.Deploy release, version 1.1.0. There is now a Set-ExchangeCertificate function thanks to Erik Nemchik (@nemchik). It requires the Microsoft.Exchange.Management.PowerShell snap-in and has been tested successfully against Exchange 2019, but may work against earlier versions as well.
+Updated versions can be found in the PowerShell Gallery or GitHub. Installation instructions are in the Readme.
+Changelog  Added Set-ExchangeCertificate  </description>
+    </item>
+    
+    <item>
       <title>Posh-ACME 3.15.0</title>
       <link>https://www.dvolve.net/blog/2020/06/posh-acme-3.15.0/</link>
       <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
@@ -57,6 +68,16 @@ Changelog  Added new DNS plugin Hetzner (Thanks @derguterat) Fix for Google DNS 
       <guid>https://www.dvolve.net/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/</guid>
       <description>If you&amp;rsquo;ve ever had to setup an HTTPS website in the past couple years, you&amp;rsquo;ve most likely heard of Let&amp;rsquo;s Encrypt which is arguably the largest public certificate authority in the world. Not only are their certificates free, the entire ordering and renewal process can be completely automated using a recently finalized protocol standard known as ACME (RFC 8555).
 But there are endless apps and services other than HTTP based web sites that can also use TLS certificates.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME.Deploy 1.0.0</title>
+      <link>https://www.dvolve.net/blog/2019/12/posh-acme-deploy-1.0.0/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2019/12/posh-acme-deploy-1.0.0/</guid>
+      <description>Just shipped a new module called Posh-ACME.Deploy. It&amp;rsquo;s an optional companion module for Posh-ACME that provides a set of functions to make it easier to deploy the certificates you create.
+Deploying certificates is never as simple as you want it to be particularly on Windows. Some apps want PEM files in a folder referenced in a config file. Others reference them from the registry. Some need the certificates in a Windows certificate store, but they might be configured based on thumbprint via WMI.</description>
     </item>
     
     <item>
