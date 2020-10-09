@@ -2,28 +2,28 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>Posh-ACME.Deploy 1.0.0 - Adventures in Tech</title>
+<title>Posh-ACME 3.17.0 - Adventures in Tech</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME.Deploy 1.0.0">
-<meta itemprop="description" content="Cert deployment functions for Posh-ACME">
-<meta itemprop="datePublished" content="2019-12-13T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2019-12-13T00:00:00+00:00" />
-<meta itemprop="wordCount" content="406">
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME 3.17.0">
+<meta itemprop="description" content="Account key import/export and test updates">
+<meta itemprop="datePublished" content="2020-10-09T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-10-09T00:00:00+00:00" />
+<meta itemprop="wordCount" content="721">
 
 
 
 <meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="Posh-ACME.Deploy 1.0.0" />
-<meta property="og:description" content="Cert deployment functions for Posh-ACME" />
+<meta property="og:title" content="Posh-ACME 3.17.0" />
+<meta property="og:description" content="Account key import/export and test updates" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2019/12/posh-acme-deploy-1.0.0/" />
-<meta property="article:published_time" content="2019-12-13T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-12-13T00:00:00+00:00" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2020/10/posh-acme-3.17.0/" />
+<meta property="article:published_time" content="2020-10-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-09T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posh-ACME.Deploy 1.0.0"/>
-<meta name="twitter:description" content="Cert deployment functions for Posh-ACME"/>
+<meta name="twitter:title" content="Posh-ACME 3.17.0"/>
+<meta name="twitter:description" content="Account key import/export and test updates"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
@@ -145,14 +145,14 @@
     <header>
   <div class="title">
     
-      <h2><a href="/blog/2019/12/posh-acme-deploy-1.0.0/">Posh-ACME.Deploy 1.0.0</a></h2>
+      <h2><a href="/blog/2020/10/posh-acme-3.17.0/">Posh-ACME 3.17.0</a></h2>
     
     
-      <p>Cert deployment functions for Posh-ACME</p>
+      <p>Account key import/export and test updates</p>
     
   </div>
   <div class="meta">
-    <time datetime="2019-12-13 00:00:00 &#43;0000 UTC">December 13, 2019</time>
+    <time datetime="2020-10-09 00:00:00 &#43;0000 UTC">October 9, 2020</time>
     <p>Ryan Bolger</p>
     
   </div>
@@ -168,32 +168,57 @@
     </div>
     <div class="content">
       
-      <p>Just shipped a new module called Posh-ACME.Deploy. It&rsquo;s an optional companion module for Posh-ACME that provides a set of functions to make it easier to deploy the certificates you create.</p>
-<p>Deploying certificates is never as simple as you want it to be particularly on Windows. Some apps want PEM files in a folder referenced in a config file. Others reference them from the registry. Some need the certificates in a Windows certificate store, but they might be configured based on thumbprint via WMI. It&rsquo;s kind of a mess and you have to go hunting in the app&rsquo;s documentation to know exactly how they want things done. It&rsquo;s also one of the reasons I purposefully did not include deployment functionality in the main Posh-ACME module.</p>
-<h1 id="quick-start">Quick Start</h1>
-<p>An IIS website tends to be the most common certificate target for this module. We&rsquo;ll assume you have already created a cert using <a href="https://github.com/rmbolger/Posh-ACME">Posh-ACME</a> and want to deploy it to the default site in IIS and bound to all IPs and port 443 with no host header or <a href="https://en.wikipedia.org/wiki/Server_Name_Indication">SNI</a> requirement. <em>(SNI and host headers for TLS require IIS 8.0+)</em></p>
-<p>First, make sure your PowerShell session is running as admin. For the initial deployment, you can do something like this which will import the cert into the <code>LocalMachine\My</code> certificate store and add/update the site&rsquo;s https binding with the selected certificate. The <code>-Verbose</code> flag is optional but can be a nice way to see what&rsquo;s happening. If you need to customize the binding parameters, check the function&rsquo;s help with <code>Get-Help Set-IISCertificate</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-PAOrder example.com
-Get-PACertificate | Set-IISCertificate -SiteName <span style="color:#e6db74">&#39;Default Web Site&#39;</span> -Verbose
-</code></pre></div><p>Your Posh-ACME renewal script might look something like this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-PAOrder example.com
-<span style="color:#66d9ef">if</span> ($cert = Submit-Renewal) {
-    $cert | Set-IISCertificate -SiteName <span style="color:#e6db74">&#39;Default Web Site&#39;</span> -RemoveOldCert
+      <p>Just shipped a new Posh-ACME release, version 3.17.0. The highlight of this release is the ability to import or export the private key associated with an ACME account. When creating a new account or performing a key rollover for an existing account, Posh-ACME will normally generate a new random private key automatically. But you now have the option to import an existing key instead of having one generated. It works like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># when creating a new account</span>
+New-PAAccount -AcceptTOS -KeyFile .\mykey.key
+
+<span style="color:#75715e"># key rollover on existing account</span>
+Set-PAAccount -KeyRollover -KeyFile .\mykey.key
+</code></pre></div><p>Once the key is imported and associated with the ACME account, you can delete the original file if you want. Keys must be Base64 encoded PEM files and they must adhere to the supported key sizes for the ACME certificate authority you&rsquo;re using. For Let&rsquo;s Encrypt, that means RSA keys 2048-4096 in length or EC keys using P-256 or P-384 NIST curves.</p>
+<p>There is also a new function called <code>Export-PAAccountKey</code> which allows you to export an existing ACME account key to a PEM file. To export the current account&rsquo;s key, it works like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Export-PAAccountKey -OutputFile .\mykey.key
+</code></pre></div><p>There are also <code>ID</code> and <code>Force</code> parameters which let you specify a specific account to export and whether or not to overwrite the key file if it already exists. If you have multiple ACME accounts, here&rsquo;s an example of how you could backup all of those keys.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># define a backup folder and create it if it doesn&#39;t exist</span>
+$fldr = Join-Path (<span style="color:#66d9ef">[Environment]</span>::GetFolderPath(<span style="color:#e6db74">&#39;Desktop&#39;</span>)) <span style="color:#e6db74">&#39;AcmeAccountKeys&#39;</span>
+New-Item -ItemType Directory -Force -Path $fldr | Out-Null
+
+<span style="color:#75715e"># list the accounts and export all of the keys</span>
+Get-PAAccount -List | %{
+    Export-PAAccountKey $_.ID -OutputFile <span style="color:#e6db74">&#34;$fldr\</span>$($_.ID)<span style="color:#e6db74">.key&#34;</span> -Force
 }
-</code></pre></div><p><code>Submit-Renewal</code> only returns a certificate object when it successfully renews the certificate. So you generally run it 1-2 times per day and it doesn&rsquo;t do anything until the renewal window has been reached. The <code>-RemoveOldCert</code> parameter will delete the previous certificate from the Windows certificate store after it successfully imports and configures the new one.</p>
-<p>The rest of the functions in this module work very similarly. Check the associated parameters using <code>Get-Help &lt;function&gt;</code> for details. If you forget which functions are available, you can list them with <code>Get-Command -Module Posh-ACME.Deploy</code>.</p>
-<p>The module can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME.Deploy/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME.Deploy/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME.Deploy/blob/main/README.md">Readme</a>.</p>
+</code></pre></div><p>Interestingly, when testing these new features I discovered that with Let&rsquo;s Encrypt you can recover access to a lost ACME account if you still have a copy of the private key. Just try to create a new account using the old account&rsquo;s key, and the server will return a copy of the old account&rsquo;s details. Consider this demonstration:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Create a new account with a random key and make a note of the &#39;id&#39; value</span>
+<span style="color:#75715e"># which is generated by the ACME server</span>
+New-PAAccount -AcceptTOS -Force
+
+<span style="color:#75715e"># Export a copy of the account&#39;s key</span>
+Export-PAAccountKey -OutputFile .\mykey.key
+
+<span style="color:#75715e"># Remove the local copy of the account</span>
+Get-PAAccount | Remove-PAAccount -Force
+
+<span style="color:#75715e"># Create a new account and specify the account key we previously exported.</span>
+<span style="color:#75715e"># Notice how the account &#39;id&#39; value is the same as the original account.</span>
+New-PAAccount -KeyFile .\mykey.key -AcceptTOS -Force
+</code></pre></div><p>Keep in mind, this can only recover basic access to the account at the moment. Any orders and certificates associated with the account will still be gone. So if you&rsquo;re dealing with Posh-ACME backups, it is better to backup the entire config folder.</p>
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
-<li>Initial Release</li>
-<li>Added functions
+<li>NOTE: Let&rsquo;s Encrypt is now <a href="https://community.letsencrypt.org/t/issuing-for-common-rsa-key-sizes-only/133839">restricting</a> RSA private key sizes to 2048, 3072, and 4096 for certificates. But Posh-ACME will continue to allow custom key sizes which may still work with other certificate authorities.</li>
+<li><code>New-PAAccount</code> and <code>Set-PAAccount -KeyRollover</code> now have a <code>-KeyFile</code> parameter that can be used to import an existing private key instead of generating a new one from scratch.</li>
+<li>Added <code>Export-PAAccountKey</code> which can be use to export your ACME account private key as a standard Base64 encoded PEM file.
 <ul>
-<li>Set-IISCertificate</li>
-<li>Set-RDGWCertificate</li>
-<li>Set-RDSHCertificate</li>
-<li>Set-WinRMCertificate</li>
+<li>For Boulder-based CAs, this can be used to recover lost ACME account configurations if you run <code>New-PAAccount</code> with the <code>-KeyFile</code> parameter and specify the exported key.</li>
 </ul>
 </li>
+<li>Updated Zonomi plugin to support alternative providers who use a compatible API. (#282)</li>
+<li>Fixed a bug in OVH plugin that would prevent TXT record deletion in some cases. (#283)</li>
+<li>Fixed a bug in many plugins that would prevent TXT record editing when the record name was also the zone root (#280) (Thanks @ShaBangBinBash)</li>
+<li>Fixed tutorial syntax error (#277) (Thanks @Leon99)</li>
+<li>Fixed errors in <code>Get-PAAuthorizations</code> when returned object has no &lsquo;expires&rsquo; property. (#276) (Thanks @mortenmw)</li>
+<li>Changed bad nonce retry message from Debug to Verbose so people using PowerShell&rsquo;s transcript features will see it more easily.</li>
+<li>A generic platform value has been added to the user agent string the module sends with its ACME requests.</li>
+<li>Tests have been updated for use with Pester v5. Running them in a dedicated PowerShell process is recommended.</li>
 </ul>
 
     </div>
@@ -227,10 +252,8 @@ Get-PACertificate | Set-IISCertificate -SiteName <span style="color:#e6db74">&#3
   
   <div class="pagination">
     
-      <a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/" class="button left"><span>Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</span></a>
     
-    
-      <a href="/blog/2019/12/posh-acme-3.12.0/" class="button right"><span>Posh-ACME 3.12.0</span></a>
+      <a href="/blog/2020/09/posh-ibwapi-3.2.0/" class="button right"><span>Posh-IBWAPI 3.2.0</span></a>
     
   </div>
 

@@ -6,10 +6,19 @@
     <description>Recent content in Blog on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 21 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 09 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Posh-ACME 3.17.0</title>
+      <link>https://www.dvolve.net/blog/2020/10/posh-acme-3.17.0/</link>
+      <pubDate>Fri, 09 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/10/posh-acme-3.17.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.17.0. The highlight of this release is the ability to import or export the private key associated with an ACME account. When creating a new account or performing a key rollover for an existing account, Posh-ACME will normally generate a new random private key automatically. But you now have the option to import an existing key instead of having one generated. It works like this:</description>
+    </item>
     
     <item>
       <title>Posh-IBWAPI 3.2.0</title>
