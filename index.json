@@ -1,4 +1,10 @@
 [{
+    "title": "Posh-ACME.Deploy 1.2.0",
+    "date": "",
+    "description": "Added IIS FTP Support",
+    "body": "Just shipped a new Posh-ACME.Deploy release, version 1.2.0. There is now a Set-IISFTPCertificate function. It requires the same WebAdministration module the other IIS function does and has been tested on Windows Server 2019, but will likely work against earlier versions as well. In addition to updating the cert, it can also be used to change other SSL related FTP parameters like Control Channel Policy, Data Channel Policy, and whether to use 128-bit encryption.\nUpdated versions can be found in the PowerShell Gallery or GitHub. Installation instructions are in the Readme.\nChangelog  Added Set-IISFTPCertificate  ",
+    "ref": "/blog/2020/10/posh-acme-deploy-1.2.0/"
+  },{
     "title": "Posh-ACME 3.17.0",
     "date": "",
     "description": "Account key import/export and test updates",

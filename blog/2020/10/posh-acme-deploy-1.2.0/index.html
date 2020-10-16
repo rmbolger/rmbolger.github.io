@@ -2,28 +2,28 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>Posh-ACME 3.7.0 - Adventures in Tech</title>
+<title>Posh-ACME.Deploy 1.2.0 - Adventures in Tech</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME 3.7.0">
-<meta itemprop="description" content="New param in Submit-Renewal and misc fixes">
-<meta itemprop="datePublished" content="2019-09-18T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2019-09-18T00:00:00+00:00" />
-<meta itemprop="wordCount" content="181">
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME.Deploy 1.2.0">
+<meta itemprop="description" content="Added IIS FTP Support">
+<meta itemprop="datePublished" content="2020-10-15T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-10-15T00:00:00+00:00" />
+<meta itemprop="wordCount" content="93">
 
 
 
 <meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="Posh-ACME 3.7.0" />
-<meta property="og:description" content="New param in Submit-Renewal and misc fixes" />
+<meta property="og:title" content="Posh-ACME.Deploy 1.2.0" />
+<meta property="og:description" content="Added IIS FTP Support" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2019/09/posh-acme-3.7.0/" />
-<meta property="article:published_time" content="2019-09-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-09-18T00:00:00+00:00" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2020/10/posh-acme-deploy-1.2.0/" />
+<meta property="article:published_time" content="2020-10-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-15T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posh-ACME 3.7.0"/>
-<meta name="twitter:description" content="New param in Submit-Renewal and misc fixes"/>
+<meta name="twitter:title" content="Posh-ACME.Deploy 1.2.0"/>
+<meta name="twitter:description" content="Added IIS FTP Support"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
@@ -145,14 +145,14 @@
     <header>
   <div class="title">
     
-      <h2><a href="/blog/2019/09/posh-acme-3.7.0/">Posh-ACME 3.7.0</a></h2>
+      <h2><a href="/blog/2020/10/posh-acme-deploy-1.2.0/">Posh-ACME.Deploy 1.2.0</a></h2>
     
     
-      <p>New param in Submit-Renewal and misc fixes</p>
+      <p>Added IIS FTP Support</p>
     
   </div>
   <div class="meta">
-    <time datetime="2019-09-18 00:00:00 &#43;0000 UTC">September 18, 2019</time>
+    <time datetime="2020-10-15 00:00:00 &#43;0000 UTC">October 15, 2020</time>
     <p>Ryan Bolger</p>
     
   </div>
@@ -168,15 +168,11 @@
     </div>
     <div class="content">
       
-      <p>Just shipped a new Posh-ACME release, version 3.7.0. In addition to some miscellaneous bug fixes, <code>Submit-Renewal</code> now has an optional <code>-PluginArgs</code> parameter for cases when you need to specify new values for a plugin but don&rsquo;t want to create a whole new order from scratch. This is useful if your credentials change or if the type of credential you&rsquo;re using is purposefully short-lived.</p>
-<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
+      <p>Just shipped a new Posh-ACME.Deploy release, version 1.2.0. There is now a <code>Set-IISFTPCertificate</code> function. It requires the same <code>WebAdministration</code> module the other IIS function does and has been tested on Windows Server 2019, but will likely work against earlier versions as well. In addition to updating the cert, it can also be used to change other SSL related FTP parameters like Control Channel Policy, Data Channel Policy, and whether to use 128-bit encryption.</p>
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME.Deploy/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME.Deploy/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME.Deploy/blob/main/README.md">Readme</a>.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
-<li>Submit-Renewal now has a PluginArgs parameter to make it easier to update plugin credentials without needing to create a new order from scratch. (Thanks @matt-FFFFFF)</li>
-<li>The FriendlyName parameter in New-PACertificate and New-PAOrder now defaults to the certificate&rsquo;s primary name instead of an empty string to avoid a Windows bug that can occur when installing the generated PFX files.</li>
-<li>Fixed Windows plugin issue when using WinZoneScope and not all zones have that scope (#168)</li>
-<li>Fixed an internal bug with Export-PACertFiles that luckily didn&rsquo;t cause problems due to PowerShell variable scoping rules.</li>
-<li>Fixed a typo in the Cloudflare guide examples. (Thanks @mccanney)</li>
+<li>Added Set-IISFTPCertificate</li>
 </ul>
 
     </div>
@@ -210,10 +206,8 @@
   
   <div class="pagination">
     
-      <a href="/blog/2019/09/posh-acme-3.8.0/" class="button left"><span>Posh-ACME 3.8.0</span></a>
     
-    
-      <a href="/blog/2019/08/posh-ibwapi-3.1.0/" class="button right"><span>Posh-IBWAPI 3.1.0</span></a>
+      <a href="/blog/2020/10/posh-acme-3.17.0/" class="button right"><span>Posh-ACME 3.17.0</span></a>
     
   </div>
 
