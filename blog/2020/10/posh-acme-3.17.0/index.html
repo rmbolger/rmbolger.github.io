@@ -201,7 +201,7 @@ Get-PAAccount | Remove-PAAccount -Force
 <span style="color:#75715e"># Notice how the account &#39;id&#39; value is the same as the original account.</span>
 New-PAAccount -KeyFile .\mykey.key -AcceptTOS -Force
 </code></pre></div><p>Keep in mind, this can only recover basic access to the account at the moment. Any orders and certificates associated with the account will still be gone. So if you&rsquo;re dealing with Posh-ACME backups, it is better to backup the entire config folder.</p>
-<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">Readme</a>.</p>
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/main/README.md">Readme</a>.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li>NOTE: Let&rsquo;s Encrypt is now <a href="https://community.letsencrypt.org/t/issuing-for-common-rsa-key-sizes-only/133839">restricting</a> RSA private key sizes to 2048, 3072, and 4096 for certificates. But Posh-ACME will continue to allow custom key sizes which may still work with other certificate authorities.</li>
@@ -270,40 +270,40 @@ New-PAAccount -KeyFile .\mykey.key -AcceptTOS -Force
       <article class="mini-post">
           
         <header>
+          <h2><a href="/blog/2020/12/posh-acme-4.0.0/">Posh-ACME 4.0.0</a></h2>
+          <time class="published" datetime="2020-12-18 00:00:00 &#43;0000 UTC">December 18, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/11/posh-acme-3.20.0/">Posh-ACME 3.20.0</a></h2>
+          <time class="published" datetime="2020-11-25 00:00:00 &#43;0000 UTC">November 25, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/11/posh-acme-3.19.0/">Posh-ACME 3.19.0</a></h2>
+          <time class="published" datetime="2020-11-20 00:00:00 &#43;0000 UTC">November 20, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/11/posh-acme-3.18.0/">Posh-ACME 3.18.0</a></h2>
+          <time class="published" datetime="2020-11-07 00:00:00 &#43;0000 UTC">November 7, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
           <h2><a href="/blog/2020/10/posh-acme-deploy-1.2.0/">Posh-ACME.Deploy 1.2.0</a></h2>
           <time class="published" datetime="2020-10-15 00:00:00 &#43;0000 UTC">October 15, 2020</time>
-        </header>
-      </article>
-      
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2020/10/posh-acme-3.17.0/">Posh-ACME 3.17.0</a></h2>
-          <time class="published" datetime="2020-10-09 00:00:00 &#43;0000 UTC">October 9, 2020</time>
-        </header>
-      </article>
-      
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2020/09/posh-ibwapi-3.2.0/">Posh-IBWAPI 3.2.0</a></h2>
-          <time class="published" datetime="2020-09-21 00:00:00 &#43;0000 UTC">September 21, 2020</time>
-        </header>
-      </article>
-      
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/">Hacking Infoblox Discovery for Fun and Profit</a></h2>
-          <time class="published" datetime="2020-09-14 00:00:00 &#43;0000 UTC">September 14, 2020</time>
-        </header>
-      </article>
-      
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2020/08/posh-acme-3.16.0/">Posh-ACME 3.16.0</a></h2>
-          <time class="published" datetime="2020-08-31 00:00:00 &#43;0000 UTC">August 31, 2020</time>
         </header>
       </article>
       
@@ -325,7 +325,7 @@ New-PAAccount -KeyFile .\mykey.key -AcceptTOS -Force
           
           
           <li>
-              <a href="/categories/posh-acme/">posh-acme<span class="count">17</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">21</span></a>
           
           <li>
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>

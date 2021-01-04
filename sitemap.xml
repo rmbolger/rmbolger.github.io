@@ -4,36 +4,56 @@
   
   <url>
     <loc>https://www.dvolve.net/</loc>
-    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.dvolve.net/blog/</loc>
-    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.dvolve.net/categories/</loc>
-    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.dvolve.net/categories/posh-acme/</loc>
-    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.dvolve.net/blog/2020/10/posh-acme-deploy-1.2.0/</loc>
-    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
+    <loc>https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/</loc>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.dvolve.net/tags/powershell/</loc>
-    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.dvolve.net/tags/</loc>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2020/11/posh-acme-3.20.0/</loc>
+    <lastmod>2020-11-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2020/11/posh-acme-3.19.0/</loc>
+    <lastmod>2020-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2020/11/posh-acme-3.18.0/</loc>
+    <lastmod>2020-11-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dvolve.net/blog/2020/10/posh-acme-deploy-1.2.0/</loc>
     <lastmod>2020-10-15T00:00:00+00:00</lastmod>
   </url>
   

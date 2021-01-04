@@ -6,10 +6,49 @@
     <description>Recent content in powershell on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 15 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 18 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dvolve.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Posh-ACME 4.0.0</title>
+      <link>https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/</link>
+      <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 4.0.0. This is a huge personal win for me that took far longer than I had originally intended. So I&amp;rsquo;m super excited to finally get it out the door.
+HTTP Plugins The biggest long overdue change is that the plugin system can now support http-0 based challenges and the architecture has been revamped such that adding support for additional challenge types should be significantly easier.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.20.0</title>
+      <link>https://www.dvolve.net/blog/2020/11/posh-acme-3.20.0/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/11/posh-acme-3.20.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.20.0. The Azure plugin has been enhanced in this release thanks to @InKahootz and now supports targeting additional Azure cloud environments that support specific countries or governments. There are also some fixes for the Simply plugin.
+Updated versions can be found in the PowerShell Gallery or GitHub. Installation instructions are in the Readme.
+Changelog  Azure plugin now supports other Azure cloud environments via the AZEnvironment parameter.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.19.0</title>
+      <link>https://www.dvolve.net/blog/2020/11/posh-acme-3.19.0/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/11/posh-acme-3.19.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.19.0. There is a new DNS plugin for Simply which is ultimately just a clone of the existing UnoEuro plugin. The provider changed their name and their API endpoint, but it should function the same. DNSPod also changed their API recently and the plugin has been updated to account for those changes, but users will need to create and set an updated API key in their configs in order for renewals to continue working.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 3.18.0</title>
+      <link>https://www.dvolve.net/blog/2020/11/posh-acme-3.18.0/</link>
+      <pubDate>Sat, 07 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2020/11/posh-acme-3.18.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 3.18.0. The highlight of this release is a plugin for DuckDNS. DuckDNS is a free, but troublesome provider to work with because their API only allows for a single TXT record to exist at a time. That means if you&amp;rsquo;re trying to get a cert that has more than one name in it, such as example.com and www.example.com, you need to publish and validate each TXT record separately instead of publishing both records and validating them at the same time.</description>
+    </item>
     
     <item>
       <title>Posh-ACME.Deploy 1.2.0</title>

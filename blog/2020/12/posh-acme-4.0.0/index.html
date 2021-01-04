@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+<title>Posh-ACME 4.0.0 - Adventures in Tech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME 4.0.0">
+<meta itemprop="description" content="HTTP plugins, portable plugin arg encryption, better help">
+<meta itemprop="datePublished" content="2020-12-18T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-12-18T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2006">
+
+
+
+<meta itemprop="keywords" content="powershell," />
+<meta property="og:title" content="Posh-ACME 4.0.0" />
+<meta property="og:description" content="HTTP plugins, portable plugin arg encryption, better help" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/" />
+<meta property="article:published_time" content="2020-12-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-12-18T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Posh-ACME 4.0.0"/>
+<meta name="twitter:description" content="HTTP plugins, portable plugin arg encryption, better help"/>
+<meta name="twitter:site" content="@rmbolger"/>
+
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
+          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
+</head>
+
+  <body>
+    
+
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/" class="nav">
+        
+          Blog
+        
+      </a>
+    </h1>
+    <menu id="site-nav-menu" class="flyout-menu menu">
+      
+        
+          
+          <a href="/" class="nav link"><i class='fa fa-home'></i> Home</a>
+        
+      
+        
+          
+          <a href="/about/" class="nav link"><i class='far fa-id-card'></i> About</a>
+        
+      
+        
+          
+          <a href="/blog/" class="nav link"><i class='far fa-newspaper'></i> Blog</a>
+        
+      
+        
+          
+          <a href="/categories/" class="nav link"><i class='fas fa-sitemap'></i> Categories</a>
+        
+      
+      
+      <a href="#search-input" class="nav link search-toggle"><i class="fas fa-search">&nbsp;</i>Search</a>
+    </menu>
+    <a href="#search-input" class="nav search-toggle"><i class="fas fa-search fa-2x">&nbsp;</i></a>
+    
+    
+    <a href="#site-nav" class="nav nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  <menu id="search" class="menu"><input id="search-input" class="search-input menu"></input><div id="search-results" class="search-results menu"></div></menu>
+  
+  
+</header>
+
+    <div id="wrapper">
+      <section id="site-intro" >
+  <a href="/"><img src="https://www.dvolve.net/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
+  <header>
+    <h1>Ryan Bolger</h1>
+  </header>
+  <main>
+    <p>Adventures In Tech</p>
+  </main>
+  
+    <footer>
+      <ul class="socnet-icons">
+        
+
+        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+
+<li><a href="//serverfault.com/users/1584/?tab=profile" target="_blank" rel="noopener" title="Server Fault" class="fab fa-stack-exchange"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
+
+
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        
+  <article class="post">
+    <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2020/12/posh-acme-4.0.0/">Posh-ACME 4.0.0</a></h2>
+    
+    
+      <p>HTTP plugins, portable plugin arg encryption, better help</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2020-12-18 00:00:00 &#43;0000 UTC">December 18, 2020</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+    <div id="socnet-share">
+      
+
+
+
+
+
+    </div>
+    <div class="content">
+      
+      <p>Just shipped a new Posh-ACME release, version 4.0.0. This is a huge personal win for me that took far longer than I had originally intended. So I&rsquo;m super excited to finally get it out the door.</p>
+<h2 id="http-plugins">HTTP Plugins</h2>
+<p>The biggest long overdue change is that the plugin system can now support <code>http-0</code> based challenges and the architecture has been revamped such that adding support for additional challenge types should be significantly easier. There are only two built-in HTTP plugins at the moment: <a href="https://github.com/rmbolger/Posh-ACME/blob/main/Posh-ACME/Plugins/WebRoot-Readme.md">WebRoot</a> and <a href="https://github.com/rmbolger/Posh-ACME/blob/main/Posh-ACME/Plugins/WebSelfHost-Readme.md">WebSelfHost</a>. WebRoot is basically a file copy plugin that works with any web server that hosts files directly from a filesystem location. WebSelfHost is a plugin-ized version of the existing <code>Invoke-HttpChallengeListener</code> function that directly hosts the challenge files without needing a separate web server.</p>
+<h2 id="plugin-args">Plugin Args</h2>
+<p>Another big internal change is how plugin args are stored on disk. Previously, they were stored per-account and serialized using PowerShell&rsquo;s native <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml">Import-CliXml</a>/<a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml">Export-CliXml</a> functions which allowed for easy encryption of SecureString and PSCredential parameters, but only on Windows. On non-Windows, the values are only mildly obfuscated. In 4.0, they are now stored per-order and serialized to JSON using a semi-manual process and the secure parameters are serialized using <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertto-securestring">ConvertTo-SecureString</a>/<a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertfrom-securestring">ConvertFrom-SecureString</a> which gave me the flexibility to add an OS-agnostic AES encryption key.</p>
+<p>On Windows by default, plugin parameters are still encrypted using the OS native user/machine specific DPAPI process. However, you can now choose to use a portable, randomized 256-bit AES key instead via the <code>UseAltPluginEncryption</code> switch which is configurable per ACME account. It works like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># If you don&#39;t already have an ACME account</span>
+New-PAAccount -AcceptTOS -UseAltPluginEncryption -Contact <span style="color:#e6db74">&#39;me@example.com&#39;</span>
+
+<span style="color:#75715e"># To enable on an existing account</span>
+Set-PAAccount -UseAltPluginEncryption
+
+<span style="color:#75715e"># To disable/revert on an existing account</span>
+Set-PAAccount -UseAltPluginEncryption<span style="color:#960050;background-color:#1e0010">:</span>$false
+</code></pre></div><p>For now, the key is stored in the account config. But I&rsquo;m hoping to add support for storing the key using the <a href="https://devblogs.microsoft.com/powershell/secretmanagement-preview-6-and-secretstore-preview-4/">SecretManagement</a> modules once they reach a more stable state.</p>
+<p>The new per-order storage of the plugin args makes things slightly more cumbersome if you&rsquo;re managing multiple different certs with the same set of plugins because you now have to manage those args separately for each order. However, there&rsquo;s a new <code>Get-PAPluginArgs</code> function that can help ease that burden. Let&rsquo;s say you&rsquo;re creating a new certificate that will be using the same Azure plugin as a previous certificate. Instead of needing go lookup the plugin args and re-build the hashtable, you can do this instead.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Get a copy of the args for the old order</span>
+$pArgs = Get-PAPluginArgs example.com
+
+<span style="color:#75715e"># Create the new cert</span>
+New-PACertificate example2.com -Plugin Azure -PluginArgs $pArgs
+</code></pre></div><h2 id="better-in-module-help">Better In-Module Help</h2>
+<p>Despite my efforts to maintain robust function-specific help, the one thing I found myself constantly going back to the wiki for is a quick reference for what arguments a specific plugin needed. Not only did it annoy me to need to open a browser at all, I then had to navigate to that plugin&rsquo;s specific user guide. So I scrapped the old <code>Get-DnsPlugins</code> and <code>Get-DnsPluginHelp</code> functions and replaced them with a single <code>Get-PAPlugin</code> command. In particular, this new function has a <code>-Guide</code> and <code>-Params</code> switch. The guide switch on Windows will launch your default browser to that plugin&rsquo;s user guide <em>(non-Windows for the time being will just display the URL)</em>. The params switch will display a nicely formatted quick reference of the available plugin parameters. Here&rsquo;s the current output for the Route53 plugin.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">PS C:\&gt; Get-PAPlugin Route53 -Params
+
+    Set Name: Keys (Default)
+
+
+Parameter    Type         IsMandatory
+---------    ----         -----------
+R53AccessKey String       True
+R53SecretKey SecureString True
+
+    Set Name: KeysInsecure
+
+
+Parameter            Type   IsMandatory
+---------            ----   -----------
+R53AccessKey         String True
+R53SecretKeyInsecure String True
+
+    Set Name: Profile
+
+
+Parameter      Type   IsMandatory
+---------      ----   -----------
+R53ProfileName String True
+
+    Set Name: IAMRole
+
+
+Parameter     Type            IsMandatory
+---------     ----            -----------
+R53UseIAMRole SwitchParameter True
+</code></pre></div><h2 id="other-quality-of-life-improvments">Other Quality of Life Improvments</h2>
+<p>There is now an <code>AlwaysNewKey</code> switch for all of the functions that deal with orders to indicate you want a new private key generated on renewals. A <code>UseSerialValidation</code> switch has been also been to order related functions which tells the validation process to publish and validate each challenge individually rather than at the same time which is useful for providers like DuckDNS.</p>
+<p>BUYPASS_PROD and BUYPASS_TEST have been added as shortcuts for <a href="https://www.buypass.com/">buypass.com</a> in <code>Set-PAServer</code>. ZEROSSL_PROD has been similarly added for <a href="https://zerossl.com/">zerossl.com</a>.</p>
+<p>Posh-ACME will now properly handle ACME orders with IP address identifiers based on <a href="https://tools.ietf.org/html/rfc8738">RFC 8738</a>. However, I don&rsquo;t think there are any ACME CAs that allow this just yet. Also keep in mind that certs for IPs can only be validated using the <code>http-01</code> or <code>tls-alpn-01</code> challenge types.</p>
+<p>Posh-ACME now also supports ECC P-521 based keys for accounts and certificates using the <code>ec-521</code> key length parameter. However, this is another thing that needs to be supported by the ACME server as well and Let&rsquo;s Encrypt currently does not support it.</p>
+<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/main/README.md">Readme</a>.</p>
+<h2 id="changelog">Changelog</h2>
+<p>There is a 3.x to 4.x <a href="https://github.com/rmbolger/Posh-ACME/wiki/Frequently-Asked-Questions-%28FAQ%29#how-do-i-upgrade-from-3x-to-4x">migration guide</a> in the FAQ on the wiki. But no changes should be necessary for users with existing certs that are renewing using <code>Submit-Renewal</code> unless they were also using the <code>-NewKey</code> parameter which has been removed. Orders can now be configured to always generate a new private key using <code>Set-PAOrder -AlwaysNewKey</code>.</p>
+<h3 id="new-features">New Features</h3>
+<ul>
+<li>The DNS plugin system has been revamped to support both dns-01 and http-01 challenges. (#124)
+<ul>
+<li>All existing DNS plugins have been upgraded to the new plugin format. See the README in the plugins folder for details and instructions on how to upgrade your own custom plugins.</li>
+<li>There are two new http-01 challenge plugins called <code>WebRoot</code> and <code>WebSelfHost</code>. See their usage guides for details.</li>
+</ul>
+</li>
+<li>Plugin args are now saved per-order rather than per-account and as JSON rather than XML.
+<ul>
+<li>This has the side effect that new orders using the same plugin(s) as a previous order will no longer reuse the previous args.</li>
+<li>Added <code>Get-PAPluginArgs</code> which returns a hashtable with the plugin args associated with the current or specified order. You can use this to retrieve another order&rsquo;s plugin args and use that object with your new order.</li>
+<li>Pre-4.x plugin args will be automatically migrated to per-order plugin args the first time an account is selected using <code>Set-PAAccount</code> or on module load for the last selected account. The old file will be backed up with a &ldquo;.v3&rdquo; extension in case you need to revert.</li>
+</ul>
+</li>
+<li>Portable, Cross-Platform encryption is now supported for secure plugin parameters on disk and can be configured on a per-account basis. It is based on a 256-bit AES key generated for the account. This makes it possible to migrate a Posh-ACME config between users, machines, or OSes without needing to re-configure secure plugin args. (#150)
+<ul>
+<li>To enable, set the <code>UseAltPluginEncryption</code> switch on <code>New-PAAccount</code> or <code>Set-PAAccount</code>. This will immediately re-encrypt plugin args for all orders associated with the account.</li>
+<li>To disable/revert, run <code>Set-PAAccount -UseAltPluginEncryption:$false</code>.</li>
+<li>If you believe the encryption key has been compromised, use <code>Set-PAAccount -ResetAltPluginEncryption</code> to generate a new key and re-encrypt everything.</li>
+</ul>
+</li>
+<li><code>Get-PAPlugin</code> is a new function that replaces <code>Get-DnsPlugins</code> and <code>Get-DnsPluginHelp</code>.
+<ul>
+<li>With no parameters, lists all plugins and their details</li>
+<li>With a plugin parameter, shows the details for just that plugin</li>
+<li>With a plugin and <code>-Help</code>, shows the plugin&rsquo;s help</li>
+<li>With a plugin and <code>-Guide</code>, opens the default browser to the plugin&rsquo;s online guide</li>
+<li>With a plugin and <code>-Params</code>, displays the plugin-specific parameter sets (#151)</li>
+</ul>
+</li>
+<li>Added <code>AlwaysNewKey</code> switch to <code>New-PACertificate</code>, <code>New-PAOrder</code>, and <code>Set-PAOrder</code>. This flag tells Posh-ACME to always generate a new private key on renewals. The old parameters for key replacement have been removed. (#181)</li>
+<li>Added <code>UseSerialValidation</code> switch to <code>New-PACertificate</code>, <code>New-PAOrder</code>, and <code>Set-PAOrder</code>. This flag tells Posh-ACME to process the order&rsquo;s authorization challenges serially rather than in parallel. This is primarily useful for providers like DuckDNS that only allow a single TXT record to be written at a time.</li>
+<li>Added <code>Complete-PAOrder</code> which does the final processing steps like downloading the signed cert and updating renewal window for an order that has reached the &lsquo;ready&rsquo; state. This avoids the need to use <code>New-PACertificate</code> when doing custom certificate workflows.</li>
+<li>The PfxPass parameter on order objects is now obfuscated when serialized to disk. (#207)</li>
+<li>Added <code>PfxPassSecure</code> (SecureString) parameter to <code>New-PACertificate</code>, <code>New-PAOrder</code>, and <code>Set-PAOrder</code> which takes precedence over <code>PfxPass</code> if specified. (#207)</li>
+<li>Added <code>DnsAlias</code> and <code>OCSPMustStaple</code> parameters to <code>Set-PAOrder</code>. Changing an order&rsquo;s OCSPMustStaple value will throw a warning that it only affects future certificates generated from the order.</li>
+<li>Added <code>Plugin</code>, <code>PluginArgs</code>, <code>DnsAlias</code>, <code>DnsSleep</code>, and <code>ValidationTimeout</code> parameters to <code>New-PAOrder</code>.</li>
+<li>The <code>DirectoryUrl</code> parameter in <code>Set-PAServer</code> is now optional. If not specified, it will use the currently active server.</li>
+<li>An attempt will now be made to send anonymous telemetry data to the Posh-ACME team when <code>Submit-OrderFinalize</code> is called directly or indirectly.
+<ul>
+<li>The only data sent is the standard HTTP User-Agent header which includes the Posh-ACME version, PowerShell version, and generic OS platform (Windows/Linux/MacOS/Unknown).</li>
+<li>This can be disabled per ACME server using a new <code>DisableTelemetry</code> parameter in <code>Set-PAServer</code>.</li>
+<li>The data will be used to guide future development decisions in the module.</li>
+<li>The same User-Agent header is also sent with all calls to the ACME server which is a requirement of the protocol and can&rsquo;t be disabled.</li>
+</ul>
+</li>
+<li>Added <code>NoRefresh</code> switch to <code>Set-PAServer</code> which prevents a request to the ACME server to update endpoint and nonce info. This is useful for updating local preferences without making a server round-trip.</li>
+<li>BUYPASS_PROD and BUYPASS_TEST are now recognized shortcuts for the the buypass.com CA environments when you use <code>Set-PAServer</code>.</li>
+<li>ZEROSSL_PROD is now a recognized shortcut for the zerossl.com CA when you use <code>Set-PAServer</code>.</li>
+<li>Added tab completion for <code>DirectoryUrl</code> in <code>Set-PAServer</code>.</li>
+<li>Added <code>Quiet</code> parameter to <code>Get-PAServer</code> which will prevent warnings if the specified server was not found.</li>
+<li><code>Remove-PAServer</code> will now throw a warning instead of an error if the specified server doesn&rsquo;t exist on disk.</li>
+<li>Orders can now be passed by pipeline to <code>Submit-ChallengeValidation</code> and <code>Submit-OrderFinalize</code>.</li>
+<li>ACME protocol web request details have been moved from Verbose to Debug output and cleaned up so they&rsquo;re easier to follow. Web requests made from plugins will still be in Verbose output for the time being.</li>
+<li>Experimental support for IP address identifiers (<a href="https://tools.ietf.org/html/rfc8738">RFC 8738</a>) in new orders. This allows you to get a cert for an IP address if your ACME server supports it.</li>
+<li>Private keys for Accounts and Certificates can now use ECC P-521 (secp521r1) based keys using the <code>ec-521</code> key length parameter. <em>This requires support at the ACME server level as well.</em></li>
+</ul>
+<h3 id="breaking-changes">Breaking Changes</h3>
+<ul>
+<li>Function Changes
+<ul>
+<li><code>Publish-DnsChallenge</code> is now <code>Publish-Challenge</code></li>
+<li><code>Unpublish-DnsChallenge</code> is now <code>Unpublish-Challenge</code></li>
+<li><code>Save-DnsChallenge</code> is now <code>Save-Challenge</code></li>
+<li><code>Get-DnsPlugins</code> and <code>Get-DnsPluginHelp</code> have been replaced by <code>Get-PAPlugin</code></li>
+<li><code>Get-PAAuthorizations</code> is now <code>Get-PAAuthorization</code>. The plural function name is still avaialble as an alias but is deprecated and may be removed in a future release.</li>
+<li><code>Invoke-HttpChallengeListener</code> is deprecated and may be removed in a future release. Users should migrate to the <code>WebSelfHost</code> plugin.</li>
+</ul>
+</li>
+<li>Parameter Changes
+<ul>
+<li>All <code>DnsPlugin</code> parameters are now <code>Plugin</code> with a <code>DnsPlugin</code> alias for backwards compatibility. The alias should be considered deprecated and may be removed in a future release.</li>
+<li>The <code>NoPrefix</code> switch in Publish/Unpublish-Challenge has been replaced with a <code>DnsAlias</code> parameter that will override the <code>Domain</code> parameter if specified. &ldquo;_acme-challenge.&rdquo; will not be automatically added to the <code>DnsAlias</code> parameter.</li>
+<li><code>NewKey</code> has been removed from <code>Submit-Renewal</code></li>
+<li><code>NewKey</code>/<code>NewCertKey</code> have been replaced by <code>AlwaysNewKey</code> in <code>New-PACertificate</code> and <code>New-PAOrder</code></li>
+<li><code>AlwaysNewKey</code> has been added to <code>Set-PAOrder</code></li>
+<li><code>DnsPlugin</code>, <code>PluginArgs</code>, <code>DnsAlias</code>, <code>DnsSleep</code>, <code>ValidationTimeout</code> and <code>Account</code> parameters have been removed from <code>Submit-ChallengeValidation</code>. The account associated with the order must be the currently active account. The rest of the parameters are read directly from the order object and can be modified in advance with <code>Set-PAOrder</code> if necessary.</li>
+<li><code>Account</code> parameter has been removed from <code>Submit-OrderFinalize</code>. The account associated with the order must be the currently active account.</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixes">Fixes</h3>
+<ul>
+<li>Using <code>Get-PAOrder</code> with <code>-Refresh</code> will no longer throw a terminating error if the ACME server returns an error. It will warn and return the cached copy of the order instead.</li>
+<li>Fixed <code>Remove-PAServer</code> not being able to remove a server that is unreachable.</li>
+<li><code>Remove-PAServer</code> no longer requires confirmation when there are no cached accounts associated with the specified server in the local config.</li>
+</ul>
+
+    </div>
+    <footer>
+      <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+    </footer>
+  </article>
+  
+    
+
+  
+  <div class="pagination">
+    
+    
+      <a href="/blog/2020/11/posh-acme-3.20.0/" class="button right"><span>Posh-ACME 3.20.0</span></a>
+    
+  </div>
+
+      </main>
+      <section id="site-sidebar">
+  
+    <section id="recent-posts">
+      <header>
+        <h1>Recent Posts</h1>
+      </header>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/12/posh-acme-4.0.0/">Posh-ACME 4.0.0</a></h2>
+          <time class="published" datetime="2020-12-18 00:00:00 &#43;0000 UTC">December 18, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/11/posh-acme-3.20.0/">Posh-ACME 3.20.0</a></h2>
+          <time class="published" datetime="2020-11-25 00:00:00 &#43;0000 UTC">November 25, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/11/posh-acme-3.19.0/">Posh-ACME 3.19.0</a></h2>
+          <time class="published" datetime="2020-11-20 00:00:00 &#43;0000 UTC">November 20, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/11/posh-acme-3.18.0/">Posh-ACME 3.18.0</a></h2>
+          <time class="published" datetime="2020-11-07 00:00:00 &#43;0000 UTC">November 7, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/10/posh-acme-deploy-1.2.0/">Posh-ACME.Deploy 1.2.0</a></h2>
+          <time class="published" datetime="2020-10-15 00:00:00 &#43;0000 UTC">October 15, 2020</time>
+        </header>
+      </article>
+      
+      
+        <footer>
+          <a href="/blog/" class="button">See More</a>
+        </footer>
+      
+    </section>
+  
+
+  
+    
+      <section id="categories">
+        <header>
+          <h1><a href="/categories">categories</a></h1>
+        </header>
+        <ul>
+          
+          
+          <li>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">21</span></a>
+          
+          <li>
+              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>
+          
+          <li>
+              <a href="/categories/active-directory/">active-directory<span class="count">3</span></a>
+          
+          <li>
+              <a href="/categories/infoblox/">infoblox<span class="count">2</span></a>
+          
+          <li>
+              <a href="/categories/pwnedpasscheck/">pwnedpasscheck<span class="count">2</span></a>
+          
+          <li>
+              <a href="/categories/dnsclient-ps/">dnsclient-ps<span class="count">1</span></a>
+          
+          <li>
+              <a href="/categories/posh-ibcli/">posh-ibcli<span class="count">1</span></a>
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+
+  
+</section>
+
+      <footer id="site-footer">
+  
+  <p class="copyright">
+    © 2020 Ryan Bolger
+      <br>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      <script src="/js/highlight.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/bash.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script src="/js/add-on.js"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77433451-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    </div>
+  </body>
+</html>

@@ -241,7 +241,7 @@
 <li>The cert should be installed in the local computer&rsquo;s Personal certificate store</li>
 </ul>
 <h1 id="domain-controller-prep">Domain Controller Prep</h1>
-<p>For this demo, we&rsquo;ll be using a freshly installed Windows Server 2019 domain controller, <code>dcle</code>, in a domain called <code>ad.poshacme.online</code>. Server 2019 comes pre-installed with the necessary Posh-ACME prerequisites. But if you&rsquo;re on an earlier OS, make sure you have PowerShell 5.1 and .NET 4.7.1 or later. Posh-ACME has been installed into the default system-wide module path, <code>C:\Program Files\WindowsPowerShell\Modules</code>. See the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/README.md">readme</a> for help with installation.</p>
+<p>For this demo, we&rsquo;ll be using a freshly installed Windows Server 2019 domain controller, <code>dcle</code>, in a domain called <code>ad.poshacme.online</code>. Server 2019 comes pre-installed with the necessary Posh-ACME prerequisites. But if you&rsquo;re on an earlier OS, make sure you have PowerShell 5.1 and .NET 4.7.1 or later. Posh-ACME has been installed into the default system-wide module path, <code>C:\Program Files\WindowsPowerShell\Modules</code>. See the <a href="https://github.com/rmbolger/Posh-ACME/blob/main/README.md">readme</a> for help with installation.</p>
 <p>We&rsquo;re going to run Posh-ACME in the context of the local SYSTEM account so it has permission to modify the local computer&rsquo;s certificate store and restart services. <em>In practice, any administrative account will do. Just make sure to run your PowerShell session elevated.</em></p>
 <p>Using <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/psexec">PsExec</a>, open PowerShell as <code>NT AUTHORITY\SYSTEM</code> and verify your context using <code>whoami</code> and <code>$env:USERPROFILE</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">.\PsExec64.exe -i -h -s powershell.exe
@@ -270,7 +270,7 @@
 
 
 <h1 id="getting-the-certificate">Getting the Certificate</h1>
-<p>If you&rsquo;re not familiar with how Posh-ACME works, I&rsquo;d suggest going through the <a href="https://github.com/rmbolger/Posh-ACME/blob/master/Tutorial.md">tutorial</a> first. This guide will assume you&rsquo;re already familiar with the basics of getting a cert using a DNS plugin.</p>
+<p>If you&rsquo;re not familiar with how Posh-ACME works, I&rsquo;d suggest going through the <a href="https://github.com/rmbolger/Posh-ACME/blob/main/Tutorial.md">tutorial</a> first. This guide will assume you&rsquo;re already familiar with the basics of getting a cert using a DNS plugin.</p>
 <p>I currently host the public facing DNS zone for this <code>poshacme.online</code> domain at <a href="https://www.digitalocean.com/">Digital Ocean</a>, so I&rsquo;ll be using the <code>DOcean</code> DNS plugin for this order. Any plugin will work, but the Manual plugin will prevent automatic renewal because it requires human interaction.</p>
 <p>Prep the plugin arguments for the DNS plugin, generate the list of names we&rsquo;ll need in the cert, and set the email address for expiration notification.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Digital Ocean requires a simple API token</span>
@@ -536,40 +536,40 @@ Register-ScheduledTask $taskname -Action $action -Trigger $trigger -User <span s
       <article class="mini-post">
           
         <header>
+          <h2><a href="/blog/2020/12/posh-acme-4.0.0/">Posh-ACME 4.0.0</a></h2>
+          <time class="published" datetime="2020-12-18 00:00:00 &#43;0000 UTC">December 18, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/11/posh-acme-3.20.0/">Posh-ACME 3.20.0</a></h2>
+          <time class="published" datetime="2020-11-25 00:00:00 &#43;0000 UTC">November 25, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/11/posh-acme-3.19.0/">Posh-ACME 3.19.0</a></h2>
+          <time class="published" datetime="2020-11-20 00:00:00 &#43;0000 UTC">November 20, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2020/11/posh-acme-3.18.0/">Posh-ACME 3.18.0</a></h2>
+          <time class="published" datetime="2020-11-07 00:00:00 &#43;0000 UTC">November 7, 2020</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
           <h2><a href="/blog/2020/10/posh-acme-deploy-1.2.0/">Posh-ACME.Deploy 1.2.0</a></h2>
           <time class="published" datetime="2020-10-15 00:00:00 &#43;0000 UTC">October 15, 2020</time>
-        </header>
-      </article>
-      
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2020/10/posh-acme-3.17.0/">Posh-ACME 3.17.0</a></h2>
-          <time class="published" datetime="2020-10-09 00:00:00 &#43;0000 UTC">October 9, 2020</time>
-        </header>
-      </article>
-      
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2020/09/posh-ibwapi-3.2.0/">Posh-IBWAPI 3.2.0</a></h2>
-          <time class="published" datetime="2020-09-21 00:00:00 &#43;0000 UTC">September 21, 2020</time>
-        </header>
-      </article>
-      
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/">Hacking Infoblox Discovery for Fun and Profit</a></h2>
-          <time class="published" datetime="2020-09-14 00:00:00 &#43;0000 UTC">September 14, 2020</time>
-        </header>
-      </article>
-      
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2020/08/posh-acme-3.16.0/">Posh-ACME 3.16.0</a></h2>
-          <time class="published" datetime="2020-08-31 00:00:00 &#43;0000 UTC">August 31, 2020</time>
         </header>
       </article>
       
@@ -591,7 +591,7 @@ Register-ScheduledTask $taskname -Action $action -Trigger $trigger -User <span s
           
           
           <li>
-              <a href="/categories/posh-acme/">posh-acme<span class="count">17</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">21</span></a>
           
           <li>
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>
