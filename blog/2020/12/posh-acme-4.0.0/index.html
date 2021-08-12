@@ -6,24 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.87.0" /><meta itemprop="name" content="Posh-ACME 4.0.0">
-<meta itemprop="description" content="HTTP plugins, portable plugin arg encryption, better help"><meta itemprop="datePublished" content="2020-12-18T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2020-12-18T00:00:00+00:00" />
-<meta itemprop="wordCount" content="2006">
-<meta itemprop="keywords" content="powershell," /><meta property="og:title" content="Posh-ACME 4.0.0" />
-<meta property="og:description" content="HTTP plugins, portable plugin arg encryption, better help" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2020-12-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-12-18T00:00:00+00:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posh-ACME 4.0.0"/>
-<meta name="twitter:description" content="HTTP plugins, portable plugin arg encryption, better help"/>
-<meta name="twitter:site" content="@rmbolger"/>
-
-            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
-          <link rel="stylesheet" href="/css/bundle.min.1bfccf86359e3de974865922b006112447a52f942c2a9c2bf93d159980ae641b.css" integrity="sha256-G/zPhjWePel0hlkisAYRJEelL5QsKpwr&#43;T0VmYCuZBs="><link rel="stylesheet" href="/css/add-on.css">
+<meta name="generator" content="Hugo 0.87.0" /><meta property="og:site_name" content="Adventures in Tech">
+  <meta property="og:title" content="Posh-ACME 4.0.0">
+  <meta property="og:description" content="HTTP plugins, portable plugin arg encryption, better help">
+  <meta property="description" content="HTTP plugins, portable plugin arg encryption, better help">
+  <meta property="og:url" content="https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/">
+  <meta property="og:type" content="article">
+  
+    <meta property="og:image" content="https://www.dvolve.net/img/main/logo.jpg">
+  
+  
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/solarized-dark.min.css">
+          <link rel="stylesheet" href="/css/bundle.min.2b4e36cd6a81be0237f8d8f3ce0d239eb39d356f5e3b6c33140b8108476a2beb.css" integrity="sha256-K042zWqBvgI3&#43;Njzzg0jnrOdNW9eO2wzFAuBCEdqK&#43;s="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
@@ -47,17 +41,17 @@
       
         
           
-          <a href="/about/" class="nav link"><i class='far fa-id-card'></i> About</a>
+          <a href="/about" class="nav link"><i class='far fa-id-card'></i> About</a>
         
       
         
           
-          <a href="/blog/" class="nav link"><i class='far fa-newspaper'></i> Blog</a>
+          <a href="/blog" class="nav link"><i class='far fa-newspaper'></i> Blog</a>
         
       
         
           
-          <a href="/categories/" class="nav link"><i class='fas fa-sitemap'></i> Categories</a>
+          <a href="/categories" class="nav link"><i class='fas fa-sitemap'></i> Categories</a>
         
       
       
@@ -100,7 +94,7 @@
 
 
 
-<li><a href="//linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
+<li><a href="//www.linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
 
 
 
@@ -137,8 +131,9 @@
 
       <main id="site-main">
         
-  <article class="post">
-    <header>
+  <article>
+    <div class="post">
+      <header>
   <div class="title">
     
       <h2><a href="/blog/2020/12/posh-acme-4.0.0/">Posh-ACME 4.0.0</a></h2>
@@ -154,17 +149,17 @@
   </div>
 </header>
 
-    <div id="socnet-share">
-      
+      <div id="socnet-share">
+        
 
 
 
 
 
-    </div>
-    <div class="content">
-      
-      <p>Just shipped a new Posh-ACME release, version 4.0.0. This is a huge personal win for me that took far longer than I had originally intended. So I&rsquo;m super excited to finally get it out the door.</p>
+      </div>
+      <div class="content">
+        
+        <p>Just shipped a new Posh-ACME release, version 4.0.0. This is a huge personal win for me that took far longer than I had originally intended. So I&rsquo;m super excited to finally get it out the door.</p>
 <h2 id="http-plugins">HTTP Plugins</h2>
 <p>The biggest long overdue change is that the plugin system can now support <code>http-0</code> based challenges and the architecture has been revamped such that adding support for additional challenge types should be significantly easier. There are only two built-in HTTP plugins at the moment: <a href="https://github.com/rmbolger/Posh-ACME/blob/main/Posh-ACME/Plugins/WebRoot-Readme.md">WebRoot</a> and <a href="https://github.com/rmbolger/Posh-ACME/blob/main/Posh-ACME/Plugins/WebSelfHost-Readme.md">WebSelfHost</a>. WebRoot is basically a file copy plugin that works with any web server that hosts files directly from a filesystem location. WebSelfHost is a plugin-ized version of the existing <code>Invoke-HttpChallengeListener</code> function that directly hosts the challenge files without needing a separate web server.</p>
 <h2 id="plugin-args">Plugin Args</h2>
@@ -315,9 +310,9 @@ R53UseIAMRole SwitchParameter True
 <li><code>Remove-PAServer</code> no longer requires confirmation when there are no cached accounts associated with the specified server in the local config.</li>
 </ul>
 
-    </div>
-    <footer>
-      <div class="stats">
+      </div>
+      <footer>
+        <div class="stats">
   
     <ul class="categories">
       
@@ -338,12 +333,58 @@ R53UseIAMRole SwitchParameter True
   
 </div>
 
-    </footer>
-  </article>
-  
+      </footer>
+    </div>
     
+      
+  <div class='post'>
+    
+    <div>
+      <h2 id='say-something'>Say Something</h2>
+        <form id='comment-form' class='new-comment' method='POST'>
+          
+          <h3 class='reply-notice hidden'>
+            <span class='reply-name'></span>
+            <a class='reply-close-btn button'><i class='fas fa-times'></i></a>
+          </h3>
 
-  
+          
+          <input type='hidden' name='options[entryId]' value='51e97a8adc2d7cf1f156946957fddbc2'>
+          <input type='hidden' name='fields[replyThread]' value=''>
+          <input type='hidden' name='fields[replyID]' value=''>
+          <input type='hidden' name='fields[replyName]' value=''>
+
+          
+          <input required name='fields[name]' type='text' placeholder='Your Name'>
+          <input name='fields[website]' type='text' placeholder='Your Website'>
+          <input required name='fields[email]' type='email' placeholder='Your Email'>
+          <textarea required name='fields[body]' placeholder='Your Message' rows='10'></textarea>
+
+          
+          
+
+          
+          <div class='submit-notice'>
+            <strong class='submit-notice-text submit-success hidden'>Thanks for your comment! It will be shown on the site once it has been approved.</strong>
+            <strong class='submit-notice-text submit-failed hidden'>Sorry, there was an error with your submission. Please make sure all required fields have been completed and try again.</strong>
+          </div>
+
+          
+          <button type='button' id="comment-form-submit" class='button'>Submit</button>
+          <button type='button' id="comment-form-submitted" class='hidden button' disabled>Submitted</button>
+          <button type='reset' id="comment-form-reset" class='button'>Reset</button>
+        </form>
+    </div>
+
+    
+    <div class='comments-container'>
+      <h2>Comments</h2>
+    </div>
+  </div>
+
+
+    
+  </article>
   <div class="pagination">
     
     
@@ -401,7 +442,7 @@ R53UseIAMRole SwitchParameter True
       
       
         <footer>
-          <a href="/blog/" class="button">See More</a>
+          <a href="/blog" class="button">See More</a>
         </footer>
       
     </section>
@@ -409,6 +450,7 @@ R53UseIAMRole SwitchParameter True
 
   
     
+
       <section id="categories">
         <header>
           <h1><a href="/categories">Categories</a></h1>
@@ -457,8 +499,8 @@ R53UseIAMRole SwitchParameter True
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
       <script src="/js/highlight.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/bash.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.3d7d89b38508a6c6249a5b6ce28aa819e3b0b24cb5fa6b7ca523c6268c1d588e.js" integrity="sha256-PX2Js4UIpsYkmlts4oqoGeOwsky1&#43;mt8pSPGJowdWI4="></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/bash.min.js"></script>
+    <script>hljs.highlightAll();</script><script src="/js/bundle.min.806c87b8052f73212365b4115f51459d1efb0a539184c605356579f6ea0548c9.js" integrity="sha256-gGyHuAUvcyEjZbQRX1FFnR77ClORhMYFNWV59uoFSMk="></script>
     <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;
