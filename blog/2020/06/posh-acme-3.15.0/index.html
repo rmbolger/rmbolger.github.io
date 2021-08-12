@@ -6,28 +6,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME 3.15.0">
-<meta itemprop="description" content="External Account Binding (EAB) support and a new plugin">
-<meta itemprop="datePublished" content="2020-06-22T00:00:00+00:00" />
+<meta name="generator" content="Hugo 0.87.0" /><meta itemprop="name" content="Posh-ACME 3.15.0">
+<meta itemprop="description" content="External Account Binding (EAB) support and a new plugin"><meta itemprop="datePublished" content="2020-06-22T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-06-22T00:00:00+00:00" />
 <meta itemprop="wordCount" content="287">
-
-
-
-<meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="Posh-ACME 3.15.0" />
+<meta itemprop="keywords" content="powershell," /><meta property="og:title" content="Posh-ACME 3.15.0" />
 <meta property="og:description" content="External Account Binding (EAB) support and a new plugin" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2020/06/posh-acme-3.15.0/" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2020/06/posh-acme-3.15.0/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2020-06-22T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-06-22T00:00:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posh-ACME 3.15.0"/>
 <meta name="twitter:description" content="External Account Binding (EAB) support and a new plugin"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
-          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
+          <link rel="stylesheet" href="/css/bundle.min.1bfccf86359e3de974865922b006112447a52f942c2a9c2bf93d159980ae641b.css" integrity="sha256-G/zPhjWePel0hlkisAYRJEelL5QsKpwr&#43;T0VmYCuZBs="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
@@ -171,7 +167,7 @@
       <p>Just shipped a new Posh-ACME release, version 3.15.0. The big news in this release is External Account Binding (EAB) support which widens Posh-ACME&rsquo;s compatibility with certificate authorities other than Let&rsquo;s Encrypt. <a href="https://sectigo.com/">Sectigo</a>, for example, offers paid certificates and ACME compatible endpoints. However, creating the ACME account requires linking it against an existing Sectigo account using new parameters in <code>New-PAAccount</code>. These parameters are a standard part of the ACME protocol, but optional to implement by a certificate authority.</p>
 <p>The three new parameters are <code>ExtAcctKID</code> (Key ID), <code>ExtAcctHMACKey</code> (Key Value), <code>ExtAcctAlgorithm</code> (HMAC Algorithm). The key ID and value will always need to be provided by your certificate authority. The algorithm defaults to <code>HS256</code> which refers to HMAC using SHA-256. If the CA does not specify a specific algorithm, this one is usually assumed. Two others are also supported, <code>HS384</code> and <code>HS512</code>. Your CA should indicate if they are needed instead of the default.</p>
 <p>Here&rsquo;s an example creating a new account against the <a href="https://zerossl.com/">ZeroSSL</a> CA.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-PAServer <span style="color:#e6db74">&#39;https://acme.zerossl.com/v2/DV90&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-PAServer <span style="color:#e6db74">&#39;https://acme.zerossl.com/v2/DV90&#39;</span>
 
 New-PAAccount -AcceptTOS -ExtAcctKID <span style="color:#e6db74">&#39;xxxxxxxx&#39;</span> -ExtAcctHMACKey <span style="color:#e6db74">&#39;yyyyyyyyyyyyyyyyyyyyy&#39;</span>
 </code></pre></div><p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/main/README.md">Readme</a>.</p>
@@ -283,7 +279,7 @@ New-PAAccount -AcceptTOS -ExtAcctKID <span style="color:#e6db74">&#39;xxxxxxxx&#
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">categories</a></h1>
+          <h1><a href="/categories">Categories</a></h1>
         </header>
         <ul>
           
@@ -323,14 +319,14 @@ New-PAAccount -AcceptTOS -ExtAcctKID <span style="color:#e6db74">&#39;xxxxxxxx&#
   <p class="copyright">
     © 2020 Ryan Bolger
       <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
       <script src="/js/highlight.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/bash.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.3d7d89b38508a6c6249a5b6ce28aa819e3b0b24cb5fa6b7ca523c6268c1d588e.js" integrity="sha256-PX2Js4UIpsYkmlts4oqoGeOwsky1&#43;mt8pSPGJowdWI4="></script>
     <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;

@@ -6,28 +6,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME 3.17.0">
-<meta itemprop="description" content="Account key import/export and test updates">
-<meta itemprop="datePublished" content="2020-10-09T00:00:00+00:00" />
+<meta name="generator" content="Hugo 0.87.0" /><meta itemprop="name" content="Posh-ACME 3.17.0">
+<meta itemprop="description" content="Account key import/export and test updates"><meta itemprop="datePublished" content="2020-10-09T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-10-09T00:00:00+00:00" />
 <meta itemprop="wordCount" content="715">
-
-
-
-<meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="Posh-ACME 3.17.0" />
+<meta itemprop="keywords" content="powershell," /><meta property="og:title" content="Posh-ACME 3.17.0" />
 <meta property="og:description" content="Account key import/export and test updates" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2020/10/posh-acme-3.17.0/" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2020/10/posh-acme-3.17.0/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2020-10-09T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-10-09T00:00:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posh-ACME 3.17.0"/>
 <meta name="twitter:description" content="Account key import/export and test updates"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
-          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
+          <link rel="stylesheet" href="/css/bundle.min.1bfccf86359e3de974865922b006112447a52f942c2a9c2bf93d159980ae641b.css" integrity="sha256-G/zPhjWePel0hlkisAYRJEelL5QsKpwr&#43;T0VmYCuZBs="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
@@ -169,16 +165,16 @@
     <div class="content">
       
       <p>Just shipped a new Posh-ACME release, version 3.17.0. The highlight of this release is the ability to import or export the private key associated with an ACME account. When creating a new account or performing a key rollover for an existing account, Posh-ACME will normally generate a new random private key automatically. But you now have the option to import an existing key instead of having one generated. It works like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># when creating a new account</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># when creating a new account</span>
 New-PAAccount -AcceptTOS -KeyFile .\mykey.key
 
 <span style="color:#75715e"># key rollover on existing account</span>
 Set-PAAccount -KeyRollover -KeyFile .\mykey.key
 </code></pre></div><p>Once the key is imported and associated with the ACME account, you can delete the original file if you want. Keys must be Base64 encoded PEM files and they must adhere to the supported key sizes for the ACME certificate authority you&rsquo;re using. For Let&rsquo;s Encrypt, that means RSA keys 2048-4096 in length or EC keys using P-256 or P-384 NIST curves.</p>
 <p>There is also a new function called <code>Export-PAAccountKey</code> which allows you to export an existing ACME account key to a PEM file. To export the current account&rsquo;s key, it works like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Export-PAAccountKey -OutputFile .\mykey.key
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Export-PAAccountKey -OutputFile .\mykey.key
 </code></pre></div><p>There are also <code>ID</code> and <code>Force</code> parameters which let you specify a specific account to export and whether or not to overwrite the key file if it already exists. If you have multiple ACME accounts, here&rsquo;s an example of how you could backup all of those keys.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># define a backup folder and create it if it doesn&#39;t exist</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># define a backup folder and create it if it doesn&#39;t exist</span>
 $fldr = Join-Path (<span style="color:#66d9ef">[Environment]</span>::GetFolderPath(<span style="color:#e6db74">&#39;Desktop&#39;</span>)) <span style="color:#e6db74">&#39;AcmeAccountKeys&#39;</span>
 New-Item -ItemType Directory -Force -Path $fldr | Out-Null
 
@@ -187,7 +183,7 @@ Get-PAAccount -List | %{
     Export-PAAccountKey $_.ID -OutputFile <span style="color:#e6db74">&#34;$fldr\</span>$($_.ID)<span style="color:#e6db74">.key&#34;</span> -Force
 }
 </code></pre></div><p>These new features can also allow you to recover access to a lost ACME account if you still have a copy of the private key. Just try to create a new account using the old account&rsquo;s key, and the server will return a copy of the old account object. Consider this demonstration:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Create a new account with a random key and make a note of the &#39;id&#39; value</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Create a new account with a random key and make a note of the &#39;id&#39; value</span>
 <span style="color:#75715e"># which is generated by the ACME server</span>
 New-PAAccount -AcceptTOS -Force
 
@@ -319,7 +315,7 @@ New-PAAccount -KeyFile .\mykey.key -AcceptTOS -Force
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">categories</a></h1>
+          <h1><a href="/categories">Categories</a></h1>
         </header>
         <ul>
           
@@ -359,14 +355,14 @@ New-PAAccount -KeyFile .\mykey.key -AcceptTOS -Force
   <p class="copyright">
     © 2020 Ryan Bolger
       <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
       <script src="/js/highlight.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/bash.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.3d7d89b38508a6c6249a5b6ce28aa819e3b0b24cb5fa6b7ca523c6268c1d588e.js" integrity="sha256-PX2Js4UIpsYkmlts4oqoGeOwsky1&#43;mt8pSPGJowdWI4="></script>
     <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;

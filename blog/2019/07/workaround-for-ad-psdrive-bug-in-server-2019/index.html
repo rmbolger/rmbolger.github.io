@@ -6,28 +6,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Workaround For AD PSDrive Bug In Server 2019">
-<meta itemprop="description" content="PSPath to the rescue">
-<meta itemprop="datePublished" content="2019-07-16T00:00:00+00:00" />
+<meta name="generator" content="Hugo 0.87.0" /><meta itemprop="name" content="Workaround For AD PSDrive Bug In Server 2019">
+<meta itemprop="description" content="PSPath to the rescue"><meta itemprop="datePublished" content="2019-07-16T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-07-16T00:00:00+00:00" />
 <meta itemprop="wordCount" content="391">
-
-
-
-<meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="Workaround For AD PSDrive Bug In Server 2019" />
+<meta itemprop="keywords" content="powershell," /><meta property="og:title" content="Workaround For AD PSDrive Bug In Server 2019" />
 <meta property="og:description" content="PSPath to the rescue" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2019-07-16T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-07-16T00:00:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Workaround For AD PSDrive Bug In Server 2019"/>
 <meta name="twitter:description" content="PSPath to the rescue"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
-          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
+          <link rel="stylesheet" href="/css/bundle.min.1bfccf86359e3de974865922b006112447a52f942c2a9c2bf93d159980ae641b.css" integrity="sha256-G/zPhjWePel0hlkisAYRJEelL5QsKpwr&#43;T0VmYCuZBs="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
@@ -170,30 +166,30 @@
       
       <h2 id="tldr">TL;DR</h2>
 <p>Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &ldquo;AD:<DN>&rdquo; PSDrive path like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$DN = (Get-ADUser jdoe).distinguishedName
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$DN = (Get-ADUser jdoe).distinguishedName
 $objectPath = <span style="color:#e6db74">&#34;Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/$DN&#34;</span>
 Get-Acl -Path $objectPath
 </code></pre></div><h2 id="the-story">The Story</h2>
 <p>I was browsing <a href="https://www.reddit.com/r/PowerShell">r/PowerShell</a> recently and came across a thread from someone who had run into a PowerShell bug after upgrading to Windows Server 2019 (1809). The user was attempting to run <code>Get-Acl</code> against an AD object using the object&rsquo;s distinguished name like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$DN = (Get-ADUser jdoe).distinguishedName
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$DN = (Get-ADUser jdoe).distinguishedName
 $ACL = Get-Acl -Path <span style="color:#e6db74">&#34;AD:\$DN&#34;</span>
 </code></pre></div><p>The code works just fine in Server 2016 and earlier. But the same code throws an error in Server 2019 and reportedly Windows 10 (1903) as well.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">Get-Acl : The object name has bad syntax
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">Get-Acl : The object name has bad syntax
 At line:1 char:8
 + $ACL = Get-Acl -Path &#34;AD:\$DN&#34;
 +        ~~~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: (\\RootDSE\CN=Do...C=example,DC=com:String) [Get-Acl], ADException
     + FullyQualifiedErrorId : ADProvider:ItemExists::ADError,Microsoft.PowerShell.Commands.GetAclCommand
 </code></pre></div><p>The problem is this particular user&rsquo;s DN had an escaped comma in it because the CN value was set to &ldquo;Doe, Jane&rdquo;. Commas are allowed in object names in AD, but they tend to cause all sorts of problems with LDAP path parsing code due to the escaping. The resulting DN of the object looks something like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">CN=Doe\, Jane,CN=Users,DC=example,DC=com
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">CN=Doe\, Jane,CN=Users,DC=example,DC=com
 </code></pre></div><p>Historically, the Windows native Active Directory PowerShell cmdlets and PSDrive provider have no issues dealing with this. But apparently a bug crept into the latest releases. It should be noted that the bug exists with any cmdlet that depends on the Active Directory PSDrive provider. <code>Get-Acl</code> just happens to be the one this user was using. But it also affects something as simple as <code>Get-Item</code>.</p>
 <h2 id="the-workaround">The Workaround</h2>
 <p>One of the things I tried while poking around this bug looking for a workaround was running <code>Get-ChildItem</code> against the parent container and then running <code>Get-Acl</code> against the <code>PSPath</code> parameter of the results like this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-ChildItem <span style="color:#e6db74">&#34;CN=Users,DC=example,DC=com&#34;</span> | <span style="color:#66d9ef">ForEach</span>-Object { Get-Acl -Path $_.PSPath }
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-ChildItem <span style="color:#e6db74">&#34;CN=Users,DC=example,DC=com&#34;</span> | ForEach-Object { Get-Acl -Path $_.PSPath }
 </code></pre></div><p>To my pleasant surprise, it worked without issue. So I took a look at the format of the PSPath for these objects and found this for my problematic test user.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/CN=Doe\, Jane,CN=Users,DC=example,DC=com
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/CN=Doe\, Jane,CN=Users,DC=example,DC=com
 </code></pre></div><p>We can generalize this out to a somewhat ugly (but at least usable) path prefix for any DN and work it into the original code like this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$DN = (Get-ADUser jdoe).distinguishedName
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$DN = (Get-ADUser jdoe).distinguishedName
 $objectPath = <span style="color:#e6db74">&#34;Microsoft.ActiveDirectory.Management.dll\ActiveDirectory:://RootDSE/$DN&#34;</span>
 $ACL = Get-Acl -Path $objectPath
 </code></pre></div>
@@ -295,7 +291,7 @@ $ACL = Get-Acl -Path $objectPath
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">categories</a></h1>
+          <h1><a href="/categories">Categories</a></h1>
         </header>
         <ul>
           
@@ -335,14 +331,14 @@ $ACL = Get-Acl -Path $objectPath
   <p class="copyright">
     © 2020 Ryan Bolger
       <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
       <script src="/js/highlight.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/bash.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.3d7d89b38508a6c6249a5b6ce28aa819e3b0b24cb5fa6b7ca523c6268c1d588e.js" integrity="sha256-PX2Js4UIpsYkmlts4oqoGeOwsky1&#43;mt8pSPGJowdWI4="></script>
     <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;

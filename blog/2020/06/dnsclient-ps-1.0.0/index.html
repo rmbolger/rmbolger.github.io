@@ -6,28 +6,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="DnsClient-PS 1.0.0">
-<meta itemprop="description" content="DNS client for PowerShell">
-<meta itemprop="datePublished" content="2020-06-14T00:00:00+00:00" />
+<meta name="generator" content="Hugo 0.87.0" /><meta itemprop="name" content="DnsClient-PS 1.0.0">
+<meta itemprop="description" content="DNS client for PowerShell"><meta itemprop="datePublished" content="2020-06-14T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-06-14T00:00:00+00:00" />
 <meta itemprop="wordCount" content="505">
-
-
-
-<meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="DnsClient-PS 1.0.0" />
+<meta itemprop="keywords" content="powershell," /><meta property="og:title" content="DnsClient-PS 1.0.0" />
 <meta property="og:description" content="DNS client for PowerShell" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2020/06/dnsclient-ps-1.0.0/" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2020/06/dnsclient-ps-1.0.0/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2020-06-14T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-06-14T00:00:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DnsClient-PS 1.0.0"/>
 <meta name="twitter:description" content="DNS client for PowerShell"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
-          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
+          <link rel="stylesheet" href="/css/bundle.min.1bfccf86359e3de974865922b006112447a52f942c2a9c2bf93d159980ae641b.css" integrity="sha256-G/zPhjWePel0hlkisAYRJEelL5QsKpwr&#43;T0VmYCuZBs="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
@@ -176,7 +172,7 @@
 <p>With DnsClient-PS, I&rsquo;m attempting to expose DnsClient.NET&rsquo;s power in a PowerShell native manner and be able to automate DNS tasks without needing to parse the output of utilities like <code>nslookup</code> and <code>dig</code>. However, it is not intended to be a general replacement for those utilities.</p>
 <h1 id="quick-start">Quick Start</h1>
 <p>The primary function is <code>Resolve-Dns</code> and requires a <code>-Query</code> parameter that accepts one or more string values. This defaults to an A record lookup against your OS configured DNS server(s).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Resolve-Dns -Query google.com
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Resolve-Dns -Query google.com
 
 Resolve-Dns google.com
 
@@ -184,7 +180,7 @@ Resolve-Dns <span style="color:#e6db74">&#39;google.com&#39;</span>,<span style=
 
 <span style="color:#e6db74">&#39;google.com&#39;</span>,<span style="color:#e6db74">&#39;www.google.com&#39;</span> | Resolve-Dns
 </code></pre></div><p>The <code>-QueryType</code> and <code>-NameServer</code> parameters are the other two common ones you&rsquo;ll generally use. NameServer can take an array with IP addresses or FQDNs. Each one can also have an explicit port specified by appending <code>:&lt;port&gt;</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Do an AAAA lookup</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Do an AAAA lookup</span>
 Resolve-Dns google.com -QueryType AAAA
 
 Resolve-Dns google.com AAAA
@@ -196,15 +192,15 @@ Resolve-Dns _gc._tcp.contoso.com SRV -ns dc1.contoso.com,dc2.contoso.com
 
 Resolve-Dns _gc._tcp.contoso.com SRV -ns 192.168.0.1<span style="color:#960050;background-color:#1e0010">:</span>53,dc2.contoso.com<span style="color:#960050;background-color:#1e0010">:</span>53
 </code></pre></div><p>The output of a successful query is a <a href="https://dnsclient.michaco.net/docs/DnsClient.DnsQueryResponse.html">DnsQueryResponse</a> object. Its raw form isn&rsquo;t very human readable, but it&rsquo;s quite comprehensive in the detail it provides about the response. If all you care about are the answers, you will want to do something like this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Resolve-Dns google.com | Select-Object -Expand Answers
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Resolve-Dns google.com | Select-Object -Expand Answers
 
 (Resolve-Dns google.com).Answers
 </code></pre></div><p>Keep in mind that answers for different record types are also different object types with different properties. For example, notice the differences between the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Resolve-Dns google.com a | Select-Object -Expand Answers | Get-Member
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Resolve-Dns google.com a | Select-Object -Expand Answers | Get-Member
 Resolve-Dns google.com txt | Select-Object -Expand Answers | Get-Member
 Resolve-Dns google.com soa | Select-Object -Expand Answers | Get-Member
 </code></pre></div><p>There are a number of optional parameters that can alter various settings for a query such as <code>-Recursion</code>, <code>-Timeout</code>, and <code>-UseTcpOnly</code>. These can be set on a per-call basis using the parameters available in <code>Resolve-Dns</code> or they can be set as new defaults for the current session using <code>Set-DnsClientSetting</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Disable recursion and change the timeout for this call only</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Disable recursion and change the timeout for this call only</span>
 Resolve-Dns google.com -ns ns1.google.com -Recursion<span style="color:#960050;background-color:#1e0010">:</span>$false -Timeout (New-Timespan -Sec 30)
 
 <span style="color:#75715e"># Change the settings for all queries in this session</span>
@@ -324,7 +320,7 @@ Get-DnsClientSettings
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">categories</a></h1>
+          <h1><a href="/categories">Categories</a></h1>
         </header>
         <ul>
           
@@ -364,14 +360,14 @@ Get-DnsClientSettings
   <p class="copyright">
     © 2020 Ryan Bolger
       <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
       <script src="/js/highlight.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/bash.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.3d7d89b38508a6c6249a5b6ce28aa819e3b0b24cb5fa6b7ca523c6268c1d588e.js" integrity="sha256-PX2Js4UIpsYkmlts4oqoGeOwsky1&#43;mt8pSPGJowdWI4="></script>
     <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;

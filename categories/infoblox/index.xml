@@ -6,11 +6,7 @@
     <description>Recent content in Infoblox on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.dvolve.net/categories/infoblox/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 14 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dvolve.net/categories/infoblox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hacking Infoblox Discovery for Fun and Profit</title>
       <link>https://www.dvolve.net/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/</link>

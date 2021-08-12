@@ -6,11 +6,7 @@
     <description>Recent content in Posh-ACME on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Dec 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.dvolve.net/categories/posh-acme/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 18 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dvolve.net/categories/posh-acme/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Posh-ACME 4.0.0</title>
       <link>https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/</link>

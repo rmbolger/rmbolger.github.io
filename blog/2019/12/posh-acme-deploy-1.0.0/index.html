@@ -6,28 +6,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME.Deploy 1.0.0">
-<meta itemprop="description" content="Cert deployment functions for Posh-ACME">
-<meta itemprop="datePublished" content="2019-12-13T00:00:00+00:00" />
+<meta name="generator" content="Hugo 0.87.0" /><meta itemprop="name" content="Posh-ACME.Deploy 1.0.0">
+<meta itemprop="description" content="Cert deployment functions for Posh-ACME"><meta itemprop="datePublished" content="2019-12-13T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-12-13T00:00:00+00:00" />
 <meta itemprop="wordCount" content="406">
-
-
-
-<meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="Posh-ACME.Deploy 1.0.0" />
+<meta itemprop="keywords" content="powershell," /><meta property="og:title" content="Posh-ACME.Deploy 1.0.0" />
 <meta property="og:description" content="Cert deployment functions for Posh-ACME" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2019/12/posh-acme-deploy-1.0.0/" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2019/12/posh-acme-deploy-1.0.0/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2019-12-13T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-12-13T00:00:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posh-ACME.Deploy 1.0.0"/>
 <meta name="twitter:description" content="Cert deployment functions for Posh-ACME"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
-          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
+          <link rel="stylesheet" href="/css/bundle.min.1bfccf86359e3de974865922b006112447a52f942c2a9c2bf93d159980ae641b.css" integrity="sha256-G/zPhjWePel0hlkisAYRJEelL5QsKpwr&#43;T0VmYCuZBs="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
@@ -173,10 +169,10 @@
 <h1 id="quick-start">Quick Start</h1>
 <p>An IIS website tends to be the most common certificate target for this module. We&rsquo;ll assume you have already created a cert using <a href="https://github.com/rmbolger/Posh-ACME">Posh-ACME</a> and want to deploy it to the default site in IIS and bound to all IPs and port 443 with no host header or <a href="https://en.wikipedia.org/wiki/Server_Name_Indication">SNI</a> requirement. <em>(SNI and host headers for TLS require IIS 8.0+)</em></p>
 <p>First, make sure your PowerShell session is running as admin. For the initial deployment, you can do something like this which will import the cert into the <code>LocalMachine\My</code> certificate store and add/update the site&rsquo;s https binding with the selected certificate. The <code>-Verbose</code> flag is optional but can be a nice way to see what&rsquo;s happening. If you need to customize the binding parameters, check the function&rsquo;s help with <code>Get-Help Set-IISCertificate</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-PAOrder example.com
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-PAOrder example.com
 Get-PACertificate | Set-IISCertificate -SiteName <span style="color:#e6db74">&#39;Default Web Site&#39;</span> -Verbose
 </code></pre></div><p>Your Posh-ACME renewal script might look something like this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-PAOrder example.com
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-PAOrder example.com
 <span style="color:#66d9ef">if</span> ($cert = Submit-Renewal) {
     $cert | Set-IISCertificate -SiteName <span style="color:#e6db74">&#39;Default Web Site&#39;</span> -RemoveOldCert
 }
@@ -294,7 +290,7 @@ Get-PACertificate | Set-IISCertificate -SiteName <span style="color:#e6db74">&#3
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">categories</a></h1>
+          <h1><a href="/categories">Categories</a></h1>
         </header>
         <ul>
           
@@ -334,14 +330,14 @@ Get-PACertificate | Set-IISCertificate -SiteName <span style="color:#e6db74">&#3
   <p class="copyright">
     © 2020 Ryan Bolger
       <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
       <script src="/js/highlight.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/bash.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.3d7d89b38508a6c6249a5b6ce28aa819e3b0b24cb5fa6b7ca523c6268c1d588e.js" integrity="sha256-PX2Js4UIpsYkmlts4oqoGeOwsky1&#43;mt8pSPGJowdWI4="></script>
     <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;

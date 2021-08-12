@@ -6,28 +6,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="generator" content="Hugo 0.74.3" /><meta itemprop="name" content="Posh-ACME 4.0.0">
-<meta itemprop="description" content="HTTP plugins, portable plugin arg encryption, better help">
-<meta itemprop="datePublished" content="2020-12-18T00:00:00+00:00" />
+<meta name="generator" content="Hugo 0.87.0" /><meta itemprop="name" content="Posh-ACME 4.0.0">
+<meta itemprop="description" content="HTTP plugins, portable plugin arg encryption, better help"><meta itemprop="datePublished" content="2020-12-18T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-12-18T00:00:00+00:00" />
 <meta itemprop="wordCount" content="2006">
-
-
-
-<meta itemprop="keywords" content="powershell," />
-<meta property="og:title" content="Posh-ACME 4.0.0" />
+<meta itemprop="keywords" content="powershell," /><meta property="og:title" content="Posh-ACME 4.0.0" />
 <meta property="og:description" content="HTTP plugins, portable plugin arg encryption, better help" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/" />
+<meta property="og:url" content="https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2020-12-18T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-12-18T00:00:00+00:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posh-ACME 4.0.0"/>
 <meta name="twitter:description" content="HTTP plugins, portable plugin arg encryption, better help"/>
 <meta name="twitter:site" content="@rmbolger"/>
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/solarized-dark.min.css">
-          <link rel="stylesheet" href="/css/bundle.min.307f33cd8015e5bab28d6ebda9b400f8d3059bc248b4e60adf4d23469fab5a2b.css" integrity="sha256-MH8zzYAV5bqyjW69qbQA&#43;NMFm8JItOYK300jRp&#43;rWis="><link rel="stylesheet" href="/css/add-on.css">
+          <link rel="stylesheet" href="/css/bundle.min.1bfccf86359e3de974865922b006112447a52f942c2a9c2bf93d159980ae641b.css" integrity="sha256-G/zPhjWePel0hlkisAYRJEelL5QsKpwr&#43;T0VmYCuZBs="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
@@ -174,7 +170,7 @@
 <h2 id="plugin-args">Plugin Args</h2>
 <p>Another big internal change is how plugin args are stored on disk. Previously, they were stored per-account and serialized using PowerShell&rsquo;s native <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml">Import-CliXml</a>/<a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml">Export-CliXml</a> functions which allowed for easy encryption of SecureString and PSCredential parameters, but only on Windows. On non-Windows, the values are only mildly obfuscated. In 4.0, they are now stored per-order and serialized to JSON using a semi-manual process and the secure parameters are serialized using <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertto-securestring">ConvertTo-SecureString</a>/<a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertfrom-securestring">ConvertFrom-SecureString</a> which gave me the flexibility to add an OS-agnostic AES encryption key.</p>
 <p>On Windows by default, plugin parameters are still encrypted using the OS native user/machine specific DPAPI process. However, you can now choose to use a portable, randomized 256-bit AES key instead via the <code>UseAltPluginEncryption</code> switch which is configurable per ACME account. It works like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># If you don&#39;t already have an ACME account</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># If you don&#39;t already have an ACME account</span>
 New-PAAccount -AcceptTOS -UseAltPluginEncryption -Contact <span style="color:#e6db74">&#39;me@example.com&#39;</span>
 
 <span style="color:#75715e"># To enable on an existing account</span>
@@ -184,14 +180,14 @@ Set-PAAccount -UseAltPluginEncryption
 Set-PAAccount -UseAltPluginEncryption<span style="color:#960050;background-color:#1e0010">:</span>$false
 </code></pre></div><p>For now, the key is stored in the account config. But I&rsquo;m hoping to add support for storing the key using the <a href="https://devblogs.microsoft.com/powershell/secretmanagement-preview-6-and-secretstore-preview-4/">SecretManagement</a> modules once they reach a more stable state.</p>
 <p>The new per-order storage of the plugin args makes things slightly more cumbersome if you&rsquo;re managing multiple different certs with the same set of plugins because you now have to manage those args separately for each order. However, there&rsquo;s a new <code>Get-PAPluginArgs</code> function that can help ease that burden. Let&rsquo;s say you&rsquo;re creating a new certificate that will be using the same Azure plugin as a previous certificate. Instead of needing go lookup the plugin args and re-build the hashtable, you can do this instead.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Get a copy of the args for the old order</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Get a copy of the args for the old order</span>
 $pArgs = Get-PAPluginArgs example.com
 
 <span style="color:#75715e"># Create the new cert</span>
 New-PACertificate example2.com -Plugin Azure -PluginArgs $pArgs
 </code></pre></div><h2 id="better-in-module-help">Better In-Module Help</h2>
 <p>Despite my efforts to maintain robust function-specific help, the one thing I found myself constantly going back to the wiki for is a quick reference for what arguments a specific plugin needed. Not only did it annoy me to need to open a browser at all, I then had to navigate to that plugin&rsquo;s specific user guide. So I scrapped the old <code>Get-DnsPlugins</code> and <code>Get-DnsPluginHelp</code> functions and replaced them with a single <code>Get-PAPlugin</code> command. In particular, this new function has a <code>-Guide</code> and <code>-Params</code> switch. The guide switch on Windows will launch your default browser to that plugin&rsquo;s user guide <em>(non-Windows for the time being will just display the URL)</em>. The params switch will display a nicely formatted quick reference of the available plugin parameters. Here&rsquo;s the current output for the Route53 plugin.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">PS C:\&gt; Get-PAPlugin Route53 -Params
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">PS C:\&gt; Get-PAPlugin Route53 -Params
 
     Set Name: Keys (Default)
 
@@ -415,7 +411,7 @@ R53UseIAMRole SwitchParameter True
     
       <section id="categories">
         <header>
-          <h1><a href="/categories">categories</a></h1>
+          <h1><a href="/categories">Categories</a></h1>
         </header>
         <ul>
           
@@ -455,14 +451,14 @@ R53UseIAMRole SwitchParameter True
   <p class="copyright">
     © 2020 Ryan Bolger
       <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.74.3' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
       <script src="/js/highlight.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/bash.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.b4e669fa428a81defb8af0916c53f39cd1b8e0bbab22199c06f0b182907ba474.js" integrity="sha256-tOZp&#43;kKKgd77ivCRbFPznNG44LurIhmcBvCxgpB7pHQ="></script>
+    <script>hljs.initHighlightingOnLoad();</script><script src="/js/bundle.min.3d7d89b38508a6c6249a5b6ce28aa819e3b0b24cb5fa6b7ca523c6268c1d588e.js" integrity="sha256-PX2Js4UIpsYkmlts4oqoGeOwsky1&#43;mt8pSPGJowdWI4="></script>
     <script src="/js/add-on.js"></script>
 <script type="application/javascript">
 var doNotTrack = false;
