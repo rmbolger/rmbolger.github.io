@@ -6,7 +6,66 @@
     <description>Recent content in Posh-ACME on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dvolve.net/categories/posh-acme/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dvolve.net/categories/posh-acme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Posh-ACME 4.6.0</title>
+      <link>https://www.dvolve.net/blog/2021/07/posh-acme-4.6.0/</link>
+      <pubDate>Sun, 25 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2021/07/posh-acme-4.6.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 4.6.0. There are new plugins for HostingDe and Beget. The new Revoke-PACertificate has been improved so it no longer requires a configured ACME account when using an explicit cert/key. There&amp;rsquo;s a fix for unauthenticated updates with RFC2136 plugin and the Simply plugin is now IDN agnostic thanks to suggestions from the API owner.
+Updated versions can be found in the PowerShell Gallery or GitHub.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 4.5.0</title>
+      <link>https://www.dvolve.net/blog/2021/05/posh-acme-4.5.0/</link>
+      <pubDate>Sat, 29 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2021/05/posh-acme-4.5.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 4.5.0. There are new plugins for PCExtreme (called Aurora) and UKFast. There&amp;rsquo;s also a new dedicated function for certificate revocation called Revoke-PACertificate.
+The current revocation functionality is sort of hidden in Set-PAOrder -RevokeCert and only really able to revoke certs that were obtained by the current Posh-ACME account. But the ACME protocol supports additional methods for revocation where all you need is the certificate and its private key even if you have lost access to the original account that requested it.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 4.4.0</title>
+      <link>https://www.dvolve.net/blog/2021/05/posh-acme-4.4.0/</link>
+      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2021/05/posh-acme-4.4.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 4.4.0. There are three new DNS plugin for Constellix, All-Inkl, Easyname and a couple order related new features.
+PAOrder objects that get returned by things like Get-PAOrder now have a Folder property which is the filesystem path to that order&amp;rsquo;s config folder. It&amp;rsquo;s dynamically generated so if you move the config folder somewhere else, it will be updated the next time the module is loaded.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 4.3.0</title>
+      <link>https://www.dvolve.net/blog/2021/02/posh-acme-4.3.0/</link>
+      <pubDate>Wed, 24 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2021/02/posh-acme-4.3.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 4.3.0. The main change in this version is how the PreferredChain functionality works. Previously it would check all chains in the order they were recieved and use the first one that contained a cert that matched the PreferredChain value. But the upcoming changes to the chains offered by Let&amp;rsquo;s Encrypt highlighted a problem with that logic. If a user wanted to use the new shorter ISRG Root X1, that value would match in the default chain before even checking the secondary chain.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 4.2.0</title>
+      <link>https://www.dvolve.net/blog/2021/02/posh-acme-4.2.0/</link>
+      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2021/02/posh-acme-4.2.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 4.2.0. There are new DNS plugins for Infomaniak and Zilore and a new option for AcmeDns that allows you to specify the complete URI instead of just the hostname in case you&amp;rsquo;ve got a custom setup.
+Updated versions can be found in the PowerShell Gallery or GitHub. Installation instructions are in the Readme.
+Changelog  Added new DNS plugins  Infomaniak (Thanks @Sundypha) Zilore   Added ACMEUri option to AcmeDns plugin which allows specifying the complete URI instead of just the hostname.</description>
+    </item>
+    
+    <item>
+      <title>Posh-ACME 4.1.0</title>
+      <link>https://www.dvolve.net/blog/2021/01/posh-acme-4.1.0/</link>
+      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2021/01/posh-acme-4.1.0/</guid>
+      <description>Just shipped a new Posh-ACME release, version 4.1.0. The RFC2136 plugin now uses the exit code from nsupdate instead of output parsing to determine success and avoid possible language OS inconsistencies. There&amp;rsquo;s also a new optional DDNSZone param to avoid the initial SOA lookup that breaks in some environments. The UnoEuro plugin has been removed because the API endpoint is no longer functional. So if you hadn&amp;rsquo;t switched over to the Simply plugin, now is the time.</description>
+    </item>
+    
     <item>
       <title>Posh-ACME 4.0.0</title>
       <link>https://www.dvolve.net/blog/2020/12/posh-acme-4.0.0/</link>

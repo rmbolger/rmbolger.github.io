@@ -139,6 +139,300 @@
   <header>
   <div class="title">
     
+      <h2><a href="/blog/2021/07/posh-acme-4.6.0/">Posh-ACME 4.6.0</a></h2>
+    
+    
+      <p>HostingDe and Beget plugins and misc fixes</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2021-07-25 00:00:00 &#43;0000 UTC">July 25, 2021</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 4.6.0. There are new plugins for <a href="https://hosting.de/">HostingDe</a> and <a href="https://beget.com/">Beget</a>. The new <code>Revoke-PACertificate</code> has been improved so it no longer requires a configured ACME account when using an explicit cert/key. There&rsquo;s a fix for unauthenticated updates with RFC2136 plugin and the Simply plugin is now IDN agnostic thanks to suggestions from the API owner.</p>
+  </div>
+  <footer>
+    <a href="/blog/2021/07/posh-acme-4.6.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2021/05/posh-acme-4.5.0/">Posh-ACME 4.5.0</a></h2>
+    
+    
+      <p>New plugins, new revocation function, and misc fixes</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2021-05-29 00:00:00 &#43;0000 UTC">May 29, 2021</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 4.5.0. There are new plugins for <a href="https://pcextreme.nl/">PCExtreme</a> (called Aurora) and <a href="https://ukfast.co.uk/">UKFast</a>. There&rsquo;s also a new dedicated function for certificate revocation called <code>Revoke-PACertificate</code>.</p>
+  </div>
+  <footer>
+    <a href="/blog/2021/05/posh-acme-4.5.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2021/05/posh-acme-4.4.0/">Posh-ACME 4.4.0</a></h2>
+    
+    
+      <p>New plugins and order improvements</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2021-05-03 00:00:00 &#43;0000 UTC">May 3, 2021</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 4.4.0. There are three new DNS plugin for <a href="https://constellix.com/">Constellix</a>, <a href="https://all-inkl.com/">All-Inkl</a>, <a href="https://www.easyname.com/">Easyname</a> and a couple order related new features.</p>
+  </div>
+  <footer>
+    <a href="/blog/2021/05/posh-acme-4.4.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2021/02/posh-acme-4.3.0/">Posh-ACME 4.3.0</a></h2>
+    
+    
+      <p>PreferredChain logic fix</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2021-02-24 00:00:00 &#43;0000 UTC">February 24, 2021</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 4.3.0. The main change in this version is how the PreferredChain functionality works. Previously it would check all chains in the order they were recieved and use the first one that contained a cert that matched the PreferredChain value. But the <a href="https://community.letsencrypt.org/t/production-chain-changes/150739">upcoming changes</a> to the chains offered by Let&rsquo;s Encrypt highlighted a problem with that logic. If a user wanted to use the new shorter <code>ISRG Root X1</code>, that value would match in the default chain before&hellip;</p>
+  </div>
+  <footer>
+    <a href="/blog/2021/02/posh-acme-4.3.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2021/02/posh-acme-4.2.0/">Posh-ACME 4.2.0</a></h2>
+    
+    
+      <p>Infomaniak and Zilore plugins and new option for AcmeDns</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2021-02-01 00:00:00 &#43;0000 UTC">February 1, 2021</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 4.2.0. There are new DNS plugins for <a href="https://www.infomaniak.com/">Infomaniak</a> and <a href="https://zilore.com/?r=1f752c82378516890a5200006eae8469">Zilore</a> and a new option for AcmeDns that allows you to specify the complete URI instead of just the hostname in case you&rsquo;ve got a custom setup.</p>
+  </div>
+  <footer>
+    <a href="/blog/2021/02/posh-acme-4.2.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2021/01/posh-acme-4.1.0/">Posh-ACME 4.1.0</a></h2>
+    
+    
+      <p>RFC2136 compat updates, UnoEuro removal, and misc fixes</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2021-01-18 00:00:00 &#43;0000 UTC">January 18, 2021</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 4.1.0. The RFC2136 plugin now uses the exit code from nsupdate instead of output parsing to determine success and avoid possible language OS inconsistencies. There&rsquo;s also a new optional <code>DDNSZone</code> param to avoid the initial SOA lookup that breaks in some environments. The UnoEuro plugin has been removed because the API endpoint is no longer functional. So if you hadn&rsquo;t switched over to the Simply plugin, now is the time.</p>
+  </div>
+  <footer>
+    <a href="/blog/2021/01/posh-acme-4.1.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
       <h2><a href="/blog/2020/12/posh-acme-4.0.0/">Posh-ACME 4.0.0</a></h2>
     
     
@@ -332,302 +626,6 @@
 </article>
 
   
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2020/10/posh-acme-deploy-1.2.0/">Posh-ACME.Deploy 1.2.0</a></h2>
-    
-    
-      <p>Added IIS FTP Support</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2020-10-15 00:00:00 &#43;0000 UTC">October 15, 2020</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME.Deploy release, version 1.2.0. There is now a <code>Set-IISFTPCertificate</code> function. It requires the same <code>WebAdministration</code> module the other IIS function does and has been tested on Windows Server 2019, but will likely work against earlier versions as well. In addition to updating the cert, it can also be used to change other SSL related FTP parameters like Control Channel Policy, Data Channel Policy, and whether to use 128-bit encryption.</p>
-  </div>
-  <footer>
-    <a href="/blog/2020/10/posh-acme-deploy-1.2.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2020/10/posh-acme-3.17.0/">Posh-ACME 3.17.0</a></h2>
-    
-    
-      <p>Account key import/export and test updates</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2020-10-09 00:00:00 &#43;0000 UTC">October 9, 2020</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME release, version 3.17.0. The highlight of this release is the ability to import or export the private key associated with an ACME account. When creating a new account or performing a key rollover for an existing account, Posh-ACME will normally generate a new random private key automatically. But you now have the option to import an existing key instead of having one generated. It works like this:</p>
-  </div>
-  <footer>
-    <a href="/blog/2020/10/posh-acme-3.17.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2020/09/posh-ibwapi-3.2.0/">Posh-IBWAPI 3.2.0</a></h2>
-    
-    
-      <p>Per-call profiles</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2020-09-21 00:00:00 &#43;0000 UTC">September 21, 2020</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-IBWAPI release, version 3.2.0. There is now a <code>ProfileName</code> parameter associated with all of the public functions that have connection specific parameters such as <code>WAPIHost</code>, <code>WAPIVersion</code>, and <code>Credential</code>. This should make it easier to change profiles on a per-call basis instead of needing to run <code>Set-IBConfig</code> to switch away and back again.</p>
-  </div>
-  <footer>
-    <a href="/blog/2020/09/posh-ibwapi-3.2.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-ibwapi/">Posh-IBWAPI</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/">Hacking Infoblox Discovery for Fun and Profit</a></h2>
-    
-    
-      <p>It&#39;s Just Another CSV</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2020-09-14 00:00:00 &#43;0000 UTC">September 14, 2020</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>An IPAM solution is not very useful unless it accurately reflects the state of your network. The discovery features in NIOS have always been one of the great benefits of having Infoblox DDI. <a href="https://www.infoblox.com/products/network-insight/">Network Insight</a> and <a href="https://www.infoblox.com/products/netmri/">NetMRI</a> focus on discovery of network gear and what is connected to it. The <a href="https://docs.infoblox.com/display/nios85/Configuring+vDiscovery+Jobs">vDiscovery</a> feature adds the ability to discover virtual infrastructure in both public and private cloud environments. All of these working together can give you a super accurate picture of what exists on your&hellip;</p>
-  </div>
-  <footer>
-    <a href="/blog/2020/09/hacking-infoblox-discovery-for-fun-and-profit/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/infoblox/">Infoblox</a></li>
-        
-          <li><a class="article-terms-link" href="/categories/posh-ibwapi/">Posh-IBWAPI</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2020/08/posh-acme-3.16.0/">Posh-ACME 3.16.0</a></h2>
-    
-    
-      <p>Preferred Chain support and a new plugin</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2020-08-31 00:00:00 &#43;0000 UTC">August 31, 2020</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME release, version 3.16.0. The highlight of this release is Preferred Chain support which is an advanced but important feature with Let&rsquo;s Encrypt&rsquo;s impending <a href="https://letsencrypt.org/2019/04/15/transitioning-to-isrg-root.html">root transition</a>. When you download a certificate from an ACME server, you also get the issuing chain with that certificate. But for certificate authorities with complex issuance hierarchies, the ACME server may have multiple valid hierarchies to choose from. This new feature allows you to specify which&hellip;</p>
-  </div>
-  <footer>
-    <a href="/blog/2020/08/posh-acme-3.16.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2020/06/posh-acme-deploy-1.1.0/">Posh-ACME.Deploy 1.1.0</a></h2>
-    
-    
-      <p>Added Exchange Support</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2020-06-24 00:00:00 &#43;0000 UTC">June 24, 2020</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME.Deploy release, version 1.1.0. There is now a <code>Set-ExchangeCertificate</code> function thanks to Erik Nemchik (<a href="https://github.com/nemchik">@nemchik</a>). It requires the <code>Microsoft.Exchange.Management.PowerShell</code> snap-in and has been tested successfully against Exchange 2019, but may work against earlier versions as well.</p>
-  </div>
-  <footer>
-    <a href="/blog/2020/06/posh-acme-deploy-1.1.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
   <div class="pagination">
     
     
@@ -646,40 +644,40 @@
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/12/posh-acme-4.0.0/">Posh-ACME 4.0.0</a></h2>
-          <time class="published" datetime="2020-12-18 00:00:00 &#43;0000 UTC">December 18, 2020</time>
+          <h2><a href="/blog/2021/07/posh-acme-4.6.0/">Posh-ACME 4.6.0</a></h2>
+          <time class="published" datetime="2021-07-25 00:00:00 &#43;0000 UTC">July 25, 2021</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/11/posh-acme-3.20.0/">Posh-ACME 3.20.0</a></h2>
-          <time class="published" datetime="2020-11-25 00:00:00 &#43;0000 UTC">November 25, 2020</time>
+          <h2><a href="/blog/2021/05/posh-acme-4.5.0/">Posh-ACME 4.5.0</a></h2>
+          <time class="published" datetime="2021-05-29 00:00:00 &#43;0000 UTC">May 29, 2021</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/11/posh-acme-3.19.0/">Posh-ACME 3.19.0</a></h2>
-          <time class="published" datetime="2020-11-20 00:00:00 &#43;0000 UTC">November 20, 2020</time>
+          <h2><a href="/blog/2021/05/posh-acme-4.4.0/">Posh-ACME 4.4.0</a></h2>
+          <time class="published" datetime="2021-05-03 00:00:00 &#43;0000 UTC">May 3, 2021</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/11/posh-acme-3.18.0/">Posh-ACME 3.18.0</a></h2>
-          <time class="published" datetime="2020-11-07 00:00:00 &#43;0000 UTC">November 7, 2020</time>
+          <h2><a href="/blog/2021/02/posh-acme-4.3.0/">Posh-ACME 4.3.0</a></h2>
+          <time class="published" datetime="2021-02-24 00:00:00 &#43;0000 UTC">February 24, 2021</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/10/posh-acme-deploy-1.2.0/">Posh-ACME.Deploy 1.2.0</a></h2>
-          <time class="published" datetime="2020-10-15 00:00:00 &#43;0000 UTC">October 15, 2020</time>
+          <h2><a href="/blog/2021/02/posh-acme-4.2.0/">Posh-ACME 4.2.0</a></h2>
+          <time class="published" datetime="2021-02-01 00:00:00 &#43;0000 UTC">February 1, 2021</time>
         </header>
       </article>
       
@@ -702,7 +700,7 @@
           
           
           <li>
-              <a href="/categories/posh-acme/">posh-acme<span class="count">21</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">27</span></a>
           
           <li>
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>
@@ -734,7 +732,7 @@
       <footer id="site-footer">
   
   <p class="copyright">
-    © 2020 Ryan Bolger
+    © 2021 Ryan Bolger
       <br>
     Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>

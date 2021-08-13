@@ -139,6 +139,302 @@
   <header>
   <div class="title">
     
+      <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
+    
+    
+      <p>LDAPS for free without needing internal PKI.</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-12-17 00:00:00 &#43;0000 UTC">December 17, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>If you&rsquo;ve ever had to setup an HTTPS website in the past couple years, you&rsquo;ve most likely heard of <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a> which is arguably the <a href="https://www.eff.org/deeplinks/2016/10/lets-encrypt-largest-certificate-authority-web">largest public certificate authority in the world</a>. Not only are their certificates free, the entire ordering and renewal process can be completely automated using a recently finalized protocol standard known as <a href="https://tools.ietf.org/html/rfc8555">ACME (RFC 8555)</a>.</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/active-directory/">Active Directory</a></li>
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2019/12/posh-acme-deploy-1.0.0/">Posh-ACME.Deploy 1.0.0</a></h2>
+    
+    
+      <p>Cert deployment functions for Posh-ACME</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-12-13 00:00:00 &#43;0000 UTC">December 13, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new module called Posh-ACME.Deploy. It&rsquo;s an optional companion module for Posh-ACME that provides a set of functions to make it easier to deploy the certificates you create.</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/12/posh-acme-deploy-1.0.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
+    
+    
+      <p>Set-PAOrder improvements, upgraded BouncyCastle, and misc fixes.</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.12.0. The <code>Set-PAOrder</code> function now has <code>-DnsPlugin</code> and <code>-PluginArgs</code> parameters which should make it easier to change DNS providers and/or provider parameters without needing to wait for a certificate renewal. The BouncyCastle library has been updated to the latest 1.8.5 version and the DLL file is using a non-standard name to avoid conflicts with other software that uses BouncyCastle and chooses to install the DLL into the .NET GAC. For some reason,&hellip;</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/12/posh-acme-3.12.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
+    
+    
+      <p>Improvements for Install-PACertificate and new function Revoke-PAAuthorization.</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-11-12 00:00:00 &#43;0000 UTC">November 12, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.11.0. The <code>Install-PACertificate</code> function now has optional parameters that allow you to specify the Windows certificate store location and name in case the defaults (LocalMachine\My) aren&rsquo;t what you need. You can also use the <code>-NotExportable</code> switch to mark the certificate as non-exportable. There&rsquo;s also a new function called Revoke-PAAuthorization which is mostly useful for testing a new configuration. It allows you to revoke one or more&hellip;</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/11/posh-acme-3.11.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2019/11/posh-acme-3.10.0/">Posh-ACME 3.10.0</a></h2>
+    
+    
+      <p>Critical fix, new Hurricane Electric plugin, and Azure cert-based auth.</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-11-06 00:00:00 &#43;0000 UTC">November 6, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.10.0. There&rsquo;s a critical fix in this version for a problem introduced by a recent change in Let&rsquo;s Encrypt&rsquo;s ACME implementation that breaks renewals. A new DNS plugin for <a href="https://dns.he.net/">HurricaneElectric</a> was added and the Azure plugin now supports certificate based authentication in addition to the existing methods. There&rsquo;s also additional guidance in the tutorial on renewals and deployment.</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/11/posh-acme-3.10.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2019/10/posh-acme-3.9.0/">Posh-ACME 3.9.0</a></h2>
+    
+    
+      <p>New UnoEuro plugin and updates to Cloudflare plugin.</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-10-26 00:00:00 &#43;0000 UTC">October 26, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.9.0. There&rsquo;s a new DNS plugin for <a href="https://www.unoeuro.com/">UnoEuro</a> thanks to a user submission. The Cloudflare plugin was also updated to support limited use tokens that don&rsquo;t have edit permissions to all zones on an account.</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/10/posh-acme-3.9.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
       <h2><a href="/blog/2019/10/posh-ibcli-1.3.0/">Posh-IBCLI 1.3.0</a></h2>
     
     
@@ -331,302 +627,6 @@
 </article>
 
   
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/08/posh-acme-3.6.0/">Posh-ACME 3.6.0</a></h2>
-    
-    
-      <p>New plugins and self-hosted http challenges</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-08-21 00:00:00 &#43;0000 UTC">August 21, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME release, version 3.6.0. This one has a bunch of new stuff including new plugins for <a href="https://domene.shop/">Domeneshop</a>, <a href="https://www.dreamhost.com/">Dreamhost</a>, <a href="https://easydns.com/">EasyDNS</a>, and <a href="http://freedns.afraid.org/">freedns.afraid.org</a>. The other big addition is a new function called <code>Invoke-HttpChallengeListener</code> which can be super handy for people doing HTTP challenges. It&rsquo;s basically a self-contained webserver that will respond to requests for the HTTP challenges in your order so you don&rsquo;t have manually deal with making the challenge files&hellip;</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/08/posh-acme-3.6.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/">Auditing Active Directory Passwords With PwnedPassCheck</a></h2>
-    
-    
-      <p>Make sure users aren&#39;t using compromised passwords.</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-08-15 00:00:00 &#43;0000 UTC">August 15, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>In a <a href="/blog/2019/08/new-module-pwnedpasscheck/">previous post</a>, I introduced a new PowerShell module called <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a>. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to <a href="https://twitter.com/troyhunt">Troy Hunt&rsquo;s</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>. In this post, I&rsquo;ll demonstrate how to use the module in conjunction with <a href="https://twitter.com/MGrafnetter">Michael Grafnetter&rsquo;s</a> amazing <a href="https://github.com/MichaelGrafnetter/DSInternals">DSInternals</a> module to quickly audit existing passwords in Active Directory against the compromised list.</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/pwnedpasscheck/">PwnedPassCheck</a></li>
-        
-          <li><a class="article-terms-link" href="/categories/active-directory/">Active Directory</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/08/new-module-pwnedpasscheck/">New Module: PwnedPassCheck</a></h2>
-    
-    
-      <p>Checking if passwords or hashes have been compromised.</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-08-13 00:00:00 &#43;0000 UTC">August 13, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p><a href="https://twitter.com/troyhunt">Troy Hunt&rsquo;s</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> is a great way to check whether your email address and other personal information was exposed in a data breach. But it also allows you to separately check if a specific password was exposed in a breach. As of version 5, the data set contains over half a billion compromised passwords and the number of times they&rsquo;ve been seen in data breaches. My <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a> module lets you query that data easily via PowerShell.</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/08/new-module-pwnedpasscheck/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/pwnedpasscheck/">PwnedPassCheck</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/">Workaround For AD PSDrive Bug In Server 2019</a></h2>
-    
-    
-      <p>PSPath to the rescue</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-07-16 00:00:00 &#43;0000 UTC">July 16, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Until Microsoft fixes the bug with the AD PSDrive provider, use the fully qualified PSPath to the object instead of the &ldquo;AD:<DN>&rdquo; PSDrive path like this:</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/07/workaround-for-ad-psdrive-bug-in-server-2019/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/active-directory/">Active Directory</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/06/infoblox-and-ms-management-permissions/">Infoblox and MS Management Permissions</a></h2>
-    
-    
-      <p>How to avoid using Domain Admin</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-06-27 00:00:00 &#43;0000 UTC">June 27, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>The NIOS documentation lacks great instructions for granting least-privilege access to use the various MS Management components. As a former Active Directory admin, that bugs me because people get frustrated and end up giving service accounts Domain Admin permissions just to get things working. This post will lay out the necessary permissions for each component and provide PowerShell examples on how to apply them easily.</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/06/infoblox-and-ms-management-permissions/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/infoblox/">Infoblox</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/06/posh-acme-3.5.0/">Posh-ACME 3.5.0</a></h2>
-    
-    
-      <p>New plugin and misc fixes</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-06-21 00:00:00 &#43;0000 UTC">June 21, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME release, version 3.5.0. This one has an important fix due to a <a href="https://community.letsencrypt.org/t/acme-v2-scheduled-removal-of-id-from-account-objects/94744">recent change</a> in Let&rsquo;s Encrypt&rsquo;s ACME implementation which now more strictly adheres to the recently finalized <a href="https://tools.ietf.org/html/rfc8555">RFC 8555 spec</a>. The Let&rsquo;s Encrypt change is only on the staging server at the moment, but it will likely move to production soon and it breaks account creation on all previous versions of Posh-ACME.</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/06/posh-acme-3.5.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
   <div class="pagination">
     
       <a href="/page/2/" class="button left"><span>Previous Page</span></a>
@@ -647,40 +647,40 @@
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/12/posh-acme-4.0.0/">Posh-ACME 4.0.0</a></h2>
-          <time class="published" datetime="2020-12-18 00:00:00 &#43;0000 UTC">December 18, 2020</time>
+          <h2><a href="/blog/2021/07/posh-acme-4.6.0/">Posh-ACME 4.6.0</a></h2>
+          <time class="published" datetime="2021-07-25 00:00:00 &#43;0000 UTC">July 25, 2021</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/11/posh-acme-3.20.0/">Posh-ACME 3.20.0</a></h2>
-          <time class="published" datetime="2020-11-25 00:00:00 &#43;0000 UTC">November 25, 2020</time>
+          <h2><a href="/blog/2021/05/posh-acme-4.5.0/">Posh-ACME 4.5.0</a></h2>
+          <time class="published" datetime="2021-05-29 00:00:00 &#43;0000 UTC">May 29, 2021</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/11/posh-acme-3.19.0/">Posh-ACME 3.19.0</a></h2>
-          <time class="published" datetime="2020-11-20 00:00:00 &#43;0000 UTC">November 20, 2020</time>
+          <h2><a href="/blog/2021/05/posh-acme-4.4.0/">Posh-ACME 4.4.0</a></h2>
+          <time class="published" datetime="2021-05-03 00:00:00 &#43;0000 UTC">May 3, 2021</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/11/posh-acme-3.18.0/">Posh-ACME 3.18.0</a></h2>
-          <time class="published" datetime="2020-11-07 00:00:00 &#43;0000 UTC">November 7, 2020</time>
+          <h2><a href="/blog/2021/02/posh-acme-4.3.0/">Posh-ACME 4.3.0</a></h2>
+          <time class="published" datetime="2021-02-24 00:00:00 &#43;0000 UTC">February 24, 2021</time>
         </header>
       </article>
       
       <article class="mini-post">
           
         <header>
-          <h2><a href="/blog/2020/10/posh-acme-deploy-1.2.0/">Posh-ACME.Deploy 1.2.0</a></h2>
-          <time class="published" datetime="2020-10-15 00:00:00 &#43;0000 UTC">October 15, 2020</time>
+          <h2><a href="/blog/2021/02/posh-acme-4.2.0/">Posh-ACME 4.2.0</a></h2>
+          <time class="published" datetime="2021-02-01 00:00:00 &#43;0000 UTC">February 1, 2021</time>
         </header>
       </article>
       
@@ -703,7 +703,7 @@
           
           
           <li>
-              <a href="/categories/posh-acme/">posh-acme<span class="count">21</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">27</span></a>
           
           <li>
               <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>
@@ -735,7 +735,7 @@
       <footer id="site-footer">
   
   <p class="copyright">
-    © 2020 Ryan Bolger
+    © 2021 Ryan Bolger
       <br>
     Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
