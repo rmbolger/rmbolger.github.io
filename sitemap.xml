@@ -17,16 +17,16 @@
     <loc>https://www.dvolve.net/blog/2021/08/force-dc-to-register-ad-dns-records/</loc>
     <lastmod>2021-08-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dvolve.net/tags/powershell/</loc>
-    <lastmod>2021-08-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dvolve.net/tags/</loc>
-    <lastmod>2021-08-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.dvolve.net/categories/posh-acme/</loc>
     <lastmod>2021-07-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dvolve.net/blog/2021/07/posh-acme-4.6.0/</loc>
+    <lastmod>2021-07-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dvolve.net/tags/powershell/</loc>
+    <lastmod>2021-07-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dvolve.net/tags/</loc>
     <lastmod>2021-07-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dvolve.net/blog/2021/05/posh-acme-4.5.0/</loc>

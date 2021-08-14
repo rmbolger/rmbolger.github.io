@@ -139,55 +139,6 @@
   <header>
   <div class="title">
     
-      <h2><a href="/blog/2021/08/force-dc-to-register-ad-dns-records/">Force a DC to Register AD DNS records with no Netlogon Restart</a></h2>
-    
-    
-      <p>Nltest is your friend</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2021-08-13 00:00:00 &#43;0000 UTC">August 13, 2021</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Over the course of my career, I&rsquo;ve worked with several Active Directory environments that ran the domain&rsquo;s DNS zones on 3rd party DNS products like Infoblox or BIND instead of directly on the domain controllers. GSS-TSIG and secure dynamic updates work just fine with these non-Windows DNS servers when configured properly. But sometimes, getting the settings right can be tricky for the DNS admins and having a way trigger a DC&rsquo;s record registration process while troubleshooting&hellip;</p>
-  </div>
-  <footer>
-    <a href="/blog/2021/08/force-dc-to-register-ad-dns-records/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/active-directory/">Active-Directory</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
       <h2><a href="/blog/2021/07/posh-acme-4.6.0/">Posh-ACME 4.6.0</a></h2>
     
     
@@ -601,6 +552,55 @@
   </div>
   <footer>
     <a href="/blog/2020/11/posh-acme-3.19.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2020/11/posh-acme-3.18.0/">Posh-ACME 3.18.0</a></h2>
+    
+    
+      <p>DuckDNS plugin and prep for 4.x</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2020-11-07 00:00:00 &#43;0000 UTC">November 7, 2020</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.18.0. The highlight of this release is a plugin for <a href="https://www.duckdns.org/">DuckDNS</a>. DuckDNS is a free, but troublesome provider to work with because their API only allows for a single TXT record to exist at a time. That means if you&rsquo;re trying to get a cert that has more than one name in it, such as <code>example.com</code> and <code>www.example.com</code>, you need to publish and validate each TXT record separately instead of publishing both records and validating them at the same time.&hellip;</p>
+  </div>
+  <footer>
+    <a href="/blog/2020/11/posh-acme-3.18.0/" class="button big">Read More</a>
     <div class="stats">
   
     <ul class="categories">

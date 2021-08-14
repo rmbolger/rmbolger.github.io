@@ -139,55 +139,6 @@
   <header>
   <div class="title">
     
-      <h2><a href="/blog/2020/11/posh-acme-3.18.0/">Posh-ACME 3.18.0</a></h2>
-    
-    
-      <p>DuckDNS plugin and prep for 4.x</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2020-11-07 00:00:00 &#43;0000 UTC">November 7, 2020</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-ACME release, version 3.18.0. The highlight of this release is a plugin for <a href="https://www.duckdns.org/">DuckDNS</a>. DuckDNS is a free, but troublesome provider to work with because their API only allows for a single TXT record to exist at a time. That means if you&rsquo;re trying to get a cert that has more than one name in it, such as <code>example.com</code> and <code>www.example.com</code>, you need to publish and validate each TXT record separately instead of publishing both records and validating them at the same time.&hellip;</p>
-  </div>
-  <footer>
-    <a href="/blog/2020/11/posh-acme-3.18.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
-    <article class="post">
-  <header>
-  <div class="title">
-    
       <h2><a href="/blog/2020/10/posh-acme-deploy-1.2.0/">Posh-ACME.Deploy 1.2.0</a></h2>
     
     
@@ -602,6 +553,55 @@
   </div>
   <footer>
     <a href="/blog/2020/05/posh-acme-3.14.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2020/04/posh-acme-3.13.0/">Posh-ACME 3.13.0</a></h2>
+    
+    
+      <p>Lots of new plugins</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2020-04-11 00:00:00 &#43;0000 UTC">April 11, 2020</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.13.0. There are a whole bunch of new plugins in this release and a whopping four of them were submitted by Anton Samsonov (<a href="https://github.com/WiZaRd31337">@WiZaRd31337</a>). One of the other big additions is the long-awaited <a href="https://tools.ietf.org/html/rfc2136">RFC2136</a> plugin which utilizes BIND&rsquo;s nsupdate utility to perform dynamic DNS updates. If you&rsquo;re on Windows, definitely check the <a href="https://github.com/rmbolger/Posh-ACME/blob/main/Posh-ACME/Plugins/RFC2136-Readme.md">usage guide</a> if you plan to use this because you likely need to download and install the nsupdate prerequisite.</p>
+  </div>
+  <footer>
+    <a href="/blog/2020/04/posh-acme-3.13.0/" class="button big">Read More</a>
     <div class="stats">
   
     <ul class="categories">
