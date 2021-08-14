@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>Posh-ACME 4.4.0 - Adventures in Tech</title>
+<title>Force a DC to Register AD DNS records with no Netlogon Restart - Adventures in Tech</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 <meta name="generator" content="Hugo 0.87.0" /><meta property="og:site_name" content="Adventures in Tech">
-  <meta property="og:title" content="Posh-ACME 4.4.0">
-  <meta property="og:description" content="New plugins and order improvements">
-  <meta property="description" content="New plugins and order improvements">
-  <meta property="og:url" content="https://www.dvolve.net/blog/2021/05/posh-acme-4.4.0/">
+  <meta property="og:title" content="Force a DC to Register AD DNS records with no Netlogon Restart">
+  <meta property="og:description" content="Nltest is your friend">
+  <meta property="description" content="Nltest is your friend">
+  <meta property="og:url" content="https://www.dvolve.net/blog/2021/08/force-dc-to-register-ad-dns-records/">
   <meta property="og:type" content="article">
   
     <meta property="og:image" content="https://www.dvolve.net/img/main/logo.jpg">
@@ -136,14 +136,14 @@
       <header>
   <div class="title">
     
-      <h2><a href="/blog/2021/05/posh-acme-4.4.0/">Posh-ACME 4.4.0</a></h2>
+      <h2><a href="/blog/2021/08/force-dc-to-register-ad-dns-records/">Force a DC to Register AD DNS records with no Netlogon Restart</a></h2>
     
     
-      <p>New plugins and order improvements</p>
+      <p>Nltest is your friend</p>
     
   </div>
   <div class="meta">
-    <time datetime="2021-05-03 00:00:00 &#43;0000 UTC">May 3, 2021</time>
+    <time datetime="2021-08-13 00:00:00 &#43;0000 UTC">August 13, 2021</time>
     <p>Ryan Bolger</p>
     
   </div>
@@ -159,22 +159,65 @@
       </div>
       <div class="content">
         
-        <p>Just shipped a new Posh-ACME release, version 4.4.0. There are three new DNS plugin for <a href="https://constellix.com/">Constellix</a>, <a href="https://all-inkl.com/">All-Inkl</a>, <a href="https://www.easyname.com/">Easyname</a> and a couple order related new features.</p>
-<p>PAOrder objects that get returned by things like <code>Get-PAOrder</code> now have a <code>Folder</code> property which is the filesystem path to that order&rsquo;s config folder. It&rsquo;s dynamically generated so if you move the config folder somewhere else, it will be updated the next time the module is loaded.</p>
-<p>There&rsquo;s also a new <code>KeyFile</code> parameter on <code>New-PAOrder</code> which allows you to import an existing private key instead of having the module generate one for you. This can be useful if you&rsquo;re trying to synchronize cert details between multiple machines.</p>
-<p>Updated versions can be found in the <a href="https://www.powershellgallery.com/packages/Posh-ACME/">PowerShell Gallery</a> or <a href="https://github.com/rmbolger/Posh-ACME/releases">GitHub</a>. Installation instructions are in the <a href="https://github.com/rmbolger/Posh-ACME/blob/main/README.md">Readme</a>.</p>
-<h2 id="changelog">Changelog</h2>
-<ul>
-<li>Added new DNS plugins
-<ul>
-<li><a href="https://constellix.com/">Constellix</a></li>
-<li><a href="https://all-inkl.com/">All-Inkl</a> (Thanks <a href="https://github.com/astaerk">@astaerk</a>)</li>
-<li><a href="https://www.easyname.com/">Easyname</a> (Thanks <a href="https://github.com/codemanat">@codemanat</a>)</li>
-</ul>
-</li>
-<li>Added <code>Folder</code> property to Get-PAOrder output</li>
-<li>Added <code>KeyFile</code> parameter to New-PAOrder to allow importing an existing private key</li>
-</ul>
+        <p>Over the course of my career, I&rsquo;ve worked with several Active Directory environments that ran the domain&rsquo;s DNS zones on 3rd party DNS products like Infoblox or BIND instead of directly on the domain controllers. GSS-TSIG and secure dynamic updates work just fine with these non-Windows DNS servers when configured properly. But sometimes, getting the settings right can be tricky for the DNS admins and having a way trigger a DC&rsquo;s record registration process while troubleshooting is super helpful.</p>
+<h2 id="introducing-netlogon">Introducing Netlogon</h2>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2021/08/netlogon-service-screenshot.png" data-caption="Netlogon service in services.msc"><img src="https://www.dvolve.net/img/2021/08/netlogon-service-screenshot.png" alt="Netlogon service in services.msc"></a>
+  </figure>
+
+
+<p>The Netlogon service on a DC is ultimately responsible for registering the AD related DNS records. It will attempt to register the records when it first starts and then repeatedly on a schedule about once an hour in a default configuration. Thus, restarting the service (or rebooting the OS) is the most common way to force the DC to re-register its records.</p>
+<p>Until recently, I thought it was the only way. And that can be an annoying limitation when you&rsquo;re trying to migrate a production AD environment and don&rsquo;t want to break authentication on that DC even for a few seconds while the service restarts. But it turns out there&rsquo;s another way that requires zero downtime for Netlogon.</p>
+<h2 id="nltest-has-the-answer">Nltest has the Answer</h2>
+<p>I had been fruitlessly searching the web on and off for years for a way to do this before I decided to finally post a <a href="https://serverfault.com/questions/1067632/force-a-domain-controller-to-re-register-ad-dns-records-without-restarting-netlo">Server Fault question</a> asking the wider sysadmin community if they knew. <a href="https://serverfault.com/users/6352/massimo">Massimo</a> had the answer for me about 30 min later, <code>nltest /dsregdns</code>.</p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2021/08/nltest-help-output.png" data-caption="nltest.exe partial help output"><img src="https://www.dvolve.net/img/2021/08/nltest-help-output.png" alt="nltest.exe partial help output"></a>
+  </figure>
+
+
+<p>The <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc731935(v=ws.11)">nltest.exe</a> utility is a diagnostic swiss-army knife with a veritable smorgasbord of useful functionality that has been around since at least Windows Server 2003. It has so much packed into it that I&rsquo;m not even surprised I never realized it could help me with this problem. It&rsquo;s right there in the default help output, plain as day, and I never noticed. Go figure.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">/DSREGDNS - Force registration of all DC-specific DNS records
+</code></pre></div><h2 id="wrapping-up">Wrapping Up</h2>
+<p>Many thanks to Joel Spolsky and Jeff Atwood for creating <a href="https://stackoverflow.com/">Stack Overflow</a>, <a href="https://serverfault.com/">Server Fault</a>, and the rest of the Q&amp;A sites in the Stack Exchange Network. And even more thanks to the current teams that keep everything running and continually improve the platform. It is a fantastic resource for free knowledge on the web.</p>
+<p>I was embarrassingly excited to finally have this answer and kicking myself for not having posted the question years ago. It reminded me that we&rsquo;re all constantly learning, and you should never be afraid to reach out and ask questions. Even if you don&rsquo;t get the answer you&rsquo;re looking for, conversations about the problem almost always lead to better understanding about the subject.</p>
 
       </div>
       <footer>
@@ -183,7 +226,7 @@
     <ul class="categories">
       
         
-          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+          <li><a class="article-terms-link" href="/categories/active-directory/">Active-Directory</a></li>
         
       
     </ul>
@@ -208,10 +251,8 @@
   </article>
   <div class="pagination">
     
-      <a href="/blog/2021/05/posh-acme-4.5.0/" class="button left"><span>Posh-ACME 4.5.0</span></a>
     
-    
-      <a href="/blog/2021/02/posh-acme-4.3.0/" class="button right"><span>Posh-ACME 4.3.0</span></a>
+      <a href="/blog/2021/07/posh-acme-4.6.0/" class="button right"><span>Posh-ACME 4.6.0</span></a>
     
   </div>
 

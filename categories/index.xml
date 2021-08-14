@@ -6,7 +6,16 @@
     <description>Recent content in Categories on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dvolve.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dvolve.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Active Directory</title>
+      <link>https://www.dvolve.net/categories/active-directory/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/categories/active-directory/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Posh-ACME</title>
       <link>https://www.dvolve.net/categories/posh-acme/</link>
@@ -40,15 +49,6 @@
       <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.dvolve.net/categories/dnsclient-ps/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Active Directory</title>
-      <link>https://www.dvolve.net/categories/active-directory/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dvolve.net/categories/active-directory/</guid>
       <description></description>
     </item>
     

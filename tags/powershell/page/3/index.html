@@ -139,6 +139,55 @@
   <header>
   <div class="title">
     
+      <h2><a href="/blog/2020/04/posh-acme-3.13.0/">Posh-ACME 3.13.0</a></h2>
+    
+    
+      <p>Lots of new plugins</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2020-04-11 00:00:00 &#43;0000 UTC">April 11, 2020</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.13.0. There are a whole bunch of new plugins in this release and a whopping four of them were submitted by Anton Samsonov (<a href="https://github.com/WiZaRd31337">@WiZaRd31337</a>). One of the other big additions is the long-awaited <a href="https://tools.ietf.org/html/rfc2136">RFC2136</a> plugin which utilizes BIND&rsquo;s nsupdate utility to perform dynamic DNS updates. If you&rsquo;re on Windows, definitely check the <a href="https://github.com/rmbolger/Posh-ACME/blob/main/Posh-ACME/Plugins/RFC2136-Readme.md">usage guide</a> if you plan to use this because you likely need to download and install the nsupdate prerequisite.</p>
+  </div>
+  <footer>
+    <a href="/blog/2020/04/posh-acme-3.13.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
       <h2><a href="/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates</a></h2>
     
     
@@ -578,55 +627,6 @@
 </article>
 
   
-    <article class="post">
-  <header>
-  <div class="title">
-    
-      <h2><a href="/blog/2019/08/posh-ibwapi-3.1.0/">Posh-IBWAPI 3.1.0</a></h2>
-    
-    
-      <p>Improvements to Send-IBFile and Receive-IBFile</p>
-    
-  </div>
-  <div class="meta">
-    <time datetime="2019-08-23 00:00:00 &#43;0000 UTC">August 23, 2019</time>
-    <p>Ryan Bolger</p>
-    
-  </div>
-</header>
-
-  <div class="content">
-    
-    
-    <p>Just shipped a new Posh-IBWAPI release, version 3.1.0. There is now an <code>-OverrideTransferHost</code> switch in <code>Send-IBFile</code> and <code>Receive-IBFile</code>. But to understand what it does requires a bit of explanation on how file transfers work under the hood with the Infoblox WAPI. Any given file transfer (up or down) is a 3-step process that can be generalized as follows.</p>
-  </div>
-  <footer>
-    <a href="/blog/2019/08/posh-ibwapi-3.1.0/" class="button big">Read More</a>
-    <div class="stats">
-  
-    <ul class="categories">
-      
-        
-          <li><a class="article-terms-link" href="/categories/posh-ibwapi/">Posh-IBWAPI</a></li>
-        
-      
-    </ul>
-  
-  
-    <ul class="tags">
-      
-        
-          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
-        
-      
-    </ul>
-  
-</div>
-
-  </footer>
-</article>
-
-  
   <div class="pagination">
     
       <a href="/tags/powershell/page/2/" class="button left"><span>Previous Page</span></a>
@@ -643,6 +643,14 @@
       <header>
         <h1>Recent Posts</h1>
       </header>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2021/08/force-dc-to-register-ad-dns-records/">Force a DC to Register AD DNS records with no Netlogon Restart</a></h2>
+          <time class="published" datetime="2021-08-13 00:00:00 &#43;0000 UTC">August 13, 2021</time>
+        </header>
+      </article>
       
       <article class="mini-post">
           
@@ -676,14 +684,6 @@
         </header>
       </article>
       
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2021/02/posh-acme-4.2.0/">Posh-ACME 4.2.0</a></h2>
-          <time class="published" datetime="2021-02-01 00:00:00 &#43;0000 UTC">February 1, 2021</time>
-        </header>
-      </article>
-      
       
         <footer>
           <a href="/blog" class="button">See More</a>
@@ -706,10 +706,10 @@
               <a href="/categories/posh-acme/">posh-acme<span class="count">27</span></a>
           
           <li>
-              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>
+              <a href="/categories/active-directory/">active-directory<span class="count">4</span></a>
           
           <li>
-              <a href="/categories/active-directory/">active-directory<span class="count">3</span></a>
+              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>
           
           <li>
               <a href="/categories/infoblox/">infoblox<span class="count">2</span></a>

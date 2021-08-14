@@ -6,7 +6,16 @@
     <description>Recent content in powershell on Adventures in Tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dvolve.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dvolve.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Force a DC to Register AD DNS records with no Netlogon Restart</title>
+      <link>https://www.dvolve.net/blog/2021/08/force-dc-to-register-ad-dns-records/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dvolve.net/blog/2021/08/force-dc-to-register-ad-dns-records/</guid>
+      <description>Over the course of my career, I&amp;rsquo;ve worked with several Active Directory environments that ran the domain&amp;rsquo;s DNS zones on 3rd party DNS products like Infoblox or BIND instead of directly on the domain controllers. GSS-TSIG and secure dynamic updates work just fine with these non-Windows DNS servers when configured properly. But sometimes, getting the settings right can be tricky for the DNS admins and having a way trigger a DC&amp;rsquo;s record registration process while troubleshooting is super helpful.</description>
+    </item>
+    
     <item>
       <title>Posh-ACME 4.6.0</title>
       <link>https://www.dvolve.net/blog/2021/07/posh-acme-4.6.0/</link>
