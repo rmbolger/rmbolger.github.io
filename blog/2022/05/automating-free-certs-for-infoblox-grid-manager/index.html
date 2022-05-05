@@ -393,6 +393,7 @@ $uploadParams = @{
     }
     OverrideTransferHost = $true
 }
+Write-Verbose <span style="color:#e6db74">&#34;Uploading cert to $gm&#34;</span>
 Send-IBFile @uploadParams
 </code></pre></div><blockquote>
 <p><em>NOTE: Remember that this section of code won&rsquo;t run when you call the script using the <code>-DryRun</code> parameter. So remove it if you&rsquo;ve been testing the certificate generation until now.</em></p>
@@ -494,6 +495,7 @@ $order = Get-PAOrder -MainDomain $ibConfig.WAPIHost
             }
             OverrideTransferHost = $true
         }
+        Write-Verbose <span style="color:#e6db74">&#34;Uploading cert to $gm&#34;</span>
         Send-IBFile @uploadParams
 
     } <span style="color:#66d9ef">else</span> {
