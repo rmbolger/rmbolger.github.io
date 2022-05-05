@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+<title>Automating Free Certs for Infoblox Grid Manager - Adventures in Tech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="generator" content="Hugo 0.87.0" /><meta property="og:site_name" content="Adventures in Tech">
+  <meta property="og:title" content="Automating Free Certs for Infoblox Grid Manager">
+  <meta property="og:description" content="Posh-ACME and Posh-IBWAPI, better together">
+  <meta property="description" content="Posh-ACME and Posh-IBWAPI, better together">
+  <meta property="og:url" content="https://www.dvolve.net/blog/2022/05/automating-free-certs-for-infoblox-grid-manager/">
+  <meta property="og:type" content="article">
+  
+    <meta property="og:image" content="https://www.dvolve.net/img/main/logo.jpg">
+  
+  
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/solarized-dark.min.css">
+          <link rel="stylesheet" href="/css/bundle.min.2b4e36cd6a81be0237f8d8f3ce0d239eb39d356f5e3b6c33140b8108476a2beb.css" integrity="sha256-K042zWqBvgI3&#43;Njzzg0jnrOdNW9eO2wzFAuBCEdqK&#43;s="><link rel="stylesheet" href="/css/add-on.css">
+</head>
+
+  <body>
+    
+
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/" class="nav">
+        
+          Blog
+        
+      </a>
+    </h1>
+    <menu id="site-nav-menu" class="flyout-menu menu">
+      
+        
+          
+          <a href="/" class="nav link"><i class='fa fa-home'></i> Home</a>
+        
+      
+        
+          
+          <a href="/about" class="nav link"><i class='far fa-id-card'></i> About</a>
+        
+      
+        
+          
+          <a href="/blog" class="nav link"><i class='far fa-newspaper'></i> Blog</a>
+        
+      
+        
+          
+          <a href="/categories" class="nav link"><i class='fas fa-sitemap'></i> Categories</a>
+        
+      
+      
+      <a href="#search-input" class="nav link search-toggle"><i class="fas fa-search">&nbsp;</i>Search</a>
+    </menu>
+    <a href="#search-input" class="nav search-toggle"><i class="fas fa-search fa-2x">&nbsp;</i></a>
+    
+    
+    <a href="#site-nav" class="nav nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  <menu id="search" class="menu"><input id="search-input" class="search-input menu"></input><div id="search-results" class="search-results menu"></div></menu>
+  
+  
+</header>
+
+    <div id="wrapper">
+      <section id="site-intro" >
+  <a href="/"><img src="https://www.dvolve.net/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
+  <header>
+    <h1>Ryan Bolger</h1>
+  </header>
+  <main>
+    <p>Adventures In Tech</p>
+  </main>
+  
+    <footer>
+      <ul class="socnet-icons">
+        
+
+        <li><a href="//github.com/rmbolger" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+
+<li><a href="//serverfault.com/users/1584/?tab=profile" target="_blank" rel="noopener" title="Server Fault" class="fab fa-stack-exchange"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//www.linkedin.com/in/rmbolger" target="_blank" rel="noopener" title="LinkedIn" class="fab fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+<li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
+
+
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        
+  <article>
+    <div class="post">
+      <header>
+  <div class="title">
+    
+      <h2><a href="/blog/2022/05/automating-free-certs-for-infoblox-grid-manager/">Automating Free Certs for Infoblox Grid Manager</a></h2>
+    
+    
+      <p>Posh-ACME and Posh-IBWAPI, better together</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2022-05-04 00:00:00 &#43;0000 UTC">May 4, 2022</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+      <div id="socnet-share">
+        
+
+
+
+
+
+      </div>
+      <div class="content">
+        
+        <p>HTTPS web UIs and APIs using self-signed certificates have always annoyed me. It&rsquo;s one of the reasons I started learning about <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI</a> long before <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a> and the <a href="https://datatracker.ietf.org/doc/html/rfc8555">ACME protocol</a> made free publicly trusted certs available for everyone. But it may still be a while before large products and platforms like Infoblox start natively supporting ACME to make our self-signed cert woes a thing of the past. Until then, here&rsquo;s how you can use Posh-ACME and Posh-IBWAPI to get a free cert for your Grid Manager and automate the renewals.</p>
+<h1 id="nios-version-caveats">NIOS Version Caveats</h1>
+<p>Infoblox&rsquo;s NIOS hasn&rsquo;t always had the best support for modern certificate standards. It wasn&rsquo;t until NIOS 8.3 that the <a href="https://en.wikipedia.org/wiki/Subject_Alternative_Name">Subject Alternative Name</a> field was supported. <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS</a> support was added sometime in 8.4. And even in the latest versions of NIOS 8.6, <a href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography">ECC</a> based certs and associated cipher suites still aren&rsquo;t supported.</p>
+<p>So when it comes to certificate support, the newer your NIOS version the better. But I&rsquo;d advise being on at least NIOS 8.3 before messing too much with this.</p>
+<h1 id="public-cert-caveats">Public Cert Caveats</h1>
+<p>Most folks running an Infoblox grid aren&rsquo;t exposing their Grid Manager interface to the Internet. But in order to get a certificate from a public CA like Let&rsquo;s Encrypt, the FQDN in the cert must be part of a domain that was obtained from an <a href="https://www.icann.org/">ICANN</a> recognized domain registrar. If your grid manager FQDN ends in a TLD like <code>.local</code> or <code>.int</code>, you&rsquo;re out of luck. That also means no short names in URLs like <code>https://mygrid/ui</code>.</p>
+<p>The other thing to consider is that public CAs must send all of their certificates to publicly available logs due to a standard called <a href="https://www.certificate-transparency.org/what-is-ct">Certificate Transparency</a>. So if your organization insists on trying to keep the names of your internal systems secret, you&rsquo;ll have to stick to an internal CA. Though wildcard certs (*.example.com) can be an acceptable compromise in some cases.</p>
+<p>It should be noted that some private CAs such as <a href="https://smallstep.com/">smallstep</a> have native ACME support. So you may still be able to use Posh-ACME depending on your environment.</p>
+<h1 id="infoblox-setup">Infoblox Setup</h1>
+<p>One of the ways ACME CAs can validate that you own/control the domain you&rsquo;re requesting a cert for is via DNS TXT records. For the purposes of this article, we&rsquo;re going to assume your grid manager is called <code>mygrid.poshac.me</code> and the public facing DNS zone that FQDN is hosted on Infoblox in a DNS view called <code>external</code>.</p>
+<blockquote>
+<p><em>NOTE: If your public DNS zone is hosted somewhere else like a dedicated DNS provider or your domain registrar, you&rsquo;ll need to check the Posh-ACME <a href="https://poshac.me/docs/v4/Plugins/">DNS plugins</a> list to see if your provider is supported..</em></p>
+</blockquote>
+<p>Under normal circumstances, you will need to add and remove a record for each name in a cert each time a new cert is obtained which will be approximately every 60-90 days with Let&rsquo;s Encrypt. Since the goal here is automation, it is highly advisable to use a dedicated account with the least privileges necessary rather than your own admin credentials. That account will also need write access to the grid manager in order to manage its certificate. So let&rsquo;s create an admin group with the appropriate permissions.</p>
+<p>If you&rsquo;re new to Posh-IBWAPI, head over to the <a href="https://github.com/rmbolger/Posh-IBWAPI#quick-start">quick start</a> to learn how to setup a profile for your admin credentials before moving on. Don&rsquo;t forget the <code>-SkipCertificateCheck</code> flag because presumably your grid manager doesn&rsquo;t have a valid certificate yet. Then run the following to create a new group that grants TXT editing privileges to the necessary zone and write access to the grid manager.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># create the empty group</span>
+$grpTemplate = @{
+    name = <span style="color:#e6db74">&#39;Grid Manager Cert Updater&#39;</span>
+    comment = <span style="color:#e6db74">&#39;Allows TXT editing on poshac.me in the external DNS view&#39;</span>
+    access_method = @(<span style="color:#e6db74">&#39;API&#39;</span>)
+}
+New-IBObject -ObjectType admingroup -IBObject $grpTemplate
+
+<span style="color:#75715e"># grab an object reference to the zone and grid manager</span>
+<span style="color:#75715e"># (filters are case-sensitive)</span>
+$zone = Get-IBObject -ObjectType zone_auth -Filters <span style="color:#e6db74">&#39;fqdn=poshac.me&#39;</span>,<span style="color:#e6db74">&#39;view=external&#39;</span>
+$gm = Get-IBObject -ObjectType member -Filters <span style="color:#e6db74">&#39;host_name=mygrid.poshac.me&#39;</span>
+
+<span style="color:#75715e"># add the permissions to the group</span>
+$perms = @(
+    @{ permission=<span style="color:#e6db74">&#39;WRITE&#39;</span>; resource_type=<span style="color:#e6db74">&#39;TXT&#39;</span>; object=$zone.<span style="color:#e6db74">&#39;_ref&#39;</span>; group=$grpTemplate.name }
+    @{ permission=<span style="color:#e6db74">&#39;WRITE&#39;</span>; object=$gm.<span style="color:#e6db74">&#39;_ref&#39;</span>; group=$grpTemplate.name }
+)
+$perms | New-IBObject -ObjectType permission
+</code></pre></div><p>The account can be local or remote. But I prefer a local account since this will be responsible for maintaining the grid itself. We don&rsquo;t want temporary problems with external account authentication to have cascading effects like failing to renew the grid manager certificate. Run the following to create an account which is a member of the group we previously created.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$usrTemplate = @{
+    name = <span style="color:#e6db74">&#39;cert-updater&#39;</span>
+    password = (New-Guid).ToString() <span style="color:#75715e"># use a password compliant with your org policies</span>
+    admin_groups = @($grpTemplate.name)
+    comment = <span style="color:#e6db74">&#39;Used to update the grid manager certificate&#39;</span>
+    auth_type = <span style="color:#e6db74">&#39;LOCAL&#39;</span>
+}
+New-IBObject -ObjectType adminuser -IBObject $usrTemplate
+Write-Host <span style="color:#e6db74">&#34;cert-updater user created with password </span>$($usrTemplate.password)<span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>Here&rsquo;s what the resulting group permissions look like in the UI in my lab environment.</p>
+
+
+
+  
+    
+    
+    
+    
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  <figure>
+    <a data-fancybox="" href="/img/2022/05/group-permissions.png" data-caption="GUI view of Grid Manager Cert Updater permissions"><img src="https://www.dvolve.net/img/2022/05/group-permissions.png" alt="GUI view of Grid Manager Cert Updater permissions"></a>
+  </figure>
+
+
+<h1 id="test-txt-record-publishing">Test TXT Record Publishing</h1>
+<p>If you&rsquo;re not familiar with Posh-ACME or haven&rsquo;t previously used it for DNS challenges against Infoblox, it is wise to verify the TXT record publishing is working as intended before trying to get a certificate. Configure Posh-ACME to use the Let&rsquo;s Encrypt Staging server and create an account if one doesn&rsquo;t already exist.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-PAServer -DirectoryUrl LE_STAGE
+New-PAAccount -AcceptTOS
+</code></pre></div><p>Next build the hashtable we&rsquo;ll need to use for Posh-ACME&rsquo;s Infoblox plugin and test that it works to publish a TXT record in the appropriate zone.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># create the plugin args</span>
+$pArgs = @{
+    IBServer = <span style="color:#e6db74">&#39;mygrid.poshac.me&#39;</span>
+    IBCred = (Get-Credential -UserName <span style="color:#e6db74">&#39;cert-updater&#39;</span>)
+    IBView = <span style="color:#e6db74">&#39;external&#39;</span>
+    IBIgnoreCert = $true
+}
+
+<span style="color:#75715e"># publish the record using the plugin args and our ACME account</span>
+$publishParams = @{
+    Domain = <span style="color:#e6db74">&#39;mygrid.poshac.me&#39;</span>
+    Account = (Get-PAAccount)
+    Token = <span style="color:#e6db74">&#39;fake-token&#39;</span>
+    Plugin = <span style="color:#e6db74">&#39;Infoblox&#39;</span>
+    PluginArgs = $pArgs
+    Verbose = $true
+}
+Publish-Challenge @publishParams
+</code></pre></div><p>Assuming there were no errors, you should be able to check the Infoblox GUI for the <code>_acme-challenge.mygrid.poshac.me</code> TXT record that should now exist. Alternatively, you can query it via Posh-IBWAPI like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-IBObject <span style="color:#e6db74">&#39;record:txt&#39;</span> -Filters <span style="color:#e6db74">&#39;view=external&#39;</span>,<span style="color:#e6db74">&#39;name=_acme-challenge.mygrid.poshac.me&#39;</span> | Format-List
+</code></pre></div><p>If everything looks good, unpublish the record:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Unpublish-Challenge @publishParams
+</code></pre></div><h1 id="building-the-renewal-script">Building the Renewal Script</h1>
+<p>Many folks don&rsquo;t realize that with ACME there&rsquo;s no difference between an initial certificate request and a renewal. It often feels different because the initial request tends to involve more effort setting things up and configuring credentials. But the ACME client usually saves that config data and reuses it during a &ldquo;renewal&rdquo; to request a new certificate from scratch. With this in mind, we&rsquo;re going to construct our script to work properly whether it&rsquo;s the first run or the 100th run. The only prerequisite we&rsquo;re going to depend on is a Posh-IBWAPI profile using our <code>cert-updater</code> credentials. Run the following to set that up:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$configParams = @{
+    ProfileName = <span style="color:#e6db74">&#39;certs&#39;</span>
+    WAPIHost = <span style="color:#e6db74">&#39;mygrid.poshac.me&#39;</span>
+    WAPIVersion = <span style="color:#e6db74">&#39;latest&#39;</span>
+    Credential = (Get-Credential -UserName <span style="color:#e6db74">&#39;cert-updater&#39;</span>)
+    SkipCertificateCheck = $true
+}
+Set-IBConfig @configParams
+</code></pre></div><blockquote>
+<p><em>NOTE: If you&rsquo;re not currently running PowerShell as the user who will be executing the renewal script, you&rsquo;ll need to remember to do this step for that user when setting up the scheduled task.</em></p>
+</blockquote>
+<p>The high level tasks in our script include:</p>
+<ul>
+<li>Decide whether to get a new certificate</li>
+<li>Generate the certificate request (CSR)</li>
+<li>Request the certificate using the CSR</li>
+<li>Upload the certificate to Infoblox</li>
+</ul>
+<h2 id="setup-and-renewal-time-logic">Setup and Renewal Time Logic</h2>
+<p>Renewal scripts like this are usually scheduled to run once or twice a day and have logic to exit early if the previous certificate is too new to replace. The <code>Submit-Renewal</code> command in Posh-ACME has that renewal time frame logic built-in, but in this case we won&rsquo;t be able to use it because we also need to generate a fresh CSR prior to calling the renewal and we don&rsquo;t necessarily want to create a new CSR until we know we need it. First, let&rsquo;s build the skeleton of the script including a <code>-DryRun</code> switch that will do everything against the Let&rsquo;s Encrypt Staging server and skip the step that actually uploads the certificate to Infoblox.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e">#Requires -Modules Posh-ACME,Posh-IBWAPI</span>
+
+[<span style="color:#66d9ef">CmdletBinding</span>()]
+<span style="color:#66d9ef">param</span>(
+    <span style="color:#66d9ef">[string]</span>$ContactEmail,
+    <span style="color:#66d9ef">[switch]</span>$DryRun
+)
+
+<span style="color:#75715e"># make sure we have a Posh-IBWAPI config</span>
+$ibConfig = Get-IBConfig
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $ibConfig) {
+    <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;No Infoblox profile found for Posh-IBWAPI. Please use Set-IBConfig to configure one.&#34;</span>
+}
+
+<span style="color:#75715e"># make sure we&#39;re using the correct ACME server</span>
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $DryRun) {
+    Set-PAServer LE_PROD
+} <span style="color:#66d9ef">else</span> {
+    Set-PAServer LE_STAGE
+}
+
+<span style="color:#75715e"># find or create an ACME account</span>
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> ($acmeAcct = Get-PAAccount)) {
+    <span style="color:#66d9ef">if</span> ($acmeAcct = (Get-PAAccount -List | Select-Object -First 1)) {
+        $acmeAcct | Set-PAAccount
+    } <span style="color:#66d9ef">elseif</span> ($ContactEmail) {
+        $acmeAcct = New-PAAccount -AcceptTOS -Contact $ContactEmail
+    } <span style="color:#66d9ef">else</span> {
+        $acmeAcct = New-PAAccount -AcceptTOS
+    }
+}
+
+<span style="color:#75715e"># check for an existing order and make sure it&#39;s time to renew</span>
+$order = Get-PAOrder -MainDomain $ibConfig.WAPIHost
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $order <span style="color:#f92672">-or</span> <span style="color:#f92672">-not</span> $order.RenewAfter <span style="color:#f92672">-or</span>
+    (Get-Date) <span style="color:#f92672">-ge</span> (Get-Date $order.RenewAfter))
+{
+    <span style="color:#75715e"># TODO: Generate CSR</span>
+
+    <span style="color:#75715e"># TODO: Request Cert</span>
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $DryRun) {
+
+        <span style="color:#75715e"># TODO: Upload to Infoblox</span>
+
+    } <span style="color:#66d9ef">else</span> {
+        Write-Verbose <span style="color:#e6db74">&#34;DryRun skipping cert upload to Infoblox&#34;</span>
+    }
+
+} <span style="color:#66d9ef">else</span> {
+    Write-Verbose <span style="color:#e6db74">&#34;Certificate for </span>$($ibConfig.WAPIHost)<span style="color:#e6db74"> is not ready to renew.&#34;</span>
+}
+</code></pre></div><p>The basic script flow is done, but we&rsquo;ve left some <code>TODO</code> placeholders that we&rsquo;ll replace with our implementations that we&rsquo;ll build in the next few sections.</p>
+<h2 id="generate-the-certificate-request">Generate the Certificate Request</h2>
+<p>Typically, ACME clients like Posh-ACME automatically generate the private key that will be associated with the certificate because the client usually runs on the same device where the certificate will be used. While we <em>can</em> do that with Infoblox and upload the private key along with the certificate, we can also use its native CSR generation process and let the grid manager deal with generating and securing the private key. Posh-ACME supports both workflows, but this is a good excuse to demonstrate a rarely used WAPI function.</p>
+<p>At this point in our script, we&rsquo;re assuming Posh-IBWAPI is already configured and we can call WAPI&rsquo;s <code>generatecsr</code> function which is associated with the <code>fileop</code> object. Calling the function does not change anything about the currently live certificate. That only happens when you successfully upload a new cert based on the CSR downloaded from the function call.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># generate a temp file we can save the CSR to</span>
+$csrFile = New-TemporaryFile
+
+<span style="color:#75715e"># grab the name of our grid manager from the Posh-IBWAPI config</span>
+$gm = $ibConfig.WAPIHost
+
+<span style="color:#75715e"># call generatecsr</span>
+$reqParams = @{
+    FunctionName = <span style="color:#e6db74">&#39;generatecsr&#39;</span>
+    FunctionArgs = @{
+        certificate_usage = <span style="color:#e6db74">&#39;ADMIN&#39;</span>    <span style="color:#75715e"># aka Web UI</span>
+        member = $gm
+        cn = $gm
+        subject_alternative_names = @(
+            @{ type=<span style="color:#e6db74">&#39;DNS&#39;</span>; value=$gm }
+        )
+    }
+    OutFile = $csrFile
+    OverrideTransferHost = $true
+}
+Receive-IBFile @reqParams
+</code></pre></div><blockquote>
+<p><em>NOTE: Free ACME CAs like Let&rsquo;s Encrypt will ignore the metadata in a certificate request (Organization, Country, etc.) except the domain name because they only offer <a href="https://en.wikipedia.org/wiki/Domain-validated_certificate">Domain Validated</a> certificates. So we don&rsquo;t have to add any of those fields in our function call.</em></p>
+</blockquote>
+<p>We&rsquo;re using the <code>WAPIHost</code> property of our current Posh-IBWAPI profile as the grid manager&rsquo;s FQDN and member name. In some environments, the grid manager&rsquo;s member name may be different than the DNS FQDN folks use to connect to it. In that case, modify the <code>member = $gm</code> line to reflect the grid manager&rsquo;s actual member name. You can also add additional names to the <code>subject_alternative_names</code> array if there are additional names needed in the cert.</p>
+<h2 id="request-the-certificate">Request the Certificate</h2>
+<p>With the CSR generated, we can move on to requesting the certificate from Let&rsquo;s Encrypt. We&rsquo;ll just need to copy some of the properties from the Posh-IBWAPI profile into <code>New-PACertificate</code>&rsquo;s PluginArgs parameter. This gets a bit more complicated if you&rsquo;re using a non-Infoblox DNS plugin since the plugin parameters won&rsquo;t be so easily accessible. But it shouldn&rsquo;t change the overall shape of the script too much.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">try</span> {
+    <span style="color:#75715e"># request the certificate and copy the necessary PluginArgs from</span>
+    <span style="color:#75715e"># the Posh-IBWAPI config</span>
+    $certParams = @{
+        CSRPath = $csrFile.FullName
+        Plugin = <span style="color:#e6db74">&#39;Infoblox&#39;</span>
+        PluginArgs = @{
+            IBServer = $ibConfig.WAPIHost
+            IBCred = $ibConfig.Credential
+            IBView = <span style="color:#e6db74">&#39;external&#39;</span>
+            IBIgnoreCert = $true
+        }
+        Verbose = $true
+        Force = $true
+        ErrorAction = <span style="color:#e6db74">&#39;Stop&#39;</span>
+    }
+    $cert = New-PACertificate @certParams
+}
+<span style="color:#66d9ef">finally</span> {
+    $csrFile | Remove-Item
+}
+</code></pre></div><h2 id="upload-the-certificate">Upload the Certificate</h2>
+<p>In the previous section, we saved our certificate details into a <code>$cert</code> variable which we can now use to upload the cert file to Infoblox with the <code>uploadcertificate</code> WAPI function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># upload the cert</span>
+$uploadParams = @{
+    FunctionName = <span style="color:#e6db74">&#39;uploadcertificate&#39;</span>
+    Path = $cert.CertFile
+    FunctionArgs = @{
+        certificate_usage = <span style="color:#e6db74">&#39;ADMIN&#39;</span>
+        member = $gm
+    }
+    OverrideTransferHost = $true
+}
+Send-IBFile @uploadParams
+</code></pre></div><blockquote>
+<p><em>NOTE: Remember that this section of code won&rsquo;t run when you call the script using the <code>-DryRun</code> parameter. So remove it if you&rsquo;ve been testing the certificate generation until now.</em></p>
+</blockquote>
+<p>The <code>uploadcertificate</code> function has no output unless there was a problem and the grid manager will automatically restart the web GUI to start using the new cert. However, if you have an existing web browser open to the grid it may hang onto the previously cached self-signed cert for a while (particularly Google Chrome). If you find this is happening, try closing the tab and opening a new one, using Incognito mode, or using a different browser altogether. Eventually, you should be able to verify the grid manager is using the new certificate.</p>
+<h2 id="putting-it-all-together">Putting it all together</h2>
+<p>Our basic script is now finished. There are a variety of things you could do to improve it like more error handling and better logging, but it should be a good starting point. When running it, don&rsquo;t forget to include the <code>-ContactEmail me@example.com</code> parameter if you want Let&rsquo;s Encrypt to send you email reminders if the cert gets close to expiring without having renewed it yet.</p>
+<p>Here is the completed code all in one place.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e">#Requires -Modules Posh-ACME,Posh-IBWAPI</span>
+
+[<span style="color:#66d9ef">CmdletBinding</span>()]
+<span style="color:#66d9ef">param</span>(
+    <span style="color:#66d9ef">[string]</span>$ContactEmail,
+    <span style="color:#66d9ef">[switch]</span>$DryRun
+)
+
+<span style="color:#75715e"># make sure we have a Posh-IBWAPI config</span>
+$ibConfig = Get-IBConfig
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $ibConfig) {
+    <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;No Infoblox profile found for Posh-IBWAPI. Please use Set-IBConfig to configure one.&#34;</span>
+}
+
+<span style="color:#75715e"># make sure we&#39;re using the correct ACME server</span>
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $DryRun) {
+    Set-PAServer LE_PROD
+} <span style="color:#66d9ef">else</span> {
+    Set-PAServer LE_STAGE
+}
+
+<span style="color:#75715e"># find or create an ACME account</span>
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> ($acmeAcct = Get-PAAccount)) {
+    <span style="color:#66d9ef">if</span> ($acmeAcct = (Get-PAAccount -List | Select-Object -First 1)) {
+        $acmeAcct | Set-PAAccount
+    } <span style="color:#66d9ef">elseif</span> ($ContactEmail) {
+        $acmeAcct = New-PAAccount -AcceptTOS -Contact $ContactEmail
+    } <span style="color:#66d9ef">else</span> {
+        $acmeAcct = New-PAAccount -AcceptTOS
+    }
+}
+
+<span style="color:#75715e"># check for an existing order and make sure it&#39;s time to renew</span>
+$order = Get-PAOrder -MainDomain $ibConfig.WAPIHost
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $order <span style="color:#f92672">-or</span> <span style="color:#f92672">-not</span> $order.RenewAfter <span style="color:#f92672">-or</span>
+    (Get-Date) <span style="color:#f92672">-ge</span> (Get-Date $order.RenewAfter))
+{
+    <span style="color:#75715e"># generate a temp file we can save the CSR to</span>
+    $csrFile = New-TemporaryFile
+
+    <span style="color:#75715e"># grab the name of our grid manager from the Posh-IBWAPI config</span>
+    $gm = $ibConfig.WAPIHost
+
+    <span style="color:#75715e"># call generatecsr</span>
+    $reqParams = @{
+        FunctionName = <span style="color:#e6db74">&#39;generatecsr&#39;</span>
+        FunctionArgs = @{
+            certificate_usage = <span style="color:#e6db74">&#39;ADMIN&#39;</span>    <span style="color:#75715e"># aka Web UI</span>
+            member = $gm
+            cn = $gm
+            subject_alternative_names = @(
+                @{ type=<span style="color:#e6db74">&#39;DNS&#39;</span>; value=$gm }
+            )
+        }
+        OutFile = $csrFile.FullName
+        OverrideTransferHost = $true
+    }
+    Receive-IBFile @reqParams
+
+    <span style="color:#66d9ef">try</span> {
+        <span style="color:#75715e"># request the certificate and copy the necessary PluginArgs from</span>
+        <span style="color:#75715e"># the Posh-IBWAPI config</span>
+        $certParams = @{
+            CSRPath = $csrFile.FullName
+            Plugin = <span style="color:#e6db74">&#39;Infoblox&#39;</span>
+            PluginArgs = @{
+                IBServer = $ibConfig.WAPIHost
+                IBCred = $ibConfig.Credential
+                IBView = <span style="color:#e6db74">&#39;external&#39;</span>
+                IBIgnoreCert = $true
+            }
+            Verbose = $true
+            Force = $true
+            ErrorAction = <span style="color:#e6db74">&#39;Stop&#39;</span>
+        }
+        $cert = New-PACertificate @certParams
+    }
+    <span style="color:#66d9ef">finally</span> {
+        $csrFile | Remove-Item
+    }
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $DryRun) {
+
+        <span style="color:#75715e"># upload the cert</span>
+        $uploadParams = @{
+            FunctionName = <span style="color:#e6db74">&#39;uploadcertificate&#39;</span>
+            Path = $cert.CertFile
+            FunctionArgs = @{
+                certificate_usage = <span style="color:#e6db74">&#39;ADMIN&#39;</span>
+                member = $gm
+            }
+            OverrideTransferHost = $true
+        }
+        Send-IBFile @uploadParams
+
+    } <span style="color:#66d9ef">else</span> {
+        Write-Verbose <span style="color:#e6db74">&#34;DryRun skipping cert upload to Infoblox&#34;</span>
+    }
+
+} <span style="color:#66d9ef">else</span> {
+    Write-Verbose <span style="color:#e6db74">&#34;Certificate for </span>$($ibConfig.WAPIHost)<span style="color:#e6db74"> is not ready to renew.&#34;</span>
+}
+</code></pre></div>
+      </div>
+      <footer>
+        <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/infoblox/">Infoblox</a></li>
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+          <li><a class="article-terms-link" href="/categories/posh-ibwapi/">Posh-IBWAPI</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+      </footer>
+    </div>
+    
+      
+
+    
+  </article>
+  <div class="pagination">
+    
+    
+      <a href="/blog/2021/08/force-dc-to-register-ad-dns-records/" class="button right"><span>Force a DC to Register AD DNS records with no Netlogon Restart</span></a>
+    
+  </div>
+
+      </main>
+      <section id="site-sidebar">
+  
+    <section id="recent-posts">
+      <header>
+        <h1>Recent Posts</h1>
+      </header>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2022/05/automating-free-certs-for-infoblox-grid-manager/">Automating Free Certs for Infoblox Grid Manager</a></h2>
+          <time class="published" datetime="2022-05-04 00:00:00 &#43;0000 UTC">May 4, 2022</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2021/08/force-dc-to-register-ad-dns-records/">Force a DC to Register AD DNS records with no Netlogon Restart</a></h2>
+          <time class="published" datetime="2021-08-13 00:00:00 &#43;0000 UTC">August 13, 2021</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2021/07/posh-acme-4.6.0/">Posh-ACME 4.6.0</a></h2>
+          <time class="published" datetime="2021-07-25 00:00:00 &#43;0000 UTC">July 25, 2021</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2021/05/posh-acme-4.5.0/">Posh-ACME 4.5.0</a></h2>
+          <time class="published" datetime="2021-05-29 00:00:00 &#43;0000 UTC">May 29, 2021</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
+          <h2><a href="/blog/2021/05/posh-acme-4.4.0/">Posh-ACME 4.4.0</a></h2>
+          <time class="published" datetime="2021-05-03 00:00:00 &#43;0000 UTC">May 3, 2021</time>
+        </header>
+      </article>
+      
+      
+        <footer>
+          <a href="/blog" class="button">See More</a>
+        </footer>
+      
+    </section>
+  
+
+  
+    
+
+      <section id="categories">
+        <header>
+          <h1><a href="/categories">Categories</a></h1>
+        </header>
+        <ul>
+          
+          
+          <li>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">28</span></a>
+          
+          <li>
+              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">5</span></a>
+          
+          <li>
+              <a href="/categories/active-directory/">active-directory<span class="count">4</span></a>
+          
+          <li>
+              <a href="/categories/infoblox/">infoblox<span class="count">3</span></a>
+          
+          <li>
+              <a href="/categories/pwnedpasscheck/">pwnedpasscheck<span class="count">2</span></a>
+          
+          <li>
+              <a href="/categories/dnsclient-ps/">dnsclient-ps<span class="count">1</span></a>
+          
+          <li>
+              <a href="/categories/posh-ibcli/">posh-ibcli<span class="count">1</span></a>
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+
+  
+</section>
+
+      <footer id="site-footer">
+  
+  <p class="copyright">
+    © 2022 Ryan Bolger
+      <br>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      <script src="/js/highlight.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/xml.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/css.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/javascript.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/ini.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/powershell.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/csharp.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/python.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/plaintext.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/bash.min.js"></script>
+    <script>hljs.highlightAll();</script><script src="/js/bundle.min.f216b313635c0dae4cb835c1ea9af9dd083e9f5cfd4cb09b256b5a71c03f6cc0.js" integrity="sha256-8hazE2NcDa5MuDXB6pr53Qg&#43;n1z9TLCbJWtaccA/bMA="></script>
+    <script src="/js/add-on.js"></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77433451-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    </div>
+  </body>
+</html>

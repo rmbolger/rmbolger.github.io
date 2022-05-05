@@ -139,6 +139,55 @@
   <header>
   <div class="title">
     
+      <h2><a href="/blog/2019/12/posh-acme-3.12.0/">Posh-ACME 3.12.0</a></h2>
+    
+    
+      <p>Set-PAOrder improvements, upgraded BouncyCastle, and misc fixes.</p>
+    
+  </div>
+  <div class="meta">
+    <time datetime="2019-12-10 00:00:00 &#43;0000 UTC">December 10, 2019</time>
+    <p>Ryan Bolger</p>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+    
+    <p>Just shipped a new Posh-ACME release, version 3.12.0. The <code>Set-PAOrder</code> function now has <code>-DnsPlugin</code> and <code>-PluginArgs</code> parameters which should make it easier to change DNS providers and/or provider parameters without needing to wait for a certificate renewal. The BouncyCastle library has been updated to the latest 1.8.5 version and the DLL file is using a non-standard name to avoid conflicts with other software that uses BouncyCastle and chooses to install the DLL into the .NET GAC. For some reason,&hellip;</p>
+  </div>
+  <footer>
+    <a href="/blog/2019/12/posh-acme-3.12.0/" class="button big">Read More</a>
+    <div class="stats">
+  
+    <ul class="categories">
+      
+        
+          <li><a class="article-terms-link" href="/categories/posh-acme/">Posh-ACME</a></li>
+        
+      
+    </ul>
+  
+  
+    <ul class="tags">
+      
+        
+          <li><a class="article-terms-link" href="/tags/powershell/">powershell</a></li>
+        
+      
+    </ul>
+  
+</div>
+
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+  <div class="title">
+    
       <h2><a href="/blog/2019/11/posh-acme-3.11.0/">Posh-ACME 3.11.0</a></h2>
     
     
@@ -496,6 +545,14 @@
       <article class="mini-post">
           
         <header>
+          <h2><a href="/blog/2022/05/automating-free-certs-for-infoblox-grid-manager/">Automating Free Certs for Infoblox Grid Manager</a></h2>
+          <time class="published" datetime="2022-05-04 00:00:00 &#43;0000 UTC">May 4, 2022</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+          
+        <header>
           <h2><a href="/blog/2021/08/force-dc-to-register-ad-dns-records/">Force a DC to Register AD DNS records with no Netlogon Restart</a></h2>
           <time class="published" datetime="2021-08-13 00:00:00 &#43;0000 UTC">August 13, 2021</time>
         </header>
@@ -525,14 +582,6 @@
         </header>
       </article>
       
-      <article class="mini-post">
-          
-        <header>
-          <h2><a href="/blog/2021/02/posh-acme-4.3.0/">Posh-ACME 4.3.0</a></h2>
-          <time class="published" datetime="2021-02-24 00:00:00 &#43;0000 UTC">February 24, 2021</time>
-        </header>
-      </article>
-      
       
         <footer>
           <a href="/blog" class="button">See More</a>
@@ -552,16 +601,16 @@
           
           
           <li>
-              <a href="/categories/posh-acme/">posh-acme<span class="count">27</span></a>
+              <a href="/categories/posh-acme/">posh-acme<span class="count">28</span></a>
+          
+          <li>
+              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">5</span></a>
           
           <li>
               <a href="/categories/active-directory/">active-directory<span class="count">4</span></a>
           
           <li>
-              <a href="/categories/posh-ibwapi/">posh-ibwapi<span class="count">4</span></a>
-          
-          <li>
-              <a href="/categories/infoblox/">infoblox<span class="count">2</span></a>
+              <a href="/categories/infoblox/">infoblox<span class="count">3</span></a>
           
           <li>
               <a href="/categories/pwnedpasscheck/">pwnedpasscheck<span class="count">2</span></a>
@@ -584,7 +633,7 @@
       <footer id="site-footer">
   
   <p class="copyright">
-    © 2021 Ryan Bolger
+    © 2022 Ryan Bolger
       <br>
     Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
