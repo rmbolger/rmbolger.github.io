@@ -3,21 +3,27 @@
   <head>
   <meta charset="utf-8">
 <title>Auditing Active Directory Passwords With PwnedPassCheck - Adventures in Tech</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Make sure users aren&#39;t using compromised passwords.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta property="og:site_name" content="Adventures in Tech">
+<meta property="og:title" content="Auditing Active Directory Passwords With PwnedPassCheck">
+<meta property="og:description" content="Make sure users aren&#39;t using compromised passwords.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.dvolve.net/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/">
+  <meta property="og:image" content="https://www.dvolve.net/img/main/logo.jpg">
 
 
-<meta name="generator" content="Hugo 0.87.0" /><meta property="og:site_name" content="Adventures in Tech">
-  <meta property="og:title" content="Auditing Active Directory Passwords With PwnedPassCheck">
-  <meta property="og:description" content="Make sure users aren&#39;t using compromised passwords.">
-  <meta property="description" content="Make sure users aren&#39;t using compromised passwords.">
-  <meta property="og:url" content="https://www.dvolve.net/blog/2019/08/auditing-active-directory-passwords-with-pwnedpasscheck/">
-  <meta property="og:type" content="article">
-  
-    <meta property="og:image" content="https://www.dvolve.net/img/main/logo.jpg">
-  
+
+  <link rel="shortcut icon" href="/favicon.ico?v=1">
+
+
+  <meta name="generator" content="Hugo 0.87.0" />
   
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/solarized-dark.min.css">
-          <link rel="stylesheet" href="/css/bundle.min.2b4e36cd6a81be0237f8d8f3ce0d239eb39d356f5e3b6c33140b8108476a2beb.css" integrity="sha256-K042zWqBvgI3&#43;Njzzg0jnrOdNW9eO2wzFAuBCEdqK&#43;s="><link rel="stylesheet" href="/css/add-on.css">
+          <link rel="stylesheet" href="/css/bundle.min.3b1b5f2e683d24b1ea3b5a08c8254622e40aa935e0ead75ba6d45c0f14c2f965.css" integrity="sha256-OxtfLmg9JLHqO1oIyCVGIuQKqTXg6tdbptRcDxTC&#43;WU="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
@@ -69,7 +75,7 @@
 
     <div id="wrapper">
       <section id="site-intro" >
-  <a href="/"><img src="https://www.dvolve.net/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
+  <a href="/"><img src="/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
   <header>
     <h1>Ryan Bolger</h1>
   </header>
@@ -110,7 +116,7 @@
 
 
 
-<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
 
 
 
@@ -121,7 +127,7 @@
 
 
 <li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
-
+<li><a href="//mastodon.social/@rmbolger" target="_blank" rel="noopener" title="mastodon" class="fab fa-mastodon"></a><a href="https://mastodon.social/@rmbolger" rel="me" style="display:none"></a></li>
 
 
       </ul>
@@ -159,6 +165,7 @@
       </div>
       <div class="content">
         
+        
         <p>In a <a href="/blog/2019/08/new-module-pwnedpasscheck/">previous post</a>, I introduced a new PowerShell module called <a href="https://github.com/rmbolger/PwnedPassCheck">PwnedPassCheck</a>. It can be used to check passwords and hashes against a list of over half a billion compromised passwords exposed in data breaches thanks to <a href="https://twitter.com/troyhunt">Troy Hunt&rsquo;s</a> incredibly useful <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>. In this post, I&rsquo;ll demonstrate how to use the module in conjunction with <a href="https://twitter.com/MGrafnetter">Michael Grafnetter&rsquo;s</a> amazing <a href="https://github.com/MichaelGrafnetter/DSInternals">DSInternals</a> module to quickly audit existing passwords in Active Directory against the compromised list.</p>
 <h1 id="doesnt-dsinternals-already-support-this">Doesn&rsquo;t DSInternals Already Support This?</h1>
 
@@ -181,7 +188,7 @@
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/08/monkey-puppet.png" data-caption="Awkward Monkey Puppet"><img src="https://www.dvolve.net/img/2019/08/monkey-puppet.png" alt="Awkward Monkey Puppet"></a>
+    <a data-fancybox="" href="/img/2019/08/monkey-puppet.png" data-caption="Awkward Monkey Puppet"><img src="/img/2019/08/monkey-puppet.png" alt="Awkward Monkey Puppet"></a>
   </figure>
 
 
@@ -245,7 +252,7 @@ gooduser              0
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/08/audit-all-the-passwords.png" data-caption="Audit All The Passwords Meme"><img src="https://www.dvolve.net/img/2019/08/audit-all-the-passwords.png" alt="Audit All The Passwords Meme"></a>
+    <a data-fancybox="" href="/img/2019/08/audit-all-the-passwords.png" data-caption="Audit All The Passwords Meme"><img src="/img/2019/08/audit-all-the-passwords.png" alt="Audit All The Passwords Meme"></a>
   </figure>
 
 
@@ -396,7 +403,7 @@ gooduser              0
       <footer id="site-footer">
   
   <p class="copyright">
-    © 2022 Ryan Bolger
+    © 2024 Ryan Bolger
       <br>
     Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>

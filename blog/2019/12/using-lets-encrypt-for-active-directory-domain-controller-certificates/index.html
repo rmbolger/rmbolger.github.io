@@ -3,21 +3,27 @@
   <head>
   <meta charset="utf-8">
 <title>Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates - Adventures in Tech</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="LDAPS for free without needing internal PKI.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta property="og:site_name" content="Adventures in Tech">
+<meta property="og:title" content="Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates">
+<meta property="og:description" content="LDAPS for free without needing internal PKI.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.dvolve.net/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">
+  <meta property="og:image" content="https://www.dvolve.net/img/main/logo.jpg">
 
 
-<meta name="generator" content="Hugo 0.87.0" /><meta property="og:site_name" content="Adventures in Tech">
-  <meta property="og:title" content="Using Let&#39;s Encrypt for Active Directory Domain Controller Certificates">
-  <meta property="og:description" content="LDAPS for free without needing internal PKI.">
-  <meta property="description" content="LDAPS for free without needing internal PKI.">
-  <meta property="og:url" content="https://www.dvolve.net/blog/2019/12/using-lets-encrypt-for-active-directory-domain-controller-certificates/">
-  <meta property="og:type" content="article">
-  
-    <meta property="og:image" content="https://www.dvolve.net/img/main/logo.jpg">
-  
+
+  <link rel="shortcut icon" href="/favicon.ico?v=1">
+
+
+  <meta name="generator" content="Hugo 0.87.0" />
   
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/solarized-dark.min.css">
-          <link rel="stylesheet" href="/css/bundle.min.2b4e36cd6a81be0237f8d8f3ce0d239eb39d356f5e3b6c33140b8108476a2beb.css" integrity="sha256-K042zWqBvgI3&#43;Njzzg0jnrOdNW9eO2wzFAuBCEdqK&#43;s="><link rel="stylesheet" href="/css/add-on.css">
+          <link rel="stylesheet" href="/css/bundle.min.3b1b5f2e683d24b1ea3b5a08c8254622e40aa935e0ead75ba6d45c0f14c2f965.css" integrity="sha256-OxtfLmg9JLHqO1oIyCVGIuQKqTXg6tdbptRcDxTC&#43;WU="><link rel="stylesheet" href="/css/add-on.css">
 </head>
 
   <body>
@@ -69,7 +75,7 @@
 
     <div id="wrapper">
       <section id="site-intro" >
-  <a href="/"><img src="https://www.dvolve.net/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
+  <a href="/"><img src="/img/main/logo.jpg" class="circle" width="100" alt="Ryan Bolger" /></a>
   <header>
     <h1>Ryan Bolger</h1>
   </header>
@@ -110,7 +116,7 @@
 
 
 
-<li><a href="//twitter.com/rmbolger" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
 
 
 
@@ -121,7 +127,7 @@
 
 
 <li><a href="//keybase.io/rmbolger" target="_blank" rel="noopener" title="keybase" class="fab fa-keybase"></a></li>
-
+<li><a href="//mastodon.social/@rmbolger" target="_blank" rel="noopener" title="mastodon" class="fab fa-mastodon"></a><a href="https://mastodon.social/@rmbolger" rel="me" style="display:none"></a></li>
 
 
       </ul>
@@ -159,6 +165,7 @@
       </div>
       <div class="content">
         
+        
         <p>If you&rsquo;ve ever had to setup an HTTPS website in the past couple years, you&rsquo;ve most likely heard of <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a> which is arguably the <a href="https://www.eff.org/deeplinks/2016/10/lets-encrypt-largest-certificate-authority-web">largest public certificate authority in the world</a>. Not only are their certificates free, the entire ordering and renewal process can be completely automated using a recently finalized protocol standard known as <a href="https://tools.ietf.org/html/rfc8555">ACME (RFC 8555)</a>.</p>
 
 
@@ -180,7 +187,7 @@
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/12/le-logo-wide.png" data-caption="Let&#39;s Encrypt Logo"><img src="https://www.dvolve.net/img/2019/12/le-logo-wide.png" alt="Let&#39;s Encrypt Logo"></a>
+    <a data-fancybox="" href="/img/2019/12/le-logo-wide.png" data-caption="Let&#39;s Encrypt Logo"><img src="/img/2019/12/le-logo-wide.png" alt="Let&#39;s Encrypt Logo"></a>
   </figure>
 
 
@@ -207,7 +214,7 @@
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/12/caution.png" data-caption="Caution"><img src="https://www.dvolve.net/img/2019/12/caution.png" alt="Caution"></a>
+    <a data-fancybox="" href="/img/2019/12/caution.png" data-caption="Caution"><img src="/img/2019/12/caution.png" alt="Caution"></a>
   </figure>
 
 
@@ -256,7 +263,7 @@
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/12/powershell-as-system.png" data-caption="PowerShell running as SYSTEM"><img src="https://www.dvolve.net/img/2019/12/powershell-as-system.png" alt="PowerShell running as SYSTEM"></a>
+    <a data-fancybox="" href="/img/2019/12/powershell-as-system.png" data-caption="PowerShell running as SYSTEM"><img src="/img/2019/12/powershell-as-system.png" alt="PowerShell running as SYSTEM"></a>
   </figure>
 
 
@@ -306,7 +313,7 @@ New-PACertificate @certParams
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/12/cert-order-success.png" data-caption="New-PACertificate success ouput"><img src="https://www.dvolve.net/img/2019/12/cert-order-success.png" alt="New-PACertificate success ouput"></a>
+    <a data-fancybox="" href="/img/2019/12/cert-order-success.png" data-caption="New-PACertificate success ouput"><img src="/img/2019/12/cert-order-success.png" alt="New-PACertificate success ouput"></a>
   </figure>
 
 
@@ -330,7 +337,7 @@ New-PACertificate @certParams
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/12/cert-snapin-success.png" data-caption="Certificate Snap-In"><img src="https://www.dvolve.net/img/2019/12/cert-snapin-success.png" alt="Certificate Snap-In"></a>
+    <a data-fancybox="" href="/img/2019/12/cert-snapin-success.png" data-caption="Certificate Snap-In"><img src="/img/2019/12/cert-snapin-success.png" alt="Certificate Snap-In"></a>
   </figure>
 
 
@@ -357,7 +364,7 @@ New-PACertificate @certParams
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/12/event-1221.png" data-caption="Event ID 1221"><img src="https://www.dvolve.net/img/2019/12/event-1221.png" alt="Event ID 1221"></a>
+    <a data-fancybox="" href="/img/2019/12/event-1221.png" data-caption="Event ID 1221"><img src="/img/2019/12/event-1221.png" alt="Event ID 1221"></a>
   </figure>
 
 
@@ -382,7 +389,7 @@ New-PACertificate @certParams
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/12/ldp-success.png" data-caption="ldp.exe success"><img src="https://www.dvolve.net/img/2019/12/ldp-success.png" alt="ldp.exe success"></a>
+    <a data-fancybox="" href="/img/2019/12/ldp-success.png" data-caption="ldp.exe success"><img src="/img/2019/12/ldp-success.png" alt="ldp.exe success"></a>
   </figure>
 
 
@@ -408,7 +415,7 @@ New-PACertificate @certParams
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/12/adws-event-1401.png" data-caption="ADWS Event 1401 message"><img src="https://www.dvolve.net/img/2019/12/adws-event-1401.png" alt="ADWS Event 1401 message"></a>
+    <a data-fancybox="" href="/img/2019/12/adws-event-1401.png" data-caption="ADWS Event 1401 message"><img src="/img/2019/12/adws-event-1401.png" alt="ADWS Event 1401 message"></a>
   </figure>
 
 
@@ -466,7 +473,7 @@ Register-ScheduledTask $taskname -Action $action -Trigger $trigger -User <span s
   
   
   <figure>
-    <a data-fancybox="" href="/img/2019/12/renewal-log.png" data-caption="Notepad window showing the renewal log"><img src="https://www.dvolve.net/img/2019/12/renewal-log.png" alt="Notepad window showing the renewal log"></a>
+    <a data-fancybox="" href="/img/2019/12/renewal-log.png" data-caption="Notepad window showing the renewal log"><img src="/img/2019/12/renewal-log.png" alt="Notepad window showing the renewal log"></a>
   </figure>
 
 
@@ -616,7 +623,7 @@ Register-ScheduledTask $taskname -Action $action -Trigger $trigger -User <span s
       <footer id="site-footer">
   
   <p class="copyright">
-    © 2022 Ryan Bolger
+    © 2024 Ryan Bolger
       <br>
     Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
